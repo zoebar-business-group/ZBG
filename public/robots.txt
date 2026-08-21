@@ -1,0 +1,58 @@
+# ============================================================================
+# Zoebar Business Group — robots.txt
+#
+# Policy source: Coffee-First Strategy section 2.2, dated 18 August 2026.
+# Status: OPEN — requires client sign-off by build day 8 (Open Item #2).
+#
+# RATIONALE, recorded so a future developer does not silently reverse it:
+# Allowing AI crawlers means specifications and price indications can be
+# summarised without a visit. In exchange, Zoebar becomes citable at the
+# moment a buyer's shortlist forms. For a B2B exporter, being named in the
+# answer is worth more than a pageview that would not have converted.
+# ============================================================================
+
+# --- Search engines ---------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# --- AI answer engines ------------------------------------------------------
+# GPTBot / OAI-SearchBot / ChatGPT-User: required for ChatGPT citation.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Google-Extended governs Gemini / AI Overviews training and grounding.
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# --- Everything else --------------------------------------------------------
+# Unidentified aggressive scrapers are blocked at the edge, not here; a
+# robots directive is advisory and the wrong layer for abuse control.
+User-agent: *
+Allow: /
+
+# Campaign landing pages and the post-submission page carry no search value.
+Disallow: /lp/
+Disallow: /thank-you
+
+Sitemap: https://zoebarbusinessgroup.com/sitemap.xml

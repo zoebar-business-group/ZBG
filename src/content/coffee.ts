@@ -1,0 +1,100 @@
+import { ORIGIN, OPERATIONS } from "@/lib/org";
+
+/**
+ * COFFEE OFFER — content model
+ * ----------------------------------------------------------------------------
+ * Strategy Open Item #4: "Coffee specifications (grades, screens, cupping
+ * bands, MOQ, packing, yields, lead times, Incoterms, port)" — needed day 1–2,
+ * blocks /coffee, /process and /lots. Nothing below is invented.
+ *
+ * `null` means the client has not yet confirmed it. It renders as a Pending
+ * marker and is stripped from Product schema. Do not substitute a "typical"
+ * industry value: a buyer comparing suppliers on MOQ or lead time would be
+ * making a purchasing decision on a number Zoebar never stated.
+ */
+
+export interface SpecField {
+  label: string;
+  value: string | null;
+  /** Short clarifier shown beneath the value. */
+  note?: string;
+  /** Include in Product schema additionalProperty when confirmed. */
+  schemaName?: string;
+}
+
+/** Verified origin and product identity. */
+export const IDENTITY: SpecField[] = [
+  {
+    label: "Origin",
+    value: `${ORIGIN.name} (${ORIGIN.zone}), ${ORIGIN.country}`,
+    schemaName: "origin",
+  },
+  {
+    label: "Trade category",
+    value: "Commonly presented within the Sidama category",
+    note: "Amaro is an administrative zone and is not part of the Sidama Region.",
+    schemaName: "tradeCategory",
+  },
+  { label: "Species", value: ORIGIN.species, schemaName: "species" },
+  {
+    label: "Altitude",
+    value: `${ORIGIN.altitudeMin.toLocaleString("en-US")}–${ORIGIN.altitudeMax.toLocaleString("en-US")} masl`,
+    schemaName: "altitude",
+  },
+  {
+    label: "Harvest",
+    value: `${ORIGIN.harvestStart} – ${ORIGIN.harvestEnd}`,
+    schemaName: "harvestPeriod",
+  },
+  {
+    label: "Processing",
+    value: ORIGIN.processing.join(" / "),
+    note: "Method is recorded per lot.",
+    schemaName: "processingMethod",
+  },
+  {
+    label: "Washing station",
+    value: `Zoebar-owned, ${OPERATIONS.washingStationLocation}`,
+    schemaName: "washingStation",
+  },
+];
+
+/** Quality specification — awaiting confirmation. */
+export const QUALITY_SPEC: SpecField[] = [
+  { label: "Grade", value: null, schemaName: "grade" },
+  { label: "Screen size", value: null, schemaName: "screenSize" },
+  { label: "Cupping score", value: null, schemaName: "cuppingScore" },
+  { label: "Defect count", value: null, schemaName: "defectCount" },
+  { label: "Moisture content", value: null, schemaName: "moistureContent" },
+  { label: "Varieties", value: null, schemaName: "varieties" },
+];
+
+/** Commercial terms — awaiting confirmation. */
+export const COMMERCIAL_SPEC: SpecField[] = [
+  { label: "Packing", value: null, schemaName: "packing" },
+  { label: "Minimum order quantity", value: null, schemaName: "minimumOrderQuantity" },
+  { label: "Lead time", value: null, schemaName: "leadTime" },
+  { label: "Incoterms", value: null, schemaName: "incoterms" },
+  { label: "Port of loading", value: null, schemaName: "portOfLoading" },
+  { label: "Inspection", value: null, schemaName: "inspection" },
+  { label: "Certifications", value: null, schemaName: "certifications" },
+];
+
+export const ALL_SPECS = [...IDENTITY, ...QUALITY_SPEC, ...COMMERCIAL_SPEC];
+
+/** Only confirmed fields reach structured data. */
+export function confirmedSpecs(): SpecField[] {
+  return ALL_SPECS.filter((s) => s.value !== null && s.schemaName);
+}
+
+/**
+ * Volume bands for the enquiry form. These describe the enquiry, not a
+ * Zoebar commitment, so they are safe to publish ahead of MOQ confirmation.
+ */
+export const VOLUME_BANDS = [
+  "Under 1 container",
+  "1–5 containers",
+  "6–20 containers",
+  "Over 20 containers",
+  "Not yet determined",
+] as const;
