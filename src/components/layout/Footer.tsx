@@ -24,6 +24,15 @@ function label(path: string): string {
   return ROUTES.find((r) => r.path === path)?.label ?? path;
 }
 
+/**
+ * Lower-cases only the leading character, so a sentence-cased fact can be
+ * dropped mid-sentence without flattening the proper nouns inside it.
+ * `"Being established in Addis Ababa".toLowerCase()` produced "addis ababa".
+ */
+function sentenceMerge(text: string): string {
+  return text.charAt(0).toLowerCase() + text.slice(1);
+}
+
 export function Footer() {
   return (
     <footer className="bg-ink text-alabaster" data-density="story">
@@ -48,7 +57,7 @@ export function Footer() {
               {ORG.promise}
             </p>
             <p className="max-w-[38ch] font-sans text-sm leading-relaxed text-[#9db3b0]">
-              {OPERATIONS.ethiopiaEntity} is {OPERATIONS.ethiopiaStatus.toLowerCase()}{" "}
+              {OPERATIONS.ethiopiaEntity} is {sentenceMerge(OPERATIONS.ethiopiaStatus)}{" "}
               and owns the washing station in {OPERATIONS.washingStationLocation}.
             </p>
           </div>
