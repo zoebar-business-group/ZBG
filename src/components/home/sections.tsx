@@ -22,7 +22,7 @@ export function WhyZoebar() {
       <Container width="wide">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <Eyebrow index="02" className="text-[#7b8079]">
+            <Eyebrow index="02" className="text-meta">
               Why Zoebar
             </Eyebrow>
             <h2
@@ -209,7 +209,7 @@ export function WashingStation() {
           </div>
 
           <div className="order-1 lg:order-2 lg:col-span-5">
-            <Eyebrow index="04" className="text-[#7b8079]">
+            <Eyebrow index="04" className="text-meta">
               The washing station
             </Eyebrow>
             <h2
@@ -235,7 +235,7 @@ export function WashingStation() {
                   key={row.term}
                   className="flex items-baseline justify-between gap-6 border-t border-[#e2dbcd] py-4"
                 >
-                  <dt className="font-sans text-sm text-[#7b8079]">{row.term}</dt>
+                  <dt className="font-sans text-sm text-meta">{row.term}</dt>
                   <dd className="text-right font-sans text-[0.9375rem] text-ink">
                     {row.detail ?? <Pending />}
                   </dd>
@@ -284,7 +284,7 @@ export function CherryToContainer() {
       <Container width="wide">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <Eyebrow index="05" className="text-[#7b8079]">
+            <Eyebrow index="05" className="text-meta">
               From cherry to container
             </Eyebrow>
             <h2
@@ -295,7 +295,7 @@ export function CherryToContainer() {
             </h2>
           </div>
           <div className="flex items-center gap-3">
-            <span className="font-sans text-sm text-[#7b8079]">Stage timings</span>
+            <span className="font-sans text-sm text-meta">Stage timings</span>
             <Pending />
           </div>
         </div>
@@ -312,7 +312,7 @@ export function CherryToContainer() {
             >
               <span
                 data-numeric
-                className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#a8a294]"
+                className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-faint"
               >
                 {stage.n}
               </span>
@@ -349,7 +349,7 @@ export function Quality() {
       <Container width="wide">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <Eyebrow index="06" className="text-[#7b8079]">
+            <Eyebrow index="06" className="text-meta">
               Quality
             </Eyebrow>
             <h2
@@ -444,7 +444,7 @@ export function Traceability() {
             >
               <span
                 data-numeric
-                className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#6f7a72]"
+                className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-meta-inverse"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -486,7 +486,7 @@ export function Farmers() {
       <Container width="wide">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <Eyebrow index="08" className="text-[#7b8079]">
+            <Eyebrow index="08" className="text-meta">
               The producers
             </Eyebrow>
             <h2
@@ -500,7 +500,7 @@ export function Farmers() {
               the grower&rsquo;s name, plot, altitude and their own words, and lot
               pages link back to the people who grew the lot.
             </p>
-            <p className="mt-5 max-w-[44ch] font-sans text-sm leading-relaxed text-[#7b8079]">
+            <p className="mt-5 max-w-[44ch] font-sans text-sm leading-relaxed text-meta">
               Profiles publish only with documented permission from the producer.
               They are added progressively as those permissions are confirmed.
             </p>
@@ -550,7 +550,7 @@ export function AvailableCoffee() {
       <Container width="wide">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <Eyebrow index="09" className="text-[#7b8079]">
+            <Eyebrow index="09" className="text-meta">
               Available coffee
             </Eyebrow>
             <h2
@@ -634,7 +634,7 @@ export function FromOrigin() {
       <Container width="wide">
         <div className="flex flex-col gap-6 border-b border-[#e2dbcd] pb-10 md:flex-row md:items-end md:justify-between">
           <div>
-            <Eyebrow index="10" className="text-[#7b8079]">
+            <Eyebrow index="10" className="text-meta">
               From Origin
             </Eyebrow>
             <h2
@@ -656,7 +656,7 @@ export function FromOrigin() {
         </p>
 
         <div className="mt-10 flex items-center gap-3">
-          <span className="font-sans text-sm text-[#7b8079]">First entries</span>
+          <span className="font-sans text-sm text-meta">First entries</span>
           <Pending>Seeding from archive</Pending>
         </div>
       </Container>

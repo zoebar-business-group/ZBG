@@ -128,7 +128,7 @@ export default async function GuidePage({
             <nav aria-labelledby="contents" className="min-w-0 lg:col-span-5">
               <p
                 id="contents"
-                className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]"
+                className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-meta"
               >
                 Contents
               </p>
@@ -142,7 +142,7 @@ export default async function GuidePage({
                       <span
                         data-numeric
                         aria-hidden="true"
-                        className="pt-[0.2em] text-[0.625rem] font-medium tabular-nums tracking-[0.16em] text-[#a8a294]"
+                        className="pt-[0.2em] text-[0.625rem] font-medium tabular-nums tracking-[0.16em] text-faint"
                       >
                         {String(i + 1).padStart(2, "0")}
                       </span>
@@ -176,7 +176,7 @@ export default async function GuidePage({
                     <p
                       data-numeric
                       aria-hidden="true"
-                      className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#a8a294]"
+                      className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-faint"
                     >
                       {String(i + 1).padStart(2, "0")}
                     </p>
@@ -236,13 +236,13 @@ export default async function GuidePage({
             {others.map((other) => (
               <li key={other.slug} className="bg-alabaster">
                 <Link href={`/guides/${other.slug}`} className="group flex h-full flex-col gap-4 p-7">
-                  <p className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#a8a294]">
+                  <p className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-faint">
                     Guide
                   </p>
                   <h3 className="max-w-[20ch] font-display text-[1.25rem] leading-snug text-ink transition-colors duration-[200ms] group-hover:text-emerald-mid">
                     {other.navTitle}
                   </h3>
-                  <p className="mt-auto font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-[#7b8079]">
+                  <p className="mt-auto font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-meta">
                     {guideReadingTime(other)} min read
                   </p>
                 </Link>

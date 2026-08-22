@@ -152,7 +152,7 @@ export default function QualityPage() {
                 issues them, and why a grade is not a cup score — is set out in{" "}
                 <Link
                   href="/guides/ethiopian-coffee-grading"
-                  className="underline decoration-[0.5px] decoration-[#a8a294] underline-offset-[3px] transition-colors hover:decoration-current"
+                  className="underline decoration-[0.5px] decoration-faint underline-offset-[3px] transition-colors hover:decoration-current"
                 >
                   the grading guide
                 </Link>
@@ -199,7 +199,7 @@ export default function QualityPage() {
                 <div className="flex items-baseline gap-4">
                   <span
                     data-numeric
-                    className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#a8a294]"
+                    className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-faint"
                   >
                     {a.n}
                   </span>
@@ -207,7 +207,7 @@ export default function QualityPage() {
                     {a.name}
                   </h3>
                 </div>
-                <p className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-[#7b8079]">
+                <p className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-meta">
                   {a.subject}
                 </p>
                 <p className="max-w-[52ch] font-sans text-[0.9375rem] leading-[1.7] text-[#5a5f56]">
@@ -316,7 +316,7 @@ export default function QualityPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow className="text-[#7b8079]">Specification</Eyebrow>
+              <Eyebrow className="text-meta">Specification</Eyebrow>
               <h2
                 id="specification"
                 className="mt-6 max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
@@ -327,7 +327,7 @@ export default function QualityPage() {
                 {QUALITY_FAQS[2].answer}
               </p>
               <div className="mt-8 flex items-center gap-3">
-                <span className="font-sans text-sm text-[#7b8079]">Quality figures</span>
+                <span className="font-sans text-sm text-meta">Quality figures</span>
                 <Pending />
               </div>
             </div>
@@ -345,7 +345,7 @@ export default function QualityPage() {
                 industry averages. When they are confirmed they appear here, on{" "}
                 <Link
                   href="/coffee"
-                  className="underline decoration-[0.5px] decoration-[#a8a294] underline-offset-[3px] transition-colors hover:decoration-current"
+                  className="underline decoration-[0.5px] decoration-faint underline-offset-[3px] transition-colors hover:decoration-current"
                 >
                   the coffee page
                 </Link>{" "}
@@ -360,7 +360,7 @@ export default function QualityPage() {
       {/* --- Why the gaps are visible ------------------------------------------ */}
       <Section surface="bone" rhythm="base" density="spec" aria-labelledby="position">
         <Container width="text">
-          <Eyebrow className="text-[#7b8079]">The position</Eyebrow>
+          <Eyebrow className="text-meta">The position</Eyebrow>
           <h2
             id="position"
             className="mt-6 max-w-[20ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"

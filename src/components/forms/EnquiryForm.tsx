@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useId } from "react";
 import { useFormStatus } from "react-dom";
 
 import { VOLUME_BANDS } from "@/content/coffee";
@@ -22,10 +22,11 @@ import { INITIAL_STATE } from "@/lib/enquiry-state";
 
 const FIELD =
   "w-full rounded-[0.25rem] border bg-alabaster px-4 py-3.5 font-sans text-[0.9375rem] text-ink " +
-  "transition-colors duration-[150ms] placeholder:text-[#a8a294] " +
+  "transition-colors duration-[150ms] placeholder:text-faint " +
   "focus:outline-none focus:ring-2 focus:ring-emerald-mid focus:ring-offset-2 focus:ring-offset-alabaster";
 
 function Field({
+  idPrefix,
   label,
   name,
   type = "text",
@@ -35,6 +36,8 @@ function Field({
   defaultValue,
   placeholder,
 }: {
+  /** Unique per form instance — see the useId note in EnquiryForm. */
+  idPrefix: string;
   label: string;
   name: string;
   type?: string;
@@ -44,18 +47,21 @@ function Field({
   defaultValue?: string;
   placeholder?: string;
 }) {
-  const errorId = `${name}-error`;
+  // `name` stays the plain field name — the server action reads it from
+  // FormData. Only the DOM id is scoped.
+  const inputId = `${idPrefix}${name}`;
+  const errorId = `${inputId}-error`;
   return (
     <div className="flex flex-col gap-2">
       <label
-        htmlFor={name}
+        htmlFor={inputId}
         className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.16em] text-[#5a5f56]"
       >
         {label}
-        {!required && <span className="ml-2 normal-case text-[#a8a294]">Optional</span>}
+        {!required && <span className="ml-2 normal-case text-faint">Optional</span>}
       </label>
       <input
-        id={name}
+        id={inputId}
         name={name}
         type={type}
         required={required}
@@ -95,6 +101,19 @@ export function EnquiryForm({
   kind?: "quote" | "sample";
   submitLabel?: string;
 }) {
+  /**
+   * /request-quote renders this form TWICE — once for a quote and once for a
+   * sample at #sample — and /contact renders it again alongside the page's own
+   * content. With hardcoded ids every duplicate produced a second element with
+   * id="name", id="email" and so on, so each label in the second form pointed
+   * at the FIRST form's input: clicking "Email" above the sample form focused
+   * the quote form's field, and screen readers read the wrong association.
+   *
+   * useId() gives each instance its own stable, hydration-safe prefix. The
+   * `name` attributes are deliberately untouched — the server action reads
+   * those from FormData and they must stay exactly as `enquiry.ts` expects.
+   */
+  const uid = useId();
   const [state, formAction] = useActionState(submitEnquiry, INITIAL_STATE);
   const v = state?.values ?? {};
   const fieldErrors = state?.errors ?? {};
@@ -128,6 +147,7 @@ export function EnquiryForm({
 
       <div className="grid gap-6 sm:grid-cols-2">
         <Field
+          idPrefix={uid}
           label="Name"
           name="name"
           autoComplete="name"
@@ -135,6 +155,7 @@ export function EnquiryForm({
           defaultValue={v.name}
         />
         <Field
+          idPrefix={uid}
           label="Company"
           name="company"
           autoComplete="organization"
@@ -142,6 +163,7 @@ export function EnquiryForm({
           defaultValue={v.company}
         />
         <Field
+          idPrefix={uid}
           label="Email"
           name="email"
           type="email"
@@ -150,6 +172,7 @@ export function EnquiryForm({
           defaultValue={v.email}
         />
         <Field
+          idPrefix={uid}
           label="Country"
           name="country"
           autoComplete="country-name"
@@ -160,18 +183,18 @@ export function EnquiryForm({
 
       <div className="flex flex-col gap-2">
         <label
-          htmlFor="volume"
+          htmlFor={`${uid}volume`}
           className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.16em] text-[#5a5f56]"
         >
           Volume
         </label>
         <select
-          id="volume"
+          id={`${uid}volume`}
           name="volume"
           required
           defaultValue={v.volume ?? ""}
           aria-invalid={fieldErrors.volume ? true : undefined}
-          aria-describedby={fieldErrors.volume ? "volume-error" : undefined}
+          aria-describedby={fieldErrors.volume ? `${uid}volume-error` : undefined}
           className={clsx(FIELD, fieldErrors.volume ? "border-[#8c3b32]" : "border-[#d9d0bf]")}
         >
           <option value="" disabled>
@@ -184,7 +207,7 @@ export function EnquiryForm({
           ))}
         </select>
         {fieldErrors.volume && (
-          <p id="volume-error" className="font-sans text-sm text-[#8c3b32]">
+          <p id={`${uid}volume-error`} className="font-sans text-sm text-[#8c3b32]">
             {fieldErrors.volume}
           </p>
         )}
@@ -192,14 +215,14 @@ export function EnquiryForm({
 
       <div className="flex flex-col gap-2">
         <label
-          htmlFor="message"
+          htmlFor={`${uid}message`}
           className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.16em] text-[#5a5f56]"
         >
           What do you need?
-          <span className="ml-2 normal-case text-[#a8a294]">Optional</span>
+          <span className="ml-2 normal-case text-faint">Optional</span>
         </label>
         <textarea
-          id="message"
+          id={`${uid}message`}
           name="message"
           rows={5}
           defaultValue={v.message}
@@ -210,7 +233,7 @@ export function EnquiryForm({
 
       <div className="flex flex-wrap items-center gap-6">
         <Submit label={submitLabel} />
-        <p className="max-w-[34ch] font-sans text-sm leading-relaxed text-[#7b8079]">
+        <p className="max-w-[34ch] font-sans text-sm leading-relaxed text-meta">
           We reply with confirmed specifications, or tell you when a figure will
           be confirmed.
         </p>

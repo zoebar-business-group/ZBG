@@ -130,7 +130,7 @@ export default function ProcessPage() {
               Seven stages.
             </h2>
             <div className="flex items-center gap-3">
-              <span className="font-sans text-sm text-[#7b8079]">Stage timings</span>
+              <span className="font-sans text-sm text-meta">Stage timings</span>
               <Pending />
             </div>
           </div>
@@ -148,7 +148,7 @@ export default function ProcessPage() {
               >
                 <span
                   data-numeric
-                  className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#a8a294] sm:pt-2"
+                  className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-faint sm:pt-2"
                 >
                   {s.n}
                 </span>
@@ -220,7 +220,7 @@ export default function ProcessPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow className="text-[#7b8079]">Export</Eyebrow>
+              <Eyebrow className="text-meta">Export</Eyebrow>
               <h2
                 id="export"
                 className="mt-6 max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"

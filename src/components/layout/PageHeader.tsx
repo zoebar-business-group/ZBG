@@ -33,7 +33,7 @@ export function Breadcrumbs({
                   aria-current="page"
                   className={clsx(
                     "font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em]",
-                    onDark ? "text-[#9db3b0]" : "text-[#7b8079]",
+                    onDark ? "text-[#9db3b0]" : "text-meta",
                   )}
                 >
                   {c.name}
@@ -54,7 +54,7 @@ export function Breadcrumbs({
                   aria-hidden="true"
                   className={clsx(
                     "text-[0.6875rem]",
-                    onDark ? "text-[#6f7a72]" : "text-[#a8a294]",
+                    onDark ? "text-meta-inverse" : "text-faint",
                   )}
                 >
                   /
@@ -103,7 +103,7 @@ export function PageHeader({
         <p
           className={clsx(
             "mt-10 font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em]",
-            onDark ? "text-sand" : "text-[#7b8079]",
+            onDark ? "text-sand" : "text-meta",
           )}
         >
           {eyebrow}
@@ -143,7 +143,7 @@ export function PageHeader({
                 <dt
                   className={clsx(
                     "font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em]",
-                    onDark ? "text-[#9db3b0]" : "text-[#7b8079]",
+                    onDark ? "text-[#9db3b0]" : "text-meta",
                   )}
                 >
                   {m.term}

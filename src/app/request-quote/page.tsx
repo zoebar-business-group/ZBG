@@ -59,7 +59,7 @@ export default function RequestQuotePage() {
           <Container width="wide">
             <div className="flex flex-col gap-3 border-l-2 border-[#c9c0ae] pl-6">
               <div className="flex flex-wrap items-center gap-3">
-                <h2 className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]">
+                <h2 className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-meta">
                   Enquiry delivery
                 </h2>
                 <Pending>Not connected</Pending>
@@ -84,7 +84,7 @@ export default function RequestQuotePage() {
         <Container width="wide">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow index="01" className="text-[#7b8079]">
+              <Eyebrow index="01" className="text-meta">
                 Quote
               </Eyebrow>
               <h2
@@ -110,7 +110,7 @@ export default function RequestQuotePage() {
                     key={r.term}
                     className="flex items-baseline justify-between gap-6 border-t border-[#e2dbcd] py-4"
                   >
-                    <dt className="font-sans text-sm text-[#7b8079]">{r.term}</dt>
+                    <dt className="font-sans text-sm text-meta">{r.term}</dt>
                     <dd className="text-right font-sans text-[0.9375rem] text-ink">
                       {r.detail}
                     </dd>

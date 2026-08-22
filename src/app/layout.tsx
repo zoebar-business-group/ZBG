@@ -16,23 +16,39 @@ import { Footer } from "@/components/layout/Footer";
  * Strategy Open Item #3. See docs/TYPEFACE.md for the substitution record.
  *
  * Fraunces is the documented stand-in: a warm, moderately-contrasted editorial
- * serif with flared stems, set with WONK 0 and SOFT 0 to strip its quirk and
- * sit close to Canela's register. It is NOT the final face. When the licence
- * lands, drop the files into /public/fonts, declare the @font-face, and the
- * `--font-display` stack in globals.css picks Canela up ahead of this — no
- * component changes.
+ * serif with flared stems, sitting close to Canela's register at its default
+ * WONK 0 / SOFT 0. It is NOT the final face. When the licence lands, drop the
+ * files into /public/fonts, declare the @font-face, and the `--font-display`
+ * stack in globals.css picks Canela up ahead of this — no component changes.
+ *
+ * AXES: `opsz` only.
+ * next/font ships the weight axis alone by default, and every extra axis
+ * enlarges the file. SOFT and WONK were previously requested so they could be
+ * described as "set to 0" — but nothing in this codebase has ever set
+ * font-variation-settings, and 0 is already each axis's default in Fraunces.
+ * The two of them cost 118KB of the homepage's 357KB and changed nothing on
+ * screen.
+ *
+ * `opsz` stays: it is the one axis actually exercised here, because browsers
+ * apply optical sizing on their own (font-optical-sizing defaults to auto) and
+ * the display scale runs to 8.5rem, which is where it earns its weight.
  */
 const fraunces = Fraunces({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display-fallback",
-  axes: ["SOFT", "WONK", "opsz"],
+  axes: ["opsz"],
 });
 
+/*
+ * Weights 300 and 600 were declared and downloaded on every page, and neither
+ * appears anywhere in the codebase — there is no `font-light` and no
+ * `font-semibold`. Only 400 (default) and 500 (`font-medium`) are used.
+ */
 const poppins = Poppins({
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500"],
   variable: "--font-poppins",
 });
 

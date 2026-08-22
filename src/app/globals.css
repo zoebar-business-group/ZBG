@@ -28,11 +28,40 @@
   --color-surface-ink: var(--color-ink);
   --color-surface-bone: var(--color-bone);
 
-  /* --- Semantic text ------------------------------------------------------ */
+  /* --- Semantic text ------------------------------------------------------
+     CONTRAST FLOOR. Every colour here carries its measured WCAG AA ratio
+     against the surfaces it is actually used on. AA for normal text is 4.5:1,
+     and none of this type is large enough for the 3:1 exemption — the eyebrows
+     are 9-11px. Do not lighten any of these, and do not introduce a new grey
+     without measuring it against BOTH alabaster #fffaf4 AND bone #efe9de:
+     bone is the darker of the two light surfaces and is what actually fails
+     first. See the "text hierarchy has a floor" trap in BUILD-STATUS.md.
+     ---------------------------------------------------------------------- */
   --color-text: var(--color-ink);
-  --color-text-muted: #5a5f56;
+  --color-text-muted: #5a5f56; /* 6.31 alabaster / 5.42 bone — secondary body */
   --color-text-inverse: var(--color-alabaster);
-  --color-text-inverse-muted: #9db3b0;
+  --color-text-inverse-muted: #9db3b0; /* 7.84 emerald / 8.52 ink */
+
+  /* Metadata tier — eyebrows, captions, table captions, status notes.
+     Was #7b8079, which measured 3.89 on alabaster and 3.34 on bone and failed
+     AA on all 18 routes (399 axe violations, every one of them this colour). */
+  --color-meta: #5f645d; /* 5.83 alabaster / 5.01 bone */
+
+  /* Faintest tier — chapter indices, separators, "Optional" markers.
+     Was #a8a294, which measured 2.45 / 2.10. Warm, to hold the palette's
+     warmth against the cooler metadata tier. */
+  --color-faint: #6b6659; /* 5.51 alabaster / 4.74 bone */
+
+  /* Metadata tier on deep surfaces. Was #6f7a72 at 3.88 on emerald.
+     Measured against the LIGHTEST pixel .story-atmosphere can paint, which is
+     #143833 — not against the flat emerald. The gradient wash lifts the
+     surface by a long way, and a value chosen against #011f1b alone (#879389)
+     measured only 4.00:1 where the wash peaks. Rendering that gradient on a
+     blank page shows it tops out at #143833 at every viewport from 360 to
+     2560, because the two radials never reach full strength at the same
+     point — the emerald-mid one alone sets the ceiling. */
+  --color-meta-inverse: #96a299; /* 4.82 on the gradient's lightest point,
+                                    6.53 emerald / 7.10 ink / 6.26 deep */
 
   /* --- Rules / hairlines -------------------------------------------------- */
   --color-rule: #e2dbcd;
@@ -301,6 +330,30 @@
       100% 100%,
       0 100%
     );
+  }
+
+  /* --- Surface-adaptive chrome -------------------------------------------
+     A `Pending` chip carries its own colours, so it must know which surface
+     it landed on. It used to learn that from an `onDark` prop, which the
+     caller had to remember — and on /farmers and /about/founder the caller
+     did not, so two chips rendered muted-on-emerald at 3.88:1. This is the
+     same failure family as the navigation `darkHeader` trap.
+
+     Deep surfaces now redeclare these variables, so a chip dropped anywhere
+     inside one adapts on its own. The `onDark` prop still works and still
+     wins, for a chip that sits on a dark panel nested inside a light section.
+     ---------------------------------------------------------------------- */
+  :root {
+    --pending-fg: var(--color-meta);
+    --pending-border: #d9d0bf;
+    --pending-dot: var(--color-faint);
+  }
+
+  .story-atmosphere,
+  .bg-ink {
+    --pending-fg: var(--color-text-inverse-muted);
+    --pending-border: rgba(240, 226, 203, 0.28);
+    --pending-dot: var(--color-sage);
   }
 
   /* Atmospheric depth for story surfaces — a single soft emerald-over-ink

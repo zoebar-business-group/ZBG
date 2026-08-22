@@ -112,12 +112,21 @@ export function Eyebrow({
         className,
       )}
     >
+      {/* No opacity on either of these.
+          Eyebrow inherits its colour from the caller, so opacity was chosen to
+          quieten the index on any surface. It cannot be used here: the callers
+          are already muted tokens sitting near the AA floor (~5:1), and the
+          minimum opacity that still clears 4.5:1 across every surface this
+          renders on is 0.95 — indistinguishable from 1. opacity-70 measured
+          2.39:1 and opacity-40 measured 1.60:1.
+          The index reads as secondary through tabular figures and the em-dash,
+          which is where that hierarchy belonged in the first place. */}
       {index && (
         <>
-          <span data-numeric className="tabular-nums opacity-70">
+          <span data-numeric className="tabular-nums">
             {index}
           </span>
-          <span aria-hidden="true" className="mx-2 opacity-40">
+          <span aria-hidden="true" className="mx-2">
             —
           </span>
         </>

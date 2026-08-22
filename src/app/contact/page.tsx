@@ -100,7 +100,7 @@ export default function ContactPage() {
             <div className="min-w-0 lg:col-span-6">
               <div className="w-full min-w-0 overflow-x-auto">
                 <table className="w-full border-collapse text-left">
-                  <caption className="mb-4 text-left font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]">
+                  <caption className="mb-4 text-left font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-meta">
                     Contact channels
                   </caption>
                   <tbody>
@@ -114,11 +114,11 @@ export default function ContactPage() {
                       <td className="py-4 font-sans text-[0.9375rem] text-ink">
                         <Link
                           href="#enquiry"
-                          className="underline decoration-[0.5px] decoration-[#a8a294] underline-offset-[3px] transition-colors hover:decoration-current"
+                          className="underline decoration-[0.5px] decoration-faint underline-offset-[3px] transition-colors hover:decoration-current"
                         >
                           Available on this page
                         </Link>
-                        <span className="mt-1 block text-sm text-[#7b8079]">
+                        <span className="mt-1 block text-sm text-meta">
                           Quotations and sample requests.
                         </span>
                       </td>
@@ -145,7 +145,7 @@ export default function ContactPage() {
                         <td className="py-4 font-sans text-[0.9375rem] text-ink">
                           {row.value ?? <Pending />}
                           {row.note && (
-                            <span className="mt-1 block text-sm text-[#7b8079]">
+                            <span className="mt-1 block text-sm text-meta">
                               {row.note}
                             </span>
                           )}
@@ -172,7 +172,7 @@ export default function ContactPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow className="text-[#7b8079]">Enquiry</Eyebrow>
+              <Eyebrow className="text-meta">Enquiry</Eyebrow>
               <h2
                 id="enquiry-heading"
                 className="mt-6 max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
@@ -190,7 +190,7 @@ export default function ContactPage() {
                     key={item}
                     className="grid grid-cols-[0.75rem_minmax(0,1fr)] gap-x-4 font-sans text-[0.9375rem] leading-[1.7] text-[#5a5f56]"
                   >
-                    <span aria-hidden="true" className="pt-[0.7em] text-[#a8a294]">
+                    <span aria-hidden="true" className="pt-[0.7em] text-faint">
                       <span className="block h-px w-3 bg-current" />
                     </span>
                     <span>{item}</span>
@@ -198,18 +198,18 @@ export default function ContactPage() {
                 ))}
               </ul>
 
-              <p className="mt-8 max-w-[42ch] font-sans text-[0.9375rem] leading-[1.65] text-[#7b8079]">
+              <p className="mt-8 max-w-[42ch] font-sans text-[0.9375rem] leading-[1.65] text-meta">
                 Not sure which terms apply? The{" "}
                 <Link
                   href="/guides/incoterms-green-coffee"
-                  className="underline decoration-[0.5px] decoration-[#a8a294] underline-offset-[3px] transition-colors hover:decoration-current"
+                  className="underline decoration-[0.5px] decoration-faint underline-offset-[3px] transition-colors hover:decoration-current"
                 >
                   Incoterms guide
                 </Link>{" "}
                 and the{" "}
                 <Link
                   href="/guides/import-documentation-checklist"
-                  className="underline decoration-[0.5px] decoration-[#a8a294] underline-offset-[3px] transition-colors hover:decoration-current"
+                  className="underline decoration-[0.5px] decoration-faint underline-offset-[3px] transition-colors hover:decoration-current"
                 >
                   documentation checklist
                 </Link>{" "}

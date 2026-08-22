@@ -46,7 +46,7 @@ export function RichText({ text }: { text: string }): ReactNode {
     const external = href.startsWith("http");
     const className =
       "underline decoration-[0.5px] underline-offset-[3px] transition-colors duration-[200ms] " +
-      "decoration-[#a8a294] hover:decoration-current";
+      "decoration-faint hover:decoration-current";
 
     out.push(
       external ? (
@@ -110,7 +110,7 @@ function BlockNode({ block }: { block: Block }) {
               key={i}
               className="grid grid-cols-[0.75rem_minmax(0,1fr)] gap-x-4 font-sans text-[1.0625rem] leading-[1.72] text-[#3d423a]"
             >
-              <span aria-hidden="true" className="pt-[0.7em] text-[#a8a294]">
+              <span aria-hidden="true" className="pt-[0.7em] text-faint">
                 <span className="block h-px w-3 bg-current" />
               </span>
               <span>
@@ -132,7 +132,7 @@ function BlockNode({ block }: { block: Block }) {
               <span
                 data-numeric
                 aria-hidden="true"
-                className="pt-[0.35em] font-sans text-[0.6875rem] font-medium tabular-nums tracking-[0.16em] text-[#a8a294]"
+                className="pt-[0.35em] font-sans text-[0.6875rem] font-medium tabular-nums tracking-[0.16em] text-faint"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -150,7 +150,7 @@ function BlockNode({ block }: { block: Block }) {
         // whose items also default to a content-derived minimum width.
         <div className="w-full min-w-0 overflow-x-auto">
           <table className="w-full border-collapse text-left">
-            <caption className="mb-4 text-left font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]">
+            <caption className="mb-4 text-left font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-meta">
               {block.caption}
             </caption>
             <thead>
@@ -159,7 +159,7 @@ function BlockNode({ block }: { block: Block }) {
                   <th
                     key={h}
                     scope="col"
-                    className="whitespace-nowrap py-3 pr-6 font-sans text-[0.6875rem] font-medium uppercase tracking-[0.16em] text-[#7b8079]"
+                    className="whitespace-nowrap py-3 pr-6 font-sans text-[0.6875rem] font-medium uppercase tracking-[0.16em] text-meta"
                   >
                     {h}
                   </th>
@@ -209,7 +209,7 @@ function BlockNode({ block }: { block: Block }) {
       return (
         <aside className="max-w-[64ch] border border-[#e2dbcd] bg-bone/60 p-6">
           <div className="flex flex-wrap items-center gap-3">
-            <p className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]">
+            <p className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-meta">
               {block.label}
             </p>
             <Pending />

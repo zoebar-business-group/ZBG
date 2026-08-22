@@ -98,7 +98,7 @@ export default function CoffeePage() {
             <div className="flex flex-col gap-2">
               <h2
                 id="state"
-                className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]"
+                className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-meta"
               >
                 Specification status
               </h2>
@@ -114,7 +114,7 @@ export default function CoffeePage() {
                 className="font-display text-[2.5rem] leading-none tracking-[-0.02em] text-ink"
               >
                 {confirmedCount}
-                <span className="text-[#a8a294]">/{ALL_SPECS.length}</span>
+                <span className="text-faint">/{ALL_SPECS.length}</span>
               </span>
             </div>
           </div>
@@ -126,7 +126,7 @@ export default function CoffeePage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <Eyebrow index="01" className="text-[#7b8079]">
+              <Eyebrow index="01" className="text-meta">
                 Product identity
               </Eyebrow>
               <Answer
@@ -219,7 +219,7 @@ export default function CoffeePage() {
                   >
                     <span
                       data-numeric
-                      className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#6f7a72]"
+                      className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-meta-inverse"
                     >
                       {String(i + 1).padStart(2, "0")}
                     </span>
@@ -239,7 +239,7 @@ export default function CoffeePage() {
         <Container width="wide">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
-              <Eyebrow index="03" className="text-[#7b8079]">
+              <Eyebrow index="03" className="text-meta">
                 Lots
               </Eyebrow>
               <h2
@@ -250,7 +250,7 @@ export default function CoffeePage() {
               </h2>
             </div>
             <div className="flex items-center gap-3">
-              <span className="font-sans text-sm text-[#7b8079]">Published lots</span>
+              <span className="font-sans text-sm text-meta">Published lots</span>
               <Pending />
             </div>
           </div>

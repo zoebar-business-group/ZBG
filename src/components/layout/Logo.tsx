@@ -45,7 +45,7 @@ export function Logo({
       <span
         className={clsx(
           "mt-[0.3em] font-sans text-[0.5rem] font-medium uppercase tracking-[0.34em] sm:text-[0.5625rem]",
-          onDark ? "text-[#9db3b0]" : "text-[#7b8079]",
+          onDark ? "text-[#9db3b0]" : "text-meta",
         )}
       >
         Business Group

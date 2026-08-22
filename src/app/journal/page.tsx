@@ -121,7 +121,7 @@ export default function JournalPage() {
                   Reference material is available now: the{" "}
                   <Link
                     href="/guides"
-                    className="underline decoration-[0.5px] decoration-[#a8a294] underline-offset-[3px] transition-colors hover:decoration-current"
+                    className="underline decoration-[0.5px] decoration-faint underline-offset-[3px] transition-colors hover:decoration-current"
                   >
                     guides
                   </Link>{" "}
@@ -137,7 +137,7 @@ export default function JournalPage() {
                       href={`/guides/${guide.slug}`}
                       className="group flex h-full flex-col gap-4 p-7"
                     >
-                      <p className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#a8a294]">
+                      <p className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-faint">
                         Guide
                       </p>
                       <h3 className="max-w-[20ch] font-display text-[1.1875rem] leading-snug text-ink transition-colors duration-[200ms] group-hover:text-emerald-mid">
@@ -160,11 +160,11 @@ export default function JournalPage() {
                       <time
                         dateTime={entry.datePublished}
                         data-numeric
-                        className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-[#7b8079]"
+                        className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-meta"
                       >
                         {entry.datePublished}
                       </time>
-                      <span className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#a8a294]">
+                      <span className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-faint">
                         {entry.topic}
                       </span>
                     </div>
@@ -176,7 +176,7 @@ export default function JournalPage() {
                       <p className="mt-4 max-w-[62ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
                         {entry.description}
                       </p>
-                      <p className="mt-6 font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-[#7b8079]">
+                      <p className="mt-6 font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-meta">
                         {entryReadingTime(entry)} min read
                       </p>
                     </div>
@@ -193,7 +193,7 @@ export default function JournalPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow className="text-[#7b8079]">Editorial standard</Eyebrow>
+              <Eyebrow className="text-meta">Editorial standard</Eyebrow>
               <h2
                 id="standard"
                 className="mt-6 max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"

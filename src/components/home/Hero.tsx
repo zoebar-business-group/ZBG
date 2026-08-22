@@ -102,11 +102,11 @@ export function Hero() {
           style={{ ["--animate-delay" as string]: "200ms" }}
         >
           {ORIGIN.name}
-          <span aria-hidden="true" className="mx-2.5 opacity-50">
+          <span aria-hidden="true" className="mx-2.5 opacity-70">
             ·
           </span>
           {ORIGIN.zone}
-          <span aria-hidden="true" className="mx-2.5 opacity-50">
+          <span aria-hidden="true" className="mx-2.5 opacity-70">
             ·
           </span>
           {ORIGIN.country}

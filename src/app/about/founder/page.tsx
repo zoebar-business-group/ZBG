@@ -100,7 +100,7 @@ export default function FounderPage() {
       {/* --- Why the page is empty ------------------------------------------- */}
       <Section surface="light" rhythm="base" density="story" aria-labelledby="why-empty">
         <Container width="text">
-          <Eyebrow className="text-[#7b8079]">The position</Eyebrow>
+          <Eyebrow className="text-meta">The position</Eyebrow>
           <h2
             id="why-empty"
             className="mt-6 max-w-[22ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
@@ -133,7 +133,7 @@ export default function FounderPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow className="text-[#7b8079]">What it will cover</Eyebrow>
+              <Eyebrow className="text-meta">What it will cover</Eyebrow>
               <h2
                 id="scope"
                 className="mt-6 max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
@@ -141,7 +141,7 @@ export default function FounderPage() {
                 Four things, on the record.
               </h2>
               <div className="mt-8 flex items-center gap-3">
-                <span className="font-sans text-sm text-[#7b8079]">Founder account</span>
+                <span className="font-sans text-sm text-meta">Founder account</span>
                 <Pending />
               </div>
             </div>

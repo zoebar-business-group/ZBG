@@ -86,7 +86,7 @@ export default function AmaroPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow index="01" className="text-[#7b8079]">
+              <Eyebrow index="01" className="text-meta">
                 Naming and category
               </Eyebrow>
             </div>
@@ -98,7 +98,7 @@ export default function AmaroPage() {
               >
                 <div className="mt-2 grid gap-px overflow-hidden rounded-[0.125rem] bg-[#ddd5c6] sm:grid-cols-2">
                   <div className="bg-alabaster p-6">
-                    <p className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]">
+                    <p className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-meta">
                       Administratively
                     </p>
                     <p className="mt-3 font-display text-[1.5rem] leading-tight text-ink">
@@ -110,7 +110,7 @@ export default function AmaroPage() {
                     </p>
                   </div>
                   <div className="bg-alabaster p-6">
-                    <p className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]">
+                    <p className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-meta">
                       In the trade
                     </p>
                     <p className="mt-3 font-display text-[1.5rem] leading-tight text-ink">
@@ -193,7 +193,7 @@ export default function AmaroPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow index="03" className="text-[#7b8079]">
+              <Eyebrow index="03" className="text-meta">
                 Harvest and processing
               </Eyebrow>
               <Answer
@@ -232,7 +232,7 @@ export default function AmaroPage() {
       {/* --- FAQ ------------------------------------------------------------ */}
       <Section surface="bone" rhythm="base" density="spec" aria-labelledby="faq">
         <Container width="text">
-          <Eyebrow index="04" className="text-[#7b8079]">
+          <Eyebrow index="04" className="text-meta">
             Questions
           </Eyebrow>
           <h2

@@ -16,8 +16,16 @@ npx tsc --noEmit       # must stay clean
 npm run lint           # must stay clean
 ```
 
-**Next task: Phase 8 — performance, Core Web Vitals and the accessibility audit.**
-No route 404s any more. See *Next steps* at the bottom.
+Then, against a **production** build (never `next dev`):
+
+```bash
+npx next start -p 3215
+node qa/qa.mjs http://localhost:3215      # see qa/README.md for the one-off install
+node qa/a11y.mjs http://localhost:3215
+```
+
+**All nine build phases are complete.** Every remaining item is blocked on the
+client, not on the build. See *Next steps* at the bottom.
 
 ---
 
@@ -31,15 +39,47 @@ No route 404s any more. See *Next steps* at the bottom.
 | 4 — Story pages | `/amaro` `/process` `/traceability` `/farmers` | **Done** |
 | 5 — Commercial | `/coffee` `/lots/[slug]` `/request-quote` `/thank-you` | **Done** |
 | 6 — Knowledge | `/journal` `/guides` `/about` `/about/founder` `/contact` `/quality` | **Done** |
-| 7 — SEO/GEO | metadata, schema, sitemap, robots, llms.txt | **Done for every built route** — revisit as content lands |
-| 8 — Performance | Lighthouse, CWV, a11y audit | **Not started** |
-| 9 — Motion polish | Only after static is excellent | **Not started** |
+| 7 — SEO/GEO | metadata, schema, sitemap, robots, llms.txt, social card | **Done** — revisit as content lands |
+| 8 — Performance | CWV, page weight, accessibility audit | **Done** — 0 axe violations, LCP 260ms worst, CLS 0 |
+| 9 — Motion polish | Only after static is excellent | **Done** — audited, one hardening; the system was already sound |
+
+### Phase 8 result
+
+Measured on a production build at 1440×900. Full numbers regenerate from
+`qa/`; these are the figures the phase closed on.
+
+| Metric | Budget | Worst measured |
+|---|---|---|
+| LCP | < 2.5s | **260ms** (`/guides/incoterms-green-coffee`) |
+| CLS | < 0.1 | **0.0000** on all 18 routes |
+| axe violations (WCAG 2.0/2.1/2.2 A+AA) | 0 | **0** on all 18 routes |
+| Horizontal overflow, 8 widths 360→1920 | none | **none** |
+| Console errors | 0 | **0** |
+| Page weight | — | 357KB → **288KB** |
+
+LCP and TTFB are localhost figures and will rise over a real network; the
+structure behind them (static HTML, no render-blocking JS, a CSS-driven hero
+that does not wait for hydration) is what makes them defensible.
+
+Accessibility went from **399 axe violations to 0**. Every one of the 399 was
+`color-contrast`, and effectively all of them traced to a single hardcoded
+grey, `#7b8079`, used 73 times.
 
 ### Routes live now
 
 `/` · `/coffee` · `/amaro` · `/process` · `/quality` · `/traceability` · `/farmers` · `/guides` · `/guides/[slug]` (4 pages) · `/journal` (noindex, 0 entries) · `/about` · `/about/founder` (noindex) · `/contact` · `/request-quote` · `/thank-you` (noindex) · `/lots/[slug]` (template, 0 pages)
 
-22 pages prerender as static HTML. `/thank-you` is the only dynamic route (reads `searchParams`).
+Plus `/opengraph-image` — the 1200×630 social card, generated once at build
+time by `next/og` and served as a static PNG. The root layout had declared
+`summary_large_image` and a full openGraph block with no image behind it, so
+every share rendered a large card with an empty image well.
+
+23 routes prerender as static HTML. `/thank-you` is the only dynamic route (reads `searchParams`).
+
+`public/` no longer carries the Create Next App boilerplate (`next.svg`,
+`vercel.svg`, `file.svg`, `globe.svg`, `window.svg`). Nothing referenced them,
+and they meant the client's own domain was serving the Next.js and Vercel
+logos.
 
 ### Routes that 404
 
@@ -151,29 +191,59 @@ Each of these was a real bug found in the browser, not theory.
 10. **Literal "null" / "undefined" in prose trips the QA text check.** Two guide sentences used the word "undefined" in its ordinary English sense and failed the placeholder scan. The guard is worth more than the phrasing — **rephrase the prose, do not loosen the check.**
 11. **`Eyebrow` takes no `id`.** Its props are `children`, `className`, `index`, `as`. Labelling a region with `aria-labelledby` needs a plain element with an `id`, not an `Eyebrow`.
 12. **Sentence-merging a fact lowercases its proper nouns.** The footer ran `OPERATIONS.ethiopiaStatus.toLowerCase()` to drop a sentence-cased fact mid-sentence, rendering "addis ababa". Fixed with `sentenceMerge()` in `Footer.tsx`, which lowercases only the leading character. Any new mid-sentence reuse of an `org.ts` string must do the same.
-13. **A full-page screenshot does not fire the scroll-reveal.** `[data-animate]` elements below the initial viewport photograph as blank panels in a `fullPage` capture, which looks exactly like a rendering bug. Scroll the section into view and re-check computed `opacity` before treating it as one.
+13. **A full-page screenshot does not fire the scroll-reveal.** `[data-animate]` elements below the initial viewport photograph as blank panels in a `fullPage` capture, which looks exactly like a rendering bug. Scroll the section into view and re-check computed `opacity` before treating it as one. The same trap has a timing half: after scripting a fast scroll, a stagger of 45–135ms on top of a 750ms transition needs **~2s** to settle. Measuring sooner reports revealed content as still hidden.
+14. **The text hierarchy has a floor, and it is 4.5:1.** The palette expressed five tiers of quiet by getting progressively lighter, and the bottom two — `#7b8079` and `#a8a294` — could not meet AA on any light surface. All 399 axe violations were these. Below `--color-text-muted` the tiers now separate by **size, weight and tracking**, not by washing out contrast. Never add a grey without measuring it against **both** alabaster `#fffaf4` and bone `#efe9de`; bone is darker and fails first.
+15. **Opacity is not a hierarchy device on text.** `Eyebrow` used `opacity-70` on the index and `opacity-40` on the em-dash so it would adapt to any inherited colour. Measured, those were 2.39:1 and 1.60:1. The minimum opacity that still clears 4.5:1 across every surface this site uses is **0.95** — indistinguishable from 1. Opacity on text is only affordable where the base has real headroom (the hero's `·` separators sit on sand-over-emerald at 13.56:1, so `opacity-70` there is fine at 7.15:1).
+16. **Deep-surface colours must be measured against the gradient, not the base.** `.story-atmosphere` is emerald plus two radial washes, and it lifts to `#143833` at its lightest. A `meta-inverse` chosen against flat `#011f1b` measured 5.41:1 there and only **4.00:1** on the wash. `qa/gradient.mjs` renders the gradient in isolation to find that ceiling and keeps `#879389` in its list as a regression guard. Re-run it if the wash is ever edited.
+17. **A component that colours itself must learn the surface from CSS, not a prop.** `Pending` took an `onDark` prop, and `/farmers` and `/about/founder` both passed a `<Pending />` into a `surface="deep"` `PageHeader` without it — muted-on-emerald at 3.88:1. Deep surfaces now redeclare `--pending-fg`/`--pending-border`/`--pending-dot`, so the chip adapts on its own. This is the same failure family as the `darkHeader` trap (#7): **anything a caller must remember, a caller will eventually forget.**
+18. **Duplicate DOM ids on a repeated form.** `/request-quote` renders `EnquiryForm` twice (quote, and sample at `#sample`) and every input id was hardcoded, so each label in the second form pointed at the **first** form's input. `useId()` now scopes the ids. The `name` attributes are untouched on purpose — the server action reads those from `FormData`.
+19. **Declared axes and weights are downloaded whether or not they are used.** `next/font` ships the weight axis alone by default. Fraunces was requesting `SOFT` and `WONK` purely so a comment could describe them as "set to 0" — nothing ever set `font-variation-settings`, and 0 is each axis's default. That cost **118KB of a 357KB page**. Poppins declared four weights when only 400 and 500 appear anywhere. Removing both took the page to 288KB with identical rendering.
+20. **Lint ignored `.next` only at the repo root.** `globalIgnores([".next/**"])` does not match a nested checkout, so a git worktree under `.claude/worktrees/` put its own build output in scope and `npm run lint` reported **3,952 problems in generated Turbopack bundles**. Patterns are now anchored with `**/`. If lint output suddenly explodes, check whether it is linting code nobody wrote.
+21. **Stopping the shell does not always free the port.** Killing the task that ran `next start` can leave the node process holding the port; the next `next start` dies with `EADDRINUSE` while the stale server keeps answering. One audit run against that half-dead server reported **385 phantom `target-size` violations** because pages were being served without CSS, so every link measured 17px tall. Kill by port, and distrust any result that looks structurally impossible.
+
+    The same trap has a second form: **`npm run build` while `next start` is running** invalidates the chunk hashes underneath it, so the already-served HTML asks for JS files that no longer exist and every route reports console errors. That looks exactly like a site-wide regression and is not one. Always **stop the server, build, then start again** — in that order.
+22. **Do not hand-roll contrast measurement.** Three attempts, three distinct classes of false positive: walking ancestors for a background resolved the fixed nav over the hero as alabaster-on-alabaster (1:1); compositing `elementsFromPoint` could not see through `backdrop-filter` or ancestor opacity; sampling rendered pixels picked up Chrome's subpixel-antialiasing fringes and reported orange and blue foregrounds for grey text. **axe-core owns contrast.** It resolves stacking correctly and returns `incomplete` rather than guessing.
 
 ---
 
-## Verification harness (rebuild after restart)
+## Verification harness — now in the repo at `qa/`
 
-The Playwright tooling lived in the session scratchpad and **is gone after a restart.** Recreate it — visual and overflow bugs are not catchable by `npm run build` alone:
+**It no longer has to be rebuilt after a restart.** The scripts are committed;
+only the dependencies are on demand, because Playwright pulls a browser binary
+that has no business in the install path of a static marketing site. Full
+instructions and the per-script breakdown are in **`qa/README.md`**.
 
 ```bash
-mkdir -p /tmp/zoebar-qa && cd /tmp/zoebar-qa
-npm init -y && npm install playwright
+npm i --no-save playwright @axe-core/playwright axe-core pngjs
 npx playwright install chromium
+
+npm run build && npx next start -p 3215
+node qa/qa.mjs    http://localhost:3215   # 272 assertions across 18 routes
+node qa/a11y.mjs  http://localhost:3215   # axe-core, WCAG 2.0/2.1/2.2 A+AA
+node qa/motion.mjs http://localhost:3215  # reveal integrity
+node qa/weight.mjs http://localhost:3215  # payload breakdown
 ```
 
-Then check, against `npm run build && npm start` (the production output, not `next dev`):
+`qa.mjs` covers status, one `<h1>`, `lang`, title, description, canonical,
+JSON-LD parsing, no `null`/`undefined`/`NaN` in `body.innerText`, structural
+a11y, console errors, LCP/CLS, horizontal overflow at 8 widths from 360 to
+1920, the skip link being the first tab stop, reduced motion, and a no-JS
+render. It deliberately does **not** check contrast — see trap 22.
 
-- **Screenshot** a page at 1440×900 and actually look at it — but see trap 13: a `fullPage` capture leaves `[data-animate]` sections blank.
-- **Overflow** at 360 / 390 / 430 / 768 / 1024 / 1280 / 1440 / 1920 — `document.documentElement.scrollWidth` must equal `clientWidth` on every page.
-- **Console errors** must be zero (catch `console` + `pageerror`).
-- **Per page:** status 200, exactly one `<h1>`, JSON-LD parses, no `null`/`undefined`/`NaN` in `body.innerText`.
-- **`meta[name="robots"]`** — assert it matches the route table. `/journal` and `/about/founder` must report `noindex, follow`; every other built route must report `index, follow`.
+Still worth doing by hand, because no script judges it: **screenshot a page at
+1440×900 and actually look at it.** Mind trap 13 in both halves.
 
-**Current state: all 17 live pages pass all of the above** (22 prerendered routes; `/thank-you`, `/lots/[slug]` and `/journal/[slug]` are excluded from the sweep — the first is dynamic, the other two generate no pages).
+Not yet automated, and still worth asserting when the route table changes:
+`meta[name="robots"]` should match `site.ts` — `/journal` and `/about/founder`
+report `noindex, follow`, every other built route reports `index, follow`.
+
+**Current state: 272 passed / 0 failed, and 0 axe violations, on all 18 routes**
+(23 prerendered routes; `/thank-you` is covered with a query string, while
+`/lots/[slug]` and `/journal/[slug]` generate no pages yet).
+
+The ~192 axe `incomplete` results are not failures and not ignorable: axe will
+not guess a background behind a gradient. They were verified by hand with
+`qa/gradient.mjs` — see trap 16.
 
 To test enquiry delivery end-to-end, run a webhook receiver and start the built app with `ENQUIRY_WEBHOOK_URL=http://localhost:4101`. Both paths are verified working: unconfigured shows "This enquiry was not sent" without a false redirect; configured redirects to `/thank-you?kind=quote` and posts the full payload.
 
@@ -213,11 +283,46 @@ New schema builders in `lib/schema.ts`: `collectionSchema()`, `contactPageSchema
 
 ---
 
+## What Phases 7–9 changed
+
+Nothing in this pass altered a single word of published copy, a fact, or a
+schema value. The trust rule and the Amaro/Sidama rule were not touched.
+
+**Accessibility — 399 axe violations to 0.**
+- `#7b8079` (73 uses) → `--color-meta` `#5f645d`; `#a8a294` (27) → `--color-faint` `#6b6659`; `#6f7a72` (4) → `--color-meta-inverse` `#96a299`. Named tokens now, not arbitrary hexes, each carrying its measured ratio in a comment.
+- `Eyebrow` lost `opacity-70` / `opacity-40`; the index reads as secondary through tabular figures and the em-dash instead (trap 15).
+- Deep surfaces declare `--pending-*`, so a `Pending` chip adapts to its surface without a prop. Fixes the untagged chips on `/farmers` and `/about/founder` (trap 17).
+- `EnquiryForm` scopes its ids with `useId()`. `/request-quote` renders it twice, and every label in the second form had been pointing at the first form's input (trap 18).
+
+**Performance — 357KB to 288KB, with identical rendering.**
+- Fraunces dropped the `SOFT` and `WONK` axes, which nothing ever set: 118KB → 66KB.
+- Poppins dropped weights 300 and 600, which appear nowhere: 4 files → 2.
+
+**SEO — `/opengraph-image`.** Typographic, brand-coloured, built from `ORG`/`ORIGIN` only. It uses the renderer's default sans on purpose: Canela is unlicensed and Fraunces is a stand-in, and neither belongs baked into a cached social card.
+
+**Motion — audited, essentially unchanged.** The system was already right: the hero animates from CSS keyframes so the LCP element never waits on hydration, the hidden state is gated on `@media (scripting: enabled)` so it cannot strand content, and reduced motion is honoured. One hardening: `ScrollReveal` now observes `[data-reveal-line]` as well as `[data-animate]`, so a reveal-line can no longer be stranded by being placed outside an animated ancestor.
+
+**Tooling.** `qa/` is committed (trap 20 fixed `eslint.config.mjs` along the way — it was linting a nested worktree's build output and reporting 3,952 phantom problems).
+
+---
+
 ## Next steps
 
-**Phase 8 — performance and accessibility.** Lighthouse and CWV against LCP < 2.5s / INP < 200ms / CLS < 0.1; full accessibility audit. The four guide pages are the longest documents on the site and are the natural stress test.
+**Every build phase is done. Nothing further is blocked on engineering.**
+What remains is content, and one env var.
 
-**Then Phase 9** (motion polish, only after static is excellent).
+Two things a future session should *not* mistake for outstanding work:
+
+- **INP was not measured.** It needs real interaction, and the only meaningful
+  interaction on the site is the enquiry form, which cannot complete a
+  submission until Open Item #11 lands. Long tasks are 0–2 per page and the
+  client bundle is one `IntersectionObserver`, so there is no reason to expect
+  a problem — but it is unmeasured, not passed. Measure it with the form live.
+- **Lighthouse was not run.** The checks in `qa/` cover its Performance,
+  Accessibility and Best-Practices signals directly and with better precision
+  (axe-core is what Lighthouse uses for accessibility). Run Lighthouse against
+  the deployed Vercel URL if a headline score is wanted for the client; do not
+  run it against localhost and quote the number.
 
 **Content work that unblocks indexing**, in order of value:
 

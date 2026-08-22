@@ -130,7 +130,7 @@ export default function TraceabilityPage() {
                 >
                   <span
                     data-numeric
-                    className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#6f7a72]"
+                    className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-meta-inverse"
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -147,7 +147,7 @@ export default function TraceabilityPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="min-w-0 lg:col-span-4">
-              <Eyebrow index="02" className="text-[#7b8079]">
+              <Eyebrow index="02" className="text-meta">
                 The lot record
               </Eyebrow>
               <Answer
@@ -161,26 +161,26 @@ export default function TraceabilityPage() {
             <div className="min-w-0 lg:col-span-8">
               <div className="w-full overflow-x-auto">
                 <table className="w-full border-collapse text-left">
-                  <caption className="mb-4 text-left font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]">
+                  <caption className="mb-4 text-left font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-meta">
                     Lot record fields
                   </caption>
                   <thead>
                     <tr className="border-b border-[#c9c0ae]">
                       <th
                         scope="col"
-                        className="py-3 pr-6 font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]"
+                        className="py-3 pr-6 font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-meta"
                       >
                         Field
                       </th>
                       <th
                         scope="col"
-                        className="py-3 pr-6 font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]"
+                        className="py-3 pr-6 font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-meta"
                       >
                         What it holds
                       </th>
                       <th
                         scope="col"
-                        className="py-3 font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]"
+                        className="py-3 font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-meta"
                       >
                         Status
                       </th>
@@ -202,7 +202,7 @@ export default function TraceabilityPage() {
                           {r.status === "verified" ? (
                             <span className="font-sans text-sm text-[#2e5954]">Confirmed</span>
                           ) : r.status === "structure" ? (
-                            <span className="font-sans text-sm text-[#7b8079]">Per lot</span>
+                            <span className="font-sans text-sm text-meta">Per lot</span>
                           ) : (
                             <Pending />
                           )}
@@ -222,7 +222,7 @@ export default function TraceabilityPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-6">
-              <Eyebrow index="03" className="text-[#7b8079]">
+              <Eyebrow index="03" className="text-meta">
                 QR programme
               </Eyebrow>
               <Answer

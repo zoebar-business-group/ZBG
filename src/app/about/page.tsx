@@ -119,7 +119,7 @@ export default function AboutPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-6">
-              <Eyebrow index="01" className="text-[#7b8079]">
+              <Eyebrow index="01" className="text-meta">
                 The company
               </Eyebrow>
               <Answer
@@ -205,7 +205,7 @@ export default function AboutPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow index="02" className="text-[#7b8079]">
+              <Eyebrow index="02" className="text-meta">
                 Structure
               </Eyebrow>
               <h2
@@ -217,7 +217,7 @@ export default function AboutPage() {
               <p className="mt-7 max-w-[42ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
                 {ABOUT_FAQS[1].answer}
               </p>
-              <p className="mt-5 max-w-[42ch] font-sans text-[0.9375rem] leading-[1.65] text-[#7b8079]">
+              <p className="mt-5 max-w-[42ch] font-sans text-[0.9375rem] leading-[1.65] text-meta">
                 Registered address and TRN are being verified and appear here, in the
                 footer and in the Organization structured data at the same moment they
                 are confirmed — because all three read from one record.
@@ -262,7 +262,7 @@ export default function AboutPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow index="03" className="text-[#7b8079]">
+              <Eyebrow index="03" className="text-meta">
                 Who we work with
               </Eyebrow>
               <h2
@@ -287,7 +287,7 @@ export default function AboutPage() {
                   >
                     <span
                       data-numeric
-                      className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#a8a294]"
+                      className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-faint"
                     >
                       {String(i + 1).padStart(2, "0")}
                     </span>

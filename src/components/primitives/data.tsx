@@ -26,9 +26,13 @@ export function Pending({
       className={clsx(
         "inline-flex items-center gap-2 whitespace-nowrap rounded-[2px] border px-2.5 py-1",
         "font-sans text-[0.625rem] font-medium uppercase tracking-[0.16em]",
+        /* Defaults resolve from the surface (see --pending-* in globals.css),
+           so a chip on a deep surface adapts without the caller passing
+           anything. `onDark` remains an explicit override for a dark panel
+           nested inside a light section, where the cascade cannot know. */
         onDark
           ? "border-[rgba(240,226,203,0.28)] text-[#9db3b0]"
-          : "border-[#d9d0bf] text-[#7b8079]",
+          : "border-[var(--pending-border)] text-[var(--pending-fg)]",
         className,
       )}
     >
@@ -36,7 +40,7 @@ export function Pending({
         aria-hidden="true"
         className={clsx(
           "h-1 w-1 rounded-full",
-          onDark ? "bg-sage" : "bg-[#a8a294]",
+          onDark ? "bg-sage" : "bg-[var(--pending-dot)]",
         )}
       />
       {children}
@@ -84,7 +88,7 @@ export function Stat({
           <span
             className={clsx(
               "ml-2 align-baseline font-sans text-[0.3em] font-medium uppercase tracking-[0.16em]",
-              onDark ? "text-sage" : "text-[#7b8079]",
+              onDark ? "text-sage" : "text-meta",
             )}
           >
             {unit}
@@ -95,7 +99,7 @@ export function Stat({
         <p
           className={clsx(
             "font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em]",
-            onDark ? "text-[#9db3b0]" : "text-[#7b8079]",
+            onDark ? "text-[#9db3b0]" : "text-meta",
           )}
         >
           {label}
@@ -142,7 +146,7 @@ export function SpecTable({
   return (
     <div className={clsx("w-full overflow-x-auto", className)}>
       <table className="w-full border-collapse text-left">
-        <caption className="mb-4 text-left font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-[#7b8079]">
+        <caption className="mb-4 text-left font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-meta">
           {caption}
         </caption>
         <tbody>
@@ -157,7 +161,7 @@ export function SpecTable({
               <td className="py-4 font-sans text-[0.9375rem] text-ink">
                 {row.value === null ? <Pending /> : row.value}
                 {row.note && (
-                  <span className="mt-1 block text-sm text-[#7b8079]">{row.note}</span>
+                  <span className="mt-1 block text-sm text-meta">{row.note}</span>
                 )}
               </td>
             </tr>

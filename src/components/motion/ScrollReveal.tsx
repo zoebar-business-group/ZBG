@@ -41,7 +41,22 @@ export function ScrollReveal() {
       { rootMargin: "0px 0px -12% 0px", threshold: 0.01 },
     );
 
-    const targets = document.querySelectorAll<HTMLElement>("[data-animate]");
+    /**
+     * Observe [data-reveal-line] as well as [data-animate].
+     *
+     * A reveal-line's span starts at translate3d(0,105%,0) inside an
+     * overflow:hidden box, and the CSS only brings it back when a
+     * [data-visible="true"] ancestor — or the line itself — says so. Observing
+     * [data-animate] alone meant a reveal-line only worked when it happened to
+     * sit inside one. There are none outside today, so nothing is broken; but
+     * a line added anywhere else would render as permanently blank space while
+     * still returning its text to innerText, which is exactly the kind of
+     * defect that survives a build, a type-check and a content assertion.
+     * Observing both makes the mechanism self-sufficient.
+     */
+    const targets = document.querySelectorAll<HTMLElement>(
+      "[data-animate], [data-reveal-line]",
+    );
     targets.forEach((el) => observer.observe(el));
 
     const onChange = () => reduced.matches && revealAll();

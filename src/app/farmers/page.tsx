@@ -76,7 +76,7 @@ export default function FarmersPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow index="01" className="text-[#7b8079]">
+              <Eyebrow index="01" className="text-meta">
                 Producer credit
               </Eyebrow>
             </div>
@@ -109,7 +109,7 @@ export default function FarmersPage() {
               Producer profiles.
             </h2>
             <div className="flex items-center gap-3">
-              <span className="font-sans text-sm text-[#7b8079]">Status</span>
+              <span className="font-sans text-sm text-meta">Status</span>
               {producers.length === 0 && <Pending>Awaiting permissions</Pending>}
             </div>
           </div>

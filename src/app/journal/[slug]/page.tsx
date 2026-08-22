@@ -185,7 +185,7 @@ export default async function JournalEntryPage({
                     <time
                       dateTime={other.datePublished}
                       data-numeric
-                      className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-[#a8a294]"
+                      className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-faint"
                     >
                       {other.datePublished}
                     </time>

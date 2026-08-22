@@ -1,0 +1,5 @@
+# Run artefacts. Screenshots and JSON results are regenerated on every run and
+# are a record of one machine at one moment, not something to review in a diff.
+report/
+*.json
+og.png

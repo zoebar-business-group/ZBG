@@ -91,7 +91,7 @@ export function Figure({
                 "font-sans text-[0.625rem] font-medium uppercase tracking-[0.16em]",
                 onDark
                   ? "border-[rgba(240,226,203,0.28)] text-[#9db3b0]"
-                  : "border-[#d9d0bf] text-[#7b8079]",
+                  : "border-[#d9d0bf] text-meta",
               )}
             >
               Photography pending
@@ -99,7 +99,7 @@ export function Figure({
             <p
               className={clsx(
                 "max-w-[36ch] font-sans text-sm leading-relaxed",
-                onDark ? "text-[#9db3b0]" : "text-[#7b8079]",
+                onDark ? "text-[#9db3b0]" : "text-meta",
               )}
             >
               {brief}

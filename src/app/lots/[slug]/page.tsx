@@ -169,7 +169,7 @@ export default async function LotPage({
       {/* --- Producers ------------------------------------------------------- */}
       <Section surface="bone" rhythm="base" density="story" aria-labelledby="producers">
         <Container width="wide">
-          <Eyebrow className="text-[#7b8079]">Producers</Eyebrow>
+          <Eyebrow className="text-meta">Producers</Eyebrow>
           <h2
             id="producers"
             className="mt-6 max-w-[20ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
