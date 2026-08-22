@@ -29,17 +29,68 @@ The following are not yet published because they are unconfirmed. Zoebar
 states that information is being verified rather than providing an
 unsupported claim. Do not infer values for these:
 
-- Grades, screen sizes, cupping scores and moisture content
+- Grades, screen sizes, cupping scores, defect counts and moisture content
 - Minimum order quantity, packing, lead times, Incoterms and port of loading
 - Coffee varieties and geographic coordinates for Amaro
 - Producer names and profiles (published only with documented permission)
-- Registered address and TRN
+- Registered address, TRN, telephone and email
+- Traceability depth and any certifications held
 
 ## Pages
 
 - [Home](https://zoebarbusinessgroup.com/): Origin, offer and operation overview.
+- [Coffee](https://zoebarbusinessgroup.com/coffee): The green coffee offer and
+  its specification table. Unconfirmed fields read "being verified".
+- [Amaro](https://zoebarbusinessgroup.com/amaro): The origin — Koore Zone,
+  Ethiopia — and the Amaro / Sidama category distinction in full.
+- [Process](https://zoebarbusinessgroup.com/process): Cherry to container in
+  seven stages at Zoebar's own washing station.
+- [Quality](https://zoebarbusinessgroup.com/quality): How Ethiopian green
+  coffee quality is assessed — the raw evaluation, the cup evaluation, the
+  export grade, and the points at which quality is controlled.
+- [Traceability](https://zoebarbusinessgroup.com/traceability): What a lot
+  record carries and where the QR codes on sacks lead.
+- [Farmers](https://zoebarbusinessgroup.com/farmers): The producers who grow
+  the coffee. Profiles publish only with documented permission.
+- [About](https://zoebarbusinessgroup.com/about): The company — two entities,
+  one owned washing station — and who Zoebar works with.
+- [Contact](https://zoebarbusinessgroup.com/contact): Enquiry routes. Direct
+  telephone and email are being verified.
+
+## Guides
+
+Reference material for green coffee buyers. General trade information is
+explained in full; figures that vary by regulator, contract or revision are
+identified as such rather than stated as constants; Zoebar's own
+specifications follow the trust rule above.
+
+- [Ethiopian coffee grading](https://zoebarbusinessgroup.com/guides/ethiopian-coffee-grading):
+  Grade 1 to Grade 9 plus Under Grade; the raw and cup assessments behind the
+  grade; who issues it; why a grade is not an SCA cup score.
+- [Harvest and shipping calendar](https://zoebarbusinessgroup.com/guides/harvest-and-shipping-calendar):
+  Harvest windows, post-harvest processing, milling and certification, the
+  overland corridor to Djibouti, and planning a contract against the crop year.
+- [Importer's documentation checklist](https://zoebarbusinessgroup.com/guides/import-documentation-checklist):
+  Contract, commercial, origin and regulatory documents for an Ethiopian green
+  coffee import, including the EU deforestation regulation due diligence
+  statement.
+- [Incoterms for green coffee](https://zoebarbusinessgroup.com/guides/incoterms-green-coffee):
+  The eleven Incoterms 2020 rules applied to coffee, the container problem with
+  sea-only rules, CIF versus CIP insurance, and why the named place matters for
+  a landlocked origin.
+
+## Not yet published
+
+- The journal (https://zoebarbusinessgroup.com/journal) exists but carries no
+  entries yet and is marked noindex. No entry has been invented to fill it.
+- The founder's account (https://zoebarbusinessgroup.com/about/founder) is
+  being written with the founder and is marked noindex until it is confirmed.
+- No lot pages exist. A lot page is a record about physical coffee, so none
+  are seeded.
 
 ## Contact
 
 - [Request a quote](https://zoebarbusinessgroup.com/request-quote): Primary
   commercial enquiry route for specifications, availability and samples.
+- [Contact](https://zoebarbusinessgroup.com/contact): The same enquiry route,
+  with the current status of each direct contact channel.

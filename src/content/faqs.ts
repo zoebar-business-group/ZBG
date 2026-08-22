@@ -1,4 +1,5 @@
 import type { QA } from "@/components/primitives/Answer";
+import { citableSummary } from "@/lib/schema";
 
 /**
  * FAQ CONTENT
@@ -12,6 +13,12 @@ import type { QA } from "@/components/primitives/Answer";
  * FAQ that resolves to a non-answer is worse than no FAQ: it wastes a
  * citation slot and teaches an engine that the page is thin. Add questions as
  * the client confirms the underlying specifications.
+ *
+ * One refinement, added in Phase 6. "The value is being verified" is a
+ * non-answer and stays out. "Zoebar publishes this figure only once it is
+ * confirmed, and states that it is being verified until then" is a stated
+ * policy, which IS an answer — and it is the answer to a question buyers
+ * actually ask. Policy questions are admissible; missing values are not.
  */
 
 export const AMARO_FAQS: readonly QA[] = [
@@ -60,6 +67,56 @@ export const TRACEABILITY_FAQS: readonly QA[] = [
     question: "Where do the QR codes on Zoebar sacks lead?",
     answer:
       "QR codes printed on Zoebar sacks and sample bags resolve to that lot's page on zoebarbusinessgroup.com. The page carries the lot's origin in Amaro, Ethiopia, its processing method, harvest period and quality record, so a buyer can check the physical coffee against the published record.",
+  },
+];
+
+export const ABOUT_FAQS: readonly QA[] = [
+  {
+    question: "What is Zoebar Business Group?",
+    answer:
+      "Zoebar Business Group FZE LLC is a UAE-registered international trading company connecting Ethiopia and international markets. Its flagship focus is Ethiopian Arabica green coffee from Amaro, recently named as Koore Zone, Ethiopia. Zoebar Ethiopia is being established in Addis Ababa and owns the company's washing station in Amaro.",
+  },
+  {
+    question: "Where is Zoebar registered?",
+    answer:
+      "Zoebar Business Group FZE LLC is registered in the United Arab Emirates and operates as an international trading company connecting Ethiopia and international markets. A second entity, Zoebar Ethiopia, is being established in Addis Ababa and owns the washing station in Amaro, Ethiopia.",
+  },
+  {
+    /* Reuses the canonical citable sentence verbatim, so the same fact appears
+       identically on the homepage, /coffee and here (Strategy 5.1). */
+    question: "What does Zoebar supply?",
+    answer: citableSummary(),
+  },
+];
+
+export const CONTACT_FAQS: readonly QA[] = [
+  {
+    question: "How do I contact Zoebar about green coffee?",
+    answer:
+      "Green coffee enquiries reach Zoebar Business Group through the enquiry form on zoebarbusinessgroup.com, which covers specifications, availability, samples and pricing for Ethiopian Arabica from Amaro (Koore Zone), Ethiopia. Direct telephone and email details are being verified and are published here once confirmed.",
+  },
+  {
+    question: "Can I request a sample of Zoebar coffee?",
+    answer:
+      "Yes. Sample requests are made through the same enquiry route as quotations on zoebarbusinessgroup.com, selecting a sample request rather than a quotation. Include your roasting profile, the volume band you are working toward and your shipping address so the request can be answered in one exchange.",
+  },
+];
+
+export const QUALITY_FAQS: readonly QA[] = [
+  {
+    question: "How is coffee quality assessed before export from Ethiopia?",
+    answer:
+      "Ethiopian export coffee is assessed twice on the same sample: a raw evaluation of the green bean covering defect count, screen size and moisture, and a cup evaluation of the brewed liquor. Both feed the export grade issued by Ethiopia's national coffee authority and recorded on the export quality certificate.",
+  },
+  {
+    question: "What quality record does a Zoebar lot carry?",
+    answer:
+      "A Zoebar lot record carries its origin in Amaro (Koore Zone), Ethiopia, the processing method applied at Zoebar's own washing station, the harvest period, and the quality assessment made before the lot was released. Figures that have not been confirmed are shown as being verified rather than filled with estimates.",
+  },
+  {
+    question: "Does Zoebar publish cupping scores and grades?",
+    answer:
+      "Zoebar publishes a grade, screen size or cupping score only once it is confirmed. Until then the specification reads as being verified rather than showing an indicative figure, because a buyer comparing suppliers on a cupping score would be making a purchasing decision on a number Zoebar never stated.",
   },
 ];
 

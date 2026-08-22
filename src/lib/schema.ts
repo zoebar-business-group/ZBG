@@ -190,6 +190,88 @@ export function graph(...nodes: Array<Json | undefined>): string {
 }
 
 /**
+ * CollectionPage with an embedded ItemList — for /guides and /journal.
+ *
+ * The list carries only entries that actually exist. An empty index emits the
+ * page node without a list rather than an ItemList of length zero, which would
+ * assert a collection that has nothing in it.
+ */
+export function collectionSchema(c: {
+  name: string;
+  description: string;
+  path: string;
+  items: ReadonlyArray<{ name: string; path: string }>;
+}): Json {
+  return prune({
+    "@type": "CollectionPage",
+    "@id": `${ORG.url}${c.path}#collection`,
+    name: c.name,
+    description: c.description,
+    url: `${ORG.url}${c.path}`,
+    isPartOf: { "@id": SITE_ID },
+    publisher: { "@id": ORG_ID },
+    mainEntity: c.items.length
+      ? {
+          "@type": "ItemList",
+          numberOfItems: c.items.length,
+          itemListElement: c.items.map((item, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: item.name,
+            url: `${ORG.url}${item.path}`,
+          })),
+        }
+      : null,
+  });
+}
+
+/**
+ * ContactPage. No ContactPoint is emitted while telephone and email are
+ * unverified (Open Item #10) — prune() removes the node entirely rather than
+ * publishing an empty contact method, which would read as a broken record.
+ */
+export function contactPageSchema(path: string): Json {
+  const point =
+    ORG.telephone || ORG.email
+      ? {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          telephone: ORG.telephone,
+          email: ORG.email,
+          areaServed: "Worldwide",
+          availableLanguage: "English",
+        }
+      : null;
+
+  return prune({
+    "@type": "ContactPage",
+    "@id": `${ORG.url}${path}#contact`,
+    url: `${ORG.url}${path}`,
+    isPartOf: { "@id": SITE_ID },
+    about: { "@id": ORG_ID },
+    mainEntity: point,
+  });
+}
+
+/** AboutPage, pointing at the one Organization node. */
+export function aboutPageSchema(a: {
+  name: string;
+  description: string;
+  path: string;
+}): Json {
+  return prune({
+    "@type": "AboutPage",
+    "@id": `${ORG.url}${a.path}#about`,
+    name: a.name,
+    description: a.description,
+    url: `${ORG.url}${a.path}`,
+    isPartOf: { "@id": SITE_ID },
+    about: { "@id": ORG_ID },
+    publisher: { "@id": ORG_ID },
+  });
+}
+
+/**
  * A verified, self-contained sentence about the offer. Reused verbatim so the
  * same fact appears identically everywhere (Strategy 5.1 — "corroborated").
  * Strategy 5.2 cites this construction as the citable example.
