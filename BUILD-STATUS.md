@@ -245,7 +245,25 @@ The ~192 axe `incomplete` results are not failures and not ignorable: axe will
 not guess a background behind a gradient. They were verified by hand with
 `qa/gradient.mjs` — see trap 16.
 
-To test enquiry delivery end-to-end, run a webhook receiver and start the built app with `ENQUIRY_WEBHOOK_URL=http://localhost:4101`. Both paths are verified working: unconfigured shows "This enquiry was not sent" without a false redirect; configured redirects to `/thank-you?kind=quote` and posts the full payload.
+### Enquiry delivery — Resend + hardening (27 August 2026)
+
+Open Item #11 resolved on Resend. `submitEnquiry` (`src/app/request-quote/actions.ts`)
+now runs, in order: honeypot check → reCAPTCHA v3 (`verifyRecaptcha`, fails
+**open** if Google is unreachable, **closed** on a low score / bad token) →
+60-second per-email/per-IP rate limit → server-side validation → config check →
+Resend (internal notification to `ENQUIRY_TO_EMAIL`, buyer autoresponder) →
+`GOOGLE_SHEET_WEBHOOK_URL` fallback log → redirect to `/thank-you?kind=…`.
+All delivery I/O is try/caught and never blocks the response. Field values are
+HTML-escaped before they reach an email body (`escapeHtml` in `src/lib/enquiry.ts`).
+
+Env (see `.env.local.example`): `RESEND_API_KEY` (the delivery gate — unset →
+`notice:"not-configured"`, same honest behaviour as before), `ENQUIRY_TO_EMAIL`,
+`GOOGLE_SHEET_WEBHOOK_URL`, `RECAPTCHA_SECRET_KEY`, `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`.
+
+**Not yet end-to-end tested against live Resend / reCAPTCHA keys** — the code
+paths and the unconfigured path are in place; a run with real keys is still
+owed. The WhatsApp link in the autoresponder is a `{{WHATSAPP_LINK}}`
+placeholder until `WHATSAPP_NUMBER` is verified (Directive 25).
 
 ---
 
@@ -261,7 +279,7 @@ From Strategy §11 (Open Items). These are why so much renders as "Being verifie
 | 10 | Legal entity details, TRN, addresses, telephone, email | Footer legal block, full Organization schema, `/about` company table, **and `/contact` — every direct channel except the form** |
 | 7 | Founder story | `/about/founder` (noindex until it lands) |
 | 12 | LinkedIn archive to seed the journal | `/journal` (noindex, 0 entries) |
-| 11 | CRM / email platform choice | **Enquiry delivery — the primary conversion cannot deliver.** One env var: `ENQUIRY_WEBHOOK_URL` |
+| 11 | ~~CRM / email platform choice~~ | **Resolved — Resend.** Set `RESEND_API_KEY` (+ optional `ENQUIRY_TO_EMAIL`, `GOOGLE_SHEET_WEBHOOK_URL`, reCAPTCHA keys). See "Enquiry delivery" above. |
 | 6 | Traceability depth | `/traceability` status column, lot pages |
 | 3 | Canela web licence | Resolved for now — proceed on Canela, licence to follow |
 | 2 | Crawler policy sign-off | `public/robots.txt` (written, awaiting approval) |
@@ -314,10 +332,11 @@ What remains is content, and one env var.
 Two things a future session should *not* mistake for outstanding work:
 
 - **INP was not measured.** It needs real interaction, and the only meaningful
-  interaction on the site is the enquiry form, which cannot complete a
-  submission until Open Item #11 lands. Long tasks are 0–2 per page and the
-  client bundle is one `IntersectionObserver`, so there is no reason to expect
-  a problem — but it is unmeasured, not passed. Measure it with the form live.
+  interaction on the site is the enquiry form. The form now carries a small
+  client bundle (a submit handler that awaits `grecaptcha.execute`) and, on the
+  two form routes only, the reCAPTCHA v3 script. Long tasks are otherwise 0–2
+  per page — but INP is unmeasured, not passed. Measure it with real Resend and
+  reCAPTCHA keys in place.
 - **Lighthouse was not run.** The checks in `qa/` cover its Performance,
   Accessibility and Best-Practices signals directly and with better precision
   (axe-core is what Lighthouse uses for accessibility). Run Lighthouse against
