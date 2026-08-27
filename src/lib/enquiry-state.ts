@@ -16,6 +16,12 @@ export interface FormState {
   notice?: "not-configured" | "delivery-failed" | "verification-failed" | "rate-limited";
   /** Echoed back so a failed submit never wipes what was typed. */
   values?: Partial<Enquiry>;
+  /**
+   * Set on a successful WhatsApp-path submit: the `wa.me` deep link the client
+   * opens in the buyer's own WhatsApp. The email path never sets this — it
+   * redirects to /thank-you server-side instead.
+   */
+  whatsappUrl?: string;
 }
 
 export const INITIAL_STATE: FormState = { status: "idle", errors: {} };

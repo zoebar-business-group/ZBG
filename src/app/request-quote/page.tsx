@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ORIGIN, ORG, altitudeBand, harvestWindow } from "@/lib/org";
 import { graph, breadcrumbSchema } from "@/lib/schema";
 import { isDeliveryConfigured } from "@/lib/enquiry";
+import { WHATSAPP_ENABLED } from "@/lib/site";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Pending } from "@/components/primitives/data";
@@ -80,7 +81,16 @@ export default function RequestQuotePage() {
       )}
 
       {/* --- Quote form ------------------------------------------------------ */}
-      <Section surface="light" rhythm="base" density="spec" aria-labelledby="quote-form">
+      {/* id="quote" is the anchor PRIMARY_CTA lands on ("/request-quote#quote"),
+          mirroring the sample form's "#sample". scroll-mt clears the fixed nav. */}
+      <Section
+        id="quote"
+        surface="light"
+        rhythm="base"
+        density="spec"
+        aria-labelledby="quote-form"
+        className="scroll-mt-24"
+      >
         <Container width="wide">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
@@ -120,7 +130,11 @@ export default function RequestQuotePage() {
             </div>
 
             <div className="min-w-0 lg:col-span-7">
-              <EnquiryForm kind="quote" submitLabel="Request a quote" />
+              <EnquiryForm
+                kind="quote"
+                submitLabel="Request a quote"
+                whatsappEnabled={WHATSAPP_ENABLED}
+              />
             </div>
           </div>
         </Container>
@@ -133,6 +147,7 @@ export default function RequestQuotePage() {
         rhythm="base"
         density="story"
         aria-labelledby="sample-form"
+        className="scroll-mt-24"
       >
         <Container width="wide">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
@@ -158,7 +173,11 @@ export default function RequestQuotePage() {
             </div>
 
             <div className="min-w-0 rounded-[2rem] bg-alabaster p-7 sm:p-9 lg:col-span-7">
-              <EnquiryForm kind="sample" submitLabel="Request a sample" />
+              <EnquiryForm
+                kind="sample"
+                submitLabel="Request a sample"
+                whatsappEnabled={WHATSAPP_ENABLED}
+              />
             </div>
           </div>
         </Container>

@@ -24,7 +24,12 @@ import { PRIMARY_CTA } from "@/lib/site";
  * card. It reappears on /amaro and on lot pages.
  */
 
-/** Real photograph, once supplied. Strategy Open Item #8 (hard blocker). */
+/**
+ * Real photograph, once supplied. Strategy Open Item #8 (hard blocker).
+ * Needs a WIDE landscape frame of the Koore Zone slopes at altitude, no people
+ * in frame — a harvest close-up or the washing station does not read as the
+ * establishing shot. Until then, the CSS `.story-atmosphere` gradient stands in.
+ */
 const HERO_IMAGE: string | undefined = undefined;
 const HERO_BRIEF =
   "Amaro landscape at altitude — the coffee-growing slopes of Koore Zone, shot wide, natural light, no people in frame.";

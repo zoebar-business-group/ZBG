@@ -179,6 +179,8 @@ export default function AmaroPage() {
                 rounded="panel"
                 cut
                 onDark
+                src="/amaro.jpg"
+                alt="Terraced coffee plots stepping down the hillsides of Amaro, Koore Zone, layered ridgelines receding into haze — no people in frame."
                 brief="Amaro at altitude — the slope profile of the growing area, shot to show elevation and terrain rather than a single tree."
                 caption={`Coffee in ${ORIGIN.name} grows between ${altitudeBand()} metres above sea level.`}
                 sizes="(max-width: 1024px) 100vw, 45vw"

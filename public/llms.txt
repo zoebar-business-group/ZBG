@@ -64,6 +64,10 @@ explained in full; figures that vary by regulator, contract or revision are
 identified as such rather than stated as constants; Zoebar's own
 specifications follow the trust rule above.
 
+- [The buying process](https://zoebarbusinessgroup.com/guides/buying-green-coffee-process):
+  The sequence of buying green coffee from origin — enquiry, sample,
+  specification, quotation, contract, payment terms, shipment, delivery — and
+  what each stage settles.
 - [Ethiopian coffee grading](https://zoebarbusinessgroup.com/guides/ethiopian-coffee-grading):
   Grade 1 to Grade 9 plus Under Grade; the raw and cup assessments behind the
   grade; who issues it; why a grade is not an SCA cup score.
@@ -78,6 +82,13 @@ specifications follow the trust rule above.
   The eleven Incoterms 2020 rules applied to coffee, the container problem with
   sea-only rules, CIF versus CIP insurance, and why the named place matters for
   a landlocked origin.
+- [Payment terms & trade finance](https://zoebarbusinessgroup.com/guides/green-coffee-payment-terms):
+  Advance payment, letters of credit, documentary collections and open account;
+  how a letter of credit works; why payment terms are set separately from the
+  Incoterms rule.
+- [Container loading & capacity](https://zoebarbusinessgroup.com/guides/green-coffee-container-loading):
+  Bag types and weights, why coffee ships in 20-foot not 40-foot containers,
+  container rain and how it is managed, and what to specify in the contract.
 
 ## Not yet published
 

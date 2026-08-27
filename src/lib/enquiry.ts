@@ -3,6 +3,7 @@ import "server-only";
 import { Resend } from "resend";
 
 import { VOLUME_BANDS } from "@/content/coffee";
+import { whatsappHref } from "@/lib/site";
 
 /**
  * ENQUIRY DELIVERY + HARDENING
@@ -12,12 +13,21 @@ import { VOLUME_BANDS } from "@/content/coffee";
  * this site could ship, so every failure mode here is surfaced, never hidden.
  *
  * DELIVERY (Strategy Open Item #11 — CRM / email platform choice):
- *   Resend is the transport. `submitEnquiry` (app/request-quote/actions.ts):
- *     1. sends an internal notification to ENQUIRY_TO_EMAIL, and
- *     2. sends the buyer an autoresponder,
- *   then mirrors the payload to GOOGLE_SHEET_WEBHOOK_URL as a fallback log.
- *   With RESEND_API_KEY unset the action returns `notice: "not-configured"`
- *   rather than showing a confirmation for a message nobody received.
+ *   Two channels, chosen by the buyer on the form (`channel` field):
+ *
+ *   - "email" (default): Resend is the transport. `submitEnquiry`
+ *       1. sends an internal notification to ENQUIRY_TO_EMAIL, and
+ *       2. sends the buyer an autoresponder,
+ *     then mirrors the payload to GOOGLE_SHEET_WEBHOOK_URL as a fallback log.
+ *     With RESEND_API_KEY unset the action returns `notice: "not-configured"`
+ *     rather than showing a confirmation for a message nobody received.
+ *
+ *   - "whatsapp": click-to-chat only, NO WhatsApp Business API. The action
+ *     validates as normal, logs to the sheet (with `channel: "whatsapp"`),
+ *     and returns a `wa.me` deep link (`whatsappEnquiryUrl`) for the client
+ *     to open in the buyer's own WhatsApp. Nothing is sent via Resend.
+ *     Offered only when WHATSAPP_NUMBER is set (Directive 25) — same honesty
+ *     rule as the withheld /contact WhatsApp row.
  *
  * BOT HARDENING:
  *   - a honeypot field ("website") checked in the action,
@@ -34,11 +44,15 @@ export interface Enquiry {
   name: string;
   company: string;
   email: string;
+  /** How the buyer identifies themselves on the WhatsApp path. "" on email. */
+  phone: string;
   country: string;
   volume: string;
   message: string;
   /** "quote" | "sample" — the sample request is the highest-intent action. */
   kind: string;
+  /** "email" | "whatsapp" — which submission path the buyer chose. */
+  channel: string;
 }
 
 /* --------------------------------------------------------------------------
@@ -71,13 +85,24 @@ export function validate(e: Partial<Enquiry>): Record<string, string> {
   const errors: Record<string, string> = {};
 
   if (!e.name?.trim()) errors.name = "Please enter your name.";
-  if (!e.company?.trim()) errors.company = "Please enter your company.";
+  // Company is optional — many first enquiries come from an individual buyer
+  // before a company name is settled.
 
-  const email = e.email?.trim() ?? "";
-  // Deliberately permissive: the only reliable email test is delivery.
-  if (!email) errors.email = "Please enter your email address.";
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))
-    errors.email = "Please check your email address.";
+  // The buyer identifies themselves by email OR by phone, depending on the
+  // path they chose. Both checks stay deliberately permissive — the only
+  // reliable test of a contact detail is reaching the person on it.
+  if (e.channel === "whatsapp") {
+    const phone = e.phone?.trim() ?? "";
+    const digits = phone.replace(/\D/g, "");
+    if (!phone) errors.phone = "Please enter a phone number we can reach you on.";
+    else if (digits.length < 7 || digits.length > 15)
+      errors.phone = "Please check your phone number.";
+  } else {
+    const email = e.email?.trim() ?? "";
+    if (!email) errors.email = "Please enter your email address.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))
+      errors.email = "Please check your email address.";
+  }
 
   if (!e.country?.trim()) errors.country = "Please enter your country.";
 
@@ -170,10 +195,18 @@ export async function verifyRecaptcha(token: string): Promise<RecaptchaResult> {
 const RATE_WINDOW_MS = 60_000;
 const lastAccepted = new Map<string, number>();
 
-function rateKeys({ email, ip }: { email: string; ip: string }): string[] {
+export interface RateIdentity {
+  email: string;
+  phone: string;
+  ip: string;
+}
+
+function rateKeys({ email, phone, ip }: RateIdentity): string[] {
   const keys: string[] = [];
   const normalisedEmail = email.trim().toLowerCase();
+  const normalisedPhone = phone.replace(/\D/g, "");
   if (normalisedEmail) keys.push(`email:${normalisedEmail}`);
+  if (normalisedPhone) keys.push(`phone:${normalisedPhone}`);
   if (ip && ip !== "unknown") keys.push(`ip:${ip}`);
   return keys;
 }
@@ -184,7 +217,7 @@ function sweep(now: number): void {
   }
 }
 
-export function isRateLimited(keys: { email: string; ip: string }): boolean {
+export function isRateLimited(keys: RateIdentity): boolean {
   const now = Date.now();
   sweep(now);
   return rateKeys(keys).some((key) => {
@@ -194,7 +227,7 @@ export function isRateLimited(keys: { email: string; ip: string }): boolean {
 }
 
 /** Call once an enquiry has passed validation and is about to be delivered. */
-export function recordSubmission(keys: { email: string; ip: string }): void {
+export function recordSubmission(keys: RateIdentity): void {
   const now = Date.now();
   for (const key of rateKeys(keys)) lastAccepted.set(key, now);
 }
@@ -211,7 +244,7 @@ const FALLBACK_TO = "eden@zoebarbusinessgroup.com";
 function detailRows(e: Enquiry, score: number | null): Array<[string, string]> {
   return [
     ["Name", escapeHtml(e.name)],
-    ["Company", escapeHtml(e.company)],
+    ["Company", e.company.trim() ? escapeHtml(e.company) : "—"],
     ["Email", escapeHtml(e.email)],
     ["Country", escapeHtml(e.country)],
     ["Volume", escapeHtml(e.volume)],
@@ -230,21 +263,26 @@ function internalHtml(e: Enquiry, score: number | null): string {
         `<td style="padding:6px 0;white-space:pre-wrap">${value}</td></tr>`,
     )
     .join("");
+  const who = e.company.trim() ? escapeHtml(e.company) : escapeHtml(e.name);
   return (
-    `<h2 style="font-family:Georgia,serif">New ${kind} enquiry — ${escapeHtml(e.company)}</h2>` +
+    `<h2 style="font-family:Georgia,serif">New ${kind} enquiry — ${who}</h2>` +
     `<table style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">${rows}</table>`
   );
 }
 
 function autoresponderHtml(): string {
-  return (
-    `<p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6">` +
-    `Your enquiry reached our team in Dubai. You'll have a reply within one working day.</p>` +
-    // TODO(WhatsApp): swap for a real wa.me link once WHATSAPP_NUMBER is verified
-    // in src/lib/site.ts (Directive 25). Until then, no placeholder URL ships.
-    `<p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6">` +
-    `Prefer WhatsApp? {{WHATSAPP_LINK}}</p>`
-  );
+  const para = `<p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6">`;
+  let html =
+    `${para}Your enquiry reached our team in Dubai. You'll have a reply within ` +
+    `one working day.</p>`;
+
+  // Real wa.me link when WHATSAPP_NUMBER is set; the line is omitted entirely
+  // otherwise (Directive 25 — no placeholder URL ever ships).
+  const wa = whatsappHref("Hello Zoebar — I just sent an enquiry through your website.");
+  if (wa) {
+    html += `${para}Prefer WhatsApp? <a href="${wa}">Message the team here</a>.</p>`;
+  }
+  return html;
 }
 
 /**
@@ -259,7 +297,9 @@ export async function sendEnquiryEmails(e: Enquiry, score: number | null): Promi
   const resend = new Resend(apiKey);
   const to = process.env.ENQUIRY_TO_EMAIL || FALLBACK_TO;
   const kind = e.kind === "sample" ? "sample" : "quote";
-  const subject = headerSafe(`New ${kind} enquiry — ${e.company}`);
+  const subject = headerSafe(
+    `New ${kind} enquiry — ${e.company.trim() || e.name.trim() || "website"}`,
+  );
 
   try {
     const { error } = await resend.emails.send({
@@ -291,7 +331,11 @@ export async function sendEnquiryEmails(e: Enquiry, score: number | null): Promi
  * Fallback log — mirror the payload to a Google Sheet webhook
  * ---------------------------------------------------------------------- */
 
-/** Never throws. The honeypot and the reCAPTCHA token are deliberately absent. */
+/**
+ * Never throws. The honeypot and the reCAPTCHA token are deliberately absent.
+ * `channel` ("email" | "whatsapp") lets Eden's team see the enquiry source;
+ * `phone` is populated on the WhatsApp path and empty on the email path.
+ */
 export async function logEnquiryToSheet(e: Enquiry): Promise<void> {
   const url = process.env.GOOGLE_SHEET_WEBHOOK_URL;
   if (!url) return;
@@ -302,9 +346,11 @@ export async function logEnquiryToSheet(e: Enquiry): Promise<void> {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         timestamp: new Date().toISOString(),
+        channel: e.channel === "whatsapp" ? "whatsapp" : "email",
         name: e.name,
         company: e.company,
         email: e.email,
+        phone: e.phone,
         country: e.country,
         volume: e.volume,
         message: e.message,
@@ -315,4 +361,30 @@ export async function logEnquiryToSheet(e: Enquiry): Promise<void> {
   } catch (err) {
     console.error("[enquiry] sheet webhook threw.", err);
   }
+}
+
+/* --------------------------------------------------------------------------
+ * WhatsApp click-to-chat — build the pre-filled message + deep link
+ *
+ * No WhatsApp Business API. This produces a `wa.me` URL that the client opens
+ * in the buyer's own WhatsApp; they send it themselves. The URL builder reuses
+ * `whatsappHref` from lib/site.ts (same null-guard + encoding as the /lots
+ * page-context links).
+ * ---------------------------------------------------------------------- */
+
+export function whatsappEnquiryMessage(e: Enquiry): string {
+  const kind = e.kind === "sample" ? "sample" : "quote";
+  const lines = [
+    `New ${kind} enquiry via zoebarbusinessgroup.com`,
+    `Name: ${e.name}`,
+  ];
+  if (e.company.trim()) lines.push(`Company: ${e.company.trim()}`);
+  lines.push(`Country: ${e.country}`, `Volume: ${e.volume}`, `Phone: ${e.phone}`);
+  if (e.message.trim()) lines.push(`Message: ${e.message.trim()}`);
+  return lines.join("\n");
+}
+
+/** `null` when WHATSAPP_NUMBER is unset — the caller treats that as unconfigured. */
+export function whatsappEnquiryUrl(e: Enquiry): string | null {
+  return whatsappHref(whatsappEnquiryMessage(e));
 }

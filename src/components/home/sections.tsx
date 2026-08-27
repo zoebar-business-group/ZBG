@@ -168,6 +168,8 @@ export function Amaro() {
               rounded="panel"
               cut
               onDark
+              src="/amaro-harvest.jpg"
+              alt="Ripe red and green coffee cherries on the branch at a hillside farm in Amaro, Koore Zone, with terraced coffee plots behind."
               brief="Amaro hillside in harvest — cherry on the branch, shot at working distance, natural light."
               caption={`${ORIGIN.name}, ${ORIGIN.zone}. Harvest runs ${harvestWindow().toLowerCase()}.`}
               sizes="(max-width: 1024px) 100vw, 45vw"
@@ -202,6 +204,8 @@ export function WashingStation() {
             <Figure
               ratio="landscape"
               rounded="panel"
+              src="/washing-station.jpg"
+              alt="The Zoebar washing station at Amaro: concrete fermentation tanks in the foreground and long rows of raised drying beds behind, workers tending them, green hills beyond."
               brief="The Zoebar washing station at Amaro — wide establishing shot showing the fermentation tanks and drying beds in working use."
               caption="Zoebar Ethiopia owns and operates the washing station at Amaro."
               sizes="(max-width: 1024px) 100vw, 55vw"
