@@ -13,7 +13,7 @@ export interface FormState {
   /** Field-level messages, keyed by input name. */
   errors: Record<string, string>;
   /** Non-field failure the buyer needs to see. */
-  notice?: "not-configured" | "delivery-failed";
+  notice?: "not-configured" | "delivery-failed" | "verification-failed" | "rate-limited";
   /** Echoed back so a failed submit never wipes what was typed. */
   values?: Partial<Enquiry>;
 }

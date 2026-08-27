@@ -25,9 +25,9 @@ export const metadata: Metadata = {
  * /request-quote — the primary conversion (Strategy 6), with the sample
  * request as the highest-intent action on the site (Strategy 6.2).
  *
- * Delivery is gated on Open Item #11 (CRM / email platform choice). Where it
- * is unconfigured the page says so at the top rather than presenting a form
- * that silently discards container-volume enquiries.
+ * Delivery runs through Resend (`src/lib/enquiry.ts`) and is gated on
+ * `RESEND_API_KEY`. Where it is unconfigured the page says so at the top rather
+ * than presenting a form that silently discards container-volume enquiries.
  */
 export default function RequestQuotePage() {
   const configured = isDeliveryConfigured();
@@ -70,7 +70,7 @@ export default function RequestQuotePage() {
                 honest rather than accepting enquiries that would go nowhere.
                 Connecting it is a single environment variable —{" "}
                 <code className="rounded-[2px] bg-[#e6dfd1] px-1.5 py-0.5 font-mono text-[0.8125rem]">
-                  ENQUIRY_WEBHOOK_URL
+                  RESEND_API_KEY
                 </code>
                 .
               </p>
