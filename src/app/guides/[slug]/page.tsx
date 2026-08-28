@@ -105,7 +105,6 @@ export default async function GuidePage({
       />
 
       <PageHeader
-        trail={trail}
         eyebrow="Guide"
         title={guide.title}
         meta={[
@@ -124,7 +123,7 @@ export default async function GuidePage({
               <Answer id="answer" question={guide.question} answer={guide.answer} />
             </div>
 
-            {/* Contents. A plain anchor list — present in the DOM, no JS. */}
+            {/* Contents. A plain anchor list, present in the DOM, no JS. */}
             <nav aria-labelledby="contents" className="min-w-0 lg:col-span-5">
               <p
                 id="contents"

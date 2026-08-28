@@ -68,11 +68,11 @@ const NOTICE_COPY: Record<
   },
   "delivery-failed": {
     title: "This enquiry was not sent.",
-    body: "We could not deliver your enquiry just now. Nothing was lost on your side — please try again, or contact Zoebar directly.",
+    body: "We could not deliver your enquiry just now. Nothing was lost on your side, please try again, or contact Zoebar directly.",
   },
   "verification-failed": {
     title: "We could not verify this submission.",
-    body: "An automated check could not confirm this came from a person. If you use a strict privacy extension or a VPN, try again — or contact Zoebar directly and we will pick it up from there.",
+    body: "An automated check could not confirm this came from a person. If you use a strict privacy extension or a VPN, try again, or contact Zoebar directly and we will pick it up from there.",
   },
   "rate-limited": {
     title: "This looks like a repeat submission.",
@@ -200,7 +200,7 @@ function ChannelToggle({
       </div>
       <p className="font-sans text-sm leading-relaxed text-meta">
         {value === "whatsapp"
-          ? "WhatsApp opens on your device with the enquiry pre-filled — you send it yourself."
+          ? "WhatsApp opens on your device with the enquiry pre-filled, you send it yourself."
           : "We reply by email, within one working day."}
       </p>
     </fieldset>
@@ -353,7 +353,7 @@ export function EnquiryForm({
           />
         </div>
 
-        {/* Live region: failures — and the WhatsApp hand-off — are announced,
+        {/* Live region: failures (and the WhatsApp hand-off) are announced,
             not just shown. */}
         <div aria-live="polite">
           {hasFieldErrors && (

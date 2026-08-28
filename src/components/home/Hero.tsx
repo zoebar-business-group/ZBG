@@ -32,7 +32,7 @@ import { PRIMARY_CTA } from "@/lib/site";
  */
 const HERO_IMAGE: string | undefined = undefined;
 const HERO_BRIEF =
-  "Amaro landscape at altitude — the coffee-growing slopes of Koore Zone, shot wide, natural light, no people in frame.";
+  "Amaro landscape at altitude, the coffee-growing slopes of Koore Zone, shot wide, natural light, no people in frame.";
 
 export function Hero() {
   return (
@@ -57,7 +57,7 @@ export function Hero() {
         ) : (
           <div className="story-atmosphere absolute inset-0" />
         )}
-        {/* Legibility scrim — bottom-weighted so the type sits on the darkest
+        {/* Legibility scrim, bottom-weighted so the type sits on the darkest
             part of the frame regardless of the photograph supplied. */}
         <div
           aria-hidden="true"
@@ -65,11 +65,11 @@ export function Hero() {
         />
       </div>
 
-      {/* Altitude rail — the origin device: elevation drawn as a real vertical
+      {/* Altitude rail, the origin device: elevation drawn as a real vertical
           axis rather than stated as a number in a card.
           It sits on the RIGHT edge and is bounded to the upper band. The
           headline is bottom-anchored and left-aligned, so this is the one
-          region of the frame that stays empty at every breakpoint — on the
+          region of the frame that stays empty at every breakpoint, on the
           left it collided with the display type. Hidden below lg, where the
           frame is too narrow for a margin device. */}
       <div
@@ -162,7 +162,7 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Metadata strip — verified facts, stated plainly at the point of
+        {/* Metadata strip, verified facts, stated plainly at the point of
             first contact. Doubles as the first extractable passage. */}
         <dl
           className="hero-fade mt-14 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-[rgba(240,226,203,0.18)] pt-8 sm:grid-cols-4"

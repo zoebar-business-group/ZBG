@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { NAV_ITEMS, PRIMARY_CTA, hasDarkHeader } from "@/lib/site";
+import { NAV_ITEMS, PRIMARY_CTA, hasDarkHeader, navLabelFor } from "@/lib/site";
 import { clsx } from "@/lib/clsx";
 import { Logo } from "./Logo";
 
@@ -64,7 +64,7 @@ export function Navigation() {
         <Link
           href="/"
           className="shrink-0"
-          aria-label="Zoebar Business Group — home"
+          aria-label="Zoebar Business Group, home"
         >
           <Logo onDark={overHero} />
         </Link>
@@ -87,7 +87,7 @@ export function Navigation() {
                     active && (overHero ? "text-alabaster" : "text-ink"),
                   )}
                 >
-                  {item.label}
+                  {navLabelFor(item)}
                   <span
                     aria-hidden="true"
                     className={clsx(
@@ -114,22 +114,47 @@ export function Navigation() {
           </li>
         </ul>
 
-        {/* Mobile trigger — a plain labelled control, no animated bars. */}
+        {/* Mobile trigger. An icon rather than the words "Menu"/"Close", so the
+            accessible name now comes from aria-label - without it the control
+            would be unnamed to a screen reader. Two quiet rules and a cross,
+            drawn with currentColor so the bar's light/dark state carries. */}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-nav"
+          aria-label={open ? "Close menu" : "Open menu"}
           className={clsx(
-            "-mr-2 inline-flex min-h-[44px] min-w-[44px] items-center justify-center px-2 font-sans text-[0.75rem] font-medium uppercase tracking-[0.16em] lg:hidden",
+            "-mr-2 inline-flex min-h-[44px] min-w-[44px] items-center justify-center px-2 lg:hidden",
             open || scrolled ? "text-ink" : overHero ? "text-alabaster" : "text-ink",
           )}
         >
-          {open ? "Close" : "Menu"}
+          <svg
+            viewBox="0 0 24 24"
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            {open ? (
+              <>
+                <path d="M5 5 19 19" />
+                <path d="M19 5 5 19" />
+              </>
+            ) : (
+              <>
+                <path d="M3 8h18" />
+                <path d="M3 16h18" />
+              </>
+            )}
+          </svg>
         </button>
       </nav>
 
-      {/* Mobile sheet — large tap targets, clear hierarchy, prominent CTA. */}
+      {/* Mobile sheet, large tap targets, clear hierarchy, prominent CTA. */}
       {open && (
         <div
           id="mobile-nav"
@@ -143,7 +168,7 @@ export function Navigation() {
                   onClick={() => setOpen(false)}
                   className="flex min-h-[56px] items-center font-display text-[1.375rem] text-ink"
                 >
-                  {item.label}
+                  {navLabelFor(item)}
                 </Link>
               </li>
             ))}

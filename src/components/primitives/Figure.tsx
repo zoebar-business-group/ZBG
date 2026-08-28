@@ -1,17 +1,25 @@
 import Image from "next/image";
 import { clsx } from "@/lib/clsx";
+import { ZoebarSymbol } from "@/components/brand/ZoebarSymbol";
 
 /**
- * FIGURE — authentic photography, or an honest placeholder.
+ * FIGURE - authentic photography, or a composed brand panel.
  *
  * Foundation Brief 6 prioritises real photographs from farms, the washing
  * station, processing and operations, and rules out building the identity on
  * stock imagery. Strategy Open Item #8 marks this a hard blocker.
  *
- * Until real assets arrive, `src` is omitted and this renders a marked
- * placeholder that names the exact photograph required — so the placeholder
- * doubles as the shot list for the client, and no stock image ever enters the
- * design. Adding `src` swaps in a real optimised image with no layout change.
+ * WHEN THERE IS NO PHOTOGRAPH the slot renders a composed panel rather than a
+ * grey box captioned "Photography pending". That caption was addressed to the
+ * client during the build; in front of the client's own customers it reads as
+ * an unfinished site. The panel below is tonal, uses the brand symbol as a
+ * quiet watermark, and is designed to sit in the layout as a deliberate
+ * surface. It never implies a photograph exists.
+ *
+ * The `brief` prop is unchanged and still required. It no longer renders, but
+ * it remains the shot list: grep for `brief=` to get every outstanding
+ * photograph. Adding `src` swaps in a real optimised image with no layout
+ * change.
  */
 
 const RATIOS = {
@@ -24,11 +32,12 @@ const RATIOS = {
 } as const;
 
 export interface FigureProps {
-  /** Required photograph, in plain language. Becomes the placeholder brief. */
+  /** The photograph this slot is waiting for, in plain language. Not rendered;
+   *  it is the standing shot list for Open Item #8. */
   brief: string;
   /** Real asset path once supplied. */
   src?: string;
-  /** Descriptive alt text — required for every real image (Directive 28). */
+  /** Descriptive alt text - required for every real image (Directive 28). */
   alt?: string;
   /** Visible caption. Truthful captions are a brand requirement. */
   caption?: string;
@@ -70,8 +79,10 @@ export function Figure({
           RATIOS[ratio],
           radius,
           cut && "cut-hex",
-          !src && (onDark ? "bg-[#04231F]" : "bg-bone"),
-          !src && (onDark ? "ring-1 ring-[rgba(240,226,203,0.14)]" : "ring-1 ring-[#e2dbcd]"),
+          !src &&
+            (onDark
+              ? "bg-[#04231F] ring-1 ring-[rgba(240,226,203,0.14)]"
+              : "bg-bone ring-1 ring-[#e2dbcd]"),
         )}
       >
         {src ? (
@@ -84,26 +95,43 @@ export function Figure({
             className="object-cover"
           />
         ) : (
-          <div className="absolute inset-0 flex flex-col items-start justify-end gap-2 p-5 sm:p-7">
-            <span
+          /* Composed panel. Decorative by intent, so it is hidden from the
+             accessibility tree - a screen reader announcing a description of a
+             photograph that is not there would be a false statement. Any
+             meaning the slot carries lives in the visible caption below. */
+          <div aria-hidden="true" className="absolute inset-0">
+            {/* Tonal ground: two soft washes, warm from the top-left and
+                cooler at the foot, so the panel has depth rather than reading
+                as a flat fill. */}
+            <div
               className={clsx(
-                "inline-flex items-center gap-2 rounded-[2px] border px-2.5 py-1",
-                "font-sans text-[0.625rem] font-medium uppercase tracking-[0.16em]",
+                "absolute inset-0",
                 onDark
-                  ? "border-[rgba(240,226,203,0.28)] text-[#9db3b0]"
-                  : "border-[#d9d0bf] text-meta",
+                  ? "bg-[radial-gradient(120%_90%_at_18%_8%,rgba(240,226,203,0.10)_0%,rgba(240,226,203,0)_55%),linear-gradient(168deg,#05271F_0%,#04231F_46%,#02191A_100%)]"
+                  : "bg-[radial-gradient(120%_90%_at_18%_8%,rgba(255,255,255,0.85)_0%,rgba(255,255,255,0)_58%),linear-gradient(168deg,#F4EEE3_0%,#EBE4D6_52%,#E2DACA_100%)]",
               )}
-            >
-              Photography pending
-            </span>
-            <p
+            />
+
+            {/* A single hairline rule set on the classical third. Quiet
+                structure, the same device the page headers use. */}
+            <div
               className={clsx(
-                "max-w-[36ch] font-sans text-sm leading-relaxed",
-                onDark ? "text-[#9db3b0]" : "text-meta",
+                "absolute inset-y-0 left-1/3 w-px",
+                onDark ? "bg-[rgba(240,226,203,0.07)]" : "bg-[rgba(1,58,51,0.06)]",
               )}
-            >
-              {brief}
-            </p>
+            />
+
+            {/* The brand symbol, held well back. Sized to the panel so it
+                scales with the slot instead of floating at a fixed size. */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <ZoebarSymbol
+                fill={onDark ? "#F0E2CB" : "#013A33"}
+                className={clsx(
+                  "w-[22%] max-w-[104px]",
+                  onDark ? "opacity-[0.13]" : "opacity-[0.09]",
+                )}
+              />
+            </div>
           </div>
         )}
       </div>

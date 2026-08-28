@@ -102,7 +102,6 @@ export default function AboutPage() {
 
       <PageHeader
         surface="deep"
-        trail={TRAIL}
         eyebrow="About"
         title="Closer to origin."
         lede={ORG.positioning}
@@ -130,7 +129,7 @@ export default function AboutPage() {
               />
               <div className="mt-8 flex max-w-[58ch] flex-col gap-5 font-sans text-[1.0625rem] leading-[1.72] text-[#3d423a]">
                 <p>
-                  The promise is three words — {ORG.promise.toLowerCase()} — and they
+                  The promise is three words ({ORG.promise.toLowerCase()}) and they
                   are meant in order. Origin comes first because everything downstream
                   depends on it. Quality is what the origin makes possible. Trust is
                   what the two produce when they are documented rather than asserted.
@@ -148,7 +147,9 @@ export default function AboutPage() {
               <Figure
                 ratio="portrait"
                 rounded="panel"
-                brief="The Zoebar washing station in Amaro during working hours — the operational asset in use, photographed as a place of work rather than as a landscape."
+                src="/washing-station.jpg"
+                alt={`The Zoebar washing station in ${OPERATIONS.washingStationLocation}, where cherry is received, processed and dried.`}
+                brief="The Zoebar washing station in Amaro during working hours: the operational asset in use, photographed as a place of work rather than as a landscape."
                 caption={`${OPERATIONS.ethiopiaEntity} owns the washing station in ${OPERATIONS.washingStationLocation}.`}
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
@@ -220,7 +221,7 @@ export default function AboutPage() {
               <p className="mt-5 max-w-[42ch] font-sans text-[0.9375rem] leading-[1.65] text-meta">
                 Registered address and TRN are being verified and appear here, in the
                 footer and in the Organization structured data at the same moment they
-                are confirmed — because all three read from one record.
+                are confirmed, because all three read from one record.
               </p>
             </div>
 
@@ -272,8 +273,8 @@ export default function AboutPage() {
                 Buyers who ask for the record.
               </h2>
               <p className="mt-7 max-w-[42ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-                The site is built for buyers who check. Everything on it — the
-                specification tables, the lot record, the guides — is designed to be
+                The site is built for buyers who check. Everything on it, the
+                specification tables, the lot record, the guides, is designed to be
                 read sceptically rather than skimmed.
               </p>
             </div>
@@ -302,6 +303,105 @@ export default function AboutPage() {
                 <Button href="/request-quote">Request a quote</Button>
                 <Button href="/about/founder" variant="secondary">
                   The founder
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* --- Meet the founder ---------------------------------------------------
+          The founder's own account is Open Item #7 and is being written with
+          them. This section introduces and routes to it; it does not narrate a
+          story on their behalf, and the portrait stays a composed panel until a
+          real photograph is supplied. */}
+      <Section surface="light" rhythm="base" density="story" aria-labelledby="founder">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-5">
+              <Figure
+                ratio="portrait"
+                rounded="panel"
+                brief="Portrait of the founder of Zoebar Business Group, in working context rather than a formal studio setting."
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            </div>
+
+            <div className="lg:col-span-7">
+              <Eyebrow index="04" className="text-meta">
+                The founder
+              </Eyebrow>
+              <h2
+                id="founder"
+                className="mt-7 max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
+              >
+                Meet the founder.
+              </h2>
+
+              <p className="mt-8 max-w-[58ch] font-sans text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.65] text-[#3d423a]">
+                {ORG.name} was built on a single conviction: that the distance
+                between an Ethiopian coffee farm and the buyer who ends up with
+                the sack is longer than it needs to be, and that most of what
+                gets lost across it is information.
+              </p>
+
+              <p className="mt-6 max-w-[58ch] font-sans text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.65] text-[#3d423a]">
+                The founder&rsquo;s own account of why the company exists is
+                being written with them, and will be published here once it is
+                confirmed. It is not being drafted on their behalf in the
+                meantime, for the same reason nothing else on this site is
+                estimated: a story written for someone is not their story.
+              </p>
+
+              <div className="mt-12 flex flex-wrap gap-4">
+                <Button href="/about/founder">Read the founder&rsquo;s page</Button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* --- What is next: the ecommerce arm ------------------------------------
+          A teaser, deliberately not a route. There is no product, no catalogue
+          and no launch date confirmed, so a dedicated page would be a page
+          about an absence - and an indexable one. This block states the
+          direction and nothing more. Give it its own page when the offer is
+          defined. */}
+      <Section surface="bone" rhythm="base" density="spec" aria-labelledby="whats-next">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-5">
+              <Eyebrow index="05" className="text-meta">
+                What is next
+              </Eyebrow>
+              <h2
+                id="whats-next"
+                className="mt-7 max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
+              >
+                Beyond the sack.
+              </h2>
+            </div>
+
+            <div className="lg:col-span-7">
+              <p className="max-w-[58ch] font-sans text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.65] text-[#3d423a]">
+                Green coffee in container volumes is the flagship, and it sets
+                the standard the rest of the company is held to. It is not the
+                whole intent. An ecommerce arm is in development, to carry
+                Zoebar coffee to buyers whose volumes sit below a container
+                without asking them to accept a thinner record of where it came
+                from.
+              </p>
+
+              <p className="mt-6 max-w-[58ch] font-sans text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.65] text-[#3d423a]">
+                No catalogue, pricing or launch date is confirmed yet, so none
+                is published here. The traceability that applies to a
+                twenty-tonne lot is the same traceability that will apply to a
+                single bag.
+              </p>
+
+              <div className="mt-12 flex flex-wrap items-center gap-6">
+                <Button href="/contact" variant="secondary">
+                  Register interest
                 </Button>
               </div>
             </div>

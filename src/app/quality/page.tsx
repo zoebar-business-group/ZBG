@@ -17,12 +17,12 @@ const TRAIL = [
 ];
 
 export const metadata: Metadata = {
-  title: "Quality — Grading, Cupping and Inspection",
+  title: "Quality, Grading, Cupping and Inspection",
   description:
     "How Ethiopian green coffee quality is assessed: the raw evaluation, the cup evaluation, the export grade and the inspection points. What Zoebar controls at its own washing station in Amaro, and which specifications are still being verified.",
   alternates: { canonical: "/quality" },
   openGraph: {
-    title: "Quality — Grading, Cupping and Inspection",
+    title: "Quality, Grading, Cupping and Inspection",
     url: "/quality",
     type: "article",
   },
@@ -113,7 +113,7 @@ export default function QualityPage() {
         dangerouslySetInnerHTML={{
           __html: graph(
             articleSchema({
-              headline: "Quality — grading, cupping and inspection",
+              headline: "Quality, grading, cupping and inspection",
               description:
                 "How Ethiopian green coffee quality is assessed through a raw evaluation and a cup evaluation, how the export grade is issued, and which quality specifications Zoebar has confirmed.",
               path: "/quality",
@@ -125,7 +125,6 @@ export default function QualityPage() {
       />
 
       <PageHeader
-        trail={TRAIL}
         eyebrow="Quality"
         title="Assessed, then stated."
         lede="Quality in green coffee is not an adjective. It is a set of measurements taken on a defined sample, by named parties, at points fixed in a contract. This page sets out what is measured, who measures it, and which of Zoebar's own figures are confirmed today."
@@ -148,8 +147,8 @@ export default function QualityPage() {
                 answer={QUALITY_FAQS[0].answer}
               />
               <p className="mt-6 max-w-[58ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-                The full structure of the Ethiopian grade — what the bands mean, who
-                issues them, and why a grade is not a cup score — is set out in{" "}
+                The full structure of the Ethiopian grade, what the bands mean, who
+                issues them, and why a grade is not a cup score, is set out in{" "}
                 <Link
                   href="/guides/ethiopian-coffee-grading"
                   className="underline decoration-[0.5px] decoration-faint underline-offset-[3px] transition-colors hover:decoration-current"
@@ -377,7 +376,7 @@ export default function QualityPage() {
             <p>
               Zoebar would rather show the gap. A specification that reads &ldquo;being
               verified&rdquo; is a commitment that every other field on the page was
-              confirmed before it was published — which is the only thing that makes
+              confirmed before it was published, which is the only thing that makes
               the confirmed fields worth anything.
             </p>
             <p>

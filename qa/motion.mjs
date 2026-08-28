@@ -18,11 +18,15 @@ import { chromium } from "playwright";
 const BASE = process.argv[2] ?? "http://localhost:3215";
 const ROUTES = [
   "/", "/coffee", "/amaro", "/process", "/quality", "/traceability", "/farmers",
-  "/journal", "/guides", "/guides/ethiopian-coffee-grading",
-  "/guides/harvest-and-shipping-calendar", "/guides/import-documentation-checklist",
-  "/guides/incoterms-green-coffee", "/about", "/about/founder", "/contact",
+  "/guides", "/guides/buying-green-coffee-process",
+  "/guides/ethiopian-coffee-grading", "/guides/harvest-and-shipping-calendar",
+  "/guides/import-documentation-checklist", "/guides/incoterms-green-coffee",
+  "/guides/green-coffee-payment-terms", "/guides/green-coffee-container-loading",
+  "/about", "/about/founder", "/contact",
   "/request-quote", "/thank-you?kind=quote",
 ];
+
+/* /journal omitted: it now redirects off-site to LinkedIn. See qa/a11y.mjs. */
 
 const run = async () => {
   const browser = await chromium.launch();
@@ -49,14 +53,23 @@ const run = async () => {
         }).length,
     }));
 
-    // Scroll the whole page so everything that CAN reveal, does.
+    /* Scroll the whole page so everything that CAN reveal, does.
+     *
+     * `behavior: "instant"` is REQUIRED, not tidiness. globals.css sets
+     * `scroll-behavior: smooth` on the root, so a bare `window.scrollTo(0, y)`
+     * starts an ANIMATED scroll. Firing one every 55ms just restarts the
+     * animation from wherever it had crept to, and the page never arrives: on
+     * /about this loop asked for 7263px of scroll and delivered about 540px,
+     * so sections below the fold were never reached and were then reported as
+     * "stuck at opacity 0". That was a false failure - the reveal mechanism was
+     * working the whole time, as a slower scroll confirms. */
     await page.evaluate(async () => {
       const h = document.body.scrollHeight;
       for (let y = 0; y < h; y += 500) {
-        window.scrollTo(0, y);
+        window.scrollTo({ top: y, behavior: "instant" });
         await new Promise((r) => setTimeout(r, 55));
       }
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: "instant" });
     });
     await page.waitForTimeout(1400);
 

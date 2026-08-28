@@ -23,7 +23,7 @@ import { ORG, ORIGIN, altitudeBand } from "@/lib/org";
  * specifications, no scores and no claims that are not already verified.
  */
 
-export const alt = `${ORG.name} — Ethiopian green coffee from ${ORIGIN.name}, ${ORIGIN.country}`;
+export const alt = `${ORG.name}, Ethiopian green coffee from ${ORIGIN.name}, ${ORIGIN.country}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -47,7 +47,7 @@ export default function Image() {
         }}
       >
         {/* Wordmark. "Business Group" is integral to the name and is never
-            dropped — Brand Guideline, and rule 6 in BUILD-STATUS.md. */}
+            dropped, Brand Guideline, and rule 6 in BUILD-STATUS.md. */}
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{

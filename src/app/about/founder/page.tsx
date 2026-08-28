@@ -85,7 +85,6 @@ export default function FounderPage() {
 
       <PageHeader
         surface="deep"
-        trail={TRAIL}
         eyebrow="Founder"
         title="In their own words."
         lede="The founder's account of why this company exists is being written with the founder, and will be published here when it is confirmed. It is not being drafted on their behalf in the meantime."

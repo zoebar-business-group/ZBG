@@ -15,11 +15,11 @@ const TRAIL = [
 ];
 
 export const metadata: Metadata = {
-  title: "Request a Quote — Ethiopian Green Coffee",
+  title: "Request a Quote, Ethiopian Green Coffee",
   description:
     "Request a quote or a sample of Zoebar's washed and natural Ethiopian Arabica green coffee from Amaro (Koore Zone), Ethiopia. Tell us your volume and destination and we will come back with confirmed specifications.",
   alternates: { canonical: "/request-quote" },
-  openGraph: { title: "Request a Quote — Ethiopian Green Coffee", url: "/request-quote" },
+  openGraph: { title: "Request a Quote, Ethiopian Green Coffee", url: "/request-quote" },
 };
 
 /**
@@ -41,10 +41,9 @@ export default function RequestQuotePage() {
       />
 
       <PageHeader
-        trail={TRAIL}
         eyebrow="Enquiry"
         title="Request a quote."
-        lede={`Tell us the volume, grade and destination you are working with. We come back with current availability, confirmed specifications and terms — and where a figure is not yet confirmed, we say so rather than estimating it.`}
+        lede={`Tell us the volume, grade and destination you are working with. We come back with current availability, confirmed specifications and terms, and where a figure is not yet confirmed, we say so rather than estimating it.`}
         meta={[
           { term: "Origin", detail: `${ORIGIN.name}, ${ORIGIN.country}` },
           { term: "Altitude", detail: `${altitudeBand()} masl` },
@@ -53,7 +52,7 @@ export default function RequestQuotePage() {
         ]}
       />
 
-      {/* Delivery status. Shown only while unconfigured — this is a build-time
+      {/* Delivery status. Shown only while unconfigured, this is a build-time
           honesty notice, not a permanent design element. */}
       {!configured && (
         <Section surface="bone" rhythm="tight" density="spec">
@@ -69,7 +68,7 @@ export default function RequestQuotePage() {
                 The enquiry route is not connected to a mailbox or CRM yet, so
                 this form cannot deliver a message. It is left visible and
                 honest rather than accepting enquiries that would go nowhere.
-                Connecting it is a single environment variable —{" "}
+                Connecting it is a single environment variable:{" "}
                 <code className="rounded-[2px] bg-[#e6dfd1] px-1.5 py-0.5 font-mono text-[0.8125rem]">
                   RESEND_API_KEY
                 </code>
@@ -106,7 +105,7 @@ export default function RequestQuotePage() {
               <p className="mt-7 max-w-[42ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
                 The more precise the volume and destination, the more useful the
                 reply. If you are still scoping, choose &ldquo;not yet
-                determined&rdquo; — we would rather talk early than send a
+                determined&rdquo; we would rather talk early than send a
                 number that does not fit.
               </p>
 
@@ -140,7 +139,7 @@ export default function RequestQuotePage() {
         </Container>
       </Section>
 
-      {/* --- Sample request — the highest-intent action --------------------- */}
+      {/* --- Sample request, the highest-intent action --------------------- */}
       <Section
         id="sample"
         surface="deep"

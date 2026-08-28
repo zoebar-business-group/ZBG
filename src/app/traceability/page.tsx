@@ -15,11 +15,11 @@ const TRAIL = [
 ];
 
 export const metadata: Metadata = {
-  title: "Traceability — Lot Records from Amaro",
+  title: "Traceability, Lot Records from Amaro",
   description:
     "How a Zoebar lot is traced: origin in Amaro (Koore Zone), Ethiopia, processing at Zoebar's own washing station, harvest period, quality record and the producers connected to the lot.",
   alternates: { canonical: "/traceability" },
-  openGraph: { title: "Traceability — Lot Records from Amaro", url: "/traceability", type: "article" },
+  openGraph: { title: "Traceability, Lot Records from Amaro", url: "/traceability", type: "article" },
 };
 
 /**
@@ -82,7 +82,7 @@ export default function TraceabilityPage() {
         dangerouslySetInnerHTML={{
           __html: graph(
             articleSchema({
-              headline: "Traceability — lot records from Amaro",
+              headline: "Traceability, lot records from Amaro",
               description:
                 "What a Zoebar lot record carries: origin in Amaro (Koore Zone), Ethiopia, processing method at Zoebar's own washing station, harvest period, quality assessment and connected producers.",
               path: "/traceability",
@@ -94,7 +94,6 @@ export default function TraceabilityPage() {
       />
 
       <PageHeader
-        trail={TRAIL}
         eyebrow="Traceability"
         title="A lot you can follow back."
         lede={TRACEABILITY_FAQS[0].answer}

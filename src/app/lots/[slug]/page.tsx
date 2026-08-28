@@ -42,10 +42,10 @@ export async function generateMetadata({
   const description = `${lot.lotId}: ${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at Zoebar's own washing station.`;
 
   return {
-    title: `${lot.lotId} — ${lot.origin} ${lot.harvestYear}`,
+    title: `${lot.lotId}, ${lot.origin} ${lot.harvestYear}`,
     description,
     alternates: { canonical: `/lots/${lot.slug}` },
-    openGraph: { title: `${lot.lotId} — ${lot.origin}`, description, url: `/lots/${lot.slug}` },
+    openGraph: { title: `${lot.lotId}, ${lot.origin}`, description, url: `/lots/${lot.slug}` },
   };
 }
 
@@ -116,7 +116,7 @@ export default async function LotPage({
         dangerouslySetInnerHTML={{
           __html: graph(
             productSchema({
-              name: `${lot.lotId} — ${lot.process} Ethiopian Arabica, ${lot.origin}`,
+              name: `${lot.lotId}, ${lot.process} Ethiopian Arabica, ${lot.origin}`,
               description: `${lot.process} Ethiopian Arabica green coffee from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at Zoebar's own washing station in ${ORIGIN.name}.`,
               path: `/lots/${lot.slug}`,
               properties,
@@ -128,7 +128,6 @@ export default async function LotPage({
 
       <PageHeader
         surface="deep"
-        trail={trail}
         eyebrow={`${lot.origin} · ${lot.harvestYear} harvest`}
         title={lot.lotId}
         lede={`${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, processed at Zoebar's own washing station.`}

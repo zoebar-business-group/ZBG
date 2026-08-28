@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 /** What to put in an enquiry so it can be answered in one exchange. */
 const INCLUDE = [
   "The volume band you are working toward, even approximately.",
-  "Processing method — washed, natural, or both.",
+  "Processing method, washed, natural, or both.",
   "Your destination port or delivery point, which decides which Incoterms rules are relevant.",
   "Whether you want a quotation, a sample, or both.",
   "Any grading, moisture or certification requirement your market imposes.",
@@ -67,10 +67,9 @@ export default function ContactPage() {
       />
 
       <PageHeader
-        trail={TRAIL}
         eyebrow="Contact"
         title="Start the conversation."
-        lede={`Enquiries about Ethiopian Arabica green coffee from ${ORIGIN.name} (${ORIGIN.zone}), Ethiopia — specifications, availability, samples and pricing — reach the commercial team through the form below.`}
+        lede={`Enquiries about Ethiopian Arabica green coffee from ${ORIGIN.name} (${ORIGIN.zone}), Ethiopia (specifications, availability, samples and pricing) reach the commercial team through the form below.`}
         meta={[
           { term: "Company", detail: ORG.legalName },
           { term: "Registered", detail: "United Arab Emirates" },

@@ -131,7 +131,11 @@ export function Amaro() {
                 unit="masl"
                 label="Altitude"
                 onDark
-                className="col-span-2 text-alabaster sm:col-span-1"
+                /* Keeps two columns at every width. "1,700-1,800" is the
+                   longest value in the group, and squeezing it into a third of
+                   a half-width container is what pushed it over the harvest
+                   stat beside it. */
+                className="col-span-2 text-alabaster"
                 size="large"
               />
               <Stat
@@ -170,8 +174,11 @@ export function Amaro() {
               onDark
               src="/amaro-harvest.jpg"
               alt="Ripe red and green coffee cherries on the branch at a hillside farm in Amaro, Koore Zone, with terraced coffee plots behind."
-              brief="Amaro hillside in harvest — cherry on the branch, shot at working distance, natural light."
-              caption={`${ORIGIN.name}, ${ORIGIN.zone}. Harvest runs ${harvestWindow().toLowerCase()}.`}
+              brief="Amaro hillside in harvest, cherry on the branch, shot at working distance, natural light."
+              /* No toLowerCase(): the window is "September - December", and
+                 lowercasing it printed "september - december" on the homepage.
+                 Month names are proper nouns. */
+              caption={`${ORIGIN.name}, ${ORIGIN.zone}. Harvest runs ${harvestWindow()}.`}
               sizes="(max-width: 1024px) 100vw, 45vw"
             />
           </div>
@@ -206,7 +213,7 @@ export function WashingStation() {
               rounded="panel"
               src="/washing-station.jpg"
               alt="The Zoebar washing station at Amaro: concrete fermentation tanks in the foreground and long rows of raised drying beds behind, workers tending them, green hills beyond."
-              brief="The Zoebar washing station at Amaro — wide establishing shot showing the fermentation tanks and drying beds in working use."
+              brief="The Zoebar washing station at Amaro, wide establishing shot showing the fermentation tanks and drying beds in working use."
               caption="Zoebar Ethiopia owns and operates the washing station at Amaro."
               sizes="(max-width: 1024px) 100vw, 55vw"
             />
@@ -304,7 +311,7 @@ export function CherryToContainer() {
           </div>
         </div>
 
-        {/* Horizontal on desktop, vertical on mobile — the composition
+        {/* Horizontal on desktop, vertical on mobile, the composition
             transforms rather than shrinking (Directive 27). */}
         <ol className="mt-14 grid gap-px overflow-hidden rounded-[0.125rem] bg-[#ddd5c6] sm:grid-cols-2 lg:grid-cols-4">
           {STAGES.map((stage, i) => (
@@ -365,7 +372,7 @@ export function Quality() {
             <p className="mt-7 max-w-[42ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
               Grading and cupping data belong on the lot, not in the marketing. The
               table below fills in as each specification is confirmed with the
-              client — until then it states plainly what is still being verified.
+              client, until then it states plainly what is still being verified.
             </p>
             <div className="mt-9">
               <Button href="/quality" variant="quiet">
@@ -375,9 +382,9 @@ export function Quality() {
           </div>
 
           <div className="min-w-0 lg:col-span-7">
-            {/* Real HTML table — mandatory, never an image (Strategy 4.3). */}
+            {/* Real HTML table, mandatory, never an image (Strategy 4.3). */}
             <SpecTable
-              caption="Quality reference — Amaro"
+              caption="Quality reference, Amaro"
               rows={[
                 { label: "Species", value: ORIGIN.species },
                 { label: "Processing", value: ORIGIN.processing.join(" / ") },
@@ -436,7 +443,7 @@ export function Traceability() {
           </p>
         </div>
 
-        {/* The chain. A measured line rather than a row of cards — the
+        {/* The chain. A measured line rather than a row of cards, the
             positioning principle drawn: distance, reduced to one path. */}
         <ol className="mt-16 flex flex-col gap-px overflow-hidden rounded-[0.125rem] bg-[rgba(240,226,203,0.16)] md:flex-row">
           {CHAIN.map((step, i) => (
@@ -519,7 +526,7 @@ export function Farmers() {
             <Figure
               ratio="portrait"
               rounded="card"
-              brief="Producer portrait at their plot — working context, direct eye contact, natural light. Permission required before publication."
+              brief="Producer portrait at their plot, working context, direct eye contact, natural light. Permission required before publication."
               sizes="(max-width: 640px) 100vw, 28vw"
             />
             <Figure
@@ -527,7 +534,7 @@ export function Farmers() {
               rounded="card"
               cut
               className="sm:mt-14"
-              brief="Hands sorting cherry at the washing station — close, documentary, no staging."
+              brief="Hands sorting cherry at the washing station, close, documentary, no staging."
               sizes="(max-width: 640px) 100vw, 28vw"
             />
           </div>
@@ -574,7 +581,7 @@ export function AvailableCoffee() {
         <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="min-w-0 lg:col-span-7">
             <SpecTable
-              caption="Commercial terms — Amaro green coffee"
+              caption="Commercial terms, Amaro green coffee"
               rows={[
                 { label: "Origin", value: `${ORIGIN.name} (${ORIGIN.zone}), ${ORIGIN.country}` },
                 { label: "Species", value: ORIGIN.species },
@@ -655,7 +662,7 @@ export function FromOrigin() {
 
         <p className="mt-10 max-w-[54ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
           From Origin documents the coffee journey through verified information and
-          photography from {ORIGIN.name} — harvest updates, processing notes and
+          photography from {ORIGIN.name}, harvest updates, processing notes and
           buyer resources. Entries publish as each is confirmed.
         </p>
 

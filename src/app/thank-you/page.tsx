@@ -28,10 +28,6 @@ export default async function ThankYouPage({
   return (
     <>
       <PageHeader
-        trail={[
-          { name: "Home", path: "/" },
-          { name: "Thank you", path: "/thank-you" },
-        ]}
         eyebrow="Received"
         title={isSample ? "Sample request received." : "Enquiry received."}
         lede={
@@ -50,7 +46,7 @@ export default async function ThankYouPage({
             While you wait
           </h2>
           <p className="mt-5 max-w-[54ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-            {ORIGIN.name} is where all of this starts — the zone, the altitude
+            {ORIGIN.name} is where all of this starts, the zone, the altitude
             band, the harvest window and the washing station Zoebar owns and
             runs.
           </p>

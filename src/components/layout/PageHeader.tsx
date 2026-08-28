@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { clsx } from "@/lib/clsx";
@@ -7,6 +6,12 @@ import { clsx } from "@/lib/clsx";
  * Interior page header. Sits below the fixed navigation, so it carries its own
  * top padding. Density decides the surface: story pages open deep, spec pages
  * open light and get to the facts faster.
+ *
+ * NO VISIBLE BREADCRUMB TRAIL. It was removed on the client's instruction. The
+ * `Crumb` type and each page's TRAIL constant stay, because they still feed
+ * `breadcrumbSchema()` - the BreadcrumbList JSON-LD is invisible to visitors
+ * and is what lets Google render the site hierarchy in a result. Removing the
+ * markup as well would have cost that for no visual gain.
  */
 
 export interface Crumb {
@@ -14,65 +19,10 @@ export interface Crumb {
   path: string;
 }
 
-export function Breadcrumbs({
-  trail,
-  onDark = false,
-}: {
-  trail: ReadonlyArray<Crumb>;
-  onDark?: boolean;
-}) {
-  return (
-    <nav aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center gap-2">
-        {trail.map((c, i) => {
-          const last = i === trail.length - 1;
-          return (
-            <li key={c.path} className="flex items-center gap-2">
-              {last ? (
-                <span
-                  aria-current="page"
-                  className={clsx(
-                    "font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em]",
-                    onDark ? "text-[#9db3b0]" : "text-meta",
-                  )}
-                >
-                  {c.name}
-                </span>
-              ) : (
-                <Link
-                  href={c.path}
-                  className={clsx(
-                    "font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] underline-offset-4 hover:underline",
-                    onDark ? "text-sand" : "text-[#5a5f56]",
-                  )}
-                >
-                  {c.name}
-                </Link>
-              )}
-              {!last && (
-                <span
-                  aria-hidden="true"
-                  className={clsx(
-                    "text-[0.6875rem]",
-                    onDark ? "text-meta-inverse" : "text-faint",
-                  )}
-                >
-                  /
-                </span>
-              )}
-            </li>
-          );
-        })}
-      </ol>
-    </nav>
-  );
-}
-
 export function PageHeader({
   eyebrow,
   title,
   lede,
-  trail,
   meta,
   surface = "light",
   children,
@@ -80,7 +30,6 @@ export function PageHeader({
   eyebrow: string;
   title: string;
   lede?: string;
-  trail: ReadonlyArray<Crumb>;
   /** Verified metadata pairs shown as a strip beneath the lede. */
   meta?: Array<{ term: string; detail: ReactNode }>;
   surface?: "light" | "deep";
@@ -98,11 +47,9 @@ export function PageHeader({
       )}
     >
       <div className="mx-auto w-full max-w-wide px-6 sm:px-8 lg:px-12">
-        <Breadcrumbs trail={trail} onDark={onDark} />
-
         <p
           className={clsx(
-            "mt-10 font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em]",
+            "font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em]",
             onDark ? "text-sand" : "text-meta",
           )}
         >

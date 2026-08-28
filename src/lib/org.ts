@@ -42,23 +42,39 @@ export const ORG = {
   country: "AE",
 
   /** ---------------------------------------------------------------------
-   *  PENDING VERIFICATION — Strategy Open Item #10 (needed by build day 4).
-   *  These block the full Organization schema and the footer legal block.
+   *  Strategy Open Item #10. Address, telephone and email were confirmed by
+   *  the client on 28 August 2026 and are no longer pending. TRN and founding
+   *  date were NOT supplied and stay null: they render as "Being verified"
+   *  rather than as a plausible guess.
+   *
+   *  `postalCode` is optional because none was given, and most UAE addresses
+   *  do not carry one. An invented code in Organization schema would be a
+   *  machine-readable false claim about the legal entity.
    *  ------------------------------------------------------------------- */
-  legalAddress: null as Verified<{
+  legalAddress: {
+    streetAddress: "Al Rashidiya 1",
+    addressLocality: "Ajman",
+    addressRegion: "Ajman",
+    addressCountry: "AE",
+  } as Verified<{
     streetAddress: string;
     addressLocality: string;
     addressRegion: string;
-    postalCode: string;
+    postalCode?: string;
     addressCountry: string;
   }>,
   trn: null as Verified<string>,
-  telephone: null as Verified<string>,
-  email: null as Verified<string>,
+  telephone: "+971 58 989 9564" as Verified<string>,
+  email: "Info@zoebarbusinessgroup.com" as Verified<string>,
   foundingDate: null as Verified<string>,
   /** Social profiles feed schema `sameAs`. Strategy 4.5 requires one
    *  canonical record used verbatim everywhere — so these ship together. */
-  sameAs: [] as string[],
+  sameAs: ["https://www.linkedin.com/company/zoebar-business-group/"] as string[],
+
+  /** The company LinkedIn page. /journal points here until the journal carries
+   *  its own entries (Open Item #12). Kept as a named constant so the redirect
+   *  and the schema `sameAs` above cannot drift apart. */
+  linkedin: "https://www.linkedin.com/company/zoebar-business-group/",
 } as const;
 
 /**

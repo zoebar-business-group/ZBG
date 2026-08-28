@@ -73,14 +73,21 @@ export function Stat({
   className?: string;
 }) {
   return (
-    <div className={clsx("flex flex-col gap-3", className)}>
+    /* `min-w-0` is load-bearing. A grid item defaults to min-width:auto, which
+       refuses to shrink below its content, so a long value like "1,700-1,800"
+       overflowed its column and painted over the stat beside it. */
+    <div className={clsx("flex min-w-0 flex-col gap-3", className)}>
       <p
         data-numeric
         className={clsx(
-          "font-display leading-[0.86] tracking-[-0.03em]",
+          /* The vw terms are deliberately modest: this grid renders inside a
+             half-width column on large screens, so sizing from the viewport
+             overshoots the space actually available. `break-words` is the last
+             resort for a value longer than any column. */
+          "break-words font-display leading-[0.86] tracking-[-0.03em]",
           size === "large"
-            ? "text-[clamp(2.75rem,7vw,6.5rem)]"
-            : "text-[clamp(2.25rem,4.5vw,4rem)]",
+            ? "text-[clamp(2.5rem,4.4vw,5rem)]"
+            : "text-[clamp(2rem,3vw,3.25rem)]",
         )}
       >
         {value}

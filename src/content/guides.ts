@@ -76,7 +76,7 @@ const GRADING: Guide = {
     "How Ethiopian green coffee is graded: what Grade 1 to Grade 9 measures, who issues the grade, how screen size, moisture and defect count fit together, and why a grade is not a cup score.",
   question: "How is Ethiopian coffee graded?",
   answer:
-    "Ethiopian green coffee is graded from Grade 1 to Grade 9, plus Under Grade, by combining a raw physical assessment — principally defect count in a sample, alongside screen size and moisture — with a cup evaluation. Grades 1 and 2 form the specialty band. The grade is issued on an export certificate, not asserted by the exporter.",
+    "Ethiopian green coffee is graded from Grade 1 to Grade 9, plus Under Grade, by combining a raw physical assessment (principally defect count in a sample, alongside screen size and moisture) with a cup evaluation. Grades 1 and 2 form the specialty band. The grade is issued on an export certificate, not asserted by the exporter.",
   meta: [
     { term: "Scale", detail: "Grade 1 – Grade 9, plus UG" },
     { term: "Specialty band", detail: "Grades 1 and 2" },
@@ -98,7 +98,7 @@ const GRADING: Guide = {
         },
         {
           kind: "p",
-          text: "This matters commercially because the two halves fail differently. A raw defect problem is usually a sorting or drying problem and is visible in the sack. A cup fault is usually a fermentation or storage problem and is invisible until you brew it. When you buy Ethiopian coffee — including the washed and natural lots described on [our coffee page](/coffee), grown in [Amaro](/amaro) — you are buying both results, and you should ask to see both.",
+          text: "This matters commercially because the two halves fail differently. A raw defect problem is usually a sorting or drying problem and is visible in the sack. A cup fault is usually a fermentation or storage problem and is invisible until you brew it. When you buy Ethiopian coffee (including the washed and natural lots described on [our coffee page](/coffee), grown in [Amaro](/amaro)) you are buying both results, and you should ask to see both.",
         },
       ],
     },
@@ -161,7 +161,7 @@ const GRADING: Guide = {
         },
         {
           kind: "p",
-          text: "Reforms from 2017 changed the route. Vertically integrated operators — growers, cooperatives and exporters who control their own supply — were permitted to export directly rather than through the auction, provided traceability is maintained. This is what makes single-station and single-lot Ethiopian coffee possible at all, and it is the reason a station-level record is worth asking for by name.",
+          text: "Reforms from 2017 changed the route. Vertically integrated operators (growers, cooperatives and exporters who control their own supply) were permitted to export directly rather than through the auction, provided traceability is maintained. This is what makes single-station and single-lot Ethiopian coffee possible at all, and it is the reason a station-level record is worth asking for by name.",
         },
         {
           kind: "p",
@@ -185,7 +185,7 @@ const GRADING: Guide = {
         { kind: "h3", text: "Moisture content" },
         {
           kind: "p",
-          text: "Moisture is the percentage of water remaining in the green bean. Too high and the coffee is exposed to mould growth and rapid staling in transit; too low and it has usually been over-dried, which flattens the cup and loses weight the seller has already paid to produce. Green coffee contracts specify a maximum, and the figure that binds is the one written into your contract and measured at the agreed point — not a general industry range quoted from a website.",
+          text: "Moisture is the percentage of water remaining in the green bean. Too high and the coffee is exposed to mould growth and rapid staling in transit; too low and it has usually been over-dried, which flattens the cup and loses weight the seller has already paid to produce. Green coffee contracts specify a maximum, and the figure that binds is the one written into your contract and measured at the agreed point, not a general industry range quoted from a website.",
         },
         { kind: "h3", text: "Defect count" },
         {
@@ -207,7 +207,7 @@ const GRADING: Guide = {
           items: [
             "The grade is a regulatory export classification combining raw defects and a cup evaluation, issued by the national authority and recorded on the export certificate.",
             "An SCA cup score is a 100-point sensory evaluation against the Specialty Coffee Association protocol, where 80 points and above is designated specialty.",
-            "A grade travels on the export certificate. A cup score travels on a cupping form — and whose form it is matters as much as the number on it.",
+            "A grade travels on the export certificate. A cup score travels on a cupping form, and whose form it is matters as much as the number on it.",
           ],
         },
         {
@@ -233,7 +233,7 @@ const GRADING: Guide = {
           kind: "ol",
           items: [
             "Origin, stated to zone level, and whether that zone is the growing area or the trading category. These are frequently not the same thing.",
-            "Processing method — washed or natural — stated per lot rather than for the offer as a whole.",
+            "Processing method (washed or natural) stated per lot rather than for the offer as a whole.",
             "Harvest year and harvest window, so you know the age of the coffee at arrival rather than at offer.",
             "Grade, with the issuing certificate available on request.",
             "Screen size specification, with its tolerance.",
@@ -351,7 +351,7 @@ const CALENDAR: Guide = {
         {
           kind: "ul",
           items: [
-            "The inland leg is long, and it is exposed to road conditions, customs processing at the border and container availability — none of which behave like a berth window at a coastal port.",
+            "The inland leg is long, and it is exposed to road conditions, customs processing at the border and container availability, none of which behave like a berth window at a coastal port.",
             "Because there is no Ethiopian sea port, a term such as FOB is always FOB at a foreign port, which means the seller has already carried the coffee across an international border before risk transfers.",
             "Container availability at the inland origin can be the binding constraint during the peak export period, when the whole crop is moving at once.",
           ],
@@ -461,7 +461,7 @@ const DOCUMENTATION: Guide = {
         },
         {
           kind: "p",
-          text: "The contract set is agreed before anything moves. The shipment set is produced at origin around loading, and a substantial part of it is issued by authorities rather than by the seller — which means it is not something a seller can simply promise to provide faster. Contracts for the washed and natural lots described on [our coffee page](/coffee) name which documents are supplied and when.",
+          text: "The contract set is agreed before anything moves. The shipment set is produced at origin around loading, and a substantial part of it is issued by authorities rather than by the seller, which means it is not something a seller can simply promise to provide faster. Contracts for the washed and natural lots described on [our coffee page](/coffee) name which documents are supplied and when.",
         },
         {
           kind: "p",
@@ -481,7 +481,7 @@ const DOCUMENTATION: Guide = {
         { kind: "h3", text: "Commercial invoice" },
         {
           kind: "p",
-          text: "The seller's invoice, and the basis on which customs values the consignment. It must be consistent with the contract, the packing list and the transport document — inconsistencies between these three are one of the most common causes of a delayed clearance.",
+          text: "The seller's invoice, and the basis on which customs values the consignment. It must be consistent with the contract, the packing list and the transport document, inconsistencies between these three are one of the most common causes of a delayed clearance.",
         },
         { kind: "h3", text: "Packing list and weight note" },
         {
@@ -491,12 +491,12 @@ const DOCUMENTATION: Guide = {
         { kind: "h3", text: "Transport document" },
         {
           kind: "p",
-          text: "A bill of lading for sea freight, or the equivalent waybill for other modes. It evidences the contract of carriage and, in the case of a negotiable bill of lading, controls the right to take delivery. Under a letter of credit its exact form is not a detail — it is the instrument the bank pays against.",
+          text: "A bill of lading for sea freight, or the equivalent waybill for other modes. It evidences the contract of carriage and, in the case of a negotiable bill of lading, controls the right to take delivery. Under a letter of credit its exact form is not a detail, it is the instrument the bank pays against.",
         },
         { kind: "h3", text: "Insurance certificate" },
         {
           kind: "p",
-          text: "Required where the seller insures — under CIF or CIP. Note that the minimum cover the two rules require is not the same, which is covered in the [Incoterms guide](/guides/incoterms-green-coffee).",
+          text: "Required where the seller insures, under CIF or CIP. Note that the minimum cover the two rules require is not the same, which is covered in the [Incoterms guide](/guides/incoterms-green-coffee).",
         },
       ],
     },
@@ -512,7 +512,7 @@ const DOCUMENTATION: Guide = {
         { kind: "h3", text: "ICO certificate of origin" },
         {
           kind: "p",
-          text: "Coffee-specific. The International Coffee Organization operates a certificate of origin system for coffee exported from member producing countries, and consignments carry ICO identification marks. Whether your import requires it, and in what form, depends on the arrangements applying to the exporting and importing countries — confirm the current requirement with your customs broker rather than assuming.",
+          text: "Coffee-specific. The International Coffee Organization operates a certificate of origin system for coffee exported from member producing countries, and consignments carry ICO identification marks. Whether your import requires it, and in what form, depends on the arrangements applying to the exporting and importing countries, confirm the current requirement with your customs broker rather than assuming.",
         },
         { kind: "h3", text: "Phytosanitary certificate" },
         {
@@ -583,7 +583,7 @@ const DOCUMENTATION: Guide = {
         },
         {
           kind: "p",
-          text: "The regulatory limits in this list are set by the importing market, not by the seller, and they change. Verify the version in force for your market at the time of import — a limit that was correct in a previous season is not a defence.",
+          text: "The regulatory limits in this list are set by the importing market, not by the seller, and they change. Verify the version in force for your market at the time of import, a limit that was correct in a previous season is not a defence.",
         },
       ],
     },
@@ -611,7 +611,7 @@ const DOCUMENTATION: Guide = {
       blocks: [
         {
           kind: "table",
-          caption: "Green coffee import documentation — who issues what",
+          caption: "Green coffee import documentation, who issues what",
           head: ["Document", "Issued by", "Purpose"],
           rows: [
             ["Sales contract", "Buyer and seller", "Governs quality, quantity, terms and dispute resolution"],
@@ -678,19 +678,19 @@ const INCOTERMS: Guide = {
   sections: [
     {
       id: "what-a-rule-does",
-      heading: "What an Incoterms rule does — and does not — cover",
+      heading: "What an Incoterms rule does (and does not) cover",
       blocks: [
         {
           kind: "p",
-          text: "An Incoterms rule is a three-letter shorthand, published by the International Chamber of Commerce, for a specific allocation of tasks, costs and risk between seller and buyer. It answers three questions: who arranges and pays for carriage, who bears the risk of loss or damage at each stage, and who handles export and import formalities. It is written into the contract as the rule plus a named place plus the edition — for example \"CIF Hamburg Incoterms 2020\".",
+          text: "An Incoterms rule is a three-letter shorthand, published by the International Chamber of Commerce, for a specific allocation of tasks, costs and risk between seller and buyer. It answers three questions: who arranges and pays for carriage, who bears the risk of loss or damage at each stage, and who handles export and import formalities. It is written into the contract as the rule plus a named place plus the edition, for example \"CIF Hamburg Incoterms 2020\".",
         },
         {
           kind: "p",
-          text: "What a rule does not do is at least as important. It does not transfer ownership, it does not set the price, it does not specify payment terms, it does not decide quality or weight determination, and it does not supply a governing law or a dispute mechanism. Those come from your sales contract — which for green coffee is usually a trade-association standard form. A rule quoted without a contract behind it is a shipping instruction pretending to be an agreement.",
+          text: "What a rule does not do is at least as important. It does not transfer ownership, it does not set the price, it does not specify payment terms, it does not decide quality or weight determination, and it does not supply a governing law or a dispute mechanism. Those come from your sales contract, which for green coffee is usually a trade-association standard form. A rule quoted without a contract behind it is a shipping instruction pretending to be an agreement.",
         },
         {
           kind: "p",
-          text: "For a buyer of Ethiopian green coffee, the rule chosen determines what the quoted price actually includes, and therefore whether two quotations are comparable at all. Before comparing prices for the washed and natural lots described on [our coffee page](/coffee) — grown in [Amaro](/amaro) — establish which rule and named place each quotation is on.",
+          text: "For a buyer of Ethiopian green coffee, the rule chosen determines what the quoted price actually includes, and therefore whether two quotations are comparable at all. Before comparing prices for the washed and natural lots described on [our coffee page](/coffee) (grown in [Amaro](/amaro)) establish which rule and named place each quotation is on.",
         },
       ],
     },
@@ -704,20 +704,20 @@ const INCOTERMS: Guide = {
         },
         {
           kind: "table",
-          caption: "Incoterms 2020 — the eleven rules",
+          caption: "Incoterms 2020, the eleven rules",
           head: ["Rule", "Family", "Risk transfers when", "Carriage paid by", "Seller insures"],
           rows: [
-            ["EXW — Ex Works", "Any mode", "Goods placed at buyer's disposal at the seller's premises", "Buyer", "No"],
-            ["FCA — Free Carrier", "Any mode", "Goods delivered to the carrier named by the buyer", "Buyer", "No"],
-            ["CPT — Carriage Paid To", "Any mode", "Goods handed to the first carrier", "Seller, to destination", "No"],
-            ["CIP — Carriage and Insurance Paid To", "Any mode", "Goods handed to the first carrier", "Seller, to destination", "Yes — all-risks cover"],
-            ["DAP — Delivered at Place", "Any mode", "Goods at the named place, ready for unloading", "Seller", "No"],
-            ["DPU — Delivered at Place Unloaded", "Any mode", "Goods unloaded at the named place", "Seller", "No"],
-            ["DDP — Delivered Duty Paid", "Any mode", "Goods at the named place, import cleared", "Seller", "No"],
-            ["FAS — Free Alongside Ship", "Sea / inland waterway", "Goods alongside the vessel", "Buyer", "No"],
-            ["FOB — Free on Board", "Sea / inland waterway", "Goods on board the vessel", "Buyer", "No"],
-            ["CFR — Cost and Freight", "Sea / inland waterway", "Goods on board the vessel", "Seller, to destination port", "No"],
-            ["CIF — Cost, Insurance and Freight", "Sea / inland waterway", "Goods on board the vessel", "Seller, to destination port", "Yes — minimum cover"],
+            ["EXW, Ex Works", "Any mode", "Goods placed at buyer's disposal at the seller's premises", "Buyer", "No"],
+            ["FCA, Free Carrier", "Any mode", "Goods delivered to the carrier named by the buyer", "Buyer", "No"],
+            ["CPT, Carriage Paid To", "Any mode", "Goods handed to the first carrier", "Seller, to destination", "No"],
+            ["CIP (Carriage and Insurance Paid To", "Any mode", "Goods handed to the first carrier", "Seller, to destination", "Yes) all-risks cover"],
+            ["DAP, Delivered at Place", "Any mode", "Goods at the named place, ready for unloading", "Seller", "No"],
+            ["DPU, Delivered at Place Unloaded", "Any mode", "Goods unloaded at the named place", "Seller", "No"],
+            ["DDP, Delivered Duty Paid", "Any mode", "Goods at the named place, import cleared", "Seller", "No"],
+            ["FAS, Free Alongside Ship", "Sea / inland waterway", "Goods alongside the vessel", "Buyer", "No"],
+            ["FOB, Free on Board", "Sea / inland waterway", "Goods on board the vessel", "Buyer", "No"],
+            ["CFR, Cost and Freight", "Sea / inland waterway", "Goods on board the vessel", "Seller, to destination port", "No"],
+            ["CIF (Cost, Insurance and Freight", "Sea / inland waterway", "Goods on board the vessel", "Seller, to destination port", "Yes) minimum cover"],
           ],
         },
         {
@@ -732,7 +732,7 @@ const INCOTERMS: Guide = {
       blocks: [
         {
           kind: "p",
-          text: "FAS, FOB, CFR and CIF are drafted around delivery at the ship. Under FOB, CFR and CIF, risk passes when the goods are on board. That model works for bulk and break-bulk cargo handed over at the quay. It fits containerised coffee badly, because a container is packed and sealed at an inland depot days or weeks before it is loaded — and once it is sealed, the seller has no practical control over it while still, under the rule, carrying the risk.",
+          text: "FAS, FOB, CFR and CIF are drafted around delivery at the ship. Under FOB, CFR and CIF, risk passes when the goods are on board. That model works for bulk and break-bulk cargo handed over at the quay. It fits containerised coffee badly, because a container is packed and sealed at an inland depot days or weeks before it is loaded, and once it is sealed, the seller has no practical control over it while still, under the rule, carrying the risk.",
         },
         {
           kind: "p",
@@ -755,7 +755,7 @@ const INCOTERMS: Guide = {
         {
           kind: "ul",
           items: [
-            "CIF requires the seller to obtain cover complying with a minimum standard — the restricted, named-perils level historically associated with Institute Cargo Clauses (C).",
+            "CIF requires the seller to obtain cover complying with a minimum standard, the restricted, named-perils level historically associated with Institute Cargo Clauses (C).",
             "CIP requires the seller to obtain the higher, all-risks level of cover historically associated with Institute Cargo Clauses (A).",
           ],
         },
@@ -765,7 +765,7 @@ const INCOTERMS: Guide = {
         },
         {
           kind: "p",
-          text: "In either case the required cover is a minimum, and the parties may agree more. If your coffee's real exposure is condensation and moisture migration in a container across an equatorial route, the level of cover is not a back-office question — decide it deliberately and record it in the contract.",
+          text: "In either case the required cover is a minimum, and the parties may agree more. If your coffee's real exposure is condensation and moisture migration in a container across an equatorial route, the level of cover is not a back-office question, decide it deliberately and record it in the contract.",
         },
       ],
     },
@@ -780,7 +780,7 @@ const INCOTERMS: Guide = {
         {
           kind: "ol",
           items: [
-            "DAT was renamed DPU — Delivered at Place Unloaded — so the rule is no longer tied to a terminal. It remains the only rule under which the seller must unload at destination.",
+            "DAT was renamed DPU (Delivered at Place Unloaded) so the rule is no longer tied to a terminal. It remains the only rule under which the seller must unload at destination.",
             "CIP now requires all-risks insurance cover, while CIF retains the minimum standard. Previously both sat at the minimum.",
             "FCA gained the optional on-board bill of lading arrangement described above, removing the principal letter-of-credit obstacle to using FCA for containers.",
             "FCA, DAP, DPU and DDP now expressly accommodate carriage in the seller's or buyer's own vehicle, rather than assuming a third-party carrier is always engaged.",
@@ -798,15 +798,15 @@ const INCOTERMS: Guide = {
       blocks: [
         {
           kind: "p",
-          text: "Ethiopia has no sea port. Coffee leaving the country travels overland — principally to the Port of Djibouti — before any vessel is involved. This makes the named place in an Incoterms rule unusually consequential, because the inland leg it either includes or excludes is long, crosses an international border, and carries real risk.",
+          text: "Ethiopia has no sea port. Coffee leaving the country travels overland (principally to the Port of Djibouti) before any vessel is involved. This makes the named place in an Incoterms rule unusually consequential, because the inland leg it either includes or excludes is long, crosses an international border, and carries real risk.",
         },
         {
           kind: "ul",
           items: [
             "FCA at a named inland point in Ethiopia means the buyer takes over before the overland leg, and carries the border crossing and the road transit.",
-            "FOB Djibouti means the seller carries the coffee out of Ethiopia, across the border and into a foreign port before risk passes — a materially larger undertaking than FOB at a domestic port would be.",
+            "FOB Djibouti means the seller carries the coffee out of Ethiopia, across the border and into a foreign port before risk passes, a materially larger undertaking than FOB at a domestic port would be.",
             "CFR or CIF to a destination port means the seller arranges and pays the ocean carriage, but risk still passes at the origin port, not at destination.",
-            "A delivered rule — DAP, DPU or DDP — moves risk all the way to the named destination, and correspondingly changes the price.",
+            "A delivered rule (DAP, DPU or DDP) moves risk all the way to the named destination, and correspondingly changes the price.",
           ],
         },
         {
@@ -865,7 +865,7 @@ const INCOTERMS: Guide = {
     {
       question: "Which Incoterms rule is used for Ethiopian coffee?",
       answer:
-        "Ethiopia is landlocked, so coffee moves overland to a foreign port — principally Djibouti — before any ocean leg. FOB at that port and FCA at a named inland point are both routine, and they allocate the overland leg very differently. The named place therefore matters as much as the rule, and both must be stated in the contract with the edition.",
+        "Ethiopia is landlocked, so coffee moves overland to a foreign port (principally Djibouti) before any ocean leg. FOB at that port and FCA at a named inland point are both routine, and they allocate the overland leg very differently. The named place therefore matters as much as the rule, and both must be stated in the contract with the edition.",
     },
   ],
   datePublished: AUTHORED,
@@ -881,7 +881,7 @@ const PROCESS: Guide = {
   navTitle: "The buying process",
   title: "Buying green coffee, step by step.",
   description:
-    "The full sequence of buying green coffee from origin: enquiry, sample, specification, quotation, contract, payment terms, shipment and delivery — what each stage settles, and where it goes wrong when skipped.",
+    "The full sequence of buying green coffee from origin: enquiry, sample, specification, quotation, contract, payment terms, shipment and delivery, what each stage settles, and where it goes wrong when skipped.",
   question: "What is the process for buying green coffee from Zoebar?",
   answer:
     "The sequence is an enquiry stating volume, grade and destination; a sample request; confirmation of the specification against that sample; a written quotation on a stated Incoterms rule; a sales contract; agreed payment terms; shipment within a named period; and delivery. Each stage settles one variable, and skipping one leaves it unresolved until it becomes a dispute.",
@@ -898,15 +898,15 @@ const PROCESS: Guide = {
       blocks: [
         {
           kind: "p",
-          text: "Buying green coffee from origin is a sequence of decisions taken in order, each of which fixes one variable so the next can be taken cleanly. It is not a single transaction. A first-time buyer who treats it as one — a price is agreed, coffee arrives — discovers the missing decisions on arrival, when they are expensive to revisit.",
+          text: "Buying green coffee from origin is a sequence of decisions taken in order, each of which fixes one variable so the next can be taken cleanly. It is not a single transaction. A first-time buyer who treats it as one (a price is agreed, coffee arrives) discovers the missing decisions on arrival, when they are expensive to revisit.",
         },
         {
           kind: "p",
-          text: "The variables being settled are, roughly in order: what the coffee is, how it is assessed, what it costs and on what delivery basis, when it moves, how and when it is paid for, and what happens if it arrives out of specification. The coffee itself — the washed and natural lots described on [our coffee page](/coffee), grown in [Amaro](/amaro) — is only the first of these.",
+          text: "The variables being settled are, roughly in order: what the coffee is, how it is assessed, what it costs and on what delivery basis, when it moves, how and when it is paid for, and what happens if it arrives out of specification. The coffee itself (the washed and natural lots described on [our coffee page](/coffee), grown in [Amaro](/amaro)) is only the first of these.",
         },
         {
           kind: "p",
-          text: "The stages below are common to green coffee buying generally. Where Zoebar's own commercial terms sit within them — sample policy, minimum quantity, lead times, accepted payment methods — those are confirmed per enquiry rather than published, for the reason set out at the end of this guide.",
+          text: "The stages below are common to green coffee buying generally. Where Zoebar's own commercial terms sit within them (sample policy, minimum quantity, lead times, accepted payment methods) those are confirmed per enquiry rather than published, for the reason set out at the end of this guide.",
         },
       ],
     },
@@ -921,7 +921,7 @@ const PROCESS: Guide = {
         {
           kind: "ul",
           items: [
-            "The volume you are working toward, even approximately — a bag count, a container count, or an annual figure.",
+            "The volume you are working toward, even approximately, a bag count, a container count, or an annual figure.",
             "The processing method you want: washed, natural, or both.",
             "The grade or cup profile your market requires.",
             "Your destination port or delivery point, which determines which Incoterms rules are relevant.",
@@ -955,7 +955,7 @@ const PROCESS: Guide = {
         },
         {
           kind: "p",
-          text: "Sample assessment is your own cupping table applying your own protocol. The export grade on the certificate, explained in [the grading guide](/guides/ethiopian-coffee-grading), is a separate regulatory measurement — not a substitute for cupping the lot yourself.",
+          text: "Sample assessment is your own cupping table applying your own protocol. The export grade on the certificate, explained in [the grading guide](/guides/ethiopian-coffee-grading), is a separate regulatory measurement, not a substitute for cupping the lot yourself.",
         },
       ],
     },
@@ -969,7 +969,7 @@ const PROCESS: Guide = {
         },
         {
           kind: "p",
-          text: "The quotation then attaches a price to that specification — but a price is only comparable against another price on the same basis. A quotation should state the Incoterms rule and named place, the shipment period, the quantity and tolerance, the currency, and how long the offer stands. Two quotations that differ only in named place are not quoting the same thing.",
+          text: "The quotation then attaches a price to that specification, but a price is only comparable against another price on the same basis. A quotation should state the Incoterms rule and named place, the shipment period, the quantity and tolerance, the currency, and how long the offer stands. Two quotations that differ only in named place are not quoting the same thing.",
         },
         {
           kind: "note",
@@ -987,7 +987,7 @@ const PROCESS: Guide = {
         },
         {
           kind: "p",
-          text: "The Incoterms rule decides what the price includes and where risk transfers — and for a landlocked origin such as Ethiopia, the named place matters as much as the rule. That is worked through in [the Incoterms guide](/guides/incoterms-green-coffee). The documents the shipment will require, and who issues each, are set out in [the importer's documentation checklist](/guides/import-documentation-checklist). Neither is re-explained here; both are prerequisites to a contract you can actually perform.",
+          text: "The Incoterms rule decides what the price includes and where risk transfers, and for a landlocked origin such as Ethiopia, the named place matters as much as the rule. That is worked through in [the Incoterms guide](/guides/incoterms-green-coffee). The documents the shipment will require, and who issues each, are set out in [the importer's documentation checklist](/guides/import-documentation-checklist). Neither is re-explained here; both are prerequisites to a contract you can actually perform.",
         },
       ],
     },
@@ -997,7 +997,7 @@ const PROCESS: Guide = {
       blocks: [
         {
           kind: "p",
-          text: "Payment terms allocate the gap between the seller's exposure to non-payment and the buyer's exposure to non-delivery. The instruments used in the trade — advance payment, letters of credit, documentary collections, open account — sit on a spectrum between those two, and are covered in [the payment terms guide](/guides/green-coffee-payment-terms). They are agreed in the contract, separately from the Incoterms rule.",
+          text: "Payment terms allocate the gap between the seller's exposure to non-payment and the buyer's exposure to non-delivery. The instruments used in the trade (advance payment, letters of credit, documentary collections, open account) sit on a spectrum between those two, and are covered in [the payment terms guide](/guides/green-coffee-payment-terms). They are agreed in the contract, separately from the Incoterms rule.",
         },
         {
           kind: "p",
@@ -1005,7 +1005,7 @@ const PROCESS: Guide = {
         },
         {
           kind: "p",
-          text: "On arrival, quality and weight are determined at whichever point the contract names — origin, destination, or an independent inspection — and any claim runs under the contract's arbitration rules. A shipment that arrives within specification closes the transaction; one that does not is resolved by the terms agreed before it moved, which is the entire reason those terms are agreed first.",
+          text: "On arrival, quality and weight are determined at whichever point the contract names (origin, destination, or an independent inspection) and any claim runs under the contract's arbitration rules. A shipment that arrives within specification closes the transaction; one that does not is resolved by the terms agreed before it moved, which is the entire reason those terms are agreed first.",
         },
       ],
     },
@@ -1034,7 +1034,7 @@ const PROCESS: Guide = {
     {
       question: "Can I request a sample before placing an order?",
       answer:
-        "Yes — a sample stage is standard in green coffee buying. An offer sample shows whether a profile is worth pursuing; a pre-shipment sample, drawn from the lot allocated to your contract, is the one that should govern approval. The contract should state which sample governs and the approval window before shipment.",
+        "Yes, a sample stage is standard in green coffee buying. An offer sample shows whether a profile is worth pursuing; a pre-shipment sample, drawn from the lot allocated to your contract, is the one that should govern approval. The contract should state which sample governs and the approval window before shipment.",
     },
     {
       question: "What is the difference between a quotation and a contract?",
@@ -1055,7 +1055,7 @@ const PAYMENT: Guide = {
   navTitle: "Payment terms & trade finance",
   title: "Payment terms and trade finance for green coffee.",
   description:
-    "The payment terms used in green coffee trade — advance payment, letters of credit, documentary collections and open account — what each allocates, how a letter of credit works, and why payment terms are set separately from the Incoterms rule.",
+    "The payment terms used in green coffee trade (advance payment, letters of credit, documentary collections and open account) what each allocates, how a letter of credit works, and why payment terms are set separately from the Incoterms rule.",
   question: "What payment terms are standard in green coffee trade?",
   answer:
     "Green coffee moves on a spectrum of terms: advance payment, letters of credit, documentary collections (documents against payment or against acceptance), and open account. They allocate the gap between the seller's risk of non-payment and the buyer's risk of non-delivery. Which is used depends on the relationship, the sums involved, and each side's bank.",
@@ -1076,7 +1076,7 @@ const PAYMENT: Guide = {
         },
         {
           kind: "p",
-          text: "For green coffee the exposure is real on both sides. The buyer is committing significant sums against a commodity they cannot inspect until it arrives — the washed and natural lots on [our coffee page](/coffee), grown in [Amaro](/amaro), are cupped from samples, not from the container. The seller is shipping a perishable agricultural product across an international border, after which recovering unpaid goods is impractical.",
+          text: "For green coffee the exposure is real on both sides. The buyer is committing significant sums against a commodity they cannot inspect until it arrives, the washed and natural lots on [our coffee page](/coffee), grown in [Amaro](/amaro), are cupped from samples, not from the container. The seller is shipping a perishable agricultural product across an international border, after which recovering unpaid goods is impractical.",
         },
         {
           kind: "p",
@@ -1095,27 +1095,27 @@ const PAYMENT: Guide = {
           rows: [
             [
               "Advance payment, full or part",
-              "Buyer — pays before shipment",
+              "Buyer, pays before shipment",
               "A new relationship, a small lot, or a seller with no appetite for buyer credit risk. Part-payment on order with the balance against documents is common.",
             ],
             [
               "Irrevocable letter of credit",
-              "Neither directly — a bank substitutes its credit",
+              "Neither directly, a bank substitutes its credit",
               "Larger sums, a newer relationship, or where either party's country carries elevated risk. Costs a fee and takes bank time to establish.",
             ],
             [
               "Documents against payment (D/P)",
-              "Seller — ships first, but controls the documents",
+              "Seller, ships first, but controls the documents",
               "An established relationship with acceptable country risk. The buyer cannot collect the goods without paying.",
             ],
             [
               "Documents against acceptance (D/A)",
-              "Seller — extends unsecured credit",
+              "Seller, extends unsecured credit",
               "A trusted relationship. The buyer takes the documents against a promise to pay at a future date.",
             ],
             [
               "Open account",
-              "Seller — ships and invoices, paid later",
+              "Seller, ships and invoices, paid later",
               "A long, trusted relationship. The seller carries the full credit risk for the payment period.",
             ],
           ],
@@ -1136,12 +1136,12 @@ const PAYMENT: Guide = {
         },
         {
           kind: "p",
-          text: "The mechanism is documentary, and the word matters: the bank pays against documents, not against the coffee. If the presented documents match the credit, the bank pays even if the coffee is later found wanting; if they do not match — a date out of range, a description that differs by a word — the bank may refuse to pay for coffee that is entirely sound. Documentary discrepancies are the main practical failure mode.",
+          text: "The mechanism is documentary, and the word matters: the bank pays against documents, not against the coffee. If the presented documents match the credit, the bank pays even if the coffee is later found wanting; if they do not match (a date out of range, a description that differs by a word) the bank may refuse to pay for coffee that is entirely sound. Documentary discrepancies are the main practical failure mode.",
         },
         {
           kind: "ul",
           items: [
-            "The credit lists the exact documents required — commonly the commercial invoice, the transport document, and the origin and regulatory certificates set out in [the documentation checklist](/guides/import-documentation-checklist).",
+            "The credit lists the exact documents required, commonly the commercial invoice, the transport document, and the origin and regulatory certificates set out in [the documentation checklist](/guides/import-documentation-checklist).",
             "The transport document is the pivot. A negotiable bill of lading controls the right to take delivery, so whoever holds it controls the goods; the bank holds it until it is paid.",
             "The credit should be irrevocable, and a seller uncertain of the issuing bank may ask for it to be confirmed by a bank in the seller's own country, which adds a second guarantee and a second fee.",
             "Every date, quantity tolerance and goods description in the credit must match the sales contract, or the seller is obliged to ship against one set of terms and be paid against another.",
@@ -1160,12 +1160,12 @@ const PAYMENT: Guide = {
         { kind: "h3", text: "Documents against payment (D/P)" },
         {
           kind: "p",
-          text: "Also called cash against documents. The buyer's bank releases the documents — including the transport document that controls the goods — only when the buyer pays. The seller keeps control of the cargo until payment, but carries the risk that the buyer simply does not present to pay, leaving a container at a distant port.",
+          text: "Also called cash against documents. The buyer's bank releases the documents (including the transport document that controls the goods) only when the buyer pays. The seller keeps control of the cargo until payment, but carries the risk that the buyer simply does not present to pay, leaving a container at a distant port.",
         },
         { kind: "h3", text: "Documents against acceptance (D/A)" },
         {
           kind: "p",
-          text: "The buyer receives the documents against accepting a bill of exchange — a formal promise to pay on a future date — and can then collect and sell the coffee before paying for it. The seller has extended unsecured credit, and D/A is used only where that credit risk is acceptable.",
+          text: "The buyer receives the documents against accepting a bill of exchange (a formal promise to pay on a future date) and can then collect and sell the coffee before paying for it. The seller has extended unsecured credit, and D/A is used only where that credit risk is acceptable.",
         },
       ],
     },
@@ -1193,7 +1193,7 @@ const PAYMENT: Guide = {
         },
         {
           kind: "p",
-          text: "The two interact only through the documents. A letter of credit calls for a transport document, and the Incoterms rule determines which document the seller can provide and at what point — which is why the FCA on-board bill of lading option introduced in Incoterms 2020, described in [the Incoterms guide](/guides/incoterms-green-coffee), matters for letter-of-credit trades. Beyond that, the two are set independently, in different clauses of the same contract.",
+          text: "The two interact only through the documents. A letter of credit calls for a transport document, and the Incoterms rule determines which document the seller can provide and at what point, which is why the FCA on-board bill of lading option introduced in Incoterms 2020, described in [the Incoterms guide](/guides/incoterms-green-coffee), matters for letter-of-credit trades. Beyond that, the two are set independently, in different clauses of the same contract.",
         },
         {
           kind: "pending",
@@ -1207,12 +1207,12 @@ const PAYMENT: Guide = {
     {
       question: "What is cash against documents in coffee trading?",
       answer:
-        "Cash against documents, or documents against payment (D/P), is a documentary collection in which the buyer's bank releases the shipping documents — including the one controlling the goods — only when the buyer pays. The seller keeps control of the cargo until payment but has no bank guarantee that the buyer will pay. It is cheaper than a letter of credit.",
+        "Cash against documents, or documents against payment (D/P), is a documentary collection in which the buyer's bank releases the shipping documents (including the one controlling the goods) only when the buyer pays. The seller keeps control of the cargo until payment but has no bank guarantee that the buyer will pay. It is cheaper than a letter of credit.",
     },
     {
       question: "Do I need a letter of credit to buy green coffee?",
       answer:
-        "No. A letter of credit is one option among several — advance payment, documentary collections and open account are all used in the trade. Letters of credit are common for larger sums or newer relationships because a bank substitutes its credit for the buyer's, but they carry a fee and take bank time to arrange. The right term depends on the relationship and the amounts involved.",
+        "No. A letter of credit is one option among several, advance payment, documentary collections and open account are all used in the trade. Letters of credit are common for larger sums or newer relationships because a bank substitutes its credit for the buyer's, but they carry a fee and take bank time to arrange. The right term depends on the relationship and the amounts involved.",
     },
     {
       question: "Do Incoterms rules set the payment terms?",
@@ -1236,7 +1236,7 @@ const CONTAINER: Guide = {
     "How green coffee is packed and shipped: bag types and weights, why coffee ships in 20-foot rather than 40-foot containers, the condensation problem inside a steel box, container liners and desiccants, and what to specify in the contract.",
   question: "How much green coffee fits in a shipping container?",
   answer:
-    "A 20-foot container typically holds around 300 bags of 60 kg — roughly 18 to 19 tonnes — though route weight limits and packaging move the figure. Coffee reaches a container's weight limit long before its volume limit, which is why it ships in 20-foot rather than 40-foot units and why payload, not cubic capacity, is the binding constraint.",
+    "A 20-foot container typically holds around 300 bags of 60 kg (roughly 18 to 19 tonnes) though route weight limits and packaging move the figure. Coffee reaches a container's weight limit long before its volume limit, which is why it ships in 20-foot rather than 40-foot units and why payload, not cubic capacity, is the binding constraint.",
   meta: [
     { term: "Common bag", detail: "60 kg jute, often lined" },
     { term: "20ft, typically", detail: "~300 bags · ~18–19 t" },
@@ -1250,7 +1250,7 @@ const CONTAINER: Guide = {
       blocks: [
         {
           kind: "p",
-          text: "Green coffee is hygroscopic — it takes up and gives off moisture with the air around it — and it is shipped across large swings in temperature and humidity. Packaging exists to manage that, not only to contain the beans, and the choice made at origin travels with the coffee for the whole voyage.",
+          text: "Green coffee is hygroscopic (it takes up and gives off moisture with the air around it) and it is shipped across large swings in temperature and humidity. Packaging exists to manage that, not only to contain the beans, and the choice made at origin travels with the coffee for the whole voyage.",
         },
         {
           kind: "p",
@@ -1260,7 +1260,7 @@ const CONTAINER: Guide = {
           kind: "ul",
           items: [
             "Plain jute or sisal. Breathable, cheap, and the historical default. It offers no moisture barrier, so the coffee equilibrates with whatever air reaches it.",
-            "Jute with a barrier liner — a multi-layer plastic or foil bag inside the sack. Slows moisture and oxygen exchange and holds the cup longer, at a higher cost per bag.",
+            "Jute with a barrier liner, a multi-layer plastic or foil bag inside the sack. Slows moisture and oxygen exchange and holds the cup longer, at a higher cost per bag.",
             "Hermetic or vacuum packaging. A sealed barrier that effectively stops moisture and gas exchange for the duration of transit. Used where freshness retention justifies the cost.",
             "Bulk in a container liner. The container is lined with one large bag and filled loose, saving the cost of sacks. Common for larger commercial volumes, less so for lot-separated specialty coffee.",
           ],
@@ -1277,7 +1277,7 @@ const CONTAINER: Guide = {
         },
         {
           kind: "table",
-          caption: "Container capacity for green coffee — indicative, not a specification",
+          caption: "Container capacity for green coffee, indicative, not a specification",
           head: ["Unit", "Internal volume, approx.", "Coffee loaded, typical", "Why"],
           rows: [
             [
@@ -1290,13 +1290,13 @@ const CONTAINER: Guide = {
               "40-foot standard",
               "~67 m³",
               "Rarely used for coffee alone",
-              "Twice the space, a similar payload rating — it would weigh out at roughly half full",
+              "Twice the space, a similar payload rating, it would weigh out at roughly half full",
             ],
           ],
         },
         {
           kind: "p",
-          text: "The exact number of bags is not a constant. It depends on the bag weight, the maximum payload the shipping line applies to that container, and — for a landlocked origin such as Ethiopia — the road weight limits on the inland leg to port, which can be lower than the sea limit and can cap the load before the container does. A figure quoted as fixed on a website is a typical case, not a specification.",
+          text: "The exact number of bags is not a constant. It depends on the bag weight, the maximum payload the shipping line applies to that container, and (for a landlocked origin such as Ethiopia) the road weight limits on the inland leg to port, which can be lower than the sea limit and can cap the load before the container does. A figure quoted as fixed on a website is a typical case, not a specification.",
         },
         {
           kind: "note",
@@ -1310,18 +1310,18 @@ const CONTAINER: Guide = {
       blocks: [
         {
           kind: "p",
-          text: "The single largest transit risk to green coffee is not physical damage — it is moisture. A container loaded in a warm, humid origin holds warm, humid air. As it passes through cooler conditions, or simply cools at night, that air reaches its dew point and water condenses on the coldest surface, usually the steel ceiling, and then drips back onto the cargo. In the trade this is called container rain, or container sweat.",
+          text: "The single largest transit risk to green coffee is not physical damage, it is moisture. A container loaded in a warm, humid origin holds warm, humid air. As it passes through cooler conditions, or simply cools at night, that air reaches its dew point and water condenses on the coldest surface, usually the steel ceiling, and then drips back onto the cargo. In the trade this is called container rain, or container sweat.",
         },
         {
           kind: "p",
-          text: "The damage is characteristic: water staining and mould on the top layer of bags and against the walls, a musty or phenolic taint through the affected coffee, and sometimes caking. It can ruin the top of an otherwise sound container, and because it develops in transit it is often discovered only on opening at destination — which is why the point of quality determination in the contract matters.",
+          text: "The damage is characteristic: water staining and mould on the top layer of bags and against the walls, a musty or phenolic taint through the affected coffee, and sometimes caking. It can ruin the top of an otherwise sound container, and because it develops in transit it is often discovered only on opening at destination, which is why the point of quality determination in the contract matters.",
         },
         {
           kind: "ul",
           items: [
             "Coffee dried to the correct target moisture before shipment carries less water into the box and condenses less. Over-drying avoids the problem but flattens the cup and loses weight.",
             "A barrier liner or hermetic packaging isolates the beans from the container atmosphere and is the most reliable defence.",
-            "Desiccant — hanging drying agents, or a container liner with an absorbent layer — lowers the humidity of the air in the box during the voyage.",
+            "Desiccant (hanging drying agents, or a container liner with an absorbent layer) lowers the humidity of the air in the box during the voyage.",
             "Kraft-paper container liners and dunnage keep the bags off the floor and clear of the walls, where condensation collects.",
           ],
         },
@@ -1333,7 +1333,7 @@ const CONTAINER: Guide = {
       blocks: [
         {
           kind: "p",
-          text: "Ventilated containers exist — dry containers with passive vents in the top rails that allow some air exchange without letting rain in. They were designed for exactly this class of cargo, and some coffee, particularly from origins shipping in plain jute, moves in them.",
+          text: "Ventilated containers exist, dry containers with passive vents in the top rails that allow some air exchange without letting rain in. They were designed for exactly this class of cargo, and some coffee, particularly from origins shipping in plain jute, moves in them.",
         },
         {
           kind: "p",
@@ -1352,7 +1352,7 @@ const CONTAINER: Guide = {
         {
           kind: "ul",
           items: [
-            "The container should be clean, dry, sound and odour-free before loading — coffee readily takes up taints from a previous cargo or from residual cleaning chemicals.",
+            "The container should be clean, dry, sound and odour-free before loading, coffee readily takes up taints from a previous cargo or from residual cleaning chemicals.",
             "Bags are kept off the floor and clear of the walls and doors, on dunnage or a liner, so condensation running down the steel does not reach them.",
             "Weight is distributed evenly along the container floor, within the axle-load limits that apply on the inland leg, not only the total payload.",
             "The load is stowed tightly enough that bags do not shift and chafe in transit, with the doorway blocked so nothing falls out on opening.",
@@ -1375,9 +1375,9 @@ const CONTAINER: Guide = {
         {
           kind: "ol",
           items: [
-            "Bag type and weight — plain jute, lined, or hermetic — and the net weight per bag.",
+            "Bag type and weight (plain jute, lined, or hermetic) and the net weight per bag.",
             "The number of bags and the total net weight per container.",
-            "Container type — standard or ventilated — and any liner or desiccant requirement.",
+            "Container type (standard or ventilated) and any liner or desiccant requirement.",
             "The moisture maximum and the point at which it is measured, which links to the set in [the importer's documentation checklist](/guides/import-documentation-checklist).",
             "Marks and lot identification on the bags.",
           ],

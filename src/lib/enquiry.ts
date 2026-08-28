@@ -145,7 +145,7 @@ export async function verifyRecaptcha(token: string): Promise<RecaptchaResult> {
   if (!secret) {
     // Not configured. Do not block real buyers — but warn so an unhardened
     // production deploy is loud in the platform logs.
-    console.warn("[enquiry] RECAPTCHA_SECRET_KEY not set — skipping bot verification.");
+    console.warn("[enquiry] RECAPTCHA_SECRET_KEY not set, skipping bot verification.");
     return { outcome: "pass", score: null };
   }
 
@@ -161,7 +161,7 @@ export async function verifyRecaptcha(token: string): Promise<RecaptchaResult> {
     data = (await res.json()) as SiteVerifyResponse;
   } catch (err) {
     // Fail OPEN: Google's API being briefly down must not cost a real enquiry.
-    console.warn("[enquiry] reCAPTCHA verify request errored — failing open.", err);
+    console.warn("[enquiry] reCAPTCHA verify request errored, failing open.", err);
     return { outcome: "pass", score: null };
   }
 
@@ -244,11 +244,11 @@ const FALLBACK_TO = "eden@zoebarbusinessgroup.com";
 function detailRows(e: Enquiry, score: number | null): Array<[string, string]> {
   return [
     ["Name", escapeHtml(e.name)],
-    ["Company", e.company.trim() ? escapeHtml(e.company) : "—"],
+    ["Company", e.company.trim() ? escapeHtml(e.company) : "-"],
     ["Email", escapeHtml(e.email)],
     ["Country", escapeHtml(e.country)],
     ["Volume", escapeHtml(e.volume)],
-    ["Message", e.message.trim() ? escapeHtml(e.message) : "—"],
+    ["Message", e.message.trim() ? escapeHtml(e.message) : "-"],
     ["Request type", e.kind === "sample" ? "Sample" : "Quote"],
     ["reCAPTCHA score", score === null ? "not verified" : score.toFixed(2)],
   ];
@@ -265,7 +265,7 @@ function internalHtml(e: Enquiry, score: number | null): string {
     .join("");
   const who = e.company.trim() ? escapeHtml(e.company) : escapeHtml(e.name);
   return (
-    `<h2 style="font-family:Georgia,serif">New ${kind} enquiry — ${who}</h2>` +
+    `<h2 style="font-family:Georgia,serif">New ${kind} enquiry, ${who}</h2>` +
     `<table style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">${rows}</table>`
   );
 }
@@ -278,7 +278,7 @@ function autoresponderHtml(): string {
 
   // Real wa.me link when WHATSAPP_NUMBER is set; the line is omitted entirely
   // otherwise (Directive 25 — no placeholder URL ever ships).
-  const wa = whatsappHref("Hello Zoebar — I just sent an enquiry through your website.");
+  const wa = whatsappHref("Hello Zoebar, I just sent an enquiry through your website.");
   if (wa) {
     html += `${para}Prefer WhatsApp? <a href="${wa}">Message the team here</a>.</p>`;
   }
@@ -298,7 +298,7 @@ export async function sendEnquiryEmails(e: Enquiry, score: number | null): Promi
   const to = process.env.ENQUIRY_TO_EMAIL || FALLBACK_TO;
   const kind = e.kind === "sample" ? "sample" : "quote";
   const subject = headerSafe(
-    `New ${kind} enquiry — ${e.company.trim() || e.name.trim() || "website"}`,
+    `New ${kind} enquiry, ${e.company.trim() || e.name.trim() || "website"}`,
   );
 
   try {

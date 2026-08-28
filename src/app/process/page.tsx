@@ -16,11 +16,11 @@ const TRAIL = [
 ];
 
 export const metadata: Metadata = {
-  title: "Coffee Process — Cherry to Container",
+  title: "Coffee Process, Cherry to Container",
   description:
     "How Zoebar processes Ethiopian Arabica at its own washing station in Amaro, Ethiopia: intake, sorting, washed and natural processing, drying, grading and lot formation.",
   alternates: { canonical: "/process" },
-  openGraph: { title: "Coffee Process — Cherry to Container", url: "/process", type: "article" },
+  openGraph: { title: "Coffee Process, Cherry to Container", url: "/process", type: "article" },
 };
 
 /**
@@ -95,7 +95,7 @@ export default function ProcessPage() {
         dangerouslySetInnerHTML={{
           __html: graph(
             articleSchema({
-              headline: "Coffee process — cherry to container",
+              headline: "Coffee process, cherry to container",
               description:
                 "How Zoebar processes Ethiopian Arabica at its own washing station in Amaro, Ethiopia, from cherry intake through sorting, washed and natural processing, drying, grading and lot formation to export.",
               path: "/process",
@@ -107,7 +107,6 @@ export default function ProcessPage() {
       />
 
       <PageHeader
-        trail={TRAIL}
         eyebrow="Process"
         title="From cherry to container."
         lede={`Zoebar Ethiopia owns the washing station in ${OPERATIONS.washingStationLocation}. Cherry intake, processing method, drying and lot formation are controlled directly, which is what makes the process record attached to a lot an operational record rather than a supplier's claim.`}
@@ -208,7 +207,7 @@ export default function ProcessPage() {
                 onDark
                 src="/washing-station.jpg"
                 alt="Rows of raised drying beds at the Zoebar washing station in Amaro, with concrete fermentation tanks in the foreground and workers tending the parchment, green hills behind."
-                brief="Drying beds in use at the Zoebar washing station — parchment being turned, showing the working method rather than a styled arrangement."
+                brief="Drying beds in use at the Zoebar washing station, parchment being turned, showing the working method rather than a styled arrangement."
                 caption={`Both methods run at Zoebar's washing station in ${OPERATIONS.washingStationLocation}.`}
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />

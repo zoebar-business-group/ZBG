@@ -55,9 +55,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Zoebar Business Group — Ethiopian Green Coffee from Amaro",
+    default: "Zoebar Business Group, Ethiopian Green Coffee from Amaro",
     // "Business group" is integral to the wordmark and is never dropped.
-    template: "%s — Zoebar Business Group",
+    template: "%s, Zoebar Business Group",
   },
   description: ORG.description,
   applicationName: ORG.name,

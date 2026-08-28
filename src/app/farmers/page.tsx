@@ -18,11 +18,11 @@ const TRAIL = [
 ];
 
 export const metadata: Metadata = {
-  title: "Producers — The Growers of Amaro",
+  title: "Producers, The Growers of Amaro",
   description:
     "The producers who grow Zoebar's coffee in Amaro (Koore Zone), Ethiopia, at 1,700–1,800 masl. Named individually, with plot and altitude, where documented permission has been given.",
   alternates: { canonical: "/farmers" },
-  openGraph: { title: "Producers — The Growers of Amaro", url: "/farmers", type: "article" },
+  openGraph: { title: "Producers, The Growers of Amaro", url: "/farmers", type: "article" },
 };
 
 /**
@@ -46,7 +46,7 @@ export default function FarmersPage() {
         dangerouslySetInnerHTML={{
           __html: graph(
             articleSchema({
-              headline: "Producers — the growers of Amaro",
+              headline: "Producers, the growers of Amaro",
               description:
                 "The producers who grow Zoebar's coffee in Amaro (Koore Zone), Ethiopia, named individually with plot and altitude where documented permission has been given.",
               path: "/farmers",
@@ -59,7 +59,6 @@ export default function FarmersPage() {
 
       <PageHeader
         surface="deep"
-        trail={TRAIL}
         eyebrow="The producers"
         title="The people who grew it."
         lede={FARMER_FAQS[0].answer}
@@ -138,7 +137,7 @@ export default function FarmersPage() {
                 <Figure
                   ratio="portrait"
                   rounded="card"
-                  brief="Producer portrait at their own plot — working context, direct and unposed. Publication requires documented permission."
+                  brief="Producer portrait at their own plot, working context, direct and unposed. Publication requires documented permission."
                   sizes="(max-width: 640px) 100vw, 24vw"
                 />
                 <Figure
@@ -146,7 +145,7 @@ export default function FarmersPage() {
                   rounded="card"
                   cut
                   className="sm:mt-12"
-                  brief="A producer delivering cherry to the Zoebar washing station at Amaro — documentary, no staging."
+                  brief="A producer delivering cherry to the Zoebar washing station at Amaro, documentary, no staging."
                   sizes="(max-width: 640px) 100vw, 24vw"
                 />
               </div>

@@ -14,12 +14,12 @@ const TRAIL = [
 ];
 
 export const metadata: Metadata = {
-  title: "Green Coffee Guides — Grading, Calendar, Documents, Incoterms",
+  title: "Green Coffee Guides, Grading, Calendar, Documents, Incoterms",
   description:
     "Four reference guides for green coffee buyers: how Ethiopian coffee is graded, the harvest and shipping calendar, the importer's documentation checklist, and Incoterms 2020 applied to coffee.",
   alternates: { canonical: "/guides" },
   openGraph: {
-    title: "Green Coffee Guides — Grading, Calendar, Documents, Incoterms",
+    title: "Green Coffee Guides, Grading, Calendar, Documents, Incoterms",
     url: "/guides",
     type: "website",
   },
@@ -55,7 +55,6 @@ export default function GuidesPage() {
       />
 
       <PageHeader
-        trail={TRAIL}
         eyebrow="Guides"
         title="Reference, not marketing."
         lede="Four guides covering the questions a green coffee buyer actually has to answer before a first Ethiopian shipment: how the grade is produced, when the crop moves, which documents are required, and what an Incoterms rule does and does not include."

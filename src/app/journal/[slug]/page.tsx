@@ -104,7 +104,6 @@ export default async function JournalEntryPage({
       />
 
       <PageHeader
-        trail={trail}
         eyebrow={entry.topic}
         title={entry.title}
         meta={[

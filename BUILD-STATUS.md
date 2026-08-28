@@ -276,15 +276,59 @@ From Strategy §11 (Open Items). These are why so much renders as "Being verifie
 | 4 | Coffee specifications — grades, screens, cupping bands, MOQ, packing, lead times, Incoterms, port | `/coffee` (13 of 20 fields), `/process`, `/quality`, `/lots`, and the pending blocks in three of the four guides |
 | 8 | Farm & washing-station photography — **hard blocker** | Every story surface. All `Figure` placeholders name the exact shot required. |
 | 9 | Farmer names, photos, documented permissions | `/farmers` (0 profiles published) |
-| 10 | Legal entity details, TRN, addresses, telephone, email | Footer legal block, full Organization schema, `/about` company table, **and `/contact` — every direct channel except the form** |
-| 7 | Founder story | `/about/founder` (noindex until it lands) |
-| 12 | LinkedIn archive to seed the journal | `/journal` (noindex, 0 entries) |
+| 10 | ~~Addresses, telephone, email~~ | **Mostly resolved (28 Aug 2026).** Registered address `Al Rashidiya 1, Ajman, UAE`, email `Info@zoebarbusinessgroup.com`, telephone/WhatsApp `+971 58 989 9564` are in `org.ts` and render everywhere. **TRN and founding date were NOT supplied** and are still `null`. No postal code was given; `postalCode` is now optional rather than invented. |
+| 7 | Founder story | `/about/founder` (noindex until it lands). `/about` now carries a "Meet the founder" section that introduces and links to it without narrating on their behalf. |
+| 12 | LinkedIn archive to seed the journal | `/journal` now **308-redirects to the company LinkedIn page** as an interim measure. Reverse it when the API lands: delete `app/journal/page.tsx`, restore from git history, drop `noindex` in `lib/site.ts`. |
 | 11 | ~~CRM / email platform choice~~ | **Resolved — Resend.** Set `RESEND_API_KEY` (+ optional `ENQUIRY_TO_EMAIL`, `GOOGLE_SHEET_WEBHOOK_URL`, reCAPTCHA keys). See "Enquiry delivery" above. |
 | 6 | Traceability depth | `/traceability` status column, lot pages |
 | 3 | Canela web licence | Resolved for now — proceed on Canela, licence to follow |
 | 2 | Crawler policy sign-off | `public/robots.txt` (written, awaiting approval) |
 
-Also missing: brand asset files (logo SVG, watermarks — the guideline references a "CPE brand assets folder" not in this repo), and a verified WhatsApp number (`WHATSAPP_NUMBER` is `null`, so the WhatsApp action is withheld rather than pointed at a placeholder).
+The **Zoebar symbol** has now been supplied in two fills (`#F0E2CB` for deep
+surfaces, `#013A33` for light) and is inlined verbatim at its original 117x102
+viewBox in `components/brand/ZoebarSymbol.tsx`. It carries the header logo and
+the Figure panels. **No wordmark asset has been supplied**, so the wordmark is
+still set typographically.
+
+The WhatsApp number is verified and defaults from `ORG.telephone`;
+`WHATSAPP_NUMBER` still overrides it for a separate business line.
+
+### Fix round — 28 August 2026
+
+Client review of the built site. What changed:
+
+- **`ScrollReveal` was the cause of the blank sections.** It is mounted in the
+  root layout and ran its `IntersectionObserver` once, in a `useEffect` with an
+  empty dependency array. The App Router does not remount the root layout on a
+  client-side navigation, so every `[data-animate]` element on every
+  subsequently-visited page was never observed and stayed pinned at `opacity: 0`
+  by the rule in `globals.css`. Headings sit outside the animated wrapper, which
+  is why those pages rendered as a heading over blank space, and why a second
+  refresh "fixed" it. Now keyed to `usePathname()`, with a `MutationObserver`
+  for late-arriving nodes and a reveal-everything fallback where
+  `IntersectionObserver` is absent. **The content was always in the HTML** —
+  verified against the built output — so this was never a content bug.
+- **Origin stat overlap.** `Stat` grid items had the default
+  `min-width: auto` and could not shrink, so "1,700-1,800" overflowed its column
+  and painted over the harvest stat. Added `min-w-0`, reduced the viewport-based
+  clamps (the grid sits in a half-width container, so `7vw` overshot badly), and
+  gave altitude a permanent two-column span.
+- **Navigation** is now Coffee, Amaro, Guides, Journal, About Us, then the CTA.
+  Order is declared in `NAV_ORDER` rather than inherited from `ROUTES` order,
+  which is sequenced for the sitemap. `navLabel` lets the header read "About Us"
+  without rewriting breadcrumb and schema labels.
+- **Figure placeholders** no longer render a grey box captioned "Photography
+  pending" — correct while building, wrong in front of the client's customers.
+  They are now composed tonal panels carrying the brand symbol. `brief` is
+  retained on every slot and is still the shot list for Open Item #8: grep
+  `brief=` to get every outstanding photograph.
+- **Visible breadcrumbs removed** on client instruction. `BreadcrumbList`
+  JSON-LD is deliberately **kept** — invisible to visitors, and it is what lets
+  Google render the site hierarchy in a result.
+- **Em dashes removed** from all non-comment source. Matched pairs became
+  parentheses rather than commas, which would have produced broken prose.
+- Mobile menu trigger is an icon with an `aria-label`, not the words
+  "Menu"/"Close".
 
 ---
 

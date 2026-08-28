@@ -98,7 +98,7 @@ export async function submitEnquiry(
   //     message nobody received.
   if (!process.env.RESEND_API_KEY) {
     console.error(
-      "[enquiry] RESEND_API_KEY is not set — enquiry was NOT delivered.",
+      "[enquiry] RESEND_API_KEY is not set, enquiry was NOT delivered.",
       { kind: enquiry.kind, country: enquiry.country, volume: enquiry.volume },
     );
     return { status: "error", errors: {}, notice: "not-configured", values: enquiry };

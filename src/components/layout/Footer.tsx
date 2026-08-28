@@ -37,7 +37,7 @@ export function Footer() {
   return (
     <footer className="bg-ink text-alabaster" data-density="story">
       <div className="mx-auto w-full max-w-[96rem] px-6 sm:px-8 lg:px-12">
-        {/* Closing CTA — every page leads toward enquiry (Directive 24). */}
+        {/* Closing CTA, every page leads toward enquiry (Directive 24). */}
         <div className="flex flex-col gap-8 border-b border-[rgba(240,226,203,0.18)] py-16 md:flex-row md:items-end md:justify-between">
           <p className="max-w-[20ch] font-display text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]">
             Bring origin closer.
@@ -88,7 +88,7 @@ export function Footer() {
           </nav>
         </div>
 
-        {/* Legal — verified facts only. */}
+        {/* Legal, verified facts only. */}
         <div className="flex flex-col gap-6 border-t border-[rgba(240,226,203,0.18)] py-10 lg:flex-row lg:items-start lg:justify-between">
           <div className="flex flex-col gap-3">
             <p className="font-sans text-sm text-[#9db3b0]">{ORG.legalName}</p>

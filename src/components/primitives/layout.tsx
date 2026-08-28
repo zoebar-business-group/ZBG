@@ -117,17 +117,21 @@ export function Eyebrow({
           quieten the index on any surface. It cannot be used here: the callers
           are already muted tokens sitting near the AA floor (~5:1), and the
           minimum opacity that still clears 4.5:1 across every surface this
-          renders on is 0.95 — indistinguishable from 1. opacity-70 measured
+          renders on is 0.95, indistinguishable from 1. opacity-70 measured
           2.39:1 and opacity-40 measured 1.60:1.
-          The index reads as secondary through tabular figures and the em-dash,
-          which is where that hierarchy belonged in the first place. */}
+          The index reads as secondary through tabular figures and the
+          separator, which is where that hierarchy belonged in the first place.
+
+          The separator was an em dash and is now a middot: em dashes are out
+          across the site, and at this size the middot is the quieter mark
+          anyway. It is aria-hidden either way, so nothing is announced. */}
       {index && (
         <>
           <span data-numeric className="tabular-nums">
             {index}
           </span>
           <span aria-hidden="true" className="mx-2">
-            —
+            &middot;
           </span>
         </>
       )}

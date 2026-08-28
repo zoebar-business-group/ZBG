@@ -28,12 +28,12 @@ const TRAIL = [
 ];
 
 export const metadata: Metadata = {
-  title: "Ethiopian Green Coffee — Specifications and Availability",
+  title: "Ethiopian Green Coffee, Specifications and Availability",
   description:
     "Zoebar supplies washed and natural Ethiopian Arabica green coffee from Amaro (Koore Zone), Ethiopia at 1,700–1,800 masl. Specifications, packing, terms and sample requests for green coffee buyers.",
   alternates: { canonical: "/coffee" },
   openGraph: {
-    title: "Ethiopian Green Coffee — Specifications and Availability",
+    title: "Ethiopian Green Coffee, Specifications and Availability",
     description: citableSummary(),
     url: "/coffee",
   },
@@ -63,7 +63,7 @@ export default function CoffeePage() {
         dangerouslySetInnerHTML={{
           __html: graph(
             productSchema({
-              name: `Ethiopian Arabica Green Coffee — ${ORIGIN.name}, ${ORIGIN.country}`,
+              name: `Ethiopian Arabica Green Coffee, ${ORIGIN.name}, ${ORIGIN.country}`,
               description: citableSummary(),
               path: "/coffee",
               // Only confirmed fields. No Offer node until terms are public.
@@ -79,7 +79,6 @@ export default function CoffeePage() {
       />
 
       <PageHeader
-        trail={TRAIL}
         eyebrow="The offer"
         title="Ethiopian Arabica green coffee."
         lede={citableSummary()}
@@ -105,7 +104,7 @@ export default function CoffeePage() {
               <p className="max-w-[56ch] font-sans text-[0.9375rem] leading-relaxed text-[#3d423a]">
                 {confirmedCount} of {ALL_SPECS.length} fields are confirmed. The
                 remaining {pendingCount} are being verified with our operations
-                team and will be published here once fixed — not estimated.
+                team and will be published here once fixed, not estimated.
               </p>
             </div>
             <div className="flex shrink-0 items-center gap-4">
@@ -167,7 +166,7 @@ export default function CoffeePage() {
             </div>
           </div>
 
-          {/* First CTA opportunity — at the point of evaluation. */}
+          {/* First CTA opportunity, at the point of evaluation. */}
           <div className="mt-14 flex flex-col gap-6 rounded-[2rem] bg-bone p-8 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h3 className="font-display text-[1.5rem] leading-tight text-ink">
@@ -204,7 +203,7 @@ export default function CoffeePage() {
               </h2>
               <p className="mt-7 max-w-[46ch] font-sans text-[1.0625rem] leading-[1.65] text-[#cfd9d6]">
                 Zoebar builds relationships with buyers who value consistency,
-                traceability and dependable long-term partnership — not those
+                traceability and dependable long-term partnership, not those
                 competing only on the lowest price.
               </p>
             </div>

@@ -23,12 +23,12 @@ const TRAIL = [
 ];
 
 export const metadata: Metadata = {
-  title: "Amaro, Ethiopia — Koore Zone Coffee Origin",
+  title: "Amaro, Ethiopia, Koore Zone Coffee Origin",
   description:
     "Amaro (Koore Zone), Ethiopia: Ethiopian Arabica grown at 1,700–1,800 masl, harvested September to December, processed at Zoebar's own washing station. How Amaro relates to the Sidama category.",
   alternates: { canonical: "/amaro" },
   openGraph: {
-    title: "Amaro, Ethiopia — Koore Zone Coffee Origin",
+    title: "Amaro, Ethiopia, Koore Zone Coffee Origin",
     description: citableSummary(),
     url: "/amaro",
     type: "article",
@@ -57,7 +57,7 @@ export default function AmaroPage() {
           __html: graph(
             originPlaceSchema(),
             articleSchema({
-              headline: "Amaro, Ethiopia — Koore Zone coffee origin",
+              headline: "Amaro, Ethiopia, Koore Zone coffee origin",
               description: citableSummary(),
               path: "/amaro",
             }),
@@ -69,7 +69,6 @@ export default function AmaroPage() {
 
       <PageHeader
         surface="deep"
-        trail={TRAIL}
         eyebrow={`${ORIGIN.zone} · ${ORIGIN.country}`}
         title={`${ORIGIN.name}.`}
         lede={citableSummary()}
@@ -180,8 +179,8 @@ export default function AmaroPage() {
                 cut
                 onDark
                 src="/amaro.jpg"
-                alt="Terraced coffee plots stepping down the hillsides of Amaro, Koore Zone, layered ridgelines receding into haze — no people in frame."
-                brief="Amaro at altitude — the slope profile of the growing area, shot to show elevation and terrain rather than a single tree."
+                alt="Terraced coffee plots stepping down the hillsides of Amaro, Koore Zone, layered ridgelines receding into haze, no people in frame."
+                brief="Amaro at altitude, the slope profile of the growing area, shot to show elevation and terrain rather than a single tree."
                 caption={`Coffee in ${ORIGIN.name} grows between ${altitudeBand()} metres above sea level.`}
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
@@ -212,7 +211,7 @@ export default function AmaroPage() {
             </div>
             <div className="min-w-0 lg:col-span-7">
               <SpecTable
-                caption={`Origin reference — ${ORIGIN.name}, ${ORIGIN.country}`}
+                caption={`Origin reference, ${ORIGIN.name}, ${ORIGIN.country}`}
                 rows={[
                   { label: "Origin", value: `${ORIGIN.name} (${ORIGIN.zone}), ${ORIGIN.country}` },
                   { label: "Trade category", value: "Commonly presented within Sidama" },

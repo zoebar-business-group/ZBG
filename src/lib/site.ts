@@ -37,6 +37,12 @@ export interface Route {
   darkHeader?: boolean;
   /** Appears in the primary navigation. */
   inNav?: boolean;
+  /**
+   * Label used in the primary navigation only, where it differs from `label`.
+   * `label` still drives breadcrumbs and schema, so changing what the header
+   * reads does not rewrite the site's structured data.
+   */
+  navLabel?: string;
   changeFrequency?: "daily" | "weekly" | "monthly" | "yearly";
   priority?: number;
 }
@@ -45,17 +51,17 @@ export const ROUTES: Route[] = [
   { path: "/", label: "Home", density: "story", built: true, darkHeader: true, changeFrequency: "weekly", priority: 1 },
   { path: "/coffee", label: "Coffee", density: "spec", built: true, inNav: true, changeFrequency: "weekly", priority: 0.9 },
   { path: "/amaro", label: "Amaro", density: "story", built: true, darkHeader: true, inNav: true, changeFrequency: "monthly", priority: 0.9 },
-  { path: "/process", label: "Process", density: "spec", built: true, inNav: true, changeFrequency: "monthly", priority: 0.8 },
+  { path: "/process", label: "Process", density: "spec", built: true, changeFrequency: "monthly", priority: 0.8 },
   { path: "/quality", label: "Quality", density: "spec", built: true, changeFrequency: "monthly", priority: 0.8 },
-  { path: "/traceability", label: "Traceability", density: "spec", built: true, inNav: true, changeFrequency: "monthly", priority: 0.8 },
+  { path: "/traceability", label: "Traceability", density: "spec", built: true, changeFrequency: "monthly", priority: 0.8 },
   { path: "/farmers", label: "Farmers", density: "story", built: true, darkHeader: true, changeFrequency: "monthly", priority: 0.7 },
   /* Ships (it is in the primary navigation, and a 404 there is a visible
      defect) but is noindex while ENTRIES is empty — a section with no entries
      is thin content. Remove `noindex` here and the `robots` block in
      app/journal/page.tsx when the first entry is published. */
   { path: "/journal", label: "Journal", density: "story", built: true, noindex: true, inNav: true, changeFrequency: "weekly", priority: 0.7 },
-  { path: "/guides", label: "Guides", density: "spec", built: true, changeFrequency: "monthly", priority: 0.7 },
-  { path: "/about", label: "About", density: "story", built: true, darkHeader: true, inNav: true, changeFrequency: "yearly", priority: 0.6 },
+  { path: "/guides", label: "Guides", density: "spec", built: true, inNav: true, changeFrequency: "monthly", priority: 0.7 },
+  { path: "/about", label: "About", navLabel: "About Us", density: "story", built: true, darkHeader: true, inNav: true, changeFrequency: "yearly", priority: 0.6 },
   /* Same reasoning as /journal: linked from the footer and from /about, so it
      ships, but noindex until it carries the founder's own account (Open Item
      #7) rather than a page about the absence of one. */
@@ -70,7 +76,28 @@ export function hasDarkHeader(pathname: string): boolean {
   return ROUTES.some((r) => r.path === pathname && r.darkHeader === true);
 }
 
-export const NAV_ITEMS = ROUTES.filter((r) => r.inNav);
+/**
+ * Primary navigation, in the order the header renders it. Declared explicitly
+ * rather than taken from ROUTES order: ROUTES is sequenced for the sitemap by
+ * priority, which would put Journal ahead of Guides. Any path listed here must
+ * also carry `inNav` so the two cannot drift apart unnoticed.
+ */
+const NAV_ORDER = ["/coffee", "/amaro", "/guides", "/journal", "/about"] as const;
+
+export const NAV_ITEMS = NAV_ORDER.map((path) => {
+  const route = ROUTES.find((r) => r.path === path && r.inNav);
+  if (!route) {
+    throw new Error(
+      `NAV_ORDER lists ${path}, which is missing from ROUTES or not marked inNav.`,
+    );
+  }
+  return route;
+});
+
+/** What the header prints for a route. */
+export function navLabelFor(route: Route): string {
+  return route.navLabel ?? route.label;
+}
 
 /** Primary conversion, Strategy 6 / Directive 24. */
 export const PRIMARY_CTA = { label: "Request a Quote", href: "/request-quote#quote" } as const;
@@ -80,17 +107,20 @@ export const SECONDARY_CTA = { label: "Request a Sample", href: "/request-quote#
  * WhatsApp — a first-class commercial channel (Strategy 6.1), with
  * page-aware prefilled messages.
  *
- * Read from the environment (`WHATSAPP_NUMBER`), same as `RESEND_API_KEY` and
- * `ENQUIRY_TO_EMAIL` — NOT hardcoded. Unset → every WhatsApp affordance is
- * withheld rather than pointed at a placeholder (the enquiry-form toggle stays
- * hidden, the /contact row shows "being verified").
+ * The client confirmed the WhatsApp number on 28 August 2026, and it is the
+ * same line as `ORG.telephone`, so that verified value is the default. The
+ * `WHATSAPP_NUMBER` env var still overrides it, which is what a separate
+ * business line would need. The withheld-rather-than-placeholder behaviour is
+ * retained for the case where both are absent: no affordance is ever pointed
+ * at a number nobody has confirmed.
  *
  * It is a server-side value (no `NEXT_PUBLIC_` prefix), so `process.env`
  * resolves it in Server Components and the server action; on the client it
  * reads as `null`. Client components must receive `WHATSAPP_ENABLED` as a prop
  * from a Server Component rather than importing it here.
  */
-export const WHATSAPP_NUMBER: string | null = process.env.WHATSAPP_NUMBER ?? null;
+export const WHATSAPP_NUMBER: string | null =
+  process.env.WHATSAPP_NUMBER ?? ORG.telephone;
 
 /** Whether the WhatsApp channel is configured. Server-only — see above. */
 export const WHATSAPP_ENABLED = Boolean(WHATSAPP_NUMBER);
@@ -104,27 +134,27 @@ export function whatsappHref(message: string): string | null {
 
 /** Page-aware prefilled messages. Directive 25. */
 export const WHATSAPP_MESSAGES: Record<string, string> = {
-  "/": "Hello Zoebar — I'd like to discuss Ethiopian green coffee.",
-  "/coffee": "Hello Zoebar — I'd like specifications and availability for your green coffee.",
-  "/amaro": "Hello Zoebar — I'd like to discuss Amaro green coffee.",
-  "/process": "Hello Zoebar — I have a question about your processing and lead times.",
-  "/quality": "Hello Zoebar — I'd like to discuss grading and cupping.",
-  "/traceability": "Hello Zoebar — I'd like to understand your lot traceability.",
-  "/request-quote": "Hello Zoebar — I'd like to request a quote.",
-  "/guides": "Hello Zoebar — I have a question about buying Ethiopian green coffee.",
-  "/journal": "Hello Zoebar — I'd like to hear about the current harvest.",
-  "/about": "Hello Zoebar — I'd like to know more about your company.",
-  "/contact": "Hello Zoebar — I'd like to speak to someone about green coffee.",
+  "/": "Hello Zoebar, I'd like to discuss Ethiopian green coffee.",
+  "/coffee": "Hello Zoebar, I'd like specifications and availability for your green coffee.",
+  "/amaro": "Hello Zoebar, I'd like to discuss Amaro green coffee.",
+  "/process": "Hello Zoebar, I have a question about your processing and lead times.",
+  "/quality": "Hello Zoebar, I'd like to discuss grading and cupping.",
+  "/traceability": "Hello Zoebar, I'd like to understand your lot traceability.",
+  "/request-quote": "Hello Zoebar, I'd like to request a quote.",
+  "/guides": "Hello Zoebar, I have a question about buying Ethiopian green coffee.",
+  "/journal": "Hello Zoebar, I'd like to hear about the current harvest.",
+  "/about": "Hello Zoebar, I'd like to know more about your company.",
+  "/contact": "Hello Zoebar, I'd like to speak to someone about green coffee.",
 };
 
 export function whatsappMessageFor(pathname: string): string {
   if (WHATSAPP_MESSAGES[pathname]) return WHATSAPP_MESSAGES[pathname];
   if (pathname.startsWith("/guides/")) {
-    return "Hello Zoebar — I have a question about buying Ethiopian green coffee.";
+    return "Hello Zoebar, I have a question about buying Ethiopian green coffee.";
   }
   if (pathname.startsWith("/lots/")) {
     const id = pathname.split("/")[2]?.toUpperCase() ?? "";
-    return `Hello Zoebar — I'd like more information about Lot ${id}.`;
+    return `Hello Zoebar, I'd like more information about Lot ${id}.`;
   }
   return WHATSAPP_MESSAGES["/"];
 }

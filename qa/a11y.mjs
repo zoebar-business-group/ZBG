@@ -17,11 +17,19 @@ import fs from "node:fs";
 const BASE = process.argv[2] ?? "http://localhost:3215";
 const ROUTES = [
   "/", "/coffee", "/amaro", "/process", "/quality", "/traceability", "/farmers",
-  "/journal", "/guides", "/guides/ethiopian-coffee-grading",
-  "/guides/harvest-and-shipping-calendar", "/guides/import-documentation-checklist",
-  "/guides/incoterms-green-coffee", "/about", "/about/founder", "/contact",
+  "/guides", "/guides/buying-green-coffee-process",
+  "/guides/ethiopian-coffee-grading", "/guides/harvest-and-shipping-calendar",
+  "/guides/import-documentation-checklist", "/guides/incoterms-green-coffee",
+  "/guides/green-coffee-payment-terms", "/guides/green-coffee-container-loading",
+  "/about", "/about/founder", "/contact",
   "/request-quote", "/thank-you?kind=quote",
 ];
+
+/* /journal is deliberately absent. It 308-redirects to the company LinkedIn
+   page, so auditing it audits linkedin.com: the run reported three real
+   colour-contrast violations against LinkedIn's own `.windows-app-upsell__*`
+   markup, which is not ours to fix and buried the fact that every Zoebar route
+   passed. Restore it here when the journal serves its own entries again. */
 
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"];
 
@@ -39,13 +47,18 @@ const run = async () => {
     await page.goto(BASE + route, { waitUntil: "networkidle" });
     // Scroll to the bottom and back so every scroll-reveal element has settled
     // into its final painted state before axe samples colours.
+    /* `behavior: "instant"` overrides the `scroll-behavior: smooth` set on the
+       root in globals.css. Without it these rapid calls only restart an
+       animated scroll and the page barely moves, so elements below the fold
+       never reveal and axe samples them at opacity 0. See the note in
+       qa/motion.mjs. */
     await page.evaluate(async () => {
       const h = document.body.scrollHeight;
       for (let y = 0; y < h; y += 600) {
-        window.scrollTo(0, y);
+        window.scrollTo({ top: y, behavior: "instant" });
         await new Promise((r) => setTimeout(r, 60));
       }
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: "instant" });
     });
     await page.waitForTimeout(700);
 
