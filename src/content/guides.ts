@@ -3,11 +3,16 @@ import { ORIGIN, altitudeBand, harvestWindow } from "@/lib/org";
 import { countWords, readingMinutes, type Section } from "./blocks";
 
 /**
- * GUIDES — the four pillar reference articles (Strategy 4.2)
+ * GUIDES — reference articles for green coffee buyers (Strategy 4.2)
  * ----------------------------------------------------------------------------
+ * The first four are the pillars fixed by Strategy 4.2: grading, the harvest
+ * and shipping calendar, import documentation, Incoterms. Added since, as the
+ * questions kept coming: the buyer's process end to end, payment terms and
+ * trade finance, and container loading — the mechanics a first-time buyer asks
+ * about once the pillars are understood.
+ *
  * These are trade reference documents, not marketing pages. They exist because
- * the buyer questions they answer are searched constantly and answered badly:
- * grading, the harvest and shipping calendar, import documentation, Incoterms.
+ * the buyer questions they answer are searched constantly and answered badly.
  *
  * TWO SEPARATE STANDARDS APPLY HERE, AND THEY MUST NOT BE CONFUSED.
  *
@@ -56,6 +61,8 @@ export interface Guide {
 }
 
 const AUTHORED = "2026-08-22";
+/** Second batch — the buyer-process, payment and container guides. */
+const AUTHORED_2 = "2026-08-27";
 
 /* ============================================================================
    1 - GRADING
@@ -866,11 +873,562 @@ const INCOTERMS: Guide = {
 };
 
 /* ============================================================================
+   5 - THE BUYING PROCESS
+   ========================================================================== */
+
+const PROCESS: Guide = {
+  slug: "buying-green-coffee-process",
+  navTitle: "The buying process",
+  title: "Buying green coffee, step by step.",
+  description:
+    "The full sequence of buying green coffee from origin: enquiry, sample, specification, quotation, contract, payment terms, shipment and delivery — what each stage settles, and where it goes wrong when skipped.",
+  question: "What is the process for buying green coffee from Zoebar?",
+  answer:
+    "The sequence is an enquiry stating volume, grade and destination; a sample request; confirmation of the specification against that sample; a written quotation on a stated Incoterms rule; a sales contract; agreed payment terms; shipment within a named period; and delivery. Each stage settles one variable, and skipping one leaves it unresolved until it becomes a dispute.",
+  meta: [
+    { term: "First step", detail: "Enquiry with volume and destination" },
+    { term: "Approval basis", detail: "A named sample" },
+    { term: "Governs the deal", detail: "A written contract" },
+    { term: "Timing", detail: "A shipment period, not a date" },
+  ],
+  sections: [
+    {
+      id: "the-shape-of-a-purchase",
+      heading: "The shape of a green coffee purchase",
+      blocks: [
+        {
+          kind: "p",
+          text: "Buying green coffee from origin is a sequence of decisions taken in order, each of which fixes one variable so the next can be taken cleanly. It is not a single transaction. A first-time buyer who treats it as one — a price is agreed, coffee arrives — discovers the missing decisions on arrival, when they are expensive to revisit.",
+        },
+        {
+          kind: "p",
+          text: "The variables being settled are, roughly in order: what the coffee is, how it is assessed, what it costs and on what delivery basis, when it moves, how and when it is paid for, and what happens if it arrives out of specification. The coffee itself — the washed and natural lots described on [our coffee page](/coffee), grown in [Amaro](/amaro) — is only the first of these.",
+        },
+        {
+          kind: "p",
+          text: "The stages below are common to green coffee buying generally. Where Zoebar's own commercial terms sit within them — sample policy, minimum quantity, lead times, accepted payment methods — those are confirmed per enquiry rather than published, for the reason set out at the end of this guide.",
+        },
+      ],
+    },
+    {
+      id: "enquiry",
+      heading: "The enquiry",
+      blocks: [
+        {
+          kind: "p",
+          text: "The first message does most of the work if it carries the right information. An enquiry that states only that a buyer is interested in Ethiopian coffee produces a slow exchange of clarifying questions; one that states the parameters produces a useful reply.",
+        },
+        {
+          kind: "ul",
+          items: [
+            "The volume you are working toward, even approximately — a bag count, a container count, or an annual figure.",
+            "The processing method you want: washed, natural, or both.",
+            "The grade or cup profile your market requires.",
+            "Your destination port or delivery point, which determines which Incoterms rules are relevant.",
+            "Whether you want a firm offer, a sample, or both.",
+            "Any grading, moisture, packaging or certification requirement your market or your customers impose.",
+          ],
+        },
+        {
+          kind: "p",
+          text: "An enquiry is not a commitment, and a reply to one is not a contract. Both sides are establishing whether there is a fit before spending time on samples and paperwork.",
+        },
+      ],
+    },
+    {
+      id: "the-sample",
+      heading: "The sample",
+      blocks: [
+        {
+          kind: "p",
+          text: "Coffee is bought on the cup, so a sample stage is standard practice. Two different samples do two different jobs, and confusing them is a common source of dispute.",
+        },
+        { kind: "h3", text: "The offer sample" },
+        {
+          kind: "p",
+          text: "Representative of a coffee the seller is offering, often drawn from a previous lot of the same profile. It tells you whether the profile is one you want to pursue. It is not, on its own, the coffee you will receive.",
+        },
+        { kind: "h3", text: "The pre-shipment sample" },
+        {
+          kind: "p",
+          text: "Drawn from the actual lot allocated to your contract, before it ships. This is the sample that should govern approval. The contract should state explicitly which sample governs, how long you have to approve it, and what happens if that window lapses.",
+        },
+        {
+          kind: "p",
+          text: "Sample assessment is your own cupping table applying your own protocol. The export grade on the certificate, explained in [the grading guide](/guides/ethiopian-coffee-grading), is a separate regulatory measurement — not a substitute for cupping the lot yourself.",
+        },
+      ],
+    },
+    {
+      id: "specification-and-quotation",
+      heading: "Specification and quotation",
+      blocks: [
+        {
+          kind: "p",
+          text: "Once a profile is agreed, the specification is confirmed: origin to zone level, processing method per lot, harvest year and window, grade, screen size and tolerance, moisture maximum and its point of measurement, defect count and the standard it was counted under, cup score with the cupper named, and packaging. A complete specification lets a buyer reconstruct the coffee without a phone call.",
+        },
+        {
+          kind: "p",
+          text: "The quotation then attaches a price to that specification — but a price is only comparable against another price on the same basis. A quotation should state the Incoterms rule and named place, the shipment period, the quantity and tolerance, the currency, and how long the offer stands. Two quotations that differ only in named place are not quoting the same thing.",
+        },
+        {
+          kind: "note",
+          text: "A quotation is an offer, not an agreement. It becomes binding when it is accepted and written into a contract. Treating an emailed price as a concluded deal is the point at which first shipments most often go wrong.",
+        },
+      ],
+    },
+    {
+      id: "contract-incoterms-documents",
+      heading: "Contract, Incoterms and documents",
+      blocks: [
+        {
+          kind: "p",
+          text: "Green coffee is conventionally traded on standard-form contracts published by trade associations, which carry an established set of definitions, tolerances and arbitration provisions. Buying on a bare purchase order leaves every one of those terms open. The contract records the specification, the quantity and tolerance, the price and currency, the Incoterms rule and named place, the shipment period, the payment terms, and the governing arbitration rules.",
+        },
+        {
+          kind: "p",
+          text: "The Incoterms rule decides what the price includes and where risk transfers — and for a landlocked origin such as Ethiopia, the named place matters as much as the rule. That is worked through in [the Incoterms guide](/guides/incoterms-green-coffee). The documents the shipment will require, and who issues each, are set out in [the importer's documentation checklist](/guides/import-documentation-checklist). Neither is re-explained here; both are prerequisites to a contract you can actually perform.",
+        },
+      ],
+    },
+    {
+      id: "payment-shipment-delivery",
+      heading: "Payment, shipment and delivery",
+      blocks: [
+        {
+          kind: "p",
+          text: "Payment terms allocate the gap between the seller's exposure to non-payment and the buyer's exposure to non-delivery. The instruments used in the trade — advance payment, letters of credit, documentary collections, open account — sit on a spectrum between those two, and are covered in [the payment terms guide](/guides/green-coffee-payment-terms). They are agreed in the contract, separately from the Incoterms rule.",
+        },
+        {
+          kind: "p",
+          text: "Shipment is contracted against a period, not a date. A seller controls when a container is handed to the carrier; a seller does not control the vessel schedule, a transhipment, or the destination port's working. The [harvest and shipping calendar](/guides/harvest-and-shipping-calendar) sets out the sequence and its realistic timing against the crop year.",
+        },
+        {
+          kind: "p",
+          text: "On arrival, quality and weight are determined at whichever point the contract names — origin, destination, or an independent inspection — and any claim runs under the contract's arbitration rules. A shipment that arrives within specification closes the transaction; one that does not is resolved by the terms agreed before it moved, which is the entire reason those terms are agreed first.",
+        },
+      ],
+    },
+    {
+      id: "where-zoebar-sits",
+      heading: "Where Zoebar's terms sit in this",
+      blocks: [
+        {
+          kind: "p",
+          text: "The sequence above is the general one. Zoebar owns its washing station in Amaro, which places cherry intake, processing, drying and lot formation under direct control; how that record is carried to the bag is on [the traceability page](/traceability), and the stage-by-stage operations are on [the process page](/process).",
+        },
+        {
+          kind: "pending",
+          label: "Zoebar sample policy, minimum order and lead times",
+          text: "Zoebar's sample policy, minimum order quantity, production and shipping lead times, and accepted payment terms are being verified and are confirmed per enquiry rather than published as indicative figures. [Request a quote](/request-quote) and the terms quoted will be the confirmed ones.",
+        },
+      ],
+    },
+  ],
+  faqs: [
+    {
+      question: "How do I start buying green coffee from Zoebar?",
+      answer:
+        "Send an enquiry stating the volume you are working toward, the processing method and grade your market needs, your destination, and whether you want a firm offer or a sample. Zoebar replies with current availability and a specification, and where a figure is still being verified it says so rather than estimating it. The enquiry form is on the request-a-quote page.",
+    },
+    {
+      question: "Can I request a sample before placing an order?",
+      answer:
+        "Yes — a sample stage is standard in green coffee buying. An offer sample shows whether a profile is worth pursuing; a pre-shipment sample, drawn from the lot allocated to your contract, is the one that should govern approval. The contract should state which sample governs and the approval window before shipment.",
+    },
+    {
+      question: "What is the difference between a quotation and a contract?",
+      answer:
+        "A quotation is an offer: a price attached to a specification on a stated Incoterms rule, valid for a stated period. A contract is the concluded agreement, usually on a trade-association standard form, recording the specification, quantity, price, delivery basis, shipment period, payment terms and arbitration rules. A quotation binds no one until it is accepted into a contract.",
+    },
+  ],
+  datePublished: AUTHORED_2,
+  dateModified: AUTHORED_2,
+};
+
+/* ============================================================================
+   6 - PAYMENT TERMS AND TRADE FINANCE
+   ========================================================================== */
+
+const PAYMENT: Guide = {
+  slug: "green-coffee-payment-terms",
+  navTitle: "Payment terms & trade finance",
+  title: "Payment terms and trade finance for green coffee.",
+  description:
+    "The payment terms used in green coffee trade — advance payment, letters of credit, documentary collections and open account — what each allocates, how a letter of credit works, and why payment terms are set separately from the Incoterms rule.",
+  question: "What payment terms are standard in green coffee trade?",
+  answer:
+    "Green coffee moves on a spectrum of terms: advance payment, letters of credit, documentary collections (documents against payment or against acceptance), and open account. They allocate the gap between the seller's risk of non-payment and the buyer's risk of non-delivery. Which is used depends on the relationship, the sums involved, and each side's bank.",
+  meta: [
+    { term: "The spectrum", detail: "Advance payment to open account" },
+    { term: "Bank-guaranteed", detail: "Letter of credit only" },
+    { term: "Set by", detail: "The contract, not Incoterms" },
+    { term: "Pivot document", detail: "The transport document" },
+  ],
+  sections: [
+    {
+      id: "what-payment-terms-allocate",
+      heading: "What payment terms allocate",
+      blocks: [
+        {
+          kind: "p",
+          text: "Every cross-border sale contains a gap in trust. The seller ships before being paid, or the buyer pays before receiving the goods; someone is exposed first. Payment terms are the mechanism for allocating that exposure, and trade finance instruments are the tools for narrowing it.",
+        },
+        {
+          kind: "p",
+          text: "For green coffee the exposure is real on both sides. The buyer is committing significant sums against a commodity they cannot inspect until it arrives — the washed and natural lots on [our coffee page](/coffee), grown in [Amaro](/amaro), are cupped from samples, not from the container. The seller is shipping a perishable agricultural product across an international border, after which recovering unpaid goods is impractical.",
+        },
+        {
+          kind: "p",
+          text: "The terms below run from most seller-protective to most buyer-protective. New trading relationships typically start nearer the seller-protective end and move along the spectrum as a track record is built. None of it is set by the Incoterms rule, a point this guide returns to at the end.",
+        },
+      ],
+    },
+    {
+      id: "the-spectrum",
+      heading: "The spectrum, term by term",
+      blocks: [
+        {
+          kind: "table",
+          caption: "Green coffee payment terms, most to least seller-protective",
+          head: ["Term", "Who is exposed", "Typically used when"],
+          rows: [
+            [
+              "Advance payment, full or part",
+              "Buyer — pays before shipment",
+              "A new relationship, a small lot, or a seller with no appetite for buyer credit risk. Part-payment on order with the balance against documents is common.",
+            ],
+            [
+              "Irrevocable letter of credit",
+              "Neither directly — a bank substitutes its credit",
+              "Larger sums, a newer relationship, or where either party's country carries elevated risk. Costs a fee and takes bank time to establish.",
+            ],
+            [
+              "Documents against payment (D/P)",
+              "Seller — ships first, but controls the documents",
+              "An established relationship with acceptable country risk. The buyer cannot collect the goods without paying.",
+            ],
+            [
+              "Documents against acceptance (D/A)",
+              "Seller — extends unsecured credit",
+              "A trusted relationship. The buyer takes the documents against a promise to pay at a future date.",
+            ],
+            [
+              "Open account",
+              "Seller — ships and invoices, paid later",
+              "A long, trusted relationship. The seller carries the full credit risk for the payment period.",
+            ],
+          ],
+        },
+        {
+          kind: "p",
+          text: "The instrument chosen has a cost, and it is not only the bank charge. Advance payment ties up the buyer's working capital. A letter of credit consumes the buyer's credit line and takes days to arrange. Open account exposes the seller's cash flow. Each side is trading risk against cost, and a term that suits one party's balance sheet may not suit the other's.",
+        },
+      ],
+    },
+    {
+      id: "letters-of-credit",
+      heading: "Letters of credit",
+      blocks: [
+        {
+          kind: "p",
+          text: "A documentary letter of credit is an undertaking by the buyer's bank to pay the seller on presentation of a stated set of documents that comply exactly with the credit's terms. It replaces the buyer's credit risk with the bank's, which is why it is used when the parties do not yet have the history to trade on collection or open account.",
+        },
+        {
+          kind: "p",
+          text: "The mechanism is documentary, and the word matters: the bank pays against documents, not against the coffee. If the presented documents match the credit, the bank pays even if the coffee is later found wanting; if they do not match — a date out of range, a description that differs by a word — the bank may refuse to pay for coffee that is entirely sound. Documentary discrepancies are the main practical failure mode.",
+        },
+        {
+          kind: "ul",
+          items: [
+            "The credit lists the exact documents required — commonly the commercial invoice, the transport document, and the origin and regulatory certificates set out in [the documentation checklist](/guides/import-documentation-checklist).",
+            "The transport document is the pivot. A negotiable bill of lading controls the right to take delivery, so whoever holds it controls the goods; the bank holds it until it is paid.",
+            "The credit should be irrevocable, and a seller uncertain of the issuing bank may ask for it to be confirmed by a bank in the seller's own country, which adds a second guarantee and a second fee.",
+            "Every date, quantity tolerance and goods description in the credit must match the sales contract, or the seller is obliged to ship against one set of terms and be paid against another.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "documentary-collections",
+      heading: "Documentary collections",
+      blocks: [
+        {
+          kind: "p",
+          text: "In a documentary collection the banks pass documents but do not guarantee payment. The seller ships, then sends the documents through the banking chain with instructions for their release. It is cheaper than a letter of credit and gives the seller more security than open account, without a bank standing behind the buyer.",
+        },
+        { kind: "h3", text: "Documents against payment (D/P)" },
+        {
+          kind: "p",
+          text: "Also called cash against documents. The buyer's bank releases the documents — including the transport document that controls the goods — only when the buyer pays. The seller keeps control of the cargo until payment, but carries the risk that the buyer simply does not present to pay, leaving a container at a distant port.",
+        },
+        { kind: "h3", text: "Documents against acceptance (D/A)" },
+        {
+          kind: "p",
+          text: "The buyer receives the documents against accepting a bill of exchange — a formal promise to pay on a future date — and can then collect and sell the coffee before paying for it. The seller has extended unsecured credit, and D/A is used only where that credit risk is acceptable.",
+        },
+      ],
+    },
+    {
+      id: "advance-and-open-account",
+      heading: "Advance payment and open account",
+      blocks: [
+        {
+          kind: "p",
+          text: "The two ends of the spectrum are the simplest to operate and the least balanced. Under full advance payment the buyer funds the entire transaction and relies on the seller to perform; under open account the seller ships and invoices and relies on the buyer to pay on time. Each removes all bank involvement and all bank cost, and places the whole risk on one party.",
+        },
+        {
+          kind: "p",
+          text: "A common middle position is a deposit on order with the balance payable against shipping documents. This splits the exposure: the seller has committed funds from the buyer before allocating a lot, and the buyer pays the balance only once documents evidence that the coffee has shipped. It is frequently how a relationship operates before it graduates to a collection or open-account basis.",
+        },
+      ],
+    },
+    {
+      id: "payment-and-incoterms",
+      heading: "Payment terms are not the Incoterms rule",
+      blocks: [
+        {
+          kind: "p",
+          text: "This is the most common confusion in a first contract. An Incoterms rule allocates carriage, cost and risk for the physical movement of the goods. It says nothing about when or how the goods are paid for. \"CIF Hamburg\" tells you the seller arranges and pays freight to Hamburg and insures to a minimum standard; it does not tell you whether payment is by letter of credit, collection or open account.",
+        },
+        {
+          kind: "p",
+          text: "The two interact only through the documents. A letter of credit calls for a transport document, and the Incoterms rule determines which document the seller can provide and at what point — which is why the FCA on-board bill of lading option introduced in Incoterms 2020, described in [the Incoterms guide](/guides/incoterms-green-coffee), matters for letter-of-credit trades. Beyond that, the two are set independently, in different clauses of the same contract.",
+        },
+        {
+          kind: "pending",
+          label: "Zoebar accepted payment terms",
+          text: "The payment terms Zoebar accepts, any deposit requirement, and the banking arrangements for a transaction are being verified and are confirmed per contract rather than published. They are stated in the quotation and the sales contract for a specific shipment.",
+        },
+      ],
+    },
+  ],
+  faqs: [
+    {
+      question: "What is cash against documents in coffee trading?",
+      answer:
+        "Cash against documents, or documents against payment (D/P), is a documentary collection in which the buyer's bank releases the shipping documents — including the one controlling the goods — only when the buyer pays. The seller keeps control of the cargo until payment but has no bank guarantee that the buyer will pay. It is cheaper than a letter of credit.",
+    },
+    {
+      question: "Do I need a letter of credit to buy green coffee?",
+      answer:
+        "No. A letter of credit is one option among several — advance payment, documentary collections and open account are all used in the trade. Letters of credit are common for larger sums or newer relationships because a bank substitutes its credit for the buyer's, but they carry a fee and take bank time to arrange. The right term depends on the relationship and the amounts involved.",
+    },
+    {
+      question: "Do Incoterms rules set the payment terms?",
+      answer:
+        "No. An Incoterms rule allocates carriage, cost and risk for moving the goods; it does not govern payment. Payment terms are a separate clause of the sales contract. The two interact only through the documents a letter of credit calls for, which the Incoterms rule determines the seller is able to supply.",
+    },
+  ],
+  datePublished: AUTHORED_2,
+  dateModified: AUTHORED_2,
+};
+
+/* ============================================================================
+   7 - CONTAINER LOADING AND SHIPPING SPECIFICATIONS
+   ========================================================================== */
+
+const CONTAINER: Guide = {
+  slug: "green-coffee-container-loading",
+  navTitle: "Container loading & capacity",
+  title: "Container loading and shipping specifications for green coffee.",
+  description:
+    "How green coffee is packed and shipped: bag types and weights, why coffee ships in 20-foot rather than 40-foot containers, the condensation problem inside a steel box, container liners and desiccants, and what to specify in the contract.",
+  question: "How much green coffee fits in a shipping container?",
+  answer:
+    "A 20-foot container typically holds around 300 bags of 60 kg — roughly 18 to 19 tonnes — though route weight limits and packaging move the figure. Coffee reaches a container's weight limit long before its volume limit, which is why it ships in 20-foot rather than 40-foot units and why payload, not cubic capacity, is the binding constraint.",
+  meta: [
+    { term: "Common bag", detail: "60 kg jute, often lined" },
+    { term: "20ft, typically", detail: "~300 bags · ~18–19 t" },
+    { term: "Limited by", detail: "Weight, not volume" },
+    { term: "Main transit risk", detail: "Condensation" },
+  ],
+  sections: [
+    {
+      id: "how-coffee-is-packed",
+      heading: "How coffee is packed for export",
+      blocks: [
+        {
+          kind: "p",
+          text: "Green coffee is hygroscopic — it takes up and gives off moisture with the air around it — and it is shipped across large swings in temperature and humidity. Packaging exists to manage that, not only to contain the beans, and the choice made at origin travels with the coffee for the whole voyage.",
+        },
+        {
+          kind: "p",
+          text: "Ethiopian coffee is traditionally exported in jute bags of 60 kg, and 60 kg remains the reference unit for Ethiopian lots, including the washed and natural coffee described on [our coffee page](/coffee), grown in [Amaro](/amaro). Other origins and other buyers use 30 kg bags, and a growing share of specialty coffee ships in bags with an inner barrier liner.",
+        },
+        {
+          kind: "ul",
+          items: [
+            "Plain jute or sisal. Breathable, cheap, and the historical default. It offers no moisture barrier, so the coffee equilibrates with whatever air reaches it.",
+            "Jute with a barrier liner — a multi-layer plastic or foil bag inside the sack. Slows moisture and oxygen exchange and holds the cup longer, at a higher cost per bag.",
+            "Hermetic or vacuum packaging. A sealed barrier that effectively stops moisture and gas exchange for the duration of transit. Used where freshness retention justifies the cost.",
+            "Bulk in a container liner. The container is lined with one large bag and filled loose, saving the cost of sacks. Common for larger commercial volumes, less so for lot-separated specialty coffee.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "twenty-versus-forty",
+      heading: "Twenty-foot versus forty-foot",
+      blocks: [
+        {
+          kind: "p",
+          text: "A standard shipping container has two independent limits: how much space it has, and how much weight it is rated and permitted to carry. Cargo is said to cube out when it fills the space before reaching the weight limit, and to weigh out when it reaches the weight limit with space to spare. Green coffee weighs out, decisively.",
+        },
+        {
+          kind: "table",
+          caption: "Container capacity for green coffee — indicative, not a specification",
+          head: ["Unit", "Internal volume, approx.", "Coffee loaded, typical", "Why"],
+          rows: [
+            [
+              "20-foot standard",
+              "~33 m³",
+              "~18–19 t · ~300–320 bags of 60 kg",
+              "Reaches the payload limit with volume still free",
+            ],
+            [
+              "40-foot standard",
+              "~67 m³",
+              "Rarely used for coffee alone",
+              "Twice the space, a similar payload rating — it would weigh out at roughly half full",
+            ],
+          ],
+        },
+        {
+          kind: "p",
+          text: "The exact number of bags is not a constant. It depends on the bag weight, the maximum payload the shipping line applies to that container, and — for a landlocked origin such as Ethiopia — the road weight limits on the inland leg to port, which can be lower than the sea limit and can cap the load before the container does. A figure quoted as fixed on a website is a typical case, not a specification.",
+        },
+        {
+          kind: "note",
+          text: "Confirm the loaded weight and bag count for your specific shipment in the contract and on the packing list, not from a general figure. The number that binds is the one on the weight note for your container.",
+        },
+      ],
+    },
+    {
+      id: "the-condensation-problem",
+      heading: "Condensation, the largest transit risk",
+      blocks: [
+        {
+          kind: "p",
+          text: "The single largest transit risk to green coffee is not physical damage — it is moisture. A container loaded in a warm, humid origin holds warm, humid air. As it passes through cooler conditions, or simply cools at night, that air reaches its dew point and water condenses on the coldest surface, usually the steel ceiling, and then drips back onto the cargo. In the trade this is called container rain, or container sweat.",
+        },
+        {
+          kind: "p",
+          text: "The damage is characteristic: water staining and mould on the top layer of bags and against the walls, a musty or phenolic taint through the affected coffee, and sometimes caking. It can ruin the top of an otherwise sound container, and because it develops in transit it is often discovered only on opening at destination — which is why the point of quality determination in the contract matters.",
+        },
+        {
+          kind: "ul",
+          items: [
+            "Coffee dried to the correct target moisture before shipment carries less water into the box and condenses less. Over-drying avoids the problem but flattens the cup and loses weight.",
+            "A barrier liner or hermetic packaging isolates the beans from the container atmosphere and is the most reliable defence.",
+            "Desiccant — hanging drying agents, or a container liner with an absorbent layer — lowers the humidity of the air in the box during the voyage.",
+            "Kraft-paper container liners and dunnage keep the bags off the floor and clear of the walls, where condensation collects.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "container-type",
+      heading: "Ventilated and standard containers",
+      blocks: [
+        {
+          kind: "p",
+          text: "Ventilated containers exist — dry containers with passive vents in the top rails that allow some air exchange without letting rain in. They were designed for exactly this class of cargo, and some coffee, particularly from origins shipping in plain jute, moves in them.",
+        },
+        {
+          kind: "p",
+          text: "In practice most coffee now ships in standard dry containers, with the moisture risk managed by packaging and desiccant rather than by ventilation. Ventilated units are less widely available, cost more, and are less effective than a barrier liner when the outside air is itself humid. The decision belongs in the contract alongside the packaging specification, not left to whatever the carrier provides.",
+        },
+      ],
+    },
+    {
+      id: "loading",
+      heading: "Loading and securing the container",
+      blocks: [
+        {
+          kind: "p",
+          text: "How a container is stuffed affects both the condition of the coffee on arrival and whether the load is safe and legal to move by road.",
+        },
+        {
+          kind: "ul",
+          items: [
+            "The container should be clean, dry, sound and odour-free before loading — coffee readily takes up taints from a previous cargo or from residual cleaning chemicals.",
+            "Bags are kept off the floor and clear of the walls and doors, on dunnage or a liner, so condensation running down the steel does not reach them.",
+            "Weight is distributed evenly along the container floor, within the axle-load limits that apply on the inland leg, not only the total payload.",
+            "The load is stowed tightly enough that bags do not shift and chafe in transit, with the doorway blocked so nothing falls out on opening.",
+          ],
+        },
+        {
+          kind: "p",
+          text: "For Zoebar coffee, cherry intake, processing and drying happen at the company's own washing station in Amaro, described on [the process page](/process), so the moisture condition of the coffee entering the supply chain is an operational record rather than a figure taken on trust from a third party.",
+        },
+      ],
+    },
+    {
+      id: "what-to-specify",
+      heading: "What to specify in the contract",
+      blocks: [
+        {
+          kind: "p",
+          text: "Packaging and loading are contract terms. Leaving them unstated means accepting whatever is cheapest at origin, and discovering the choice on arrival.",
+        },
+        {
+          kind: "ol",
+          items: [
+            "Bag type and weight — plain jute, lined, or hermetic — and the net weight per bag.",
+            "The number of bags and the total net weight per container.",
+            "Container type — standard or ventilated — and any liner or desiccant requirement.",
+            "The moisture maximum and the point at which it is measured, which links to the set in [the importer's documentation checklist](/guides/import-documentation-checklist).",
+            "Marks and lot identification on the bags.",
+          ],
+        },
+        {
+          kind: "pending",
+          label: "Zoebar packing and container specification",
+          text: "Zoebar's bag type and weight, liner specification, bags per container and net loaded weight are being verified and are confirmed per contract rather than published as standing figures. They appear on the specification table on [our coffee page](/coffee) and on the packing list for a specific shipment.",
+        },
+      ],
+    },
+  ],
+  faqs: [
+    {
+      question: "How many bags of coffee fit in a 20-foot container?",
+      answer:
+        "Typically around 300 bags of 60 kg, or roughly 18 to 19 tonnes, though the figure moves with the bag weight, the shipping line's payload limit, and the road weight limits on the inland leg to port. Green coffee reaches a container's weight limit well before its volume limit, so payload is what constrains the load.",
+    },
+    {
+      question: "Why does green coffee ship in 20-foot containers rather than 40-foot?",
+      answer:
+        "Because coffee is dense enough to reach a container's maximum payload while the container is only about half full by volume. A 40-foot container has roughly twice the space but a similar weight rating, so it would hit the weight limit half empty. A 20-foot unit uses the payload efficiently.",
+    },
+    {
+      question: "What is container rain in coffee shipping?",
+      answer:
+        "Container rain, or container sweat, is condensation that forms inside a container when warm, humid air loaded at origin cools in transit and reaches its dew point. Water collects on the steel ceiling and drips onto the cargo, staining and spoiling the top layer of bags. It is managed with correct drying, barrier packaging, desiccant and dunnage.",
+    },
+  ],
+  datePublished: AUTHORED_2,
+  dateModified: AUTHORED_2,
+};
+
+/* ============================================================================
    REGISTRY
    ========================================================================== */
 
-/** Ordered as a reading sequence, not alphabetically. */
-export const GUIDES: readonly Guide[] = [GRADING, CALENDAR, DOCUMENTATION, INCOTERMS];
+/**
+ * Ordered as a reading sequence, not alphabetically: the buying process first
+ * as orientation, then the four pillars, then the payment and container
+ * detail guides.
+ */
+export const GUIDES: readonly Guide[] = [
+  PROCESS,
+  GRADING,
+  CALENDAR,
+  DOCUMENTATION,
+  INCOTERMS,
+  PAYMENT,
+  CONTAINER,
+];
 
 export function guideBySlug(slug: string): Guide | undefined {
   return GUIDES.find((g) => g.slug === slug);

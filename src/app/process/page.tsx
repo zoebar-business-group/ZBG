@@ -206,6 +206,8 @@ export default function ProcessPage() {
                 ratio="landscape"
                 rounded="panel"
                 onDark
+                src="/washing-station.jpg"
+                alt="Rows of raised drying beds at the Zoebar washing station in Amaro, with concrete fermentation tanks in the foreground and workers tending the parchment, green hills behind."
                 brief="Drying beds in use at the Zoebar washing station — parchment being turned, showing the working method rather than a styled arrangement."
                 caption={`Both methods run at Zoebar's washing station in ${OPERATIONS.washingStationLocation}.`}
                 sizes="(max-width: 1024px) 100vw, 45vw"

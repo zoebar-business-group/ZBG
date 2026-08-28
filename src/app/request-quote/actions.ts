@@ -10,6 +10,7 @@ import {
   sendEnquiryEmails,
   validate,
   verifyRecaptcha,
+  whatsappEnquiryUrl,
   type Enquiry,
 } from "@/lib/enquiry";
 import type { FormState } from "@/lib/enquiry-state";
@@ -22,6 +23,11 @@ import type { FormState } from "@/lib/enquiry-state";
  * A Server Action is a public POST endpoint (see the Next.js Server Actions
  * guide), so every check below runs server-side and treats FormData as
  * untrusted. Order matters: cheap silent rejections first, delivery last.
+ *
+ * Two delivery paths, chosen by the `channel` field:
+ *   - "email"    → Resend + sheet log, then redirect to /thank-you.
+ *   - "whatsapp" → sheet log only, then return a `wa.me` URL for the client to
+ *                  open. No Resend. See lib/enquiry.ts.
  */
 function readIp(headerList: Headers): string {
   const forwarded = headerList.get("x-forwarded-for");
@@ -39,38 +45,57 @@ export async function submitEnquiry(
     redirect("/thank-you?kind=quote");
   }
 
+  const channel = formData.get("channel") === "whatsapp" ? "whatsapp" : "email";
+
   const enquiry: Enquiry = {
     name: String(formData.get("name") ?? ""),
     company: String(formData.get("company") ?? ""),
     email: String(formData.get("email") ?? ""),
+    phone: String(formData.get("phone") ?? ""),
     country: String(formData.get("country") ?? ""),
     volume: String(formData.get("volume") ?? ""),
     message: String(formData.get("message") ?? ""),
     kind: String(formData.get("kind") ?? "quote"),
+    channel,
   };
 
   // 2. reCAPTCHA v3. Rejects a bad token or a low score; passes (fails open)
-  //    when the secret is unset or Google is unreachable.
+  //    when the secret is unset or Google is unreachable. Applies to both paths.
   const recaptcha = await verifyRecaptcha(String(formData.get("recaptchaToken") ?? ""));
   if (recaptcha.outcome === "reject") {
     return { status: "error", errors: {}, notice: "verification-failed", values: enquiry };
   }
 
-  // 3. Rate limit: one accepted enquiry per email OR IP per 60 seconds.
+  // 3. Rate limit: one accepted enquiry per email / phone / IP per 60 seconds.
   const headerList = await headers();
-  const rateKeys = { email: enquiry.email, ip: readIp(headerList) };
+  const rateKeys = { email: enquiry.email, phone: enquiry.phone, ip: readIp(headerList) };
   if (isRateLimited(rateKeys)) {
     return { status: "error", errors: {}, notice: "rate-limited", values: enquiry };
   }
 
-  // 4. Server-side validation.
+  // 4. Server-side validation. Channel-aware: email path needs a valid email,
+  //    WhatsApp path needs a phone number.
   const errors = validate(enquiry);
   if (Object.keys(errors).length) {
     return { status: "error", errors, values: enquiry };
   }
 
-  // 5. Delivery not configured — never show a confirmation for a message
-  //    nobody received.
+  // 5a. WhatsApp path — no Resend. Log the source, hand back a wa.me URL.
+  if (channel === "whatsapp") {
+    const whatsappUrl = whatsappEnquiryUrl(enquiry);
+    if (!whatsappUrl) {
+      // Only reachable via a forged request: the form hides the option when
+      // WHATSAPP_NUMBER is unset. Same honest notice as the email path.
+      console.error("[enquiry] channel=whatsapp but WHATSAPP_NUMBER is unset.");
+      return { status: "error", errors: {}, notice: "not-configured", values: enquiry };
+    }
+    recordSubmission(rateKeys);
+    await logEnquiryToSheet(enquiry);
+    return { status: "idle", errors: {}, whatsappUrl, values: enquiry };
+  }
+
+  // 5b. Email path — delivery not configured. Never show a confirmation for a
+  //     message nobody received.
   if (!process.env.RESEND_API_KEY) {
     console.error(
       "[enquiry] RESEND_API_KEY is not set — enquiry was NOT delivered.",

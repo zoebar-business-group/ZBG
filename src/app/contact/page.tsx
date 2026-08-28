@@ -9,7 +9,7 @@ import {
   breadcrumbSchema,
 } from "@/lib/schema";
 import { CONTACT_FAQS } from "@/content/faqs";
-import { WHATSAPP_NUMBER } from "@/lib/site";
+import { WHATSAPP_NUMBER, WHATSAPP_ENABLED, whatsappHref, WHATSAPP_MESSAGES } from "@/lib/site";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Answer, FaqList } from "@/components/primitives/Answer";
@@ -129,8 +129,19 @@ export default function ContactPage() {
                       { label: "Telephone", value: ORG.telephone },
                       {
                         label: "WhatsApp",
-                        value: WHATSAPP_NUMBER,
-                        note: "Withheld until a number is verified, rather than pointed at a placeholder.",
+                        value: WHATSAPP_NUMBER ? (
+                          <a
+                            href={whatsappHref(WHATSAPP_MESSAGES["/contact"]) ?? "#"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline decoration-[0.5px] decoration-faint underline-offset-[3px] transition-colors hover:decoration-current"
+                          >
+                            Message us on WhatsApp
+                          </a>
+                        ) : null,
+                        note: WHATSAPP_NUMBER
+                          ? undefined
+                          : "Withheld until a number is verified, rather than pointed at a placeholder.",
                       },
                       { label: "Registered address", value: null },
                       { label: "TRN", value: ORG.trn },
@@ -218,7 +229,11 @@ export default function ContactPage() {
             </div>
 
             <div className="min-w-0 lg:col-span-7">
-              <EnquiryForm kind="quote" submitLabel="Send enquiry" />
+              <EnquiryForm
+                kind="quote"
+                submitLabel="Send enquiry"
+                whatsappEnabled={WHATSAPP_ENABLED}
+              />
             </div>
           </div>
         </Container>

@@ -73,19 +73,33 @@ export function hasDarkHeader(pathname: string): boolean {
 export const NAV_ITEMS = ROUTES.filter((r) => r.inNav);
 
 /** Primary conversion, Strategy 6 / Directive 24. */
-export const PRIMARY_CTA = { label: "Request a Quote", href: "/request-quote" } as const;
+export const PRIMARY_CTA = { label: "Request a Quote", href: "/request-quote#quote" } as const;
 export const SECONDARY_CTA = { label: "Request a Sample", href: "/request-quote#sample" } as const;
 
 /**
  * WhatsApp — a first-class commercial channel (Strategy 6.1), with
- * page-aware prefilled messages. PENDING: no number is verified yet, so the
- * action is withheld rather than pointed at a placeholder number.
+ * page-aware prefilled messages.
+ *
+ * Read from the environment (`WHATSAPP_NUMBER`), same as `RESEND_API_KEY` and
+ * `ENQUIRY_TO_EMAIL` — NOT hardcoded. Unset → every WhatsApp affordance is
+ * withheld rather than pointed at a placeholder (the enquiry-form toggle stays
+ * hidden, the /contact row shows "being verified").
+ *
+ * It is a server-side value (no `NEXT_PUBLIC_` prefix), so `process.env`
+ * resolves it in Server Components and the server action; on the client it
+ * reads as `null`. Client components must receive `WHATSAPP_ENABLED` as a prop
+ * from a Server Component rather than importing it here.
  */
-export const WHATSAPP_NUMBER: string | null = null;
+export const WHATSAPP_NUMBER: string | null = process.env.WHATSAPP_NUMBER ?? null;
+
+/** Whether the WhatsApp channel is configured. Server-only — see above. */
+export const WHATSAPP_ENABLED = Boolean(WHATSAPP_NUMBER);
 
 export function whatsappHref(message: string): string | null {
-  if (!WHATSAPP_NUMBER) return null;
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  // Forgiving of "+", spaces and dashes in the env value — wa.me wants digits.
+  const number = WHATSAPP_NUMBER?.replace(/\D/g, "");
+  if (!number) return null;
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
 /** Page-aware prefilled messages. Directive 25. */
