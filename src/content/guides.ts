@@ -283,7 +283,7 @@ const CALENDAR: Guide = {
   description:
     "When Ethiopian coffee is harvested, how long post-harvest processing, milling, grading and export documentation take, why shipments move overland to Djibouti, and how to plan a contract against the crop year.",
   question: "When is Ethiopian coffee harvested, and when does it arrive?",
-  answer: `Ethiopia's Arabica harvest runs approximately October to January nationally; in ${ORIGIN.name} (${ORIGIN.zone}) it runs approximately ${harvestWindow()}. Cherry is then processed, dried, rested, milled, graded and certified before export moves overland to Djibouti, Ethiopia's principal port corridor. Arrival at destination commonly falls in the first half of the following year.`,
+  answer: `Ethiopia's Arabica harvest runs approximately October to January nationally; in ${ORIGIN.name} (${ORIGIN.zone}, commonly presented within the broader Sidama category) it runs approximately ${harvestWindow()}. Cherry is then processed, dried, rested, milled, graded and certified before export moves overland to Djibouti, Ethiopia's principal port corridor. Arrival at destination commonly falls in the first half of the following year.`,
   meta: [
     { term: "Amaro harvest", detail: harvestWindow() },
     { term: "Ethiopia, broadly", detail: "October – January" },
@@ -297,7 +297,7 @@ const CALENDAR: Guide = {
       blocks: [
         {
           kind: "p",
-          text: `Ethiopia's main Arabica harvest runs approximately October to January, but that national window is an average across a country with enormous variation in altitude, latitude and rainfall pattern. The window that matters is the one for the specific growing area you are buying from. In ${ORIGIN.name} — an administrative zone recently named as ${ORIGIN.zone} — the harvest runs approximately ${harvestWindow()}, at ${altitudeBand()} metres above sea level. The origin is described in full on [the Amaro page](/amaro).`,
+          text: `Ethiopia's main Arabica harvest runs approximately October to January, but that national window is an average across a country with enormous variation in altitude, latitude and rainfall pattern. The window that matters is the one for the specific growing area you are buying from. In ${ORIGIN.name}, the harvest runs approximately ${harvestWindow()}, at ${altitudeBand()} metres above sea level. ${ORIGIN.categoryNote} The origin is described in full on [the Amaro page](/amaro).`,
         },
         {
           kind: "p",
@@ -414,7 +414,7 @@ const CALENDAR: Guide = {
   faqs: [
     {
       question: "When is the Ethiopian coffee harvest?",
-      answer: `Ethiopia's main Arabica harvest runs approximately October to January, varying by growing area, altitude and rainfall. In ${ORIGIN.name}, recently named as ${ORIGIN.zone}, the harvest runs approximately ${harvestWindow()} at ${altitudeBand()} metres above sea level. Higher-altitude areas mature more slowly and are generally picked later in the window.`,
+      answer: `Ethiopia's main Arabica harvest runs approximately October to January, varying by growing area, altitude and rainfall. In ${ORIGIN.name}, recently named as ${ORIGIN.zone} and commonly presented within the broader Sidama category, the harvest runs approximately ${harvestWindow()} at ${altitudeBand()} metres above sea level. Higher-altitude areas mature more slowly and are generally picked later in the window.`,
     },
     {
       question: "Which port does Ethiopian coffee ship from?",
