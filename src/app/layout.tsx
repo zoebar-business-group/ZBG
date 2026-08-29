@@ -8,6 +8,7 @@ import { graph, organizationSchema, websiteSchema } from "@/lib/schema";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
+import { ChromeGate } from "@/components/layout/ChromeGate";
 
 /**
  * TYPEFACES
@@ -109,20 +110,22 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-alabaster text-ink antialiased">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-6 focus:z-[100] focus:rounded-[2px] focus:bg-emerald focus:px-5 focus:py-3 focus:font-sans focus:text-[0.75rem] focus:font-medium focus:uppercase focus:tracking-[0.16em] focus:text-alabaster"
-        >
-          Skip to content
-        </a>
-
-        <Navigation />
+        <ChromeGate>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-6 focus:z-[100] focus:rounded-[2px] focus:bg-emerald focus:px-5 focus:py-3 focus:font-sans focus:text-[0.75rem] focus:font-medium focus:uppercase focus:tracking-[0.16em] focus:text-alabaster"
+          >
+            Skip to content
+          </a>
+          <Navigation />
+        </ChromeGate>
 
         <main id="main">{children}</main>
 
-        <Footer />
-
-        <ScrollReveal />
+        <ChromeGate>
+          <Footer />
+          <ScrollReveal />
+        </ChromeGate>
       </body>
     </html>
   );

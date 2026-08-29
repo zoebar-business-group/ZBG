@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ORIGIN, ORG, altitudeBand, harvestWindow } from "@/lib/org";
 import { graph, breadcrumbSchema } from "@/lib/schema";
 import { isDeliveryConfigured } from "@/lib/enquiry";
+import { lotBySlug } from "@/content/lots";
 import { WHATSAPP_ENABLED } from "@/lib/site";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
@@ -29,8 +30,21 @@ export const metadata: Metadata = {
  * Delivery runs through Resend (`src/lib/enquiry.ts`) and is gated on
  * `RESEND_API_KEY`. Where it is unconfigured the page says so at the top rather
  * than presenting a form that silently discards container-volume enquiries.
+ *
+ * `?lot={slug}` (from a lot page's "Request a quote" CTA) pre-fills a "Regarding
+ * {lotId}:" line into the message field. It rides along in the existing
+ * `message` field, so it reaches the email body and the sheet log with no
+ * change to the Enquiry shape or `submitEnquiry`. Reading searchParams makes
+ * this route dynamic, like /thank-you.
  */
-export default function RequestQuotePage() {
+export default async function RequestQuotePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ lot?: string }>;
+}) {
+  const { lot: lotParam } = await searchParams;
+  const lot = lotParam ? await lotBySlug(lotParam) : undefined;
+  const messagePrefill = lot ? `Regarding ${lot.lotId} (${lot.slug}): ` : undefined;
   const configured = isDeliveryConfigured();
 
   return (
@@ -128,11 +142,12 @@ export default function RequestQuotePage() {
               </dl>
             </div>
 
-            <div className="min-w-0 lg:col-span-7">
+            <div className="min-w-0 rounded-[2rem] bg-bone p-7 sm:p-9 lg:col-span-7">
               <EnquiryForm
                 kind="quote"
                 submitLabel="Request a quote"
                 whatsappEnabled={WHATSAPP_ENABLED}
+                messagePrefill={messagePrefill}
               />
             </div>
           </div>
@@ -176,6 +191,7 @@ export default function RequestQuotePage() {
                 kind="sample"
                 submitLabel="Request a sample"
                 whatsappEnabled={WHATSAPP_ENABLED}
+                messagePrefill={messagePrefill}
               />
             </div>
           </div>
