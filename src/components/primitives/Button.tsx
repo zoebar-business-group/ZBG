@@ -42,6 +42,7 @@ export function Button({
   onDark = false,
   className,
   ariaLabel,
+  download = false,
 }: {
   href: string;
   children: ReactNode;
@@ -49,6 +50,9 @@ export function Button({
   onDark?: boolean;
   className?: string;
   ariaLabel?: string;
+  /** Render a plain `<a download>` (for file endpoints) rather than next/link.
+   *  Same visual as any other button. */
+  download?: boolean;
 }) {
   const external = href.startsWith("http");
 
@@ -81,6 +85,14 @@ export function Button({
   );
 
   const cls = clsx(BASE, VARIANTS[variant], className);
+
+  if (download) {
+    return (
+      <a href={href} download data-on-dark={onDark} className={cls} aria-label={ariaLabel}>
+        {content}
+      </a>
+    );
+  }
 
   if (external) {
     return (

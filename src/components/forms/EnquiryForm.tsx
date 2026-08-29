@@ -211,11 +211,15 @@ export function EnquiryForm({
   kind = "quote",
   submitLabel = "Send enquiry",
   whatsappEnabled = false,
+  messagePrefill,
 }: {
   kind?: "quote" | "sample";
   submitLabel?: string;
   /** Server-derived: is `WHATSAPP_NUMBER` set? Gates the WhatsApp toggle. */
   whatsappEnabled?: boolean;
+  /** Pre-fills the message field on first load, e.g. "Regarding Lot 042:" when
+   *  arriving from a lot page. A failed submit keeps whatever the buyer typed. */
+  messagePrefill?: string;
 }) {
   /**
    * /request-quote renders this form TWICE — once for a quote and once for a
@@ -496,7 +500,7 @@ export function EnquiryForm({
             id={`${uid}message`}
             name="message"
             rows={5}
-            defaultValue={v.message}
+            defaultValue={v.message ?? messagePrefill}
             placeholder="Grade, processing preference, target volume, destination port, timing."
             className={clsx(FIELD, "resize-y border-[#d9d0bf]")}
           />

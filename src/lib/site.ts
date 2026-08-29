@@ -54,6 +54,17 @@ export const ROUTES: Route[] = [
   { path: "/process", label: "Process", density: "spec", built: true, changeFrequency: "monthly", priority: 0.8 },
   { path: "/quality", label: "Quality", density: "spec", built: true, changeFrequency: "monthly", priority: 0.8 },
   { path: "/traceability", label: "Traceability", density: "spec", built: true, changeFrequency: "monthly", priority: 0.8 },
+  /* The lot index and template ship; lot pages are the QR destination and a
+     404 there would be a visible defect. DELIBERATELY UNLINKED: no primary nav
+     (no `inNav`) and no footer entry either. The only routes in are a scanned
+     QR code, which lands on /lots/[slug] directly, and an explicit link from an
+     enquiry or a page referencing a specific lot. The entry stays here so
+     sitemap.ts can pick /lots up automatically once it is populated.
+     noindex while LOTS is empty (a one-line empty state is thin content), same
+     pattern as /journal. Remove `noindex` here and the `robots` block in
+     app/lots/page.tsx once real lots exist; the index can then be indexed even
+     though it is not in any nav. */
+  { path: "/lots", label: "Lots", density: "spec", built: true, noindex: true, changeFrequency: "weekly", priority: 0.8 },
   { path: "/farmers", label: "Farmers", density: "story", built: true, darkHeader: true, changeFrequency: "monthly", priority: 0.7 },
   /* Ships (it is in the primary navigation, and a 404 there is a visible
      defect) but is noindex while ENTRIES is empty — a section with no entries

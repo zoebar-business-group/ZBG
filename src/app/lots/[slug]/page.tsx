@@ -17,18 +17,17 @@ import { Pending, SpecTable, type SpecRow } from "@/components/primitives/data";
  * This is the QR destination printed on sacks and sample bags (Strategy 5.4)
  * and the template for programmatic lot pages at scale (Strategy 10.1).
  *
- * `LOTS` is currently empty, so this route generates zero pages and any
- * /lots/* URL correctly 404s. That is deliberate: a lot page is a record about
- * physical coffee a buyer can hold, so a seeded example would be a false
- * record with a scannable code pointing at it. The template is complete and
- * fills the moment real lot data is confirmed.
+ * Lots come from Sanity (`publishedLots()` / `lotBySlug()`). Every existing lot
+ * is pre-rendered at build; `dynamicParams` is `true` so a lot published after
+ * a build renders on first request without a redeploy (the revalidation
+ * webhook refreshes it thereafter). An unknown slug still 404s via `notFound()`.
  */
 
-export function generateStaticParams() {
-  return publishedLots().map((l) => ({ slug: l.slug }));
+export async function generateStaticParams() {
+  return (await publishedLots()).map((l) => ({ slug: l.slug }));
 }
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export async function generateMetadata({
   params,
@@ -36,7 +35,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const lot = lotBySlug(slug);
+  const lot = await lotBySlug(slug);
   if (!lot) return {};
 
   const description = `${lot.lotId}: ${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at Zoebar's own washing station.`;
@@ -60,7 +59,7 @@ export default async function LotPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const lot = lotBySlug(slug);
+  const lot = await lotBySlug(slug);
   if (!lot) notFound();
 
   const trail = [
@@ -160,6 +159,38 @@ export default async function LotPage({
             </div>
             <div className="min-w-0">
               <SpecTable caption="Commercial" rows={commercial} />
+            </div>
+          </div>
+
+          {/* QR code. Both formats link to this page; physical printing and
+              application to sacks/sample bags happens outside the app. */}
+          <div className="mt-14 flex flex-col gap-6 rounded-[2rem] bg-bone p-8 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="font-display text-[1.5rem] leading-tight text-ink">
+                Download the QR code
+              </h3>
+              <p className="mt-2 max-w-[48ch] font-sans text-sm leading-relaxed text-[#5a5f56]">
+                Links to this page. Print it on the sack or sample bag for{" "}
+                {lot.lotId}.
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-wrap gap-3">
+              <Button
+                href={`/lots/${lot.slug}/qr?format=svg`}
+                variant="secondary"
+                download
+                ariaLabel={`Download the ${lot.lotId} QR code as SVG`}
+              >
+                SVG
+              </Button>
+              <Button
+                href={`/lots/${lot.slug}/qr?format=png`}
+                variant="secondary"
+                download
+                ariaLabel={`Download the ${lot.lotId} QR code as PNG`}
+              >
+                PNG
+              </Button>
             </div>
           </div>
         </Container>
