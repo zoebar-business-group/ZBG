@@ -6,7 +6,24 @@
 
 import { ORG } from "./org";
 
-export const SITE_URL = ORG.url;
+/**
+ * The origin this deployment is served from.
+ *
+ * `ORG.url` is the production canonical and is never changed. Preview and
+ * branch deployments set `NEXT_PUBLIC_SITE_URL` to their own origin so that
+ * absolute URLs — most importantly the lot QR codes, which get physically
+ * scanned during review — point at the deployment under test rather than at
+ * production. Unset (i.e. production), this is exactly `ORG.url`, so nothing
+ * about production changes.
+ *
+ * A trailing slash on the env value is tolerated. The value must be a valid
+ * absolute URL; a malformed one fails the build at `new URL(SITE_URL)` in the
+ * root layout, which is the intended safety net.
+ */
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || ORG.url).replace(
+  /\/+$/,
+  "",
+);
 
 export type Density = "story" | "spec";
 

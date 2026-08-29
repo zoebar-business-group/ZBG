@@ -1,6 +1,6 @@
 import QRCode from "qrcode";
 
-import { ORG } from "@/lib/org";
+import { SITE_URL } from "@/lib/site";
 import { lotBySlug } from "@/content/lots";
 
 /**
@@ -13,9 +13,11 @@ import { lotBySlug } from "@/content/lots";
  *   GET /lots/{slug}/qr?format=png   raster, 2048px, ample for a 300 DPI label
  *                                    at any realistic sack or sample-bag size
  *
- * Both formats encode the lot's full canonical URL. `qrcode` has no PDF
- * output, so SVG plus a high-resolution PNG is what is offered; commercial
- * label printers take one of these.
+ * Both formats encode the lot's full URL, built from `SITE_URL` — the
+ * production canonical unless `NEXT_PUBLIC_SITE_URL` overrides it for a preview
+ * deployment, so a QR scanned during review resolves to the deployment under
+ * test. `qrcode` has no PDF output, so SVG plus a high-resolution PNG is what
+ * is offered; commercial label printers take one of these.
  *
  * Physical printing (sending the file to a print shop or label supplier, and
  * applying the printed code to sacks and sample bags) happens outside this
@@ -39,7 +41,7 @@ export async function GET(
 
   const format =
     new URL(request.url).searchParams.get("format") === "png" ? "png" : "svg";
-  const target = `${ORG.url}/lots/${lot.slug}`;
+  const target = `${SITE_URL}/lots/${lot.slug}`;
   const filename = `zoebar-${lot.slug}-qr.${format}`;
 
   if (format === "png") {
