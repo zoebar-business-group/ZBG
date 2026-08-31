@@ -67,16 +67,24 @@ export const IDENTITY: SpecField[] = [
 ];
 
 /**
- * Quality specification. Grade, screen size, cupping score and moisture are
- * recorded on each lot, so they read "Confirmed per lot" rather than "Being
- * verified". Defect count and varieties are still being verified.
+ * Quality specification.
+ *
+ * LOT-DEPENDENT FIELDS (grade, screen size, cupping score, moisture) are
+ * commented out below — they do not render on the marketing pages until real
+ * per-lot data exists in Sanity. Do not delete: uncomment to re-enable, and
+ * pick a label/approach at that point (open decision).
+ * Tracker: docs/LOT-DEPENDENT-FIELDS.md
+ *
+ * Defect count and varieties stay visible as "Being verified" (not part of
+ * the hidden set).
  */
 export const QUALITY_SPEC: SpecField[] = [
-  { label: "Grade", value: null, schemaName: "grade", perLot: true },
-  { label: "Screen size", value: null, schemaName: "screenSize", perLot: true },
-  { label: "Cupping score", value: null, schemaName: "cuppingScore", perLot: true },
+  // LOT-DEPENDENT — hidden pending real per-lot data (docs/LOT-DEPENDENT-FIELDS.md):
+  // { label: "Grade", value: null, schemaName: "grade", perLot: true },
+  // { label: "Screen size", value: null, schemaName: "screenSize", perLot: true },
+  // { label: "Cupping score", value: null, schemaName: "cuppingScore", perLot: true },
   { label: "Defect count", value: null, schemaName: "defectCount" },
-  { label: "Moisture content", value: null, schemaName: "moistureContent", perLot: true },
+  // { label: "Moisture content", value: null, schemaName: "moistureContent", perLot: true },
   { label: "Varieties", value: null, schemaName: "varieties" },
 ];
 

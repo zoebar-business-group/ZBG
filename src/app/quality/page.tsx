@@ -9,7 +9,10 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Answer, FaqList } from "@/components/primitives/Answer";
 import { Button } from "@/components/primitives/Button";
-import { Pending, SpecTable } from "@/components/primitives/data";
+// `Pending` is only used by the lot-dependent "Quality figures" chip, which is
+// commented out below pending real per-lot data (docs/LOT-DEPENDENT-FIELDS.md).
+// Restore this import when re-enabling that chip.
+import { SpecTable } from "@/components/primitives/data";
 
 const TRAIL = [
   { name: "Home", path: "/" },
@@ -327,10 +330,14 @@ export default function QualityPage() {
               <p className="mt-7 max-w-[44ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
                 {QUALITY_FAQS[2].answer}
               </p>
+              {/* LOT-DEPENDENT FIELDS — "Quality figures" chip hidden with the
+                  grade / screen size / cupping score / moisture rows, pending
+                  real per-lot data. Tracker: docs/LOT-DEPENDENT-FIELDS.md
               <div className="mt-8 flex items-center gap-3">
                 <span className="font-sans text-sm text-meta">Quality figures</span>
                 <Pending>Confirmed per lot</Pending>
               </div>
+              */}
             </div>
             <div className="min-w-0 lg:col-span-7">
               <SpecTable

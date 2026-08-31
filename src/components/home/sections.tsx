@@ -55,7 +55,7 @@ export function WhyZoebar() {
                 },
                 {
                   title: "Traceability that resolves",
-                  body: "Our traceability system is being developed around lot-level records covering origin, processing, quality and shipment. Where a fact is not yet confirmed, it is marked as being verified.",
+                  body: "Our traceability system is built around lot-level records covering origin, processing, quality and shipment. Where a fact is not yet confirmed, it is marked as being verified.",
                 },
                 {
                   title: "Buyers who value consistency",
@@ -376,8 +376,8 @@ export function Quality() {
             </h2>
             <p className="mt-7 max-w-[42ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
               Grading and cupping data belong on the lot, not in the marketing.
-              The fields below are recorded on each lot as it is graded and
-              cupped before release.
+              The reference below is the confirmed origin picture; per-lot
+              grading figures live on each lot record.
             </p>
             <div className="mt-9">
               <Button href="/quality" variant="quiet">
@@ -395,10 +395,11 @@ export function Quality() {
                 { label: "Processing", value: ORIGIN.processing.join(" / ") },
                 { label: "Altitude", value: `${altitudeBand()} masl` },
                 { label: "Harvest", value: harvestWindow() },
-                { label: "Grade", value: null, perLot: true },
-                { label: "Screen size", value: null, perLot: true },
-                { label: "Cupping score", value: null, perLot: true },
-                { label: "Moisture content", value: null, perLot: true },
+                // LOT-DEPENDENT — hidden pending real per-lot data (docs/LOT-DEPENDENT-FIELDS.md):
+                // { label: "Grade", value: null, perLot: true },
+                // { label: "Screen size", value: null, perLot: true },
+                // { label: "Cupping score", value: null, perLot: true },
+                // { label: "Moisture content", value: null, perLot: true },
               ]}
             />
           </div>
@@ -442,10 +443,10 @@ export function Traceability() {
             style={{ ["--animate-delay" as string]: "80ms" }}
             className="mt-8 max-w-[52ch] font-sans text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.65] text-[#cfd9d6]"
           >
-            Our traceability system is being developed around lot-level records
-            covering origin, processing, quality and shipment information. Each
-            lot will have its own page, reached by a QR code on the sack or
-            sample bag.
+            Our traceability system is built around lot-level records covering
+            origin, processing, quality and shipment information. Each lot gets
+            its own page, reached by a QR code on the sack or sample bag;
+            publishing begins once the first lots are confirmed.
           </p>
         </div>
 

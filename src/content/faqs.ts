@@ -61,12 +61,12 @@ export const TRACEABILITY_FAQS: readonly QA[] = [
   {
     question: "What information will a Zoebar lot record carry?",
     answer:
-      "Zoebar's traceability system is being developed around lot-level records covering origin in Amaro (Koore Zone), Ethiopia, the processing method applied at an affiliated washing station with Zoebar's direct operational oversight, the harvest period, the quality assessment, and the producers connected to the lot where they have given documented permission to be named.",
+      "Zoebar's traceability system is built around lot-level records covering origin in Amaro (Koore Zone), Ethiopia, the processing method applied at an affiliated washing station with Zoebar's direct operational oversight, the harvest period, the quality assessment, and the producers connected to the lot where they have given documented permission to be named. Publishing begins once the first lots are confirmed.",
   },
   {
-    question: "How will the QR codes on Zoebar sacks work?",
+    question: "How does the QR code on a Zoebar sack work?",
     answer:
-      "Zoebar's traceability system is being developed so that a QR code on each sack and sample bag opens that lot's page on zoebarbusinessgroup.com, showing the lot's origin in Amaro, Ethiopia, its processing method, harvest period and quality record for checking against the physical coffee.",
+      "Zoebar's QR generation is built: a QR code on each sack and sample bag opens that lot's page on zoebarbusinessgroup.com, showing the lot's origin in Amaro, Ethiopia, its processing method, harvest period and quality record for checking against the physical coffee. Codes are issued as lots are published.",
   },
 ];
 

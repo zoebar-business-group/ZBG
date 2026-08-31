@@ -214,12 +214,15 @@ const GRADING: Guide = {
           kind: "p",
           text: "A coffee can therefore be Grade 2 and cup at 86, or Grade 2 and cup at 82. The grade sets the floor; the cup score is the differentiation above it. When a supplier quotes only one of the two, they have chosen which number flatters the lot. Ask for both, and ask who cupped it and when.",
         },
-        {
-          kind: "pending",
-          label: "Zoebar grade and cupping band",
-          perLot: true,
-          text: "Zoebar's grade, screen size, moisture and cupping score are recorded on each lot rather than published as a standing figure, and appear on the specification table on [our coffee page](/coffee) and on each lot record. Defect count is being verified.",
-        },
+        // LOT-DEPENDENT FIELDS — this pending block is hidden until real per-lot
+        // data exists in Sanity. Do not delete; uncomment to re-enable and pick
+        // a label/approach at that point. Tracker: docs/LOT-DEPENDENT-FIELDS.md
+        // {
+        //   kind: "pending",
+        //   label: "Zoebar grade and cupping band",
+        //   perLot: true,
+        //   text: "Zoebar's grade, screen size, moisture and cupping score are recorded on each lot rather than published as a standing figure, and appear on the specification table on [our coffee page](/coffee) and on each lot record. Defect count is being verified.",
+        // },
       ],
     },
     {
