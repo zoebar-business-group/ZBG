@@ -19,8 +19,12 @@ export type Block =
   | { kind: "table"; caption: string; head: string[]; rows: string[][] }
   /** A caveat set apart from the prose. Used for "verify this yourself". */
   | { kind: "note"; text: string }
-  /** A Zoebar specification that has not been confirmed. Renders the marker. */
-  | { kind: "pending"; label: string; text: string };
+  /**
+   * A Zoebar specification that has not been confirmed. Renders the marker.
+   * `perLot` swaps "Being verified" for "Confirmed per lot" where the figure is
+   * recorded on each individual lot rather than published for the origin.
+   */
+  | { kind: "pending"; label: string; text: string; perLot?: boolean };
 
 export interface Section {
   /** Anchor id, also used for the on-page contents list. */

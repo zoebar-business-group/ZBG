@@ -101,7 +101,12 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="mx-auto w-full max-w-[96rem] px-6 pb-14 pt-32 sm:px-8 sm:pb-20 lg:px-12 lg:pb-24">
+      {/* Hero content is bottom-anchored (`justify-end` on the section). A
+          larger bottom pad on desktop lifts the whole block ~10-15% of the
+          viewport height off the base line, tightening the space above the
+          headline without touching the type scale or the entrance sequence.
+          Tune the `lg`/`xl` values if the client wants it higher or lower. */}
+      <div className="mx-auto w-full max-w-[96rem] px-6 pb-14 pt-32 sm:px-8 sm:pb-20 lg:px-12 lg:pb-[20vh] xl:pb-[22vh]">
         <p
           className="hero-fade font-sans text-[0.6875rem] font-medium uppercase tracking-[0.24em] text-sand"
           style={{ ["--animate-delay" as string]: "200ms" }}

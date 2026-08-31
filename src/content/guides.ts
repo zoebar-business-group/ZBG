@@ -217,7 +217,8 @@ const GRADING: Guide = {
         {
           kind: "pending",
           label: "Zoebar grade and cupping band",
-          text: "Zoebar's grade band, screen size, defect count, moisture range and cupping score are being verified and are not published as estimates. When confirmed they appear on the specification table on [our coffee page](/coffee) and per lot on the lot record.",
+          perLot: true,
+          text: "Zoebar's grade, screen size, moisture and cupping score are recorded on each lot rather than published as a standing figure, and appear on the specification table on [our coffee page](/coffee) and on each lot record. Defect count is being verified.",
         },
       ],
     },

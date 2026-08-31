@@ -2,16 +2,15 @@ import Link from "next/link";
 
 import { ORG, OPERATIONS } from "@/lib/org";
 import { ROUTES, PRIMARY_CTA } from "@/lib/site";
-import { Pending } from "@/components/primitives/data";
 import { Logo } from "./Logo";
 
 /**
  * FOOTER
  * ----------------------------------------------------------------------------
- * Directive 36: the footer communicates credibility. Strategy Open Item #10
- * requires accurate legal entity details, TRN and addresses before final
- * footer and schema implementation — so anything unverified renders as a
- * pending marker rather than as invented text.
+ * Directive 36: the footer communicates credibility. It shows only confirmed
+ * legal facts: the legal entity name and the copyright line. TRN and a
+ * rendered registered address (Strategy Open Item #10) are held back until
+ * confirmed rather than shown as a blank or pending field.
  */
 
 const COLUMNS: Array<{ heading: string; paths: string[] }> = [
@@ -88,25 +87,10 @@ export function Footer() {
           </nav>
         </div>
 
-        {/* Legal, verified facts only. */}
+        {/* Legal, confirmed facts only. TRN and a rendered registered address
+            are held back until confirmed rather than shown as a blank field. */}
         <div className="flex flex-col gap-6 border-t border-[rgba(240,226,203,0.18)] py-10 lg:flex-row lg:items-start lg:justify-between">
-          <div className="flex flex-col gap-3">
-            <p className="font-sans text-sm text-[#9db3b0]">{ORG.legalName}</p>
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="font-sans text-sm text-[#9db3b0]">
-                Registered address
-              </span>
-              {ORG.legalAddress ? null : <Pending onDark />}
-            </div>
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="font-sans text-sm text-[#9db3b0]">TRN</span>
-              {ORG.trn ? (
-                <span className="font-sans text-sm text-[#cfd9d6]">{ORG.trn}</span>
-              ) : (
-                <Pending onDark />
-              )}
-            </div>
-          </div>
+          <p className="font-sans text-sm text-[#9db3b0]">{ORG.legalName}</p>
 
           <p className="font-sans text-sm text-[#9db3b0]">
             © {new Date().getFullYear()} {ORG.legalName}

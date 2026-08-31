@@ -139,6 +139,13 @@ export interface SpecRow {
   /** `null` renders the Pending marker — never a plausible placeholder value. */
   value: ReactNode | null;
   note?: string;
+  /**
+   * When the value is `null` and this is true, the field reads "Confirmed per
+   * lot" instead of "Being verified". For specifications that are inherently
+   * recorded on each individual lot (grade, screen size, cupping score,
+   * moisture) rather than published as a standing figure for the origin.
+   */
+  perLot?: boolean;
 }
 
 export function SpecTable({
@@ -166,7 +173,11 @@ export function SpecTable({
                 {row.label}
               </th>
               <td className="py-4 font-sans text-[0.9375rem] text-ink">
-                {row.value === null ? <Pending /> : row.value}
+                {row.value === null ? (
+                  row.perLot ? <Pending>Confirmed per lot</Pending> : <Pending />
+                ) : (
+                  row.value
+                )}
                 {row.note && (
                   <span className="mt-1 block text-sm text-meta">{row.note}</span>
                 )}

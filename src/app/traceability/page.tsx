@@ -152,7 +152,7 @@ export default function TraceabilityPage() {
               <Answer
                 id="record"
                 className="mt-7"
-                question="What information does a lot record carry?"
+                question="What information will a lot record carry?"
                 answer={TRACEABILITY_FAQS[0].answer}
               />
             </div>

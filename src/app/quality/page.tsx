@@ -327,7 +327,7 @@ export default function QualityPage() {
               </p>
               <div className="mt-8 flex items-center gap-3">
                 <span className="font-sans text-sm text-meta">Quality figures</span>
-                <Pending />
+                <Pending>Confirmed per lot</Pending>
               </div>
             </div>
             <div className="min-w-0 lg:col-span-7">
@@ -337,6 +337,7 @@ export default function QualityPage() {
                   label: s.label,
                   value: s.value,
                   note: s.note,
+                  perLot: s.perLot,
                 }))}
               />
               <p className="mt-8 max-w-[58ch] font-sans text-[0.9375rem] leading-[1.65] text-[#5a5f56]">

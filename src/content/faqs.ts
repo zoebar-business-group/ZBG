@@ -59,14 +59,14 @@ export const PROCESS_FAQS: readonly QA[] = [
 
 export const TRACEABILITY_FAQS: readonly QA[] = [
   {
-    question: "What information does a Zoebar lot record carry?",
+    question: "What information will a Zoebar lot record carry?",
     answer:
       "A Zoebar lot record carries its origin in Amaro (Koore Zone), Ethiopia, the processing method applied at Zoebar's own washing station, the harvest period, the quality assessment, and the producers connected to the lot where they have given documented permission to be named.",
   },
   {
-    question: "Where do the QR codes on Zoebar sacks lead?",
+    question: "How will the QR codes on Zoebar sacks work?",
     answer:
-      "QR codes printed on Zoebar sacks and sample bags resolve to that lot's page on zoebarbusinessgroup.com. The page carries the lot's origin in Amaro, Ethiopia, its processing method, harvest period and quality record, so a buyer can check the physical coffee against the published record.",
+      "Zoebar's traceability system is being developed so that a QR code on each sack and sample bag opens that lot's page on zoebarbusinessgroup.com, showing the lot's origin in Amaro, Ethiopia, its processing method, harvest period and quality record for checking against the physical coffee.",
   },
 ];
 
@@ -116,7 +116,7 @@ export const QUALITY_FAQS: readonly QA[] = [
   {
     question: "Does Zoebar publish cupping scores and grades?",
     answer:
-      "Zoebar publishes a grade, screen size or cupping score only once it is confirmed. Until then the specification reads as being verified rather than showing an indicative figure, because a buyer comparing suppliers on a cupping score would be making a purchasing decision on a number Zoebar never stated.",
+      "Zoebar records grade, screen size, moisture and cupping score on each lot and shows them on that lot rather than as a single figure for the origin. A lot's figures are published once confirmed, never as an indicative range, because a buyer comparing suppliers on a cupping score should be comparing a number the supplier actually stated.",
   },
 ];
 

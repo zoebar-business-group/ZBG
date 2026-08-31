@@ -39,9 +39,15 @@ export const metadata: Metadata = {
   },
 };
 
-/** SpecField → SpecRow. A null value renders the Pending marker. */
+/** SpecField → SpecRow. A null value renders the Pending marker, or "Confirmed
+ *  per lot" when the field is recorded on each lot. */
 function toRows(fields: typeof ALL_SPECS): SpecRow[] {
-  return fields.map((f) => ({ label: f.label, value: f.value, note: f.note }));
+  return fields.map((f) => ({
+    label: f.label,
+    value: f.value,
+    note: f.note,
+    perLot: f.perLot,
+  }));
 }
 
 /**
@@ -54,7 +60,6 @@ function toRows(fields: typeof ALL_SPECS): SpecRow[] {
  */
 export default function CoffeePage() {
   const confirmedCount = confirmedSpecs().length;
-  const pendingCount = ALL_SPECS.length - confirmedCount;
 
   return (
     <>
@@ -102,9 +107,10 @@ export default function CoffeePage() {
                 Specification status
               </h2>
               <p className="max-w-[56ch] font-sans text-[0.9375rem] leading-relaxed text-[#3d423a]">
-                {confirmedCount} of {ALL_SPECS.length} fields are confirmed. The
-                remaining {pendingCount} are being verified with our operations
-                team and will be published here once fixed, not estimated.
+                {confirmedCount} of {ALL_SPECS.length} fields are confirmed.
+                Grade, screen size, cupping score and moisture are recorded on
+                each lot; the rest are being verified with our operations team
+                and published once fixed, not estimated.
               </p>
             </div>
             <div className="flex shrink-0 items-center gap-4">
@@ -254,10 +260,10 @@ export default function CoffeePage() {
             </div>
           </div>
           <p className="mt-8 max-w-[58ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-            Each lot gets its own page carrying origin, process, harvest, quality
-            and the producers who grew it. Lot pages are the destination for QR
-            codes printed on sacks and sample bags. They publish once per-lot
-            specifications are confirmed.
+            Our traceability system is being developed so that each lot has its
+            own page covering origin, process, harvest, quality and the
+            producers who grew it, reached by a QR code on the sack or sample
+            bag. Lot pages publish once per-lot specifications are confirmed.
           </p>
           <div className="mt-9">
             <Button href="/traceability" variant="quiet">

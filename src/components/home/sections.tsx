@@ -47,7 +47,7 @@ export function WhyZoebar() {
               {[
                 {
                   title: "A single origin, in depth",
-                  body: `Zoebar works one origin properly rather than many superficially. ${ORIGIN.name} is the signature origin, documented at ${altitudeBand()} metres.`,
+                  body: `Our current coffee program is centered on ${ORIGIN.name}, allowing us to build deeper knowledge of the farms, processing practices, season and people behind each lot.`,
                 },
                 {
                   title: "Our own washing station",
@@ -55,7 +55,7 @@ export function WhyZoebar() {
                 },
                 {
                   title: "Traceability that resolves",
-                  body: "Lots carry their origin, process and quality record. Where a fact is not yet confirmed, it is marked as being verified.",
+                  body: "Our traceability system is being developed around lot-level records covering origin, processing, quality and shipment. Where a fact is not yet confirmed, it is marked as being verified.",
                 },
                 {
                   title: "Buyers who value consistency",
@@ -280,7 +280,7 @@ const STAGES = [
   { n: "03", name: "Processing", detail: "Washed or natural, depending on the lot." },
   { n: "04", name: "Drying", detail: "Raised beds, turned and monitored to target moisture." },
   { n: "05", name: "Quality", detail: "Grading and cupping before a lot is released." },
-  { n: "06", name: "Lot", detail: "The lot record closes and becomes traceable." },
+  { n: "06", name: "Lot", detail: "Origin, processing and quality records are consolidated under the lot identity." },
   { n: "07", name: "Export", detail: "Documentation, inspection and shipment." },
 ];
 
@@ -370,9 +370,9 @@ export function Quality() {
               Graded, cupped, recorded.
             </h2>
             <p className="mt-7 max-w-[42ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-              Grading and cupping data belong on the lot, not in the marketing. The
-              table below fills in as each specification is confirmed with the
-              client, until then it states plainly what is still being verified.
+              Grading and cupping data belong on the lot, not in the marketing.
+              The fields below are recorded on each lot as it is graded and
+              cupped before release.
             </p>
             <div className="mt-9">
               <Button href="/quality" variant="quiet">
@@ -390,10 +390,10 @@ export function Quality() {
                 { label: "Processing", value: ORIGIN.processing.join(" / ") },
                 { label: "Altitude", value: `${altitudeBand()} masl` },
                 { label: "Harvest", value: harvestWindow() },
-                { label: "Grade", value: null },
-                { label: "Screen size", value: null },
-                { label: "Cupping score", value: null },
-                { label: "Moisture content", value: null },
+                { label: "Grade", value: null, perLot: true },
+                { label: "Screen size", value: null, perLot: true },
+                { label: "Cupping score", value: null, perLot: true },
+                { label: "Moisture content", value: null, perLot: true },
               ]}
             />
           </div>
@@ -437,9 +437,10 @@ export function Traceability() {
             style={{ ["--animate-delay" as string]: "80ms" }}
             className="mt-8 max-w-[52ch] font-sans text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.65] text-[#cfd9d6]"
           >
-            Every lot page is a record: where the coffee grew, who grew it, how it
-            was processed and what the quality assessment found. Lot pages are the
-            destination for QR codes printed on sacks and sample bags.
+            Our traceability system is being developed around lot-level records
+            covering origin, processing, quality and shipment information. Each
+            lot will have its own page, reached by a QR code on the sack or
+            sample bag.
           </p>
         </div>
 
@@ -568,33 +569,30 @@ export function AvailableCoffee() {
               id="coffee-heading"
               className="mt-6 max-w-[18ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
             >
-              Current offer.
+              2026/27 New Crop.
             </h2>
           </div>
           <p className="max-w-[38ch] font-sans text-sm leading-relaxed text-[#5a5f56]">
-            Specifications, packing, MOQ, lead times and Incoterms are confirmed
-            with the client before publication. Request a quote for current
-            availability against your volume.
+            Samples, lot specifications and commercial terms will become
+            available as the new crop progresses.
           </p>
         </div>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="min-w-0 lg:col-span-7">
             <SpecTable
-              caption="Commercial terms, Amaro green coffee"
+              caption="2026/27 new crop, Amaro green coffee"
               rows={[
-                { label: "Origin", value: `${ORIGIN.name} (${ORIGIN.zone}), ${ORIGIN.country}` },
-                { label: "Species", value: ORIGIN.species },
+                { label: "Coffee", value: `${ORIGIN.name} green coffee` },
                 { label: "Processing", value: ORIGIN.processing.join(" / ") },
                 { label: "Harvest", value: harvestWindow() },
-                { label: "Grade", value: null },
-                { label: "Packing", value: null },
-                { label: "Minimum order quantity", value: null },
-                { label: "Lead time", value: null },
-                { label: "Incoterms", value: null },
-                { label: "Port of loading", value: null },
               ]}
             />
+            <p className="mt-8 max-w-[52ch] font-sans text-[0.9375rem] leading-[1.65] text-[#5a5f56]">
+              New-crop samples become available once the coffee has been
+              processed and its quality evaluated, not before. Register interest
+              now and we will come back to you as the crop reaches that point.
+            </p>
           </div>
 
           <div className="lg:col-span-5">

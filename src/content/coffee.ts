@@ -20,6 +20,12 @@ export interface SpecField {
   note?: string;
   /** Include in Product schema additionalProperty when confirmed. */
   schemaName?: string;
+  /**
+   * Recorded on each lot rather than published as a standing origin figure.
+   * A null value on one of these reads "Confirmed per lot", not "Being
+   * verified" (grade, screen size, cupping score, moisture).
+   */
+  perLot?: boolean;
 }
 
 /** Verified origin and product identity. */
@@ -59,13 +65,17 @@ export const IDENTITY: SpecField[] = [
   },
 ];
 
-/** Quality specification — awaiting confirmation. */
+/**
+ * Quality specification. Grade, screen size, cupping score and moisture are
+ * recorded on each lot, so they read "Confirmed per lot" rather than "Being
+ * verified". Defect count and varieties are still being verified.
+ */
 export const QUALITY_SPEC: SpecField[] = [
-  { label: "Grade", value: null, schemaName: "grade" },
-  { label: "Screen size", value: null, schemaName: "screenSize" },
-  { label: "Cupping score", value: null, schemaName: "cuppingScore" },
+  { label: "Grade", value: null, schemaName: "grade", perLot: true },
+  { label: "Screen size", value: null, schemaName: "screenSize", perLot: true },
+  { label: "Cupping score", value: null, schemaName: "cuppingScore", perLot: true },
   { label: "Defect count", value: null, schemaName: "defectCount" },
-  { label: "Moisture content", value: null, schemaName: "moistureContent" },
+  { label: "Moisture content", value: null, schemaName: "moistureContent", perLot: true },
   { label: "Varieties", value: null, schemaName: "varieties" },
 ];
 

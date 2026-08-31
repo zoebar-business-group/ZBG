@@ -221,8 +221,6 @@ export default function AmaroPage() {
                   { label: "Processing", value: ORIGIN.processing.join(" / ") },
                   { label: "Washing station", value: `Zoebar-owned, ${OPERATIONS.washingStationLocation}` },
                   { label: "Varieties", value: null },
-                  { label: "Cupping profile", value: null },
-                  { label: "Soil characteristics", value: null },
                 ]}
               />
             </div>
