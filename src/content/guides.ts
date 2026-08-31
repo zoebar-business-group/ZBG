@@ -165,7 +165,7 @@ const GRADING: Guide = {
         },
         {
           kind: "p",
-          text: "Zoebar Ethiopia owns its washing station in Amaro, which places cherry intake, processing method, drying and lot formation under direct control rather than sourced through an intermediary. How that record is carried through to the bag is set out in [traceability](/traceability), and the stage-by-stage sequence is in [process](/process).",
+          text: "Zoebar has direct operational oversight of an affiliated washing station in Amaro, which places cherry intake, processing method, drying and lot formation under direct management rather than sourced through an intermediary. How that record is carried through to the bag is set out in [traceability](/traceability), and the stage-by-stage sequence is in [process](/process).",
         },
       ],
     },
@@ -332,7 +332,7 @@ const CALENDAR: Guide = {
         },
         {
           kind: "p",
-          text: "Zoebar runs stages one through six at its own washing station in Amaro, and the full sequence with its operational detail is set out on [the process page](/process). Because the station is Zoebar-owned rather than contracted, the dates attached to each stage are an operational record rather than a report passed on from a third party.",
+          text: "Zoebar runs stages one through six at an affiliated washing station in Amaro, and the full sequence with its operational detail is set out on [the process page](/process). Because the station is run with Zoebar's direct operational oversight rather than contracted out, the dates attached to each stage are an operational record rather than a report passed on from a third party.",
         },
         {
           kind: "pending",
@@ -1016,7 +1016,7 @@ const PROCESS: Guide = {
       blocks: [
         {
           kind: "p",
-          text: "The sequence above is the general one. Zoebar owns its washing station in Amaro, which places cherry intake, processing, drying and lot formation under direct control; how that record is carried to the bag is on [the traceability page](/traceability), and the stage-by-stage operations are on [the process page](/process).",
+          text: "The sequence above is the general one. Zoebar has direct operational oversight of an affiliated washing station in Amaro, which places cherry intake, processing, drying and lot formation under direct management; how that record is carried to the bag is on [the traceability page](/traceability), and the stage-by-stage operations are on [the process page](/process).",
         },
         {
           kind: "pending",
@@ -1361,7 +1361,7 @@ const CONTAINER: Guide = {
         },
         {
           kind: "p",
-          text: "For Zoebar coffee, cherry intake, processing and drying happen at the company's own washing station in Amaro, described on [the process page](/process), so the moisture condition of the coffee entering the supply chain is an operational record rather than a figure taken on trust from a third party.",
+          text: "For Zoebar coffee, cherry intake, processing and drying happen at an affiliated washing station in Amaro run with Zoebar's direct operational oversight, described on [the process page](/process), so the moisture condition of the coffee entering the supply chain is an operational record rather than a figure taken on trust from a third party.",
         },
       ],
     },

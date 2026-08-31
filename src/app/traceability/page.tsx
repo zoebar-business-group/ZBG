@@ -17,7 +17,7 @@ const TRAIL = [
 export const metadata: Metadata = {
   title: "Traceability, Lot Records from Amaro",
   description:
-    "How a Zoebar lot is traced: origin in Amaro (Koore Zone), Ethiopia, processing at Zoebar's own washing station, harvest period, quality record and the producers connected to the lot.",
+    "The lot record Zoebar's traceability system is being built around: origin in Amaro (Koore Zone), Ethiopia, processing at an affiliated washing station with direct operational oversight, harvest period, quality record and the producers connected to the lot.",
   alternates: { canonical: "/traceability" },
   openGraph: { title: "Traceability, Lot Records from Amaro", url: "/traceability", type: "article" },
 };
@@ -44,7 +44,7 @@ const RECORD_FIELDS = [
   },
   {
     field: "Washing station",
-    holds: `Zoebar-owned station at ${OPERATIONS.washingStationLocation}.`,
+    holds: `Affiliated station at ${OPERATIONS.washingStationLocation}, run with Zoebar's direct operational oversight.`,
     status: "verified",
   },
   {
@@ -84,7 +84,7 @@ export default function TraceabilityPage() {
             articleSchema({
               headline: "Traceability, lot records from Amaro",
               description:
-                "What a Zoebar lot record carries: origin in Amaro (Koore Zone), Ethiopia, processing method at Zoebar's own washing station, harvest period, quality assessment and connected producers.",
+                "The lot record Zoebar's traceability system is being developed around: origin in Amaro (Koore Zone), Ethiopia, processing method at an affiliated washing station with direct operational oversight, harvest period, quality assessment and connected producers.",
               path: "/traceability",
             }),
             faqSchema(TRACEABILITY_FAQS),
@@ -99,7 +99,7 @@ export default function TraceabilityPage() {
         lede={TRACEABILITY_FAQS[0].answer}
         meta={[
           { term: "Origin", detail: `${ORIGIN.name}, ${ORIGIN.country}` },
-          { term: "Station", detail: "Zoebar-owned" },
+          { term: "Station", detail: "Affiliated, direct oversight" },
           { term: "QR destination", detail: "Lot page" },
           { term: "Published lots", detail: <Pending /> },
         ]}

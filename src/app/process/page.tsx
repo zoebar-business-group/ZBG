@@ -18,7 +18,7 @@ const TRAIL = [
 export const metadata: Metadata = {
   title: "Coffee Process, Cherry to Container",
   description:
-    "How Zoebar processes Ethiopian Arabica at its own washing station in Amaro, Ethiopia: intake, sorting, washed and natural processing, drying, grading and lot formation.",
+    "How Zoebar processes Ethiopian Arabica at an affiliated washing station in Amaro, Ethiopia, with direct operational oversight: intake, sorting, washed and natural processing, drying, grading and lot formation.",
   alternates: { canonical: "/process" },
   openGraph: { title: "Coffee Process, Cherry to Container", url: "/process", type: "article" },
 };
@@ -40,7 +40,7 @@ const STAGES = [
     n: "01",
     name: "Cherry intake",
     detail:
-      "Cherry is delivered to the Zoebar washing station in Amaro during the harvest window and assessed on arrival.",
+      "Cherry is delivered to the affiliated washing station in Amaro during the harvest window and assessed on arrival.",
     duration: null,
   },
   {
@@ -97,7 +97,7 @@ export default function ProcessPage() {
             articleSchema({
               headline: "Coffee process, cherry to container",
               description:
-                "How Zoebar processes Ethiopian Arabica at its own washing station in Amaro, Ethiopia, from cherry intake through sorting, washed and natural processing, drying, grading and lot formation to export.",
+                "How Zoebar processes Ethiopian Arabica at an affiliated washing station in Amaro, Ethiopia, with direct operational oversight, from cherry intake through sorting, washed and natural processing, drying, grading and lot formation to export.",
               path: "/process",
             }),
             faqSchema(PROCESS_FAQS),
@@ -109,9 +109,9 @@ export default function ProcessPage() {
       <PageHeader
         eyebrow="Process"
         title="From cherry to container."
-        lede={`Zoebar Ethiopia owns the washing station in ${OPERATIONS.washingStationLocation}. Cherry intake, processing method, drying and lot formation are controlled directly, which is what makes the process record attached to a lot an operational record rather than a supplier's claim.`}
+        lede={`The washing station in ${OPERATIONS.washingStationLocation} is held by an affiliated company within Zoebar's ownership structure and run with Zoebar's direct operational oversight. Cherry intake, processing method, drying and lot formation are managed directly, which is what makes the process record attached to a lot an operational record rather than a supplier's claim.`}
         meta={[
-          { term: "Station", detail: "Zoebar-owned" },
+          { term: "Station", detail: "Affiliated, direct oversight" },
           { term: "Location", detail: OPERATIONS.washingStationLocation },
           { term: "Methods", detail: ORIGIN.processing.join(" / ") },
           { term: "Harvest", detail: harvestWindow() },
@@ -206,9 +206,9 @@ export default function ProcessPage() {
                 rounded="panel"
                 onDark
                 src="/washing-station.jpg"
-                alt="Rows of raised drying beds at the Zoebar washing station in Amaro, with concrete fermentation tanks in the foreground and workers tending the parchment, green hills behind."
-                brief="Drying beds in use at the Zoebar washing station, parchment being turned, showing the working method rather than a styled arrangement."
-                caption={`Both methods run at Zoebar's washing station in ${OPERATIONS.washingStationLocation}.`}
+                alt="Rows of raised drying beds at the affiliated washing station in Amaro, with concrete fermentation tanks in the foreground and workers tending the parchment, green hills behind."
+                brief="Drying beds in use at the affiliated washing station, parchment being turned, showing the working method rather than a styled arrangement."
+                caption={`Both methods run at the affiliated washing station in ${OPERATIONS.washingStationLocation}.`}
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
             </div>

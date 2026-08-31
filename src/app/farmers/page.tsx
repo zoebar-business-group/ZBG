@@ -145,7 +145,7 @@ export default function FarmersPage() {
                   rounded="card"
                   cut
                   className="sm:mt-12"
-                  brief="A producer delivering cherry to the Zoebar washing station at Amaro, documentary, no staging."
+                  brief="A producer delivering cherry to the affiliated washing station at Amaro, documentary, no staging."
                   sizes="(max-width: 640px) 100vw, 24vw"
                 />
               </div>

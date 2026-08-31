@@ -19,7 +19,7 @@ const TRAIL = [
 export const metadata: Metadata = {
   title: "Quality, Grading, Cupping and Inspection",
   description:
-    "How Ethiopian green coffee quality is assessed: the raw evaluation, the cup evaluation, the export grade and the inspection points. What Zoebar controls at its own washing station in Amaro, and which specifications are still being verified.",
+    "How Ethiopian green coffee quality is assessed: the raw evaluation, the cup evaluation, the export grade and the inspection points. What Zoebar oversees at an affiliated washing station in Amaro, and which specifications are still being verified.",
   alternates: { canonical: "/quality" },
   openGraph: {
     title: "Quality, Grading, Cupping and Inspection",
@@ -132,7 +132,7 @@ export default function QualityPage() {
           { term: "Origin", detail: `${ORIGIN.name} (${ORIGIN.zone})` },
           { term: "Altitude", detail: `${altitudeBand()} masl` },
           { term: "Harvest", detail: harvestWindow() },
-          { term: "Station", detail: "Zoebar-owned" },
+          { term: "Station", detail: "Affiliated, direct oversight" },
         ]}
       />
 
@@ -243,9 +243,11 @@ export default function QualityPage() {
               <p className="mt-7 max-w-[44ch] font-sans text-[1.0625rem] leading-[1.65] text-[#cfd9d6]">
                 Quality is not created at the grading table. It is created at intake,
                 at sorting and on the drying beds, and the grading table only records
-                what already happened. {OPERATIONS.ethiopiaEntity} owns the washing
-                station in {OPERATIONS.washingStationLocation}, which puts the stages
-                that determine the outcome under direct control rather than bought in.
+                what already happened. The washing station in{" "}
+                {OPERATIONS.washingStationLocation} is held by an affiliated company
+                within Zoebar&rsquo;s ownership structure and run with direct
+                operational oversight, which puts the stages that determine the
+                outcome under direct management rather than bought in.
               </p>
               <div className="mt-10">
                 <Button href="/process" variant="secondary" onDark>

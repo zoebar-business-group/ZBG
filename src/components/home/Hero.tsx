@@ -145,7 +145,8 @@ export function Hero() {
           >
             Washed and natural Arabica from {ORIGIN.name}, grown at{" "}
             <span data-numeric>{altitudeBand()}</span> metres above sea level and
-            processed at Zoebar&rsquo;s own washing station.
+            processed at an affiliated washing station with Zoebar&rsquo;s direct
+            operational oversight.
           </p>
 
           <div

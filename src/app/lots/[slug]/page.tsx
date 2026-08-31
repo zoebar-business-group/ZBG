@@ -38,7 +38,7 @@ export async function generateMetadata({
   const lot = await lotBySlug(slug);
   if (!lot) return {};
 
-  const description = `${lot.lotId}: ${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at Zoebar's own washing station.`;
+  const description = `${lot.lotId}: ${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at an affiliated washing station with Zoebar's direct operational oversight.`;
 
   return {
     title: `${lot.lotId}, ${lot.origin} ${lot.harvestYear}`,
@@ -116,7 +116,7 @@ export default async function LotPage({
           __html: graph(
             productSchema({
               name: `${lot.lotId}, ${lot.process} Ethiopian Arabica, ${lot.origin}`,
-              description: `${lot.process} Ethiopian Arabica green coffee from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at Zoebar's own washing station in ${ORIGIN.name}.`,
+              description: `${lot.process} Ethiopian Arabica green coffee from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at an affiliated washing station in ${ORIGIN.name} with Zoebar's direct operational oversight.`,
               path: `/lots/${lot.slug}`,
               properties,
             }),
@@ -129,7 +129,7 @@ export default async function LotPage({
         surface="deep"
         eyebrow={`${lot.origin} · ${lot.harvestYear} harvest`}
         title={lot.lotId}
-        lede={`${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, processed at Zoebar's own washing station.`}
+        lede={`${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, processed at an affiliated washing station with Zoebar's direct operational oversight.`}
         meta={[
           { term: "Process", detail: lot.process },
           { term: "Harvest", detail: String(lot.harvestYear) },
