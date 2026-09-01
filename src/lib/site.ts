@@ -60,6 +60,14 @@ export interface Route {
    * reads does not rewrite the site's structured data.
    */
   navLabel?: string;
+  /**
+   * If set, the nav and footer links for this route point straight at this URL
+   * and open in a new tab, rather than navigating to `path`. The route itself
+   * still exists and 308-redirects (e.g. /journal → the company LinkedIn while
+   * the journal has no entries) — this only changes the visible links so a
+   * click leaves the site cleanly in a new tab instead of a same-tab redirect.
+   */
+  externalHref?: string;
   changeFrequency?: "daily" | "weekly" | "monthly" | "yearly";
   priority?: number;
 }
@@ -86,8 +94,12 @@ export const ROUTES: Route[] = [
   /* Ships (it is in the primary navigation, and a 404 there is a visible
      defect) but is noindex while ENTRIES is empty — a section with no entries
      is thin content. Remove `noindex` here and the `robots` block in
-     app/journal/page.tsx when the first entry is published. */
-  { path: "/journal", label: "Journal", density: "story", built: true, noindex: true, inNav: true, changeFrequency: "weekly", priority: 0.7 },
+     app/journal/page.tsx when the first entry is published.
+     While it has no entries, the nav/footer links go straight to the company
+     LinkedIn in a new tab (`externalHref`); the /journal route still 308s
+     there for direct hits and crawlers. Drop `externalHref` when the journal
+     carries its own entries. */
+  { path: "/journal", label: "Journal", density: "story", built: true, noindex: true, inNav: true, externalHref: ORG.linkedin, changeFrequency: "weekly", priority: 0.7 },
   { path: "/guides", label: "Guides", density: "spec", built: true, inNav: true, changeFrequency: "monthly", priority: 0.7 },
   { path: "/about", label: "About", navLabel: "About Us", density: "story", built: true, darkHeader: true, inNav: true, changeFrequency: "yearly", priority: 0.6 },
   /* Same reasoning as /journal: linked from the footer and from /about, so it
@@ -125,6 +137,11 @@ export const NAV_ITEMS = NAV_ORDER.map((path) => {
 /** What the header prints for a route. */
 export function navLabelFor(route: Route): string {
   return route.navLabel ?? route.label;
+}
+
+/** External URL a route's nav/footer link should open (in a new tab), if any. */
+export function externalHrefFor(path: string): string | undefined {
+  return ROUTES.find((r) => r.path === path)?.externalHref;
 }
 
 /** Primary conversion, Strategy 6 / Directive 24. */

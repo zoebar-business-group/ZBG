@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { ORIGIN, OPERATIONS, BUYERS, altitudeBand, harvestWindow } from "@/lib/org";
 import { citableSummary } from "@/lib/schema";
+import { externalHrefFor } from "@/lib/site";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Button } from "@/components/primitives/Button";
 import { Stat, Pending, SpecTable } from "@/components/primitives/data";
@@ -659,7 +660,7 @@ export function FromOrigin() {
               Field notes from Amaro.
             </h2>
           </div>
-          <Button href="/journal" variant="quiet">
+          <Button href={externalHrefFor("/journal") ?? "/journal"} variant="quiet">
             All entries
           </Button>
         </div>

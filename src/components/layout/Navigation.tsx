@@ -74,28 +74,45 @@ export function Navigation() {
           {NAV_ITEMS.map((item) => {
             const active =
               pathname === item.path || pathname.startsWith(`${item.path}/`);
+            const linkClass = clsx(
+              "group relative block py-1 font-sans text-[0.8125rem] font-medium uppercase tracking-[0.14em] transition-colors duration-[200ms]",
+              overHero
+                ? "text-[#cfd9d6] hover:text-alabaster"
+                : "text-[#5a5f56] hover:text-ink",
+              active && (overHero ? "text-alabaster" : "text-ink"),
+            );
+            const inner = (
+              <>
+                {navLabelFor(item)}
+                <span
+                  aria-hidden="true"
+                  className={clsx(
+                    "absolute -bottom-0.5 left-0 block h-px w-full origin-left bg-current transition-transform duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+                    active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
+                  )}
+                />
+              </>
+            );
             return (
               <li key={item.path}>
-                <Link
-                  href={item.path}
-                  aria-current={active ? "page" : undefined}
-                  className={clsx(
-                    "group relative block py-1 font-sans text-[0.8125rem] font-medium uppercase tracking-[0.14em] transition-colors duration-[200ms]",
-                    overHero
-                      ? "text-[#cfd9d6] hover:text-alabaster"
-                      : "text-[#5a5f56] hover:text-ink",
-                    active && (overHero ? "text-alabaster" : "text-ink"),
-                  )}
-                >
-                  {navLabelFor(item)}
-                  <span
-                    aria-hidden="true"
-                    className={clsx(
-                      "absolute -bottom-0.5 left-0 block h-px w-full origin-left bg-current transition-transform duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
-                      active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
-                    )}
-                  />
-                </Link>
+                {item.externalHref ? (
+                  <a
+                    href={item.externalHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClass}
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <Link
+                    href={item.path}
+                    aria-current={active ? "page" : undefined}
+                    className={linkClass}
+                  >
+                    {inner}
+                  </Link>
+                )}
               </li>
             );
           })}
@@ -161,17 +178,33 @@ export function Navigation() {
           className="border-t border-[#e2dbcd] bg-alabaster lg:hidden"
         >
           <ul className="mx-auto flex w-full max-w-[96rem] flex-col px-6 py-2 sm:px-8">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.path} className="border-b border-[#efe9de] last:border-0">
-                <Link
-                  href={item.path}
-                  onClick={() => setOpen(false)}
-                  className="flex min-h-[56px] items-center font-display text-[1.375rem] text-ink"
-                >
-                  {navLabelFor(item)}
-                </Link>
-              </li>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const mobileClass =
+                "flex min-h-[56px] items-center font-display text-[1.375rem] text-ink";
+              return (
+                <li key={item.path} className="border-b border-[#efe9de] last:border-0">
+                  {item.externalHref ? (
+                    <a
+                      href={item.externalHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setOpen(false)}
+                      className={mobileClass}
+                    >
+                      {navLabelFor(item)}
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.path}
+                      onClick={() => setOpen(false)}
+                      className={mobileClass}
+                    >
+                      {navLabelFor(item)}
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
           </ul>
           <div className="mx-auto w-full max-w-[96rem] px-6 pb-8 pt-4 sm:px-8">
             <Link

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { ORG, OPERATIONS } from "@/lib/org";
-import { ROUTES, PRIMARY_CTA } from "@/lib/site";
+import { ROUTES, PRIMARY_CTA, externalHrefFor } from "@/lib/site";
 import { Logo } from "./Logo";
 
 /**
@@ -72,16 +72,29 @@ export function Footer() {
                   {col.heading}
                 </h2>
                 <ul className="flex flex-col gap-3">
-                  {col.paths.map((p) => (
-                    <li key={p}>
-                      <Link
-                        href={p}
-                        className="font-sans text-sm text-[#cfd9d6] transition-colors duration-[200ms] hover:text-sand"
-                      >
-                        {label(p)}
-                      </Link>
-                    </li>
-                  ))}
+                  {col.paths.map((p) => {
+                    const external = externalHrefFor(p);
+                    const linkClass =
+                      "font-sans text-sm text-[#cfd9d6] transition-colors duration-[200ms] hover:text-sand";
+                    return (
+                      <li key={p}>
+                        {external ? (
+                          <a
+                            href={external}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={linkClass}
+                          >
+                            {label(p)}
+                          </a>
+                        ) : (
+                          <Link href={p} className={linkClass}>
+                            {label(p)}
+                          </Link>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
