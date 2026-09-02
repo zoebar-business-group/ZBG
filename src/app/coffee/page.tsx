@@ -39,14 +39,16 @@ export const metadata: Metadata = {
   },
 };
 
-/** SpecField → SpecRow. A null value renders the Pending marker, or "Confirmed
- *  per lot" when the field is recorded on each lot. */
+/** SpecField → SpecRow. On /coffee an unconfirmed (null) field reads
+ *  "Confirmed per lot" rather than "Being verified" (client instruction) —
+ *  the source `perLot` flag in coffee.ts is unchanged, so /quality is not
+ *  affected. */
 function toRows(fields: typeof ALL_SPECS): SpecRow[] {
   return fields.map((f) => ({
     label: f.label,
     value: f.value,
     note: f.note,
-    perLot: f.perLot,
+    perLot: f.value === null ? true : f.perLot,
   }));
 }
 
