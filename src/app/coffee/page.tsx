@@ -20,7 +20,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Answer, FaqList } from "@/components/primitives/Answer";
 import { Button } from "@/components/primitives/Button";
-import { Pending, SpecTable, type SpecRow } from "@/components/primitives/data";
+import { SpecTable, type SpecRow } from "@/components/primitives/data";
 
 const TRAIL = [
   { name: "Home", path: "/" },
@@ -254,10 +254,12 @@ export default function CoffeePage() {
                 Available lots.
               </h2>
             </div>
+            {/* PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
             <div className="flex items-center gap-3">
               <span className="font-sans text-sm text-meta">Published lots</span>
               <Pending />
             </div>
+            */}
           </div>
           <p className="mt-8 max-w-[58ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
             Our traceability system is built: each lot has its own page covering

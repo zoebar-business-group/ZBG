@@ -99,7 +99,7 @@ export const ROUTES: Route[] = [
      LinkedIn in a new tab (`externalHref`); the /journal route still 308s
      there for direct hits and crawlers. Drop `externalHref` when the journal
      carries its own entries. */
-  { path: "/journal", label: "Journal", density: "story", built: true, noindex: true, inNav: true, externalHref: ORG.linkedin, changeFrequency: "weekly", priority: 0.7 },
+  { path: "/journal", label: "From Origin", density: "story", built: true, noindex: true, inNav: true, externalHref: ORG.linkedin, changeFrequency: "weekly", priority: 0.7 },
   { path: "/guides", label: "Guides", density: "spec", built: true, inNav: true, changeFrequency: "monthly", priority: 0.7 },
   { path: "/about", label: "About", navLabel: "About Us", density: "story", built: true, darkHeader: true, inNav: true, changeFrequency: "yearly", priority: 0.6 },
   /* Same reasoning as /journal: linked from the footer and from /about, so it

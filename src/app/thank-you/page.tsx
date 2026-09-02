@@ -24,18 +24,23 @@ export default async function ThankYouPage({
 }) {
   const { kind } = await searchParams;
   const isSample = kind === "sample";
+  const isQuestion = kind === "question";
+
+  const title = isQuestion
+    ? "Question received."
+    : isSample
+      ? "Sample request received."
+      : "Enquiry received.";
+
+  const lede = isQuestion
+    ? "Thank you. Your question reached the team, and you will have a reply by email, usually within one working day."
+    : isSample
+      ? "Thank you. We will confirm what is available against the profile you described, and come back with sample details and timing."
+      : "Thank you. We will come back with current availability, confirmed specifications and terms. Where a figure is still being verified, we will tell you when it will be confirmed.";
 
   return (
     <>
-      <PageHeader
-        eyebrow="Received"
-        title={isSample ? "Sample request received." : "Enquiry received."}
-        lede={
-          isSample
-            ? "Thank you. We will confirm what is available against the profile you described, and come back with sample details and timing."
-            : "Thank you. We will come back with current availability, confirmed specifications and terms. Where a figure is still being verified, we will tell you when it will be confirmed."
-        }
-      />
+      <PageHeader eyebrow="Received" title={title} lede={lede} />
 
       <Section surface="light" rhythm="base" density="spec" aria-labelledby="next">
         <Container width="text">

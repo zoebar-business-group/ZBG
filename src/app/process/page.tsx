@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Answer, FaqList } from "@/components/primitives/Answer";
 import { Button } from "@/components/primitives/Button";
-import { Pending, SpecTable } from "@/components/primitives/data";
+import { SpecTable } from "@/components/primitives/data";
 import { Figure } from "@/components/primitives/Figure";
 
 const TRAIL = [
@@ -30,9 +30,10 @@ export const metadata: Metadata = {
  * Every stage below is plain HTML, readable with scripting disabled; the only
  * motion is a staggered entrance on the stage list.
  *
- * Real stage timings are Strategy Open Item #4 and are marked pending rather
- * than estimated — a plausible-looking "18–36 hours" would be a fabricated
- * operational record.
+ * Real stage timings are Strategy Open Item #4. The per-stage duration column
+ * and the "Stage timings" marker are commented out pending confirmed data
+ * (docs/LOT-DEPENDENT-FIELDS.md); `duration: null` is retained on each stage so
+ * the column can be re-enabled without reshaping the data.
  */
 
 const STAGES = [
@@ -128,10 +129,12 @@ export default function ProcessPage() {
             >
               Seven stages.
             </h2>
+            {/* PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
             <div className="flex items-center gap-3">
               <span className="font-sans text-sm text-meta">Stage timings</span>
               <Pending />
             </div>
+            */}
           </div>
 
           <ol className="mt-12 flex flex-col">
@@ -159,9 +162,13 @@ export default function ProcessPage() {
                     {s.detail}
                   </p>
                 </div>
+                {/* PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md).
+                    The grid keeps its third `auto` track (empty for now) so this
+                    re-enables as a one-line change.
                 <div className="sm:pt-2 sm:text-right">
                   {s.duration ?? <Pending />}
                 </div>
+                */}
               </li>
             ))}
           </ol>
@@ -241,11 +248,12 @@ export default function ProcessPage() {
                   { label: "Origin", value: `${ORIGIN.name} (${ORIGIN.zone}), ${ORIGIN.country}` },
                   { label: "Harvest", value: harvestWindow() },
                   { label: "Processing", value: ORIGIN.processing.join(" / ") },
-                  { label: "Lead time", value: null },
-                  { label: "Incoterms", value: null },
-                  { label: "Port of loading", value: null },
-                  { label: "Packing", value: null },
-                  { label: "Inspection", value: null },
+                  // PENDING FIELDS hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
+                  // { label: "Lead time", value: null },
+                  // { label: "Incoterms", value: null },
+                  // { label: "Port of loading", value: null },
+                  // { label: "Packing", value: null },
+                  // { label: "Inspection", value: null },
                 ]}
               />
             </div>

@@ -180,10 +180,12 @@ export default async function RequestQuotePage({
                 and we will match it against what is on the drying beds and in
                 store.
               </p>
+              {/* PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <span className="font-sans text-sm text-[#9db3b0]">Sample policy</span>
                 <Pending onDark />
               </div>
+              */}
             </div>
 
             <div className="min-w-0 rounded-[2rem] bg-alabaster p-7 sm:p-9 lg:col-span-7">

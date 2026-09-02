@@ -14,7 +14,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Answer, FaqList } from "@/components/primitives/Answer";
 import { Button } from "@/components/primitives/Button";
-import { Stat, Pending, SpecTable } from "@/components/primitives/data";
+import { Stat, SpecTable } from "@/components/primitives/data";
 import { Figure } from "@/components/primitives/Figure";
 
 const TRAIL = [
@@ -160,6 +160,7 @@ export default function AmaroPage() {
                 />
               </div>
 
+              {/* PENDING FIELDS hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
               <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
                 <div className="flex items-center gap-3">
                   <span className="font-sans text-sm text-[#9db3b0]">Varieties</span>
@@ -170,6 +171,7 @@ export default function AmaroPage() {
                   <Pending onDark />
                 </div>
               </div>
+              */}
             </div>
 
             <div className="lg:col-span-6">
@@ -178,10 +180,10 @@ export default function AmaroPage() {
                 rounded="panel"
                 cut
                 onDark
-                src="/amaro.jpg"
-                alt="Terraced coffee plots stepping down the hillsides of Amaro, Koore Zone, layered ridgelines receding into haze, no people in frame."
-                brief="Amaro at altitude, the slope profile of the growing area, shot to show elevation and terrain rather than a single tree."
-                caption={`Coffee in ${ORIGIN.name} grows between ${altitudeBand()} metres above sea level.`}
+                src="/amaro-tree.jpg"
+                alt="Coffee branches heavy with ripe red and darkening cherry at a farm in Amaro, Koore Zone, deep green leaves behind, no people in frame."
+                brief="Cherry on the branch in Amaro at peak ripeness, shot close to show the fruit set and the mix of ripe and just-turning cherry."
+                caption={`Cherry ripening in ${ORIGIN.name}, grown between ${altitudeBand()} metres above sea level.`}
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
             </div>
@@ -224,7 +226,8 @@ export default function AmaroPage() {
                     value: `Affiliated, ${OPERATIONS.washingStationLocation}`,
                     note: "Held within Zoebar's ownership structure, run with direct operational oversight, transitioning to Zoebar Ethiopia.",
                   },
-                  { label: "Varieties", value: null },
+                  // PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
+                  // { label: "Varieties", value: null },
                 ]}
               />
             </div>

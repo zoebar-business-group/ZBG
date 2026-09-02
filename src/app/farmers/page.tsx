@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { ORIGIN, altitudeBand } from "@/lib/org";
-import { graph, articleSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
+import {
+  graph,
+  articleSchema,
+  faqSchema,
+  breadcrumbSchema,
+} from "@/lib/schema";
 import { FARMER_FAQS } from "@/content/faqs";
 import { publishedProducers } from "@/content/farmers";
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -22,7 +27,11 @@ export const metadata: Metadata = {
   description:
     "The producers who grow Zoebar's coffee in Amaro (Koore Zone), Ethiopia, at 1,700–1,800 masl. Named individually, with plot and altitude, where documented permission has been given.",
   alternates: { canonical: "/farmers" },
-  openGraph: { title: "Producers, The Growers of Amaro", url: "/farmers", type: "article" },
+  openGraph: {
+    title: "Producers, The Growers of Amaro",
+    url: "/farmers",
+    type: "article",
+  },
 };
 
 /**
@@ -66,12 +75,17 @@ export default function FarmersPage() {
           { term: "Origin", detail: `${ORIGIN.name}, ${ORIGIN.country}` },
           { term: "Zone", detail: ORIGIN.zone },
           { term: "Altitude", detail: `${altitudeBand()} masl` },
-          { term: "Published profiles", detail: producers.length || <Pending /> },
+          { term: "Published profiles", detail: producers.length },
         ]}
       />
 
       {/* --- Why this page exists ------------------------------------------- */}
-      <Section surface="light" rhythm="base" density="story" aria-labelledby="credit">
+      <Section
+        surface="light"
+        rhythm="base"
+        density="story"
+        aria-labelledby="credit"
+      >
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
@@ -83,14 +97,14 @@ export default function FarmersPage() {
               <Answer
                 id="credit"
                 question="Why does Zoebar name its producers?"
-                answer="Producer credit is a stated purpose of this site. The people who grow the coffee in Amaro, Koore Zone, Ethiopia are named with their plot and altitude, and lot pages link back to them. This is what turns traceability from a marketing claim into a checkable fact."
+                answer="Producer credit is a stated purpose of this site. The people who grow the coffee in Amaro, Koore Zone, Ethiopia will be named with their plot and altitude, with lot pages linking back to them as profiles are added. This is what will turn traceability from a marketing claim into a checkable fact."
               />
               <p className="mt-8 max-w-[58ch] font-sans text-[0.9375rem] leading-[1.65] text-[#5a5f56]">
-                Profiles are built from the producer&rsquo;s own account of their work:
-                the plot they farm, the altitude they farm at, how long they have
-                worked with Zoebar, and their own words where they choose to give
-                them. Producers are the skilled specialists behind the coffee, and
-                the page is written that way.
+                Profiles are built from the producer&rsquo;s own account of
+                their work: the plot they farm, the altitude they farm at, how
+                long they have worked with Zoebar, and their own words where
+                they choose to give them. Producers are the skilled specialists
+                behind the coffee, and the page is written that way.
               </p>
             </div>
           </div>
@@ -98,7 +112,12 @@ export default function FarmersPage() {
       </Section>
 
       {/* --- Profiles, or an honest empty state ------------------------------ */}
-      <Section surface="bone" rhythm="base" density="story" aria-labelledby="profiles">
+      <Section
+        surface="bone"
+        rhythm="base"
+        density="story"
+        aria-labelledby="profiles"
+      >
         <Container width="wide">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <h2
@@ -109,7 +128,7 @@ export default function FarmersPage() {
             </h2>
             <div className="flex items-center gap-3">
               <span className="font-sans text-sm text-meta">Status</span>
-              {producers.length === 0 && <Pending>Awaiting permissions</Pending>}
+              {producers.length === 0 && <Pending>In progress</Pending>}
             </div>
           </div>
 
@@ -117,15 +136,15 @@ export default function FarmersPage() {
             <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-6">
                 <p className="max-w-[52ch] font-sans text-[1.0625rem] leading-[1.65] text-[#3d423a]">
-                  No profiles are published yet. A profile cannot go live until the
-                  producer has given documented permission for their name,
-                  photograph and words to be used.
+                  The photographs shown here are of real Zoebar producers who
+                  have given permission to share their photo. Full profiles,
+                  with each producer&rsquo;s name, plot, and story, are being
+                  added as we confirm the details with them.
                 </p>
                 <p className="mt-5 max-w-[52ch] font-sans text-[0.9375rem] leading-[1.65] text-[#5a5f56]">
-                  Profiles are added progressively as those permissions are
-                  recorded, rather than the page launching with stand-in people.
-                  Each will carry the producer&rsquo;s name, plot, altitude, years
-                  working with Zoebar and the lots they contributed to.
+                  Each profile will include the producer&rsquo;s name, plot,
+                  altitude, years growing with Zoebar, and the specific lots
+                  they&rsquo;ve contributed to.
                 </p>
                 <div className="mt-9">
                   <Button href="/traceability" variant="quiet">
@@ -135,17 +154,21 @@ export default function FarmersPage() {
               </div>
               <div className="grid gap-6 sm:grid-cols-2 lg:col-span-6">
                 <Figure
+                  src="/farmer-one.jpg"
+                  alt="A coffee producer in a worn brown jacket picking ripe red cherry by hand from a laden branch at their plot in Amaro, Koore Zone."
                   ratio="portrait"
                   rounded="card"
-                  brief="Producer portrait at their own plot, working context, direct and unposed. Publication requires documented permission."
+                  brief="A producer hand-picking ripe cherry at their plot in Amaro, seen in profile among the coffee trees, natural light, unposed."
                   sizes="(max-width: 640px) 100vw, 24vw"
                 />
                 <Figure
+                  src="/farmer-two.jpg"
+                  alt="A coffee producer standing among his cherry-laden coffee trees at his plot in Amaro, Koore Zone, one hand on a branch, turning to the camera with a smile."
                   ratio="portrait"
                   rounded="card"
                   cut
                   className="sm:mt-12"
-                  brief="A producer delivering cherry to the affiliated washing station at Amaro, documentary, no staging."
+                  brief="A producer at his plot in Amaro among the coffee trees, cherry ripening on the branch, documentary, natural light."
                   sizes="(max-width: 640px) 100vw, 24vw"
                 />
               </div>
@@ -168,7 +191,9 @@ export default function FarmersPage() {
                     </h3>
                     <p className="mt-2 font-sans text-sm text-[#5a5f56]">
                       {p.plot}
-                      {p.altitude ? ` · ${p.altitude.toLocaleString("en-US")} masl` : ""}
+                      {p.altitude
+                        ? ` · ${p.altitude.toLocaleString("en-US")} masl`
+                        : ""}
                     </p>
                   </Link>
                 </li>
@@ -179,7 +204,12 @@ export default function FarmersPage() {
       </Section>
 
       {/* --- FAQ ------------------------------------------------------------- */}
-      <Section surface="light" rhythm="base" density="spec" aria-labelledby="farmer-faq">
+      <Section
+        surface="light"
+        rhythm="base"
+        density="spec"
+        aria-labelledby="farmer-faq"
+      >
         <Container width="text">
           <h2
             id="farmer-faq"

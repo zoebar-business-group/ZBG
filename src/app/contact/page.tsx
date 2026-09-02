@@ -9,12 +9,12 @@ import {
   breadcrumbSchema,
 } from "@/lib/schema";
 import { CONTACT_FAQS } from "@/content/faqs";
-import { WHATSAPP_NUMBER, WHATSAPP_ENABLED, whatsappHref, WHATSAPP_MESSAGES } from "@/lib/site";
+import { WHATSAPP_NUMBER, whatsappHref, WHATSAPP_MESSAGES } from "@/lib/site";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Answer, FaqList } from "@/components/primitives/Answer";
 import { Pending } from "@/components/primitives/data";
-import { EnquiryForm } from "@/components/forms/EnquiryForm";
+import { ContactForm } from "@/components/forms/ContactForm";
 
 const TRAIL = [
   { name: "Home", path: "/" },
@@ -30,27 +30,17 @@ export const metadata: Metadata = {
 };
 
 /**
- * /contact — a specification surface with the enquiry form on it.
+ * /contact — a specification surface built around a lightweight general-question
+ * form (`ContactForm` → `submitQuestion`), distinct from the commercial
+ * enquiry funnel at /request-quote.
  *
- * Telephone, email and registered address are Open Item #10 and render as
- * pending. That would make a conventional contact page useless, so this one is
- * built around the channel that does work: the enquiry form, which is the same
- * server action as /request-quote and delivers to the same place.
- *
- * The channel table lists what is and is not available deliberately. A buyer
- * who can see that the phone number is being verified — rather than finding a
- * plausible number that nobody answers — learns something accurate about the
- * company on their first visit.
+ * Telephone, email and registered address are Open Item #10. Rather than a
+ * conventional contact page with a plausible number nobody answers, the channel
+ * table states what is and is not available, and the form takes any general
+ * question straight to the team. Buyers after specifications, availability,
+ * pricing or a sample are routed to /request-quote, where the form captures
+ * what a firm answer needs.
  */
-
-/** What to put in an enquiry so it can be answered in one exchange. */
-const INCLUDE = [
-  "The volume band you are working toward, even approximately.",
-  "Processing method, washed, natural, or both.",
-  "Your destination port or delivery point, which decides which Incoterms rules are relevant.",
-  "Whether you want a quotation, a sample, or both.",
-  "Any grading, moisture or certification requirement your market imposes.",
-];
 
 export default function ContactPage() {
   return (
@@ -69,7 +59,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Start the conversation."
-        lede={`Enquiries about Ethiopian Arabica green coffee from ${ORIGIN.name} (${ORIGIN.zone}), Ethiopia (specifications, availability, samples and pricing) reach the commercial team through the form below.`}
+        lede={`A general question about Zoebar, the coffee from ${ORIGIN.name} (${ORIGIN.zone}), Ethiopia, or how the company works reaches the team through the form below. For specifications, availability, pricing or a sample, use the request-a-quote form instead.`}
         meta={[
           { term: "Company", detail: ORG.legalName },
           { term: "Registered", detail: "United Arab Emirates" },
@@ -108,7 +98,7 @@ export default function ContactPage() {
                         scope="row"
                         className="w-[42%] py-4 pr-6 font-sans text-sm font-medium text-[#5a5f56]"
                       >
-                        Enquiry form
+                        General questions
                       </th>
                       <td className="py-4 font-sans text-[0.9375rem] text-ink">
                         <Link
@@ -118,7 +108,27 @@ export default function ContactPage() {
                           Available on this page
                         </Link>
                         <span className="mt-1 block text-sm text-meta">
-                          Quotations and sample requests.
+                          Anything about the company, the coffee or the origin.
+                        </span>
+                      </td>
+                    </tr>
+
+                    <tr className="border-t border-[#d9d0bf] align-top">
+                      <th
+                        scope="row"
+                        className="w-[42%] py-4 pr-6 font-sans text-sm font-medium text-[#5a5f56]"
+                      >
+                        Quotes and samples
+                      </th>
+                      <td className="py-4 font-sans text-[0.9375rem] text-ink">
+                        <Link
+                          href="/request-quote"
+                          className="underline decoration-[0.5px] decoration-faint underline-offset-[3px] transition-colors hover:decoration-current"
+                        >
+                          Request a quote
+                        </Link>
+                        <span className="mt-1 block text-sm text-meta">
+                          Specifications, availability, pricing and sample requests.
                         </span>
                       </td>
                     </tr>
@@ -142,8 +152,9 @@ export default function ContactPage() {
                           ? undefined
                           : "Withheld until a number is verified, rather than pointed at a placeholder.",
                       },
-                      { label: "Registered address", value: null },
-                      { label: "TRN", value: ORG.trn },
+                      // PENDING FIELDS hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
+                      // { label: "Registered address", value: null },
+                      // { label: "TRN", value: ORG.trn },
                     ].map((row) => (
                       <tr key={row.label} className="border-t border-[#d9d0bf] align-top">
                         <th
@@ -182,57 +193,33 @@ export default function ContactPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow className="text-meta">Enquiry</Eyebrow>
+              <Eyebrow className="text-meta">Ask</Eyebrow>
               <h2
                 id="enquiry-heading"
                 className="mt-6 max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
               >
-                Tell us what you need.
+                Ask a question.
               </h2>
               <p className="mt-7 max-w-[42ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-                The more of this the first message carries, the fewer exchanges it
-                takes to get you a real answer.
+                For anything about the company, the coffee from {ORIGIN.name}, the
+                affiliated washing station, or how Zoebar works. Give us enough to
+                answer properly and we will reply by email.
               </p>
 
-              <ul className="mt-8 flex max-w-[46ch] flex-col gap-3">
-                {INCLUDE.map((item) => (
-                  <li
-                    key={item}
-                    className="grid grid-cols-[0.75rem_minmax(0,1fr)] gap-x-4 font-sans text-[0.9375rem] leading-[1.7] text-[#5a5f56]"
-                  >
-                    <span aria-hidden="true" className="pt-[0.7em] text-faint">
-                      <span className="block h-px w-3 bg-current" />
-                    </span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
               <p className="mt-8 max-w-[42ch] font-sans text-[0.9375rem] leading-[1.65] text-meta">
-                Not sure which terms apply? The{" "}
+                After specifications, availability, pricing or a sample? The{" "}
                 <Link
-                  href="/guides/incoterms-green-coffee"
+                  href="/request-quote"
                   className="underline decoration-[0.5px] decoration-faint underline-offset-[3px] transition-colors hover:decoration-current"
                 >
-                  Incoterms guide
+                  request-a-quote form
                 </Link>{" "}
-                and the{" "}
-                <Link
-                  href="/guides/import-documentation-checklist"
-                  className="underline decoration-[0.5px] decoration-faint underline-offset-[3px] transition-colors hover:decoration-current"
-                >
-                  documentation checklist
-                </Link>{" "}
-                cover both before you write.
+                captures the volume, grade and destination a firm answer needs.
               </p>
             </div>
 
             <div className="min-w-0 lg:col-span-7">
-              <EnquiryForm
-                kind="quote"
-                submitLabel="Send enquiry"
-                whatsappEnabled={WHATSAPP_ENABLED}
-              />
+              <ContactForm />
             </div>
           </div>
         </Container>

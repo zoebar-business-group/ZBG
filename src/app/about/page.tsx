@@ -247,12 +247,12 @@ export default function AboutPage() {
                   },
                   { label: "Altitude", value: `${altitudeBand()} masl` },
                   { label: "Harvest", value: harvestWindow() },
-                  /* Null today (Open Item #10). Formatted rather than rendered
-                     directly: a SpecRow value is a ReactNode, and the address
-                     record is an object. */
+                  /* Formatted rather than rendered directly: a SpecRow value is
+                     a ReactNode, and the address record is an object. */
                   { label: "Registered address", value: formatAddress() },
-                  { label: "TRN", value: ORG.trn },
-                  { label: "Founded", value: ORG.foundingDate },
+                  // PENDING FIELDS hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
+                  // { label: "TRN", value: ORG.trn },
+                  // { label: "Founded", value: ORG.foundingDate },
                 ]}
               />
             </div>

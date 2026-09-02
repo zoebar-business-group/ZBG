@@ -131,7 +131,7 @@ export function Hero() {
               Ethiopian coffee,
             </span>
           </span>
-          <span className="hero-line block overflow-hidden">
+          <span className="hero-line block ">
             <span style={{ ["--animate-delay" as string]: "500ms" }}>
               closer to origin.
             </span>
