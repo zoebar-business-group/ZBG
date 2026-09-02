@@ -67,7 +67,7 @@ export function WhyZoebar() {
                 },
                 {
                   title: "Traceability that resolves",
-                  body: "Our traceability system is built around lot-level records covering origin, processing, quality and shipment. Where a fact is not yet confirmed, it is marked as being verified.",
+                  body: "Our traceability system is built around lot-level records covering origin, processing, quality and shipment. Figures that vary by lot are confirmed per lot and published once confirmed, never estimated.",
                 },
                 {
                   title: "Buyers who value consistency",
@@ -575,11 +575,6 @@ export function Farmers() {
               Producer credit is a stated purpose of this site. Each profile
               carries the grower&rsquo;s name, plot, altitude and their own
               words, and lot pages link back to the people who grew the lot.
-            </p>
-            <p className="mt-5 max-w-[44ch] font-sans text-sm leading-relaxed text-meta">
-              Profiles publish only with documented permission from the
-              producer. They are added progressively as those permissions are
-              confirmed.
             </p>
             <div className="mt-9">
               <Button href="/farmers" variant="quiet">

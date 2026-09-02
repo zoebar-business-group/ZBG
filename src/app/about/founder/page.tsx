@@ -5,7 +5,6 @@ import { graph, aboutPageSchema, breadcrumbSchema } from "@/lib/schema";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Button } from "@/components/primitives/Button";
-import { Pending } from "@/components/primitives/data";
 
 const TRAIL = [
   { name: "Home", path: "/" },
@@ -89,7 +88,6 @@ export default function FounderPage() {
         title="In their own words."
         lede="The founder's account of why this company exists is being written with the founder, and will be published here when it is confirmed. It is not being drafted on their behalf in the meantime."
         meta={[
-          { term: "Status", detail: <Pending>In preparation</Pending> },
           { term: "Company", detail: ORG.name },
           { term: "Ethiopia", detail: OPERATIONS.ethiopiaStatus },
           { term: "Station", detail: OPERATIONS.washingStationLocation },
@@ -139,10 +137,6 @@ export default function FounderPage() {
               >
                 Four things, on the record.
               </h2>
-              <div className="mt-8 flex items-center gap-3">
-                <span className="font-sans text-sm text-meta">Founder account</span>
-                <Pending />
-              </div>
             </div>
 
             <div className="min-w-0 lg:col-span-7">

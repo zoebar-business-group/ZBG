@@ -13,8 +13,6 @@ import { publishedProducers } from "@/content/farmers";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Answer, FaqList } from "@/components/primitives/Answer";
-import { Button } from "@/components/primitives/Button";
-import { Pending } from "@/components/primitives/data";
 import { Figure } from "@/components/primitives/Figure";
 
 const TRAIL = [
@@ -119,57 +117,46 @@ export default function FarmersPage() {
         aria-labelledby="profiles"
       >
         <Container width="wide">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <h2
-              id="profiles"
-              className="max-w-[18ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
-            >
-              Producer profiles.
-            </h2>
-            <div className="flex items-center gap-3">
-              <span className="font-sans text-sm text-meta">Status</span>
-              {producers.length === 0 && <Pending>In progress</Pending>}
-            </div>
-          </div>
-
           {producers.length === 0 ? (
-            <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
+            /* No published profiles yet. This carries the same content as the
+               homepage producers chapter — statement, then the photographs —
+               rather than an "in progress" status panel describing work still
+               to be done. The CTA the homepage carries is dropped: it points
+               here, and the reader is already here. */
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-6">
-                <p className="max-w-[52ch] font-sans text-[1.0625rem] leading-[1.65] text-[#3d423a]">
-                  The photographs shown here are of real Zoebar producers who
-                  have given permission to share their photo. Full profiles,
-                  with each producer&rsquo;s name, plot, and story, are being
-                  added as we confirm the details with them.
+                <h2
+                  id="profiles"
+                  className="max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
+                >
+                  The people who grew it, named.
+                </h2>
+                <p className="mt-7 max-w-[52ch] font-sans text-[1.0625rem] leading-[1.65] text-[#3d423a]">
+                  Producer credit is a stated purpose of this site. Each profile
+                  carries the grower&rsquo;s name, plot, altitude and their own
+                  words, and lot pages link back to the people who grew the lot.
                 </p>
-                <p className="mt-5 max-w-[52ch] font-sans text-[0.9375rem] leading-[1.65] text-[#5a5f56]">
-                  Each profile will include the producer&rsquo;s name, plot,
-                  altitude, years growing with Zoebar, and the specific lots
-                  they&rsquo;ve contributed to.
-                </p>
-                <div className="mt-9">
-                  <Button href="/traceability" variant="quiet">
-                    How lots link to producers
-                  </Button>
-                </div>
               </div>
               <div className="grid gap-6 sm:grid-cols-2 lg:col-span-6">
+                {/* Both are landscape frames in portrait slots and both
+                    producers stand to the left, so the crop is anchored left;
+                    the default centre crop cuts through the face. */}
                 <Figure
                   src="/farmer-one.jpg"
                   alt="A coffee producer in a worn brown jacket picking ripe red cherry by hand from a laden branch at their plot in Amaro, Koore Zone."
                   ratio="portrait"
                   rounded="card"
-                  /* Landscape frame in a portrait slot; the producer stands to
-                     the left, so the default centre crop cuts through him. */
                   focus="left"
                   brief="A producer hand-picking ripe cherry at their plot in Amaro, seen in profile among the coffee trees, natural light, unposed."
                   sizes="(max-width: 640px) 100vw, 24vw"
                 />
                 <Figure
-                  src="/farmer-two.jpg"
-                  alt="A coffee producer standing among his cherry-laden coffee trees at his plot in Amaro, Koore Zone, one hand on a branch, turning to the camera with a smile."
+                  src="/zoebarfarmers1.jpeg"
+                  alt="A coffee producer standing among cherry-laden coffee trees at his plot in Amaro, Koore Zone, reaching to a branch of ripening cherry, forested hillside behind."
                   ratio="portrait"
                   rounded="card"
                   cut
+                  focus="left"
                   className="sm:mt-12"
                   brief="A producer at his plot in Amaro among the coffee trees, cherry ripening on the branch, documentary, natural light."
                   sizes="(max-width: 640px) 100vw, 24vw"
@@ -177,7 +164,16 @@ export default function FarmersPage() {
               </div>
             </div>
           ) : (
-            <ul className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            <>
+              {/* Same id as the heading in the empty branch, so the section's
+                  aria-labelledby resolves either way. */}
+              <h2
+                id="profiles"
+                className="max-w-[18ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
+              >
+                Producer profiles.
+              </h2>
+              <ul className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {producers.map((p) => (
                 <li key={p.slug}>
                   <Link href={`/farmers/${p.slug}`} className="group block">
@@ -198,10 +194,11 @@ export default function FarmersPage() {
                         ? ` · ${p.altitude.toLocaleString("en-US")} masl`
                         : ""}
                     </p>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
         </Container>
       </Section>

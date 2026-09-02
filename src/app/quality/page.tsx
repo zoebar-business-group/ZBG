@@ -22,7 +22,7 @@ const TRAIL = [
 export const metadata: Metadata = {
   title: "Quality, Grading, Cupping and Inspection",
   description:
-    "How Ethiopian green coffee quality is assessed: the raw evaluation, the cup evaluation, the export grade and the inspection points. What Zoebar oversees at an affiliated washing station in Amaro, and which specifications are still being verified.",
+    "How Ethiopian green coffee quality is assessed: the raw evaluation, the cup evaluation, the export grade and the inspection points. What Zoebar oversees at an affiliated washing station in Amaro, and which specifications are confirmed per lot.",
   alternates: { canonical: "/quality" },
   openGraph: {
     title: "Quality, Grading, Cupping and Inspection",
@@ -342,15 +342,19 @@ export default function QualityPage() {
             <div className="min-w-0 lg:col-span-7">
               <SpecTable
                 caption="Quality specification"
+                /* Same rule as /coffee: an unconfirmed field reads "Confirmed
+                   per lot", which is what it is, rather than "Being verified",
+                   which describes work in progress. The two pages read from
+                   one source and must label it identically. */
                 rows={QUALITY_SPEC.map((s) => ({
                   label: s.label,
                   value: s.value,
                   note: s.note,
-                  perLot: s.perLot,
+                  perLot: s.value === null ? true : s.perLot,
                 }))}
               />
               <p className="mt-8 max-w-[58ch] font-sans text-[0.9375rem] leading-[1.65] text-[#5a5f56]">
-                These fields fill from the client&rsquo;s confirmed records, not from
+                These fields fill from Zoebar&rsquo;s confirmed records, not from
                 industry averages. When they are confirmed they appear here, on{" "}
                 <Link
                   href="/coffee"
@@ -407,8 +411,8 @@ export default function QualityPage() {
               season.
             </p>
             <p>
-              Zoebar would rather show the gap. A specification that reads &ldquo;being
-              verified&rdquo; is a commitment that every other field on the page was
+              Zoebar would rather show the gap. A field that reads &ldquo;confirmed
+              per lot&rdquo; is a commitment that every other field on the page was
               confirmed before it was published, which is the only thing that makes
               the confirmed fields worth anything.
             </p>

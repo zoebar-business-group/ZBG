@@ -223,11 +223,6 @@ export default function AboutPage() {
               <p className="mt-7 max-w-[42ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
                 {ABOUT_FAQS[1].answer}
               </p>
-              <p className="mt-5 max-w-[42ch] font-sans text-[0.9375rem] leading-[1.65] text-meta">
-                Registered address and TRN are being verified and appear here, in the
-                footer and in the Organization structured data at the same moment they
-                are confirmed, because all three read from one record.
-              </p>
             </div>
 
             <div className="min-w-0 lg:col-span-7">

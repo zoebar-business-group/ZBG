@@ -93,7 +93,7 @@ export const CONTACT_FAQS: readonly QA[] = [
   {
     question: "How do I contact Zoebar about green coffee?",
     answer:
-      "Green coffee enquiries reach Zoebar Business Group through the enquiry form on zoebarbusinessgroup.com, which covers specifications, availability, samples and pricing for Ethiopian Arabica from Amaro (Koore Zone), Ethiopia. Direct telephone and email details are being verified and are published here once confirmed.",
+      "Green coffee enquiries reach Zoebar Business Group through the enquiry form on zoebarbusinessgroup.com, which covers specifications, availability, samples and pricing for Ethiopian Arabica from Amaro (Koore Zone), Ethiopia. Enquiries can also be sent directly by telephone or email, both published on the contact page.",
   },
   {
     question: "Can I request a sample of Zoebar coffee?",
