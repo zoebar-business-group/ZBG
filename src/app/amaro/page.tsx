@@ -16,6 +16,7 @@ import { Answer, FaqList } from "@/components/primitives/Answer";
 import { Button } from "@/components/primitives/Button";
 import { Stat, SpecTable } from "@/components/primitives/data";
 import { Figure } from "@/components/primitives/Figure";
+import { OriginMap } from "@/components/brand/OriginMap";
 
 const TRAIL = [
   { name: "Home", path: "/" },
@@ -72,6 +73,7 @@ export default function AmaroPage() {
         eyebrow={`${ORIGIN.zone} · ${ORIGIN.country}`}
         title={`${ORIGIN.name}.`}
         lede={citableSummary()}
+        aside={<OriginMap />}
         meta={[
           { term: "Zone", detail: ORIGIN.zone },
           { term: "Altitude", detail: `${altitudeBand()} masl` },
@@ -175,10 +177,13 @@ export default function AmaroPage() {
             </div>
 
             <div className="lg:col-span-6">
+              {/* `fill` so the photograph ends level with the foot of the
+                  altitude figures opposite, instead of running past them. */}
               <Figure
                 ratio="portrait"
                 rounded="panel"
                 cut
+                fill
                 onDark
                 src="/amaro-tree.jpg"
                 alt="Coffee branches heavy with ripe red and darkening cherry at a farm in Amaro, Koore Zone, deep green leaves behind, no people in frame."
