@@ -78,11 +78,14 @@ export default function ContactPage() {
                 question={CONTACT_FAQS[0].question}
                 answer={CONTACT_FAQS[0].answer}
               />
+              {/* The telephone, email and registered address are confirmed and
+                  published in the record opposite, so the old "being verified"
+                  note that stood here was out of date. The reasoning behind the
+                  channels is worth keeping; the build status is not. */}
               <p className="mt-6 max-w-[58ch] font-sans text-[0.9375rem] leading-[1.7] text-[#5a5f56]">
-                Direct telephone, email and the registered address are being verified.
-                They are published here the moment they are confirmed rather than
-                filled with a general enquiry address, because a channel nobody
-                monitors is worse than no channel at all.
+                Every channel listed here is monitored. Nothing is filled with a
+                general enquiry address, because a channel nobody monitors is
+                worse than no channel at all.
               </p>
             </div>
 

@@ -148,7 +148,7 @@ export default function GuidesPage() {
                   {
                     term: "Zoebar's own specifications follow the trust rule",
                     detail:
-                      "Grade, screen size, cupping band, moisture, packing, lead times and Incoterms are marked as being verified until the client confirms them. A guide is not a route around that rule.",
+                      "Grade, screen size, cupping band, moisture, packing, lead times and Incoterms are confirmed per lot and published once confirmed. A guide is not a route around that rule.",
                   },
                   {
                     term: "Every claim about origin comes from one record",

@@ -105,7 +105,9 @@ export default function TraceabilityPage() {
           { term: "Origin", detail: `${ORIGIN.name}, ${ORIGIN.country}` },
           { term: "Station", detail: "Affiliated, direct oversight" },
           { term: "QR destination", detail: "Lot page" },
-          { term: "Published lots", detail: <Pending /> },
+          /* "Published lots · Being verified" removed for launch: with no lots
+             published it reported the state of the build rather than telling a
+             buyer anything. Restore it as a live count once lots exist. */
         ]}
       />
 
