@@ -783,15 +783,14 @@ export function RequestSection() {
             </p>
           </div>
 
-       
-            <div className="flex flex-col justify-end gap-4 lg:col-span-5">
-              <Button href="/request-quote" onDark>
-                Request a quote
-              </Button>
-              <Button href="/request-quote#sample" variant="secondary" onDark>
-                Request a sample
-              </Button>
-              <p className="mt-2 font-sans text-sm leading-relaxed text-[#9db3b0]">
+          <div className="flex flex-col justify-end gap-4 lg:col-span-5">
+            <Button href="/request-quote" onDark>
+              Request a quote
+            </Button>
+            <Button href="/request-quote#sample" variant="secondary" onDark>
+              Request a sample
+            </Button>
+            <p className="mt-2 text-center font-sans text-sm leading-relaxed text-[#9db3b0]">
               Prefer to talk it through?{" "}
               <Link
                 href="/contact"
@@ -801,9 +800,7 @@ export function RequestSection() {
               </Link>
               .
             </p>
-            </div>
-            
-          
+          </div>
         </div>
       </Container>
     </Section>
