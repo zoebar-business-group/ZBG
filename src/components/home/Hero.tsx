@@ -39,7 +39,7 @@ export function Hero() {
     <section
       data-density="story"
       aria-labelledby="hero-heading"
-      className="relative isolate flex min-h-[86svh] flex-col justify-end overflow-hidden bg-emerald text-alabaster"
+      className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-emerald text-alabaster"
     >
       {/* Background */}
       <div className="absolute inset-0 -z-10">
@@ -105,11 +105,11 @@ export function Hero() {
           moderate extra bottom pad on desktop lifts the whole block off the
           base line, tightening the space above the headline without touching
           the entrance sequence. Kept as fixed spacing-scale steps rather than
-          a `vh` value. The section height, the display scale and these steps
-          were all brought down together, so the first screen reads tighter
-          without the type and the frame drifting out of proportion. Tune the
+          a `vh` value. The section keeps its full 100svh — that height was
+          right; only the type and these steps come down, by one step each, so
+          the block reads a little tighter inside the same frame. Tune the
           `lg`/`xl` steps if the client wants it higher or lower. */}
-      <div className="mx-auto w-full max-w-[96rem] px-6 pb-12 pt-28 sm:px-8 sm:pb-16 lg:px-12 lg:pb-24 xl:pb-28">
+      <div className="mx-auto w-full max-w-[96rem] px-6 pb-12 pt-28 sm:px-8 sm:pb-16 lg:px-12 lg:pb-28 xl:pb-32">
         <p
           className="hero-fade font-sans text-[0.6875rem] font-medium uppercase tracking-[0.24em] text-sand"
           style={{ ["--animate-delay" as string]: "200ms" }}
@@ -127,7 +127,7 @@ export function Hero() {
 
         <h1
           id="hero-heading"
-          className="mt-6 max-w-[16ch] font-display text-[clamp(2.5rem,6.8vw,6.5rem)] leading-[0.94] tracking-[-0.025em]"
+          className="mt-6 max-w-[16ch] font-display text-[clamp(2.75rem,7.7vw,7.5rem)] leading-[0.92] tracking-[-0.025em]"
         >
           <span className="hero-line block overflow-hidden">
             <span style={{ ["--animate-delay" as string]: "380ms" }}>
@@ -174,7 +174,7 @@ export function Hero() {
         {/* Metadata strip, verified facts, stated plainly at the point of
             first contact. Doubles as the first extractable passage. */}
         <dl
-          className="hero-fade mt-11 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-[rgba(240,226,203,0.18)] pt-7 sm:grid-cols-4"
+          className="hero-fade mt-12 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-[rgba(240,226,203,0.18)] pt-7 sm:grid-cols-4"
           style={{ ["--animate-delay" as string]: "1120ms" }}
         >
           {[
