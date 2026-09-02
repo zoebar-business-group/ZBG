@@ -9,7 +9,10 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Answer, FaqList } from "@/components/primitives/Answer";
 import { Button } from "@/components/primitives/Button";
-import { Pending, SpecTable } from "@/components/primitives/data";
+// `Pending` is only used by the lot-dependent "Quality figures" chip, which is
+// commented out below pending real per-lot data (docs/LOT-DEPENDENT-FIELDS.md).
+// Restore this import when re-enabling that chip.
+import { SpecTable } from "@/components/primitives/data";
 
 const TRAIL = [
   { name: "Home", path: "/" },
@@ -19,7 +22,7 @@ const TRAIL = [
 export const metadata: Metadata = {
   title: "Quality, Grading, Cupping and Inspection",
   description:
-    "How Ethiopian green coffee quality is assessed: the raw evaluation, the cup evaluation, the export grade and the inspection points. What Zoebar controls at its own washing station in Amaro, and which specifications are still being verified.",
+    "How Ethiopian green coffee quality is assessed: the raw evaluation, the cup evaluation, the export grade and the inspection points. What Zoebar oversees at an affiliated washing station in Amaro, and which specifications are still being verified.",
   alternates: { canonical: "/quality" },
   openGraph: {
     title: "Quality, Grading, Cupping and Inspection",
@@ -132,7 +135,7 @@ export default function QualityPage() {
           { term: "Origin", detail: `${ORIGIN.name} (${ORIGIN.zone})` },
           { term: "Altitude", detail: `${altitudeBand()} masl` },
           { term: "Harvest", detail: harvestWindow() },
-          { term: "Station", detail: "Zoebar-owned" },
+          { term: "Station", detail: "Affiliated, direct oversight" },
         ]}
       />
 
@@ -243,9 +246,11 @@ export default function QualityPage() {
               <p className="mt-7 max-w-[44ch] font-sans text-[1.0625rem] leading-[1.65] text-[#cfd9d6]">
                 Quality is not created at the grading table. It is created at intake,
                 at sorting and on the drying beds, and the grading table only records
-                what already happened. {OPERATIONS.ethiopiaEntity} owns the washing
-                station in {OPERATIONS.washingStationLocation}, which puts the stages
-                that determine the outcome under direct control rather than bought in.
+                what already happened. The washing station in{" "}
+                {OPERATIONS.washingStationLocation} is held by an affiliated company
+                within Zoebar&rsquo;s ownership structure and run with direct
+                operational oversight, which puts the stages that determine the
+                outcome under direct management rather than bought in.
               </p>
               <div className="mt-10">
                 <Button href="/process" variant="secondary" onDark>
@@ -325,10 +330,14 @@ export default function QualityPage() {
               <p className="mt-7 max-w-[44ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
                 {QUALITY_FAQS[2].answer}
               </p>
+              {/* LOT-DEPENDENT FIELDS — "Quality figures" chip hidden with the
+                  grade / screen size / cupping score / moisture rows, pending
+                  real per-lot data. Tracker: docs/LOT-DEPENDENT-FIELDS.md
               <div className="mt-8 flex items-center gap-3">
                 <span className="font-sans text-sm text-meta">Quality figures</span>
-                <Pending />
+                <Pending>Confirmed per lot</Pending>
               </div>
+              */}
             </div>
             <div className="min-w-0 lg:col-span-7">
               <SpecTable
@@ -337,6 +346,7 @@ export default function QualityPage() {
                   label: s.label,
                   value: s.value,
                   note: s.note,
+                  perLot: s.perLot,
                 }))}
               />
               <p className="mt-8 max-w-[58ch] font-sans text-[0.9375rem] leading-[1.65] text-[#5a5f56]">

@@ -47,12 +47,12 @@ const SCOPE = [
   {
     term: "Why coffee, and why Amaro",
     detail:
-      "The decision to build around a single origin and a single washing station rather than a broad trading book.",
+      "The decision to build around a single origin and a single affiliated washing station rather than a broad trading book.",
   },
   {
-    term: "Why the station was bought, not contracted",
+    term: "Why an affiliated station, not an arm's-length supplier",
     detail:
-      "Owning the point where quality is decided is expensive and slow. The account will set out the reasoning behind choosing it anyway.",
+      "Keeping an affiliated washing station in Amaro under Zoebar's direct operational oversight, rather than sourcing coffee from an independent processor, is expensive and slow. The account will set out the reasoning behind choosing it anyway, and how the arrangement is set to transition to Zoebar Ethiopia.",
   },
   {
     term: "What the company is for",

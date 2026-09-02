@@ -35,8 +35,9 @@ export const metadata: Metadata = {
  * The company page carries the Organization entity, so every fact here is read
  * from `org.ts` rather than written into the markup. Legal address and TRN are
  * Open Item #10 and render as pending; the structure of the company — a UAE
- * entity, an Ethiopian entity being established, and an owned washing station
- * — is verified and is the substance of the page.
+ * entity, an Ethiopian entity being established, and an affiliated washing
+ * station run with direct operational oversight (set to transition to Zoebar
+ * Ethiopia) — is verified and is the substance of the page.
  */
 
 /** The three commitments, from the Foundation Brief. */
@@ -45,7 +46,7 @@ const COMMITMENTS = [
     n: "01",
     name: "Origin",
     detail:
-      "Coffee bought at the point it is grown and processed, not several hands downstream. Zoebar Ethiopia owns the washing station in Amaro, which is what makes an origin claim checkable rather than repeated.",
+      "Coffee bought at the point it is grown and processed, not several hands downstream. The washing station in Amaro is held by an affiliated company within Zoebar's ownership structure and run with direct operational oversight, which is what makes an origin claim checkable rather than repeated.",
     href: "/amaro",
     hrefLabel: "The origin",
   },
@@ -148,9 +149,9 @@ export default function AboutPage() {
                 ratio="portrait"
                 rounded="panel"
                 src="/washing-station.jpg"
-                alt={`The Zoebar washing station in ${OPERATIONS.washingStationLocation}, where cherry is received, processed and dried.`}
-                brief="The Zoebar washing station in Amaro during working hours: the operational asset in use, photographed as a place of work rather than as a landscape."
-                caption={`${OPERATIONS.ethiopiaEntity} owns the washing station in ${OPERATIONS.washingStationLocation}.`}
+                alt={`The affiliated washing station in ${OPERATIONS.washingStationLocation}, where cherry is received, processed and dried.`}
+                brief="The affiliated washing station in Amaro during working hours: the operational asset in use, photographed as a place of work rather than as a landscape."
+                caption={`An affiliated washing station in ${OPERATIONS.washingStationLocation}, run with ${OPERATIONS.ethiopiaEntity}'s direct operational oversight.`}
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
             </div>
@@ -213,7 +214,7 @@ export default function AboutPage() {
                 id="structure"
                 className="mt-6 max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
               >
-                Two entities, one station.
+                Two entities, one supply chain.
               </h2>
               <p className="mt-7 max-w-[42ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
                 {ABOUT_FAQS[1].answer}
@@ -236,7 +237,8 @@ export default function AboutPage() {
                   { label: "Ethiopian status", value: OPERATIONS.ethiopiaStatus },
                   {
                     label: "Washing station",
-                    value: `Owned, ${OPERATIONS.washingStationLocation}`,
+                    value: `Affiliated, ${OPERATIONS.washingStationLocation}`,
+                    note: "Held within Zoebar's ownership structure with direct operational oversight; set to transition to Zoebar Ethiopia.",
                   },
                   {
                     label: "Origin",
@@ -245,12 +247,12 @@ export default function AboutPage() {
                   },
                   { label: "Altitude", value: `${altitudeBand()} masl` },
                   { label: "Harvest", value: harvestWindow() },
-                  /* Null today (Open Item #10). Formatted rather than rendered
-                     directly: a SpecRow value is a ReactNode, and the address
-                     record is an object. */
+                  /* Formatted rather than rendered directly: a SpecRow value is
+                     a ReactNode, and the address record is an object. */
                   { label: "Registered address", value: formatAddress() },
-                  { label: "TRN", value: ORG.trn },
-                  { label: "Founded", value: ORG.foundingDate },
+                  // PENDING FIELDS hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
+                  // { label: "TRN", value: ORG.trn },
+                  // { label: "Founded", value: ORG.foundingDate },
                 ]}
               />
             </div>

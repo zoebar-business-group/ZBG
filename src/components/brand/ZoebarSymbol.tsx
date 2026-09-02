@@ -7,8 +7,9 @@
  *   Logo-Zoebar-Symbol-separate-dark-background.svg   -> #F0E2CB (on deep)
  *   Logo-Zoebar-Symbol-separate-white-background.svg  -> #013A33 (on light)
  *
- * Shared by the header logo and the Figure placeholder, so there is exactly one
- * copy of the path in the codebase.
+ * Shared by the header logo and the Figure placeholder. The one other copy of
+ * the path is `src/app/icon.svg` (the browser-tab icon) — a static file cannot
+ * import this const, so keep the two in sync if the mark ever changes.
  */
 
 export const ZOEBAR_SYMBOL_PATH =

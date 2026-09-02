@@ -20,7 +20,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Answer, FaqList } from "@/components/primitives/Answer";
 import { Button } from "@/components/primitives/Button";
-import { Pending, SpecTable, type SpecRow } from "@/components/primitives/data";
+import { SpecTable, type SpecRow } from "@/components/primitives/data";
 
 const TRAIL = [
   { name: "Home", path: "/" },
@@ -39,9 +39,17 @@ export const metadata: Metadata = {
   },
 };
 
-/** SpecField → SpecRow. A null value renders the Pending marker. */
+/** SpecField → SpecRow. On /coffee an unconfirmed (null) field reads
+ *  "Confirmed per lot" rather than "Being verified" (client instruction) —
+ *  the source `perLot` flag in coffee.ts is unchanged, so /quality is not
+ *  affected. */
 function toRows(fields: typeof ALL_SPECS): SpecRow[] {
-  return fields.map((f) => ({ label: f.label, value: f.value, note: f.note }));
+  return fields.map((f) => ({
+    label: f.label,
+    value: f.value,
+    note: f.note,
+    perLot: f.value === null ? true : f.perLot,
+  }));
 }
 
 /**
@@ -53,8 +61,11 @@ function toRows(fields: typeof ALL_SPECS): SpecRow[] {
  * closes the page.
  */
 export default function CoffeePage() {
-  const confirmedCount = confirmedSpecs().length;
-  const pendingCount = ALL_SPECS.length - confirmedCount;
+  // Used only by the commented-out "Specification status" section below —
+  // restore both when re-enabling it (docs/LOT-DEPENDENT-FIELDS.md).
+  // `confirmedSpecs()` is still called inline in the Product schema.
+  // const confirmedCount = confirmedSpecs().length;
+  // const pendingCount = ALL_SPECS.length - confirmedCount;
 
   return (
     <>
@@ -90,7 +101,10 @@ export default function CoffeePage() {
         ]}
       />
 
-      {/* --- Specification state, stated up front -------------------------- */}
+      {/* --- Specification state, stated up front --------------------------
+          SECTION COMMENTED OUT on request. Re-enable by uncommenting this
+          block and the confirmedCount / pendingCount consts above.
+          Tracker: docs/LOT-DEPENDENT-FIELDS.md
       <Section surface="bone" rhythm="tight" density="spec" aria-labelledby="state">
         <Container width="wide">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
@@ -104,7 +118,7 @@ export default function CoffeePage() {
               <p className="max-w-[56ch] font-sans text-[0.9375rem] leading-relaxed text-[#3d423a]">
                 {confirmedCount} of {ALL_SPECS.length} fields are confirmed. The
                 remaining {pendingCount} are being verified with our operations
-                team and will be published here once fixed, not estimated.
+                team and published once fixed, not estimated.
               </p>
             </div>
             <div className="flex shrink-0 items-center gap-4">
@@ -119,6 +133,7 @@ export default function CoffeePage() {
           </div>
         </Container>
       </Section>
+      */}
 
       {/* --- Identity: what is confirmed ------------------------------------ */}
       <Section surface="light" rhythm="base" density="spec" aria-labelledby="identity">
@@ -248,16 +263,18 @@ export default function CoffeePage() {
                 Available lots.
               </h2>
             </div>
+            {/* PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
             <div className="flex items-center gap-3">
               <span className="font-sans text-sm text-meta">Published lots</span>
               <Pending />
             </div>
+            */}
           </div>
           <p className="mt-8 max-w-[58ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-            Each lot gets its own page carrying origin, process, harvest, quality
-            and the producers who grew it. Lot pages are the destination for QR
-            codes printed on sacks and sample bags. They publish once per-lot
-            specifications are confirmed.
+            Our traceability system is built: each lot has its own page covering
+            origin, process, harvest, quality and the producers who grew it,
+            reached by a QR code on the sack or sample bag. Lot pages publish
+            once per-lot specifications are confirmed.
           </p>
           <div className="mt-9">
             <Button href="/traceability" variant="quiet">

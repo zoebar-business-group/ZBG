@@ -165,7 +165,7 @@ const GRADING: Guide = {
         },
         {
           kind: "p",
-          text: "Zoebar Ethiopia owns its washing station in Amaro, which places cherry intake, processing method, drying and lot formation under direct control rather than sourced through an intermediary. How that record is carried through to the bag is set out in [traceability](/traceability), and the stage-by-stage sequence is in [process](/process).",
+          text: "Zoebar has direct operational oversight of an affiliated washing station in Amaro, which places cherry intake, processing method, drying and lot formation under direct management rather than sourced through an intermediary. How that record is carried through to the bag is set out in [traceability](/traceability), and the stage-by-stage sequence is in [process](/process).",
         },
       ],
     },
@@ -214,11 +214,15 @@ const GRADING: Guide = {
           kind: "p",
           text: "A coffee can therefore be Grade 2 and cup at 86, or Grade 2 and cup at 82. The grade sets the floor; the cup score is the differentiation above it. When a supplier quotes only one of the two, they have chosen which number flatters the lot. Ask for both, and ask who cupped it and when.",
         },
-        {
-          kind: "pending",
-          label: "Zoebar grade and cupping band",
-          text: "Zoebar's grade band, screen size, defect count, moisture range and cupping score are being verified and are not published as estimates. When confirmed they appear on the specification table on [our coffee page](/coffee) and per lot on the lot record.",
-        },
+        // LOT-DEPENDENT FIELDS — this pending block is hidden until real per-lot
+        // data exists in Sanity. Do not delete; uncomment to re-enable and pick
+        // a label/approach at that point. Tracker: docs/LOT-DEPENDENT-FIELDS.md
+        // {
+        //   kind: "pending",
+        //   label: "Zoebar grade and cupping band",
+        //   perLot: true,
+        //   text: "Zoebar's grade, screen size, moisture and cupping score are recorded on each lot rather than published as a standing figure, and appear on the specification table on [our coffee page](/coffee) and on each lot record. Defect count is being verified.",
+        // },
       ],
     },
     {
@@ -331,13 +335,15 @@ const CALENDAR: Guide = {
         },
         {
           kind: "p",
-          text: "Zoebar runs stages one through six at its own washing station in Amaro, and the full sequence with its operational detail is set out on [the process page](/process). Because the station is Zoebar-owned rather than contracted, the dates attached to each stage are an operational record rather than a report passed on from a third party.",
+          text: "Zoebar runs stages one through six at an affiliated washing station in Amaro, and the full sequence with its operational detail is set out on [the process page](/process). Because the station is run with Zoebar's direct operational oversight rather than contracted out, the dates attached to each stage are an operational record rather than a report passed on from a third party.",
         },
-        {
-          kind: "pending",
-          label: "Stage durations and lead times",
-          text: "Zoebar's stage timings, milling schedule and export lead times are being verified. They are not published as indicative ranges, because a buyer planning a roasting calendar against an estimate is planning against a number Zoebar never committed to.",
-        },
+        // PENDING BLOCK hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md).
+        // Do not delete; uncomment to re-enable and pick a label/approach then.
+        // {
+        //   kind: "pending",
+        //   label: "Stage durations and lead times",
+        //   text: "Zoebar's stage timings, milling schedule and export lead times are being verified. They are not published as indicative ranges, because a buyer planning a roasting calendar against an estimate is planning against a number Zoebar never committed to.",
+        // },
       ],
     },
     {
@@ -556,11 +562,13 @@ const DOCUMENTATION: Guide = {
           kind: "p",
           text: "Practically, this makes plot-level traceability a compliance input rather than a marketing feature. A supplier who cannot connect a bag to the plots it came from cannot supply what an EU operator needs to file. Zoebar's approach to the lot record is set out on [the traceability page](/traceability).",
         },
-        {
-          kind: "pending",
-          label: "Zoebar traceability depth and certifications",
-          text: "The depth to which Zoebar lots are traced, and any certifications held, are being verified and are not published as claims. Buyers with a compliance requirement should raise it directly in an enquiry so the answer given is the confirmed one.",
-        },
+        // PENDING BLOCK hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md).
+        // Do not delete; uncomment to re-enable and pick a label/approach then.
+        // {
+        //   kind: "pending",
+        //   label: "Zoebar traceability depth and certifications",
+        //   text: "The depth to which Zoebar lots are traced, and any certifications held, are being verified and are not published as claims. Buyers with a compliance requirement should raise it directly in an enquiry so the answer given is the confirmed one.",
+        // },
       ],
     },
     {
@@ -843,11 +851,13 @@ const INCOTERMS: Guide = {
           kind: "p",
           text: "Write the rule, the named place and the edition into the contract in full; agree who insures and at what level; and confirm which party files the import declaration and pays duty. Under DDP that is the seller, and a seller who has not registered in your market cannot perform it.",
         },
-        {
-          kind: "pending",
-          label: "Zoebar Incoterms and port of loading",
-          text: "Zoebar's published Incoterms, port of loading, packing and lead times are being verified and are confirmed per contract rather than shown here as indicative terms. [Request a quote](/request-quote) and the terms quoted will be the confirmed ones.",
-        },
+        // PENDING BLOCK hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md).
+        // Do not delete; uncomment to re-enable and pick a label/approach then.
+        // {
+        //   kind: "pending",
+        //   label: "Zoebar Incoterms and port of loading",
+        //   text: "Zoebar's published Incoterms, port of loading, packing and lead times are being verified and are confirmed per contract rather than shown here as indicative terms. [Request a quote](/request-quote) and the terms quoted will be the confirmed ones.",
+        // },
       ],
     },
   ],
@@ -1015,13 +1025,15 @@ const PROCESS: Guide = {
       blocks: [
         {
           kind: "p",
-          text: "The sequence above is the general one. Zoebar owns its washing station in Amaro, which places cherry intake, processing, drying and lot formation under direct control; how that record is carried to the bag is on [the traceability page](/traceability), and the stage-by-stage operations are on [the process page](/process).",
+          text: "The sequence above is the general one. Zoebar has direct operational oversight of an affiliated washing station in Amaro, which places cherry intake, processing, drying and lot formation under direct management; how that record is carried to the bag is on [the traceability page](/traceability), and the stage-by-stage operations are on [the process page](/process).",
         },
-        {
-          kind: "pending",
-          label: "Zoebar sample policy, minimum order and lead times",
-          text: "Zoebar's sample policy, minimum order quantity, production and shipping lead times, and accepted payment terms are being verified and are confirmed per enquiry rather than published as indicative figures. [Request a quote](/request-quote) and the terms quoted will be the confirmed ones.",
-        },
+        // PENDING BLOCK hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md).
+        // Do not delete; uncomment to re-enable and pick a label/approach then.
+        // {
+        //   kind: "pending",
+        //   label: "Zoebar sample policy, minimum order and lead times",
+        //   text: "Zoebar's sample policy, minimum order quantity, production and shipping lead times, and accepted payment terms are being verified and are confirmed per enquiry rather than published as indicative figures. [Request a quote](/request-quote) and the terms quoted will be the confirmed ones.",
+        // },
       ],
     },
   ],
@@ -1195,11 +1207,13 @@ const PAYMENT: Guide = {
           kind: "p",
           text: "The two interact only through the documents. A letter of credit calls for a transport document, and the Incoterms rule determines which document the seller can provide and at what point, which is why the FCA on-board bill of lading option introduced in Incoterms 2020, described in [the Incoterms guide](/guides/incoterms-green-coffee), matters for letter-of-credit trades. Beyond that, the two are set independently, in different clauses of the same contract.",
         },
-        {
-          kind: "pending",
-          label: "Zoebar accepted payment terms",
-          text: "The payment terms Zoebar accepts, any deposit requirement, and the banking arrangements for a transaction are being verified and are confirmed per contract rather than published. They are stated in the quotation and the sales contract for a specific shipment.",
-        },
+        // PENDING BLOCK hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md).
+        // Do not delete; uncomment to re-enable and pick a label/approach then.
+        // {
+        //   kind: "pending",
+        //   label: "Zoebar accepted payment terms",
+        //   text: "The payment terms Zoebar accepts, any deposit requirement, and the banking arrangements for a transaction are being verified and are confirmed per contract rather than published. They are stated in the quotation and the sales contract for a specific shipment.",
+        // },
       ],
     },
   ],
@@ -1360,7 +1374,7 @@ const CONTAINER: Guide = {
         },
         {
           kind: "p",
-          text: "For Zoebar coffee, cherry intake, processing and drying happen at the company's own washing station in Amaro, described on [the process page](/process), so the moisture condition of the coffee entering the supply chain is an operational record rather than a figure taken on trust from a third party.",
+          text: "For Zoebar coffee, cherry intake, processing and drying happen at an affiliated washing station in Amaro run with Zoebar's direct operational oversight, described on [the process page](/process), so the moisture condition of the coffee entering the supply chain is an operational record rather than a figure taken on trust from a third party.",
         },
       ],
     },
@@ -1382,11 +1396,13 @@ const CONTAINER: Guide = {
             "Marks and lot identification on the bags.",
           ],
         },
-        {
-          kind: "pending",
-          label: "Zoebar packing and container specification",
-          text: "Zoebar's bag type and weight, liner specification, bags per container and net loaded weight are being verified and are confirmed per contract rather than published as standing figures. They appear on the specification table on [our coffee page](/coffee) and on the packing list for a specific shipment.",
-        },
+        // PENDING BLOCK hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md).
+        // Do not delete; uncomment to re-enable and pick a label/approach then.
+        // {
+        //   kind: "pending",
+        //   label: "Zoebar packing and container specification",
+        //   text: "Zoebar's bag type and weight, liner specification, bags per container and net loaded weight are being verified and are confirmed per contract rather than published as standing figures. They appear on the specification table on [our coffee page](/coffee) and on the packing list for a specific shipment.",
+        // },
       ],
     },
   ],

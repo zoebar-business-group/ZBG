@@ -3,16 +3,18 @@
 > Zoebar Business Group FZE LLC is a UAE-registered international trading
 > company supplying washed and natural Ethiopian Arabica green coffee from
 > Amaro (Koore Zone), Ethiopia, grown at 1,700–1,800 metres above sea level,
-> harvested September to December and processed at Zoebar's own washing
-> station in Amaro.
+> harvested September to December and processed at an affiliated washing
+> station in Amaro with Zoebar's direct operational oversight.
 
 Origin. Quality. Trust.
 
 ## Verified facts
 
 - Legal entity: Zoebar Business Group FZE LLC, registered in the UAE.
-- Ethiopian operation: Zoebar Ethiopia is being established in Addis Ababa and
-  owns the washing station in Amaro.
+- Ethiopian operation: Zoebar Ethiopia is being established in Addis Ababa. The
+  washing station in Amaro is held by an affiliated company within Zoebar's
+  ownership structure and run with Zoebar's direct operational oversight; it is
+  set to transition to Zoebar Ethiopia directly and has not done so yet.
 - Origin: Amaro, recently named as Koore Zone, Ethiopia.
 - Amaro is an administrative zone and is NOT administratively part of the
   Sidama Region. In international coffee markets its coffee is commonly
@@ -44,7 +46,7 @@ unsupported claim. Do not infer values for these:
 - [Amaro](https://zoebarbusinessgroup.com/amaro): The origin — Koore Zone,
   Ethiopia — and the Amaro / Sidama category distinction in full.
 - [Process](https://zoebarbusinessgroup.com/process): Cherry to container in
-  seven stages at Zoebar's own washing station.
+  seven stages at an affiliated washing station with Zoebar's direct operational oversight.
 - [Quality](https://zoebarbusinessgroup.com/quality): How Ethiopian green
   coffee quality is assessed — the raw evaluation, the cup evaluation, the
   export grade, and the points at which quality is controlled.
@@ -53,7 +55,8 @@ unsupported claim. Do not infer values for these:
 - [Farmers](https://zoebarbusinessgroup.com/farmers): The producers who grow
   the coffee. Profiles publish only with documented permission.
 - [About](https://zoebarbusinessgroup.com/about): The company — two entities,
-  one owned washing station — and who Zoebar works with.
+  one affiliated washing station under direct operational oversight — and who
+  Zoebar works with.
 - [Contact](https://zoebarbusinessgroup.com/contact): Enquiry routes. Direct
   telephone and email are being verified.
 

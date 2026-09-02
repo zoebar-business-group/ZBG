@@ -212,7 +212,7 @@ function BlockNode({ block }: { block: Block }) {
             <p className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-meta">
               {block.label}
             </p>
-            <Pending />
+            {block.perLot ? <Pending>Confirmed per lot</Pending> : <Pending />}
           </div>
           <p className="mt-4 font-sans text-[0.9375rem] leading-[1.7] text-[#5a5f56]">
             <RichText text={block.text} />

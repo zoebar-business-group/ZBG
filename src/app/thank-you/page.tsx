@@ -24,18 +24,23 @@ export default async function ThankYouPage({
 }) {
   const { kind } = await searchParams;
   const isSample = kind === "sample";
+  const isQuestion = kind === "question";
+
+  const title = isQuestion
+    ? "Question received."
+    : isSample
+      ? "Sample request received."
+      : "Enquiry received.";
+
+  const lede = isQuestion
+    ? "Thank you. Your question reached the team, and you will have a reply by email, usually within one working day."
+    : isSample
+      ? "Thank you. We will confirm what is available against the profile you described, and come back with sample details and timing."
+      : "Thank you. We will come back with current availability, confirmed specifications and terms. Where a figure is still being verified, we will tell you when it will be confirmed.";
 
   return (
     <>
-      <PageHeader
-        eyebrow="Received"
-        title={isSample ? "Sample request received." : "Enquiry received."}
-        lede={
-          isSample
-            ? "Thank you. We will confirm what is available against the profile you described, and come back with sample details and timing."
-            : "Thank you. We will come back with current availability, confirmed specifications and terms. Where a figure is still being verified, we will tell you when it will be confirmed."
-        }
-      />
+      <PageHeader eyebrow="Received" title={title} lede={lede} />
 
       <Section surface="light" rhythm="base" density="spec" aria-labelledby="next">
         <Container width="text">
@@ -47,8 +52,8 @@ export default async function ThankYouPage({
           </h2>
           <p className="mt-5 max-w-[54ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
             {ORIGIN.name} is where all of this starts, the zone, the altitude
-            band, the harvest window and the washing station Zoebar owns and
-            runs.
+            band, the harvest window and the affiliated washing station Zoebar
+            runs with direct operational oversight.
           </p>
           <div className="mt-9">
             <Button href="/amaro">Read about {ORIGIN.name}</Button>

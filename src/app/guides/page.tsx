@@ -16,7 +16,7 @@ const TRAIL = [
 export const metadata: Metadata = {
   title: "Green Coffee Guides, Grading, Calendar, Documents, Incoterms",
   description:
-    "Four reference guides for green coffee buyers: how Ethiopian coffee is graded, the harvest and shipping calendar, the importer's documentation checklist, and Incoterms 2020 applied to coffee.",
+    "Seven reference guides for green coffee buyers: how Ethiopian coffee is graded, the harvest and shipping calendar, the importer's documentation checklist, and Incoterms 2020 applied to coffee.",
   alternates: { canonical: "/guides" },
   openGraph: {
     title: "Green Coffee Guides, Grading, Calendar, Documents, Incoterms",

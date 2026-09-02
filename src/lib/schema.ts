@@ -277,5 +277,5 @@ export function aboutPageSchema(a: {
  * Strategy 5.2 cites this construction as the citable example.
  */
 export function citableSummary(): string {
-  return `Zoebar supplies washed and natural Ethiopian Arabica green coffee from ${ORIGIN.name} (${ORIGIN.zone}), Ethiopia, grown at ${altitudeBand()} metres above sea level, harvested ${ORIGIN.harvestStart} to ${ORIGIN.harvestEnd} and processed at Zoebar's own washing station in ${ORIGIN.name}.`;
+  return `Zoebar supplies washed and natural Ethiopian Arabica green coffee from ${ORIGIN.name} (${ORIGIN.zone}), Ethiopia, grown at ${altitudeBand()} metres above sea level, harvested ${ORIGIN.harvestStart} to ${ORIGIN.harvestEnd} and processed at an affiliated washing station in ${ORIGIN.name} with Zoebar's direct operational oversight.`;
 }

@@ -81,6 +81,10 @@ function headerSafe(input: string): string {
  * Validation — the client never decides what is acceptable
  * ---------------------------------------------------------------------- */
 
+/** Deliberately permissive: the only reliable test of an address is a reply
+ *  landing in it. Shared by the quote/sample flow and the /contact question flow. */
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 export function validate(e: Partial<Enquiry>): Record<string, string> {
   const errors: Record<string, string> = {};
 
@@ -100,7 +104,7 @@ export function validate(e: Partial<Enquiry>): Record<string, string> {
   } else {
     const email = e.email?.trim() ?? "";
     if (!email) errors.email = "Please enter your email address.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))
+    else if (!EMAIL_RE.test(email))
       errors.email = "Please check your email address.";
   }
 
@@ -117,6 +121,36 @@ export function validate(e: Partial<Enquiry>): Record<string, string> {
 
 export function isDeliveryConfigured(): boolean {
   return Boolean(process.env.RESEND_API_KEY);
+}
+
+/* --------------------------------------------------------------------------
+ * General question — the lightweight /contact form
+ *
+ * Distinct from `Enquiry`: no company, country, volume band or WhatsApp path.
+ * It shares the hardening (honeypot, `verifyRecaptcha`, `isRateLimited` /
+ * `recordSubmission`), the escaping, and the same Google Sheet log — the row
+ * just carries `kind: "question"` with the commercial columns blank.
+ * ---------------------------------------------------------------------- */
+
+export interface Question {
+  name: string;
+  email: string;
+  message: string;
+}
+
+export function validateQuestion(q: Partial<Question>): Record<string, string> {
+  const errors: Record<string, string> = {};
+
+  if (!q.name?.trim()) errors.name = "Please enter your name.";
+
+  const email = q.email?.trim() ?? "";
+  if (!email) errors.email = "Please enter your email address.";
+  else if (!EMAIL_RE.test(email)) errors.email = "Please check your email address.";
+
+  // No length floor — a general question is not a commercial spec. Just non-empty.
+  if (!q.message?.trim()) errors.message = "Please enter your question.";
+
+  return errors;
 }
 
 /* --------------------------------------------------------------------------
@@ -328,15 +362,93 @@ export async function sendEnquiryEmails(e: Enquiry, score: number | null): Promi
 }
 
 /* --------------------------------------------------------------------------
+ * General question — internal notification + asker autoresponder
+ *
+ * Same transport, constants and escaping as the enquiry pair above. The
+ * internal subject is deliberately unlike "New quote enquiry" / "New sample
+ * enquiry" so the two are distinguishable at a glance in the inbox.
+ * ---------------------------------------------------------------------- */
+
+function questionInternalHtml(q: Question, score: number | null): string {
+  const rows: Array<[string, string]> = [
+    ["Name", escapeHtml(q.name)],
+    ["Email", escapeHtml(q.email)],
+    ["Message", q.message.trim() ? escapeHtml(q.message) : "-"],
+    ["Type", "General question (via /contact)"],
+    ["reCAPTCHA score", score === null ? "not verified" : score.toFixed(2)],
+  ];
+  const body = rows
+    .map(
+      ([term, value]) =>
+        `<tr><td style="padding:6px 16px 6px 0;color:#5f645d;vertical-align:top;white-space:nowrap">${term}</td>` +
+        `<td style="padding:6px 0;white-space:pre-wrap">${value}</td></tr>`,
+    )
+    .join("");
+  return (
+    `<h2 style="font-family:Georgia,serif">New question, ${escapeHtml(q.name)}</h2>` +
+    `<table style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">${body}</table>`
+  );
+}
+
+function questionAutoresponderHtml(): string {
+  const para = `<p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6">`;
+  let html =
+    `${para}Your question reached our team. You'll have a reply within one ` +
+    `working day.</p>`;
+
+  const wa = whatsappHref("Hello Zoebar, I just sent a question through your website.");
+  if (wa) {
+    html += `${para}Prefer WhatsApp? <a href="${wa}">Message the team here</a>.</p>`;
+  }
+  return html;
+}
+
+/**
+ * Sends the internal notification and the asker's autoresponder for a general
+ * question. Never throws — a mail failure is logged and swallowed so the
+ * question still reaches the fallback sheet log and the asker still sees a
+ * confirmation.
+ */
+export async function sendQuestionEmails(q: Question, score: number | null): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return; // guarded by the caller; defensive here
+
+  const resend = new Resend(apiKey);
+  const to = process.env.ENQUIRY_TO_EMAIL || FALLBACK_TO;
+  const subject = headerSafe(`New question, ${q.name.trim() || "website"}`);
+
+  try {
+    const { error } = await resend.emails.send({
+      from: FROM_INTERNAL,
+      to,
+      replyTo: q.email,
+      subject,
+      html: questionInternalHtml(q, score),
+    });
+    if (error) console.error("[question] internal notification rejected by Resend.", error);
+  } catch (err) {
+    console.error("[question] internal notification threw.", err);
+  }
+
+  try {
+    const { error } = await resend.emails.send({
+      from: FROM_BUYER,
+      to: q.email,
+      subject: "Your question reached Zoebar",
+      html: questionAutoresponderHtml(),
+    });
+    if (error) console.error("[question] autoresponder rejected by Resend.", error);
+  } catch (err) {
+    console.error("[question] autoresponder threw.", err);
+  }
+}
+
+/* --------------------------------------------------------------------------
  * Fallback log — mirror the payload to a Google Sheet webhook
  * ---------------------------------------------------------------------- */
 
-/**
- * Never throws. The honeypot and the reCAPTCHA token are deliberately absent.
- * `channel` ("email" | "whatsapp") lets Eden's team see the enquiry source;
- * `phone` is populated on the WhatsApp path and empty on the email path.
- */
-export async function logEnquiryToSheet(e: Enquiry): Promise<void> {
+/** One webhook POST, shared by the enquiry and question logs. Never throws. */
+async function postToSheet(row: Record<string, string>): Promise<void> {
   const url = process.env.GOOGLE_SHEET_WEBHOOK_URL;
   if (!url) return;
 
@@ -344,23 +456,50 @@ export async function logEnquiryToSheet(e: Enquiry): Promise<void> {
     const res = await fetch(url, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        timestamp: new Date().toISOString(),
-        channel: e.channel === "whatsapp" ? "whatsapp" : "email",
-        name: e.name,
-        company: e.company,
-        email: e.email,
-        phone: e.phone,
-        country: e.country,
-        volume: e.volume,
-        message: e.message,
-        kind: e.kind,
-      }),
+      body: JSON.stringify({ timestamp: new Date().toISOString(), ...row }),
     });
     if (!res.ok) console.error("[enquiry] sheet webhook returned", res.status);
   } catch (err) {
     console.error("[enquiry] sheet webhook threw.", err);
   }
+}
+
+/**
+ * Never throws. The honeypot and the reCAPTCHA token are deliberately absent.
+ * `channel` ("email" | "whatsapp") lets Eden's team see the enquiry source;
+ * `phone` is populated on the WhatsApp path and empty on the email path.
+ */
+export async function logEnquiryToSheet(e: Enquiry): Promise<void> {
+  await postToSheet({
+    channel: e.channel === "whatsapp" ? "whatsapp" : "email",
+    name: e.name,
+    company: e.company,
+    email: e.email,
+    phone: e.phone,
+    country: e.country,
+    volume: e.volume,
+    message: e.message,
+    kind: e.kind,
+  });
+}
+
+/**
+ * Never throws. Same sheet, same columns as an enquiry row, with the
+ * commercial fields (company, phone, country, volume) blank and
+ * `kind: "question"` so question rows are distinguishable in the log.
+ */
+export async function logQuestionToSheet(q: Question): Promise<void> {
+  await postToSheet({
+    channel: "email",
+    name: q.name,
+    company: "",
+    email: q.email,
+    phone: "",
+    country: "",
+    volume: "",
+    message: q.message,
+    kind: "question",
+  });
 }
 
 /* --------------------------------------------------------------------------

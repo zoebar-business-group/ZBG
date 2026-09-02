@@ -131,7 +131,16 @@ export const OPERATIONS = {
   /** Verified: "is being established in Addis Ababa". Present tense matters —
    *  do not upgrade this to "established" without confirmation. */
   ethiopiaStatus: "Being established in Addis Ababa",
-  ownsWashingStation: true,
+  /**
+   * Washing-station tenure. The station is currently held by an affiliated
+   * company within Zoebar's ownership structure and run with Zoebar's direct
+   * operational oversight. It is set to transition to Zoebar Ethiopia
+   * directly and HAS NOT done so yet. Never describe it as Zoebar-owned,
+   * "our own", or "owned and operated" — use "affiliated" and "direct
+   * operational oversight".
+   */
+  washingStationTenure:
+    "held by an affiliated company within Zoebar's ownership structure, run with Zoebar's direct operational oversight, and set to transition to Zoebar Ethiopia directly",
   washingStationLocation: "Amaro, Ethiopia",
 
   /** PENDING — Open Item #6, traceability depth. */

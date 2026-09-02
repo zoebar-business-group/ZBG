@@ -101,7 +101,15 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="mx-auto w-full max-w-[96rem] px-6 pb-14 pt-32 sm:px-8 sm:pb-20 lg:px-12 lg:pb-24">
+      {/* Hero content is bottom-anchored (`justify-end` on the section). A
+          moderate extra bottom pad on desktop lifts the whole block off the
+          base line (~5-6% of viewport height at 1440x900), tightening the
+          space above the headline without touching the type scale or the
+          entrance sequence. Kept as fixed spacing-scale steps rather than a
+          `vh` value: at `lg` it matches `pt-32` for a symmetric frame, at
+          `xl` it carries a slight bottom bias. Tune the `lg`/`xl` steps if
+          the client wants it higher or lower. */}
+      <div className="mx-auto w-full max-w-[96rem] px-6 pb-14 pt-32 sm:px-8 sm:pb-20 lg:px-12 lg:pb-32 xl:pb-36">
         <p
           className="hero-fade font-sans text-[0.6875rem] font-medium uppercase tracking-[0.24em] text-sand"
           style={{ ["--animate-delay" as string]: "200ms" }}
@@ -126,7 +134,7 @@ export function Hero() {
               Ethiopian coffee,
             </span>
           </span>
-          <span className="hero-line block overflow-hidden">
+          <span className="hero-line block ">
             <span style={{ ["--animate-delay" as string]: "500ms" }}>
               closer to origin.
             </span>
@@ -140,7 +148,8 @@ export function Hero() {
           >
             Washed and natural Arabica from {ORIGIN.name}, grown at{" "}
             <span data-numeric>{altitudeBand()}</span> metres above sea level and
-            processed at Zoebar&rsquo;s own washing station.
+            processed at an affiliated washing station with Zoebar&rsquo;s direct
+            operational oversight.
           </p>
 
           <div

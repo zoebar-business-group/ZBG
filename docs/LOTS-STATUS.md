@@ -150,9 +150,15 @@ What it actually contains:
 
 > **Q: What information does a Zoebar lot record carry?**
 > A: "A Zoebar lot record carries its origin in Amaro (Koore Zone), Ethiopia, the
-> processing method applied at Zoebar's own washing station, the harvest period,
-> the quality assessment, and the producers connected to the lot where they have
-> given documented permission to be named."
+> processing method applied at an affiliated washing station with Zoebar's direct
+> operational oversight, the harvest period, the quality assessment, and the
+> producers connected to the lot where they have given documented permission to
+> be named."
+
+<!-- Quote paraphrased from an earlier version of TRACEABILITY_FAQS[0]; the live
+answer in src/content/faqs.ts has since been reworded (per-lot grade/screen/
+moisture/cupping note added, producer clause dropped). Only the washing-station
+ownership phrasing is corrected here. -->
 
 Homepage (`src/components/home/sections.tsx:429`):
 

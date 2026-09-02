@@ -1,7 +1,14 @@
 import Link from "next/link";
 
-import { ORIGIN, OPERATIONS, BUYERS, altitudeBand, harvestWindow } from "@/lib/org";
+import {
+  ORIGIN,
+  OPERATIONS,
+  BUYERS,
+  altitudeBand,
+  harvestWindow,
+} from "@/lib/org";
 import { citableSummary } from "@/lib/schema";
+import { externalHrefFor } from "@/lib/site";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Button } from "@/components/primitives/Button";
 import { Stat, Pending, SpecTable } from "@/components/primitives/data";
@@ -18,7 +25,12 @@ import { Figure } from "@/components/primitives/Figure";
 
 export function WhyZoebar() {
   return (
-    <Section surface="light" rhythm="base" density="spec" aria-labelledby="why-heading">
+    <Section
+      surface="light"
+      rhythm="base"
+      density="spec"
+      aria-labelledby="why-heading"
+    >
       <Container width="wide">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
@@ -47,15 +59,15 @@ export function WhyZoebar() {
               {[
                 {
                   title: "A single origin, in depth",
-                  body: `Zoebar works one origin properly rather than many superficially. ${ORIGIN.name} is the signature origin, documented at ${altitudeBand()} metres.`,
+                  body: `Our current coffee program is centered on ${ORIGIN.name}, allowing us to build deeper knowledge of the farms, processing practices, season and people behind each lot.`,
                 },
                 {
-                  title: "Our own washing station",
-                  body: `Zoebar Ethiopia owns the washing station in ${OPERATIONS.washingStationLocation}, so processing is controlled rather than bought in.`,
+                  title: "An affiliated washing station",
+                  body: `The washing station in ${OPERATIONS.washingStationLocation} is held by an affiliated company within Zoebar's ownership structure and run with Zoebar's direct operational oversight, so processing is managed rather than bought in.`,
                 },
                 {
                   title: "Traceability that resolves",
-                  body: "Lots carry their origin, process and quality record. Where a fact is not yet confirmed, it is marked as being verified.",
+                  body: "Our traceability system is built around lot-level records covering origin, processing, quality and shipment. Where a fact is not yet confirmed, it is marked as being verified.",
                 },
                 {
                   title: "Buyers who value consistency",
@@ -159,10 +171,12 @@ export function Amaro() {
               <Button href="/amaro" onDark>
                 Explore {ORIGIN.name}
               </Button>
+              {/* PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
               <div className="flex items-center gap-3">
                 <span className="font-sans text-sm text-[#9db3b0]">Varieties</span>
                 <Pending onDark />
               </div>
+              */}
             </div>
           </div>
 
@@ -172,9 +186,9 @@ export function Amaro() {
               rounded="panel"
               cut
               onDark
-              src="/amaro-harvest.jpg"
-              alt="Ripe red and green coffee cherries on the branch at a hillside farm in Amaro, Koore Zone, with terraced coffee plots behind."
-              brief="Amaro hillside in harvest, cherry on the branch, shot at working distance, natural light."
+              src="/coffee-branch.jpg"
+              alt="A single coffee branch lined with ripe red and orange cherry in Amaro, Koore Zone, soft green foliage behind, no people in frame."
+              brief="Cherry on the branch in Amaro during harvest, shot close, natural light."
               /* No toLowerCase(): the window is "September - December", and
                  lowercasing it printed "september - december" on the homepage.
                  Month names are proper nouns. */
@@ -212,9 +226,9 @@ export function WashingStation() {
               ratio="landscape"
               rounded="panel"
               src="/washing-station.jpg"
-              alt="The Zoebar washing station at Amaro: concrete fermentation tanks in the foreground and long rows of raised drying beds behind, workers tending them, green hills beyond."
-              brief="The Zoebar washing station at Amaro, wide establishing shot showing the fermentation tanks and drying beds in working use."
-              caption="Zoebar Ethiopia owns and operates the washing station at Amaro."
+              alt="The affiliated washing station at Amaro: concrete fermentation tanks in the foreground and long rows of raised drying beds behind, workers tending them, green hills beyond."
+              brief="The affiliated washing station at Amaro, wide establishing shot showing the fermentation tanks and drying beds in working use."
+              caption="An affiliated washing station at Amaro, run with Zoebar's direct operational oversight."
               sizes="(max-width: 1024px) 100vw, 55vw"
             />
           </div>
@@ -227,20 +241,27 @@ export function WashingStation() {
               id="station-heading"
               className="mt-6 max-w-[14ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
             >
-              Processing we control.
+              Processing with direct oversight.
             </h2>
             <p className="mt-7 max-w-[44ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-              {OPERATIONS.ethiopiaEntity} is {OPERATIONS.ethiopiaStatus.toLowerCase()} and
-              owns the washing station in {OPERATIONS.washingStationLocation}. Owning the
-              station is what makes the process record on a lot a fact rather than a claim.
+              {OPERATIONS.ethiopiaEntity} is{" "}
+              {OPERATIONS.ethiopiaStatus.charAt(0).toLowerCase() +
+                OPERATIONS.ethiopiaStatus.slice(1)}
+              . The washing station in {OPERATIONS.washingStationLocation} is
+              held by an affiliated company within Zoebar&rsquo;s ownership
+              structure and run with Zoebar&rsquo;s direct operational
+              oversight, which is what makes the process record on a lot a fact
+              rather than a claim. It is set to transition to{" "}
+              {OPERATIONS.ethiopiaEntity} directly.
             </p>
 
             <dl className="mt-10 flex flex-col">
               {[
-                { term: "Ownership", detail: "Zoebar-owned and operated" },
+                { term: "Tenure", detail: "Affiliated, direct oversight" },
                 { term: "Location", detail: OPERATIONS.washingStationLocation },
                 { term: "Methods", detail: ORIGIN.processing.join(" and ") },
-                { term: "Recorded timings", detail: null },
+                // PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
+                // { term: "Recorded timings", detail: null },
               ].map((row) => (
                 <div
                   key={row.term}
@@ -275,13 +296,42 @@ export function WashingStation() {
    ========================================================================== */
 
 const STAGES = [
-  { n: "01", name: "Cherry", detail: "Selective picking through the harvest window." },
-  { n: "02", name: "Sorting", detail: "Density and defect separation on delivery." },
-  { n: "03", name: "Processing", detail: "Washed or natural, depending on the lot." },
-  { n: "04", name: "Drying", detail: "Raised beds, turned and monitored to target moisture." },
-  { n: "05", name: "Quality", detail: "Grading and cupping before a lot is released." },
-  { n: "06", name: "Lot", detail: "The lot record closes and becomes traceable." },
-  { n: "07", name: "Export", detail: "Documentation, inspection and shipment." },
+  {
+    n: "01",
+    name: "Cherry",
+    detail: "Selective picking through the harvest window.",
+  },
+  {
+    n: "02",
+    name: "Sorting",
+    detail: "Density and defect separation on delivery.",
+  },
+  {
+    n: "03",
+    name: "Processing",
+    detail: "Washed or natural, depending on the lot.",
+  },
+  {
+    n: "04",
+    name: "Drying",
+    detail: "Raised beds, turned and monitored to target moisture.",
+  },
+  {
+    n: "05",
+    name: "Quality",
+    detail: "Grading and cupping before a lot is released.",
+  },
+  {
+    n: "06",
+    name: "Lot",
+    detail:
+      "Origin, processing and quality records are consolidated under the lot identity.",
+  },
+  {
+    n: "07",
+    name: "Export",
+    detail: "Documentation, inspection and shipment.",
+  },
 ];
 
 export function CherryToContainer() {
@@ -305,10 +355,12 @@ export function CherryToContainer() {
               Seven stages, one record.
             </h2>
           </div>
+          {/* PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
           <div className="flex items-center gap-3">
             <span className="font-sans text-sm text-meta">Stage timings</span>
             <Pending />
           </div>
+          */}
         </div>
 
         {/* Horizontal on desktop, vertical on mobile, the composition
@@ -370,9 +422,9 @@ export function Quality() {
               Graded, cupped, recorded.
             </h2>
             <p className="mt-7 max-w-[42ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-              Grading and cupping data belong on the lot, not in the marketing. The
-              table below fills in as each specification is confirmed with the
-              client, until then it states plainly what is still being verified.
+              Grading and cupping data belong on the lot, not in the marketing.
+              The reference below is the confirmed origin picture; per-lot
+              grading figures live on each lot record.
             </p>
             <div className="mt-9">
               <Button href="/quality" variant="quiet">
@@ -390,10 +442,11 @@ export function Quality() {
                 { label: "Processing", value: ORIGIN.processing.join(" / ") },
                 { label: "Altitude", value: `${altitudeBand()} masl` },
                 { label: "Harvest", value: harvestWindow() },
-                { label: "Grade", value: null },
-                { label: "Screen size", value: null },
-                { label: "Cupping score", value: null },
-                { label: "Moisture content", value: null },
+                // LOT-DEPENDENT — hidden pending real per-lot data (docs/LOT-DEPENDENT-FIELDS.md):
+                // { label: "Grade", value: null, perLot: true },
+                // { label: "Screen size", value: null, perLot: true },
+                // { label: "Cupping score", value: null, perLot: true },
+                // { label: "Moisture content", value: null, perLot: true },
               ]}
             />
           </div>
@@ -410,7 +463,14 @@ export function Quality() {
    below is a structure, not a fabricated record — no lot ID is invented.
    ========================================================================== */
 
-const CHAIN = ["Lot", ORIGIN.name, "Washing station", "Process", "Quality", "Shipment"];
+const CHAIN = [
+  "Lot",
+  ORIGIN.name,
+  "Washing station",
+  "Process",
+  "Quality",
+  "Shipment",
+];
 
 export function Traceability() {
   return (
@@ -437,9 +497,10 @@ export function Traceability() {
             style={{ ["--animate-delay" as string]: "80ms" }}
             className="mt-8 max-w-[52ch] font-sans text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.65] text-[#cfd9d6]"
           >
-            Every lot page is a record: where the coffee grew, who grew it, how it
-            was processed and what the quality assessment found. Lot pages are the
-            destination for QR codes printed on sacks and sample bags.
+            Our traceability system is built around lot-level records covering
+            origin, processing, quality and shipment information. Each lot gets
+            its own page, reached by a QR code on the sack or sample bag;
+            publishing begins once the first lots are confirmed.
           </p>
         </div>
 
@@ -459,7 +520,9 @@ export function Traceability() {
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="font-sans text-[0.9375rem] text-alabaster">{step}</span>
+              <span className="font-sans text-[0.9375rem] text-alabaster">
+                {step}
+              </span>
             </li>
           ))}
         </ol>
@@ -468,10 +531,12 @@ export function Traceability() {
           <Button href="/traceability" onDark variant="secondary">
             How traceability works
           </Button>
+          {/* PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
           <div className="flex items-center gap-3">
             <span className="font-sans text-sm text-[#9db3b0]">Published lots</span>
             <Pending onDark />
           </div>
+          */}
         </div>
       </Container>
     </Section>
@@ -507,13 +572,14 @@ export function Farmers() {
               The people who grew it, named.
             </h2>
             <p className="mt-7 max-w-[44ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-              Producer credit is a stated purpose of this site. Each profile carries
-              the grower&rsquo;s name, plot, altitude and their own words, and lot
-              pages link back to the people who grew the lot.
+              Producer credit is a stated purpose of this site. Each profile
+              carries the grower&rsquo;s name, plot, altitude and their own
+              words, and lot pages link back to the people who grew the lot.
             </p>
             <p className="mt-5 max-w-[44ch] font-sans text-sm leading-relaxed text-meta">
-              Profiles publish only with documented permission from the producer.
-              They are added progressively as those permissions are confirmed.
+              Profiles publish only with documented permission from the
+              producer. They are added progressively as those permissions are
+              confirmed.
             </p>
             <div className="mt-9">
               <Button href="/farmers" variant="quiet">
@@ -522,11 +588,13 @@ export function Farmers() {
             </div>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:col-span-7">
+          <div className="grid gap-6 sm:grid-cols-2 lg:col-span-7 ">
             <Figure
               ratio="portrait"
               rounded="card"
-              brief="Producer portrait at their plot, working context, direct eye contact, natural light. Permission required before publication."
+              src="/farmer-one.jpg"
+              alt="A coffee producer in a worn brown jacket picking ripe red cherry by hand from a laden branch at their plot in Amaro, Koore Zone."
+              brief="A producer hand-picking ripe cherry at their plot in Amaro, seen in profile among the coffee trees, natural light, unposed."
               sizes="(max-width: 640px) 100vw, 28vw"
             />
             <Figure
@@ -534,7 +602,9 @@ export function Farmers() {
               rounded="card"
               cut
               className="sm:mt-14"
-              brief="Hands sorting cherry at the washing station, close, documentary, no staging."
+              src="/farmer-two.jpg"
+              alt="A coffee producer standing among his cherry-laden coffee trees at his plot in Amaro, Koore Zone, one hand on a branch, turning to the camera with a smile."
+              brief="A producer at his plot in Amaro among the coffee trees, cherry ripening on the branch, documentary, natural light."
               sizes="(max-width: 640px) 100vw, 28vw"
             />
           </div>
@@ -568,33 +638,30 @@ export function AvailableCoffee() {
               id="coffee-heading"
               className="mt-6 max-w-[18ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
             >
-              Current offer.
+              2026/27 New Crop.
             </h2>
           </div>
           <p className="max-w-[38ch] font-sans text-sm leading-relaxed text-[#5a5f56]">
-            Specifications, packing, MOQ, lead times and Incoterms are confirmed
-            with the client before publication. Request a quote for current
-            availability against your volume.
+            Samples, lot specifications and commercial terms will become
+            available as the new crop progresses.
           </p>
         </div>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="min-w-0 lg:col-span-7">
             <SpecTable
-              caption="Commercial terms, Amaro green coffee"
+              caption="2026/27 new crop, Amaro green coffee"
               rows={[
-                { label: "Origin", value: `${ORIGIN.name} (${ORIGIN.zone}), ${ORIGIN.country}` },
-                { label: "Species", value: ORIGIN.species },
+                { label: "Coffee", value: `${ORIGIN.name} green coffee` },
                 { label: "Processing", value: ORIGIN.processing.join(" / ") },
                 { label: "Harvest", value: harvestWindow() },
-                { label: "Grade", value: null },
-                { label: "Packing", value: null },
-                { label: "Minimum order quantity", value: null },
-                { label: "Lead time", value: null },
-                { label: "Incoterms", value: null },
-                { label: "Port of loading", value: null },
               ]}
             />
+            <p className="mt-8 max-w-[52ch] font-sans text-[0.9375rem] leading-[1.65] text-[#5a5f56]">
+              New-crop samples become available once the coffee has been
+              processed and its quality evaluated, not before. Register interest
+              now and we will come back to you as the crop reaches that point.
+            </p>
           </div>
 
           <div className="lg:col-span-5">
@@ -655,15 +722,18 @@ export function FromOrigin() {
               Field notes from Amaro.
             </h2>
           </div>
-          <Button href="/journal" variant="quiet">
+          <Button
+            href={externalHrefFor("/journal") ?? "/journal"}
+            variant="quiet"
+          >
             All entries
           </Button>
         </div>
 
         <p className="mt-10 max-w-[54ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-          From Origin documents the coffee journey through verified information and
-          photography from {ORIGIN.name}, harvest updates, processing notes and
-          buyer resources. Entries publish as each is confirmed.
+          From Origin documents the coffee journey through verified information
+          and photography from {ORIGIN.name}, harvest updates, processing notes
+          and buyer resources. Entries publish as each is confirmed.
         </p>
 
         <div className="mt-10 flex items-center gap-3">
@@ -706,9 +776,10 @@ export function RequestSection() {
               style={{ ["--animate-delay" as string]: "80ms" }}
               className="mt-8 max-w-[50ch] font-sans text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.65] text-[#cfd9d6]"
             >
-              Tell us the volume and grade you are working with and we will come back
-              with current availability, specifications and terms. If a detail is not
-              yet confirmed, we will say so rather than estimate it.
+              Tell us the volume and grade you are working with and we will come
+              back with current availability, specifications and terms. If a
+              detail is not yet confirmed, we will say so rather than estimate
+              it.
             </p>
           </div>
 
@@ -719,9 +790,12 @@ export function RequestSection() {
             <Button href="/request-quote#sample" variant="secondary" onDark>
               Request a sample
             </Button>
-            <p className="mt-2 font-sans text-sm leading-relaxed text-[#9db3b0]">
+            <p className="mt-2 text-center font-sans text-sm leading-relaxed text-[#9db3b0]">
               Prefer to talk it through?{" "}
-              <Link href="/contact" className="text-sand underline underline-offset-4">
+              <Link
+                href="/contact"
+                className="text-sand underline underline-offset-4"
+              >
                 Contact the team
               </Link>
               .

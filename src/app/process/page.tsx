@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Answer, FaqList } from "@/components/primitives/Answer";
 import { Button } from "@/components/primitives/Button";
-import { Pending, SpecTable } from "@/components/primitives/data";
+import { SpecTable } from "@/components/primitives/data";
 import { Figure } from "@/components/primitives/Figure";
 
 const TRAIL = [
@@ -18,7 +18,7 @@ const TRAIL = [
 export const metadata: Metadata = {
   title: "Coffee Process, Cherry to Container",
   description:
-    "How Zoebar processes Ethiopian Arabica at its own washing station in Amaro, Ethiopia: intake, sorting, washed and natural processing, drying, grading and lot formation.",
+    "How Zoebar processes Ethiopian Arabica at an affiliated washing station in Amaro, Ethiopia, with direct operational oversight: intake, sorting, washed and natural processing, drying, grading and lot formation.",
   alternates: { canonical: "/process" },
   openGraph: { title: "Coffee Process, Cherry to Container", url: "/process", type: "article" },
 };
@@ -30,9 +30,10 @@ export const metadata: Metadata = {
  * Every stage below is plain HTML, readable with scripting disabled; the only
  * motion is a staggered entrance on the stage list.
  *
- * Real stage timings are Strategy Open Item #4 and are marked pending rather
- * than estimated — a plausible-looking "18–36 hours" would be a fabricated
- * operational record.
+ * Real stage timings are Strategy Open Item #4. The per-stage duration column
+ * and the "Stage timings" marker are commented out pending confirmed data
+ * (docs/LOT-DEPENDENT-FIELDS.md); `duration: null` is retained on each stage so
+ * the column can be re-enabled without reshaping the data.
  */
 
 const STAGES = [
@@ -40,7 +41,7 @@ const STAGES = [
     n: "01",
     name: "Cherry intake",
     detail:
-      "Cherry is delivered to the Zoebar washing station in Amaro during the harvest window and assessed on arrival.",
+      "Cherry is delivered to the affiliated washing station in Amaro during the harvest window and assessed on arrival.",
     duration: null,
   },
   {
@@ -97,7 +98,7 @@ export default function ProcessPage() {
             articleSchema({
               headline: "Coffee process, cherry to container",
               description:
-                "How Zoebar processes Ethiopian Arabica at its own washing station in Amaro, Ethiopia, from cherry intake through sorting, washed and natural processing, drying, grading and lot formation to export.",
+                "How Zoebar processes Ethiopian Arabica at an affiliated washing station in Amaro, Ethiopia, with direct operational oversight, from cherry intake through sorting, washed and natural processing, drying, grading and lot formation to export.",
               path: "/process",
             }),
             faqSchema(PROCESS_FAQS),
@@ -109,9 +110,9 @@ export default function ProcessPage() {
       <PageHeader
         eyebrow="Process"
         title="From cherry to container."
-        lede={`Zoebar Ethiopia owns the washing station in ${OPERATIONS.washingStationLocation}. Cherry intake, processing method, drying and lot formation are controlled directly, which is what makes the process record attached to a lot an operational record rather than a supplier's claim.`}
+        lede={`The washing station in ${OPERATIONS.washingStationLocation} is held by an affiliated company within Zoebar's ownership structure and run with Zoebar's direct operational oversight. Cherry intake, processing method, drying and lot formation are managed directly, which is what makes the process record attached to a lot an operational record rather than a supplier's claim.`}
         meta={[
-          { term: "Station", detail: "Zoebar-owned" },
+          { term: "Station", detail: "Affiliated, direct oversight" },
           { term: "Location", detail: OPERATIONS.washingStationLocation },
           { term: "Methods", detail: ORIGIN.processing.join(" / ") },
           { term: "Harvest", detail: harvestWindow() },
@@ -128,10 +129,12 @@ export default function ProcessPage() {
             >
               Seven stages.
             </h2>
+            {/* PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
             <div className="flex items-center gap-3">
               <span className="font-sans text-sm text-meta">Stage timings</span>
               <Pending />
             </div>
+            */}
           </div>
 
           <ol className="mt-12 flex flex-col">
@@ -159,9 +162,13 @@ export default function ProcessPage() {
                     {s.detail}
                   </p>
                 </div>
+                {/* PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md).
+                    The grid keeps its third `auto` track (empty for now) so this
+                    re-enables as a one-line change.
                 <div className="sm:pt-2 sm:text-right">
                   {s.duration ?? <Pending />}
                 </div>
+                */}
               </li>
             ))}
           </ol>
@@ -206,9 +213,9 @@ export default function ProcessPage() {
                 rounded="panel"
                 onDark
                 src="/washing-station.jpg"
-                alt="Rows of raised drying beds at the Zoebar washing station in Amaro, with concrete fermentation tanks in the foreground and workers tending the parchment, green hills behind."
-                brief="Drying beds in use at the Zoebar washing station, parchment being turned, showing the working method rather than a styled arrangement."
-                caption={`Both methods run at Zoebar's washing station in ${OPERATIONS.washingStationLocation}.`}
+                alt="Rows of raised drying beds at the affiliated washing station in Amaro, with concrete fermentation tanks in the foreground and workers tending the parchment, green hills behind."
+                brief="Drying beds in use at the affiliated washing station, parchment being turned, showing the working method rather than a styled arrangement."
+                caption={`Both methods run at the affiliated washing station in ${OPERATIONS.washingStationLocation}.`}
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
             </div>
@@ -241,11 +248,12 @@ export default function ProcessPage() {
                   { label: "Origin", value: `${ORIGIN.name} (${ORIGIN.zone}), ${ORIGIN.country}` },
                   { label: "Harvest", value: harvestWindow() },
                   { label: "Processing", value: ORIGIN.processing.join(" / ") },
-                  { label: "Lead time", value: null },
-                  { label: "Incoterms", value: null },
-                  { label: "Port of loading", value: null },
-                  { label: "Packing", value: null },
-                  { label: "Inspection", value: null },
+                  // PENDING FIELDS hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
+                  // { label: "Lead time", value: null },
+                  // { label: "Incoterms", value: null },
+                  // { label: "Port of loading", value: null },
+                  // { label: "Packing", value: null },
+                  // { label: "Inspection", value: null },
                 ]}
               />
             </div>

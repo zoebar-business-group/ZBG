@@ -55,7 +55,7 @@ export default function HomePage() {
       <Traceability />
       <Farmers />
       <AvailableCoffee />
-      <FromOrigin />
+      {/* <FromOrigin /> */}
       <RequestSection />
     </>
   );

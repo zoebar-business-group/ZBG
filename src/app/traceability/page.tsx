@@ -17,7 +17,7 @@ const TRAIL = [
 export const metadata: Metadata = {
   title: "Traceability, Lot Records from Amaro",
   description:
-    "How a Zoebar lot is traced: origin in Amaro (Koore Zone), Ethiopia, processing at Zoebar's own washing station, harvest period, quality record and the producers connected to the lot.",
+    "The lot record Zoebar's traceability system is built around: origin in Amaro (Koore Zone), Ethiopia, processing at an affiliated washing station with direct operational oversight, harvest period, quality record and the producers connected to the lot. Publishing begins once the first lots are confirmed.",
   alternates: { canonical: "/traceability" },
   openGraph: { title: "Traceability, Lot Records from Amaro", url: "/traceability", type: "article" },
 };
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 const RECORD_FIELDS = [
   {
     field: "Lot identifier",
-    holds: "The reference printed on the sack and used on all documentation.",
+    holds: "The reference to be printed on the sack and carried across the documentation.",
     status: "structure",
   },
   {
@@ -44,7 +44,7 @@ const RECORD_FIELDS = [
   },
   {
     field: "Washing station",
-    holds: `Zoebar-owned station at ${OPERATIONS.washingStationLocation}.`,
+    holds: `Affiliated station at ${OPERATIONS.washingStationLocation}, run with Zoebar's direct operational oversight.`,
     status: "verified",
   },
   {
@@ -57,21 +57,25 @@ const RECORD_FIELDS = [
     holds: `The harvest the lot came from, within the ${ORIGIN.harvestStart}–${ORIGIN.harvestEnd} window.`,
     status: "verified",
   },
-  {
-    field: "Quality assessment",
-    holds: "Grade and cupping record produced before the lot is released.",
-    status: "pending",
-  },
+  // LOT-DEPENDENT ROW — hidden pending real per-lot data. Do not delete;
+  // uncomment to re-enable. Tracker: docs/LOT-DEPENDENT-FIELDS.md
+  // {
+  //   field: "Quality assessment",
+  //   holds: "The grade and cupping record, added once it is produced before the lot is released.",
+  //   status: "pending",
+  // },
   {
     field: "Producers",
-    holds: "The growers connected to the lot, where permission to name them is recorded.",
+    holds: "The growers connected to the lot, listed where permission to name them is recorded.",
     status: "structure",
   },
-  {
-    field: "Shipment",
-    holds: "Documentation, inspection and departure details for the contract.",
-    status: "pending",
-  },
+  // LOT-DEPENDENT ROW — hidden pending real per-lot data. Do not delete;
+  // uncomment to re-enable. Tracker: docs/LOT-DEPENDENT-FIELDS.md
+  // {
+  //   field: "Shipment",
+  //   holds: "Documentation, inspection and departure details, added for the contract.",
+  //   status: "pending",
+  // },
 ];
 
 export default function TraceabilityPage() {
@@ -84,7 +88,7 @@ export default function TraceabilityPage() {
             articleSchema({
               headline: "Traceability, lot records from Amaro",
               description:
-                "What a Zoebar lot record carries: origin in Amaro (Koore Zone), Ethiopia, processing method at Zoebar's own washing station, harvest period, quality assessment and connected producers.",
+                "The lot record Zoebar's traceability system is built around: origin in Amaro (Koore Zone), Ethiopia, processing method at an affiliated washing station with direct operational oversight, harvest period, quality assessment and connected producers. Publishing begins once the first lots are confirmed.",
               path: "/traceability",
             }),
             faqSchema(TRACEABILITY_FAQS),
@@ -95,11 +99,11 @@ export default function TraceabilityPage() {
 
       <PageHeader
         eyebrow="Traceability"
-        title="A lot you can follow back."
+        title="Built to follow a lot back."
         lede={TRACEABILITY_FAQS[0].answer}
         meta={[
           { term: "Origin", detail: `${ORIGIN.name}, ${ORIGIN.country}` },
-          { term: "Station", detail: "Zoebar-owned" },
+          { term: "Station", detail: "Affiliated, direct oversight" },
           { term: "QR destination", detail: "Lot page" },
           { term: "Published lots", detail: <Pending /> },
         ]}
@@ -117,6 +121,11 @@ export default function TraceabilityPage() {
           >
             Six links, one record.
           </h2>
+          <p className="mt-7 max-w-[52ch] font-sans text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.65] text-[#cfd9d6]">
+            The chain and the lot page that renders it are built and working.
+            What each link carries is set out below; publishing begins once the
+            first lots are confirmed.
+          </p>
 
           <ol className="mt-14 flex flex-col gap-px overflow-hidden rounded-[0.125rem] bg-[rgba(240,226,203,0.16)] md:flex-row">
             {["Lot", ORIGIN.name, "Washing station", "Process", "Quality", "Shipment"].map(
@@ -152,7 +161,7 @@ export default function TraceabilityPage() {
               <Answer
                 id="record"
                 className="mt-7"
-                question="What information does a lot record carry?"
+                question={TRACEABILITY_FAQS[0].question}
                 answer={TRACEABILITY_FAQS[0].answer}
               />
             </div>
@@ -227,7 +236,7 @@ export default function TraceabilityPage() {
               <Answer
                 id="qr"
                 className="mt-7"
-                question="Where do the QR codes on Zoebar sacks lead?"
+                question={TRACEABILITY_FAQS[1].question}
                 answer={TRACEABILITY_FAQS[1].answer}
               />
             </div>

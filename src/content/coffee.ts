@@ -20,6 +20,12 @@ export interface SpecField {
   note?: string;
   /** Include in Product schema additionalProperty when confirmed. */
   schemaName?: string;
+  /**
+   * Recorded on each lot rather than published as a standing origin figure.
+   * A null value on one of these reads "Confirmed per lot", not "Being
+   * verified" (grade, screen size, cupping score, moisture).
+   */
+  perLot?: boolean;
 }
 
 /** Verified origin and product identity. */
@@ -54,18 +60,31 @@ export const IDENTITY: SpecField[] = [
   },
   {
     label: "Washing station",
-    value: `Zoebar-owned, ${OPERATIONS.washingStationLocation}`,
+    value: `Affiliated, ${OPERATIONS.washingStationLocation}`,
+    note: "Held within Zoebar's ownership structure with direct operational oversight; set to transition to Zoebar Ethiopia.",
     schemaName: "washingStation",
   },
 ];
 
-/** Quality specification — awaiting confirmation. */
+/**
+ * Quality specification.
+ *
+ * LOT-DEPENDENT FIELDS (grade, screen size, cupping score, moisture) are
+ * commented out below — they do not render on the marketing pages until real
+ * per-lot data exists in Sanity. Do not delete: uncomment to re-enable, and
+ * pick a label/approach at that point (open decision).
+ * Tracker: docs/LOT-DEPENDENT-FIELDS.md
+ *
+ * Defect count and varieties stay visible as "Being verified" (not part of
+ * the hidden set).
+ */
 export const QUALITY_SPEC: SpecField[] = [
-  { label: "Grade", value: null, schemaName: "grade" },
-  { label: "Screen size", value: null, schemaName: "screenSize" },
-  { label: "Cupping score", value: null, schemaName: "cuppingScore" },
+  // LOT-DEPENDENT — hidden pending real per-lot data (docs/LOT-DEPENDENT-FIELDS.md):
+  // { label: "Grade", value: null, schemaName: "grade", perLot: true },
+  // { label: "Screen size", value: null, schemaName: "screenSize", perLot: true },
+  // { label: "Cupping score", value: null, schemaName: "cuppingScore", perLot: true },
   { label: "Defect count", value: null, schemaName: "defectCount" },
-  { label: "Moisture content", value: null, schemaName: "moistureContent" },
+  // { label: "Moisture content", value: null, schemaName: "moistureContent", perLot: true },
   { label: "Varieties", value: null, schemaName: "varieties" },
 ];
 
