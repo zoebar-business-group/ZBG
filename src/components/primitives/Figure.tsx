@@ -31,6 +31,21 @@ const RATIOS = {
   tall: "aspect-[9/16]",
 } as const;
 
+/**
+ * Where `object-cover` anchors when the photograph and the slot disagree on
+ * shape. The default centre crop is wrong for a landscape frame dropped into a
+ * portrait slot: the subject of a documentary photograph is rarely centred, and
+ * a centre crop cuts straight through them. `focus` moves the anchor onto the
+ * part of the frame that actually carries the subject.
+ */
+const FOCUS = {
+  center: "object-center",
+  left: "object-left",
+  right: "object-right",
+  top: "object-top",
+  bottom: "object-bottom",
+} as const;
+
 export interface FigureProps {
   /** The photograph this slot is waiting for, in plain language. Not rendered;
    *  it is the standing shot list for Open Item #8. */
@@ -42,6 +57,17 @@ export interface FigureProps {
   /** Visible caption. Truthful captions are a brand requirement. */
   caption?: string;
   ratio?: keyof typeof RATIOS;
+  /** Crop anchor when the photograph's shape differs from the slot's. Set this
+   *  whenever a landscape photograph sits in a portrait slot, or the subject
+   *  will be cropped out of frame. */
+  focus?: keyof typeof FOCUS;
+  /** Drop the fixed aspect ratio from `lg` up and let the media box take the
+   *  full height of its column, so a figure sitting beside a text column ends
+   *  level with it instead of running past the foot of the text. `ratio` still
+   *  governs the narrow-screen layout, where the column has no height to
+   *  match. Requires the parent grid to stretch its items, which is the
+   *  default. */
+  fill?: boolean;
   /** Hexagon-derived corner cut, from the badge geometry. Use sparingly. */
   cut?: boolean;
   rounded?: "none" | "card" | "panel";
@@ -57,6 +83,8 @@ export function Figure({
   alt,
   caption,
   ratio = "landscape",
+  focus = "center",
+  fill = false,
   cut = false,
   rounded = "card",
   priority = false,
@@ -72,11 +100,12 @@ export function Figure({
         : "rounded-none";
 
   return (
-    <figure className={clsx("flex flex-col gap-3", className)}>
+    <figure className={clsx("flex flex-col gap-3", fill && "lg:h-full", className)}>
       <div
         className={clsx(
           "relative w-full overflow-hidden",
           RATIOS[ratio],
+          fill && "lg:aspect-auto lg:min-h-0 lg:flex-1",
           radius,
           cut && "cut-hex",
           !src &&
@@ -92,7 +121,7 @@ export function Figure({
             fill
             priority={priority}
             sizes={sizes}
-            className="object-cover"
+            className={clsx("object-cover", FOCUS[focus])}
           />
         ) : (
           /* Composed panel. Decorative by intent, so it is hidden from the

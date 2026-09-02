@@ -363,6 +363,29 @@ export default function QualityPage() {
               </p>
             </div>
           </div>
+
+          {/* CTA at the point of evaluation, matching /coffee. A buyer reading
+              the specification is the buyer most likely to want a figure that
+              is not on it; the page should not make them go looking for the
+              way to ask. Written inline rather than shared, as the other
+              page-level CTA blocks in this codebase are. */}
+          <div className="mt-14 flex flex-col gap-6 rounded-[2rem] bg-bone p-8 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="font-display text-[1.5rem] leading-tight text-ink">
+                Need a figure that is not published?
+              </h3>
+              <p className="mt-2 max-w-[48ch] font-sans text-sm leading-relaxed text-[#5a5f56]">
+                Ask directly. We will give you the confirmed number, or tell you
+                when it will be confirmed.
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-wrap gap-3">
+              <Button href="/request-quote">Request a quote</Button>
+              <Button href="/request-quote#sample" variant="secondary">
+                Request a sample
+              </Button>
+            </div>
+          </div>
         </Container>
       </Section>
 

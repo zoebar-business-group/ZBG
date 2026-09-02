@@ -158,6 +158,9 @@ export default function FarmersPage() {
                   alt="A coffee producer in a worn brown jacket picking ripe red cherry by hand from a laden branch at their plot in Amaro, Koore Zone."
                   ratio="portrait"
                   rounded="card"
+                  /* Landscape frame in a portrait slot; the producer stands to
+                     the left, so the default centre crop cuts through him. */
+                  focus="left"
                   brief="A producer hand-picking ripe cherry at their plot in Amaro, seen in profile among the coffee trees, natural light, unposed."
                   sizes="(max-width: 640px) 100vw, 24vw"
                 />
