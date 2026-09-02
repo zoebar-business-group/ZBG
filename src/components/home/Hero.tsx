@@ -39,7 +39,7 @@ export function Hero() {
     <section
       data-density="story"
       aria-labelledby="hero-heading"
-      className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-emerald text-alabaster"
+      className="relative isolate flex min-h-[86svh] flex-col justify-end overflow-hidden bg-emerald text-alabaster"
     >
       {/* Background */}
       <div className="absolute inset-0 -z-10">
@@ -103,13 +103,13 @@ export function Hero() {
       {/* Content */}
       {/* Hero content is bottom-anchored (`justify-end` on the section). A
           moderate extra bottom pad on desktop lifts the whole block off the
-          base line (~5-6% of viewport height at 1440x900), tightening the
-          space above the headline without touching the type scale or the
-          entrance sequence. Kept as fixed spacing-scale steps rather than a
-          `vh` value: at `lg` it matches `pt-32` for a symmetric frame, at
-          `xl` it carries a slight bottom bias. Tune the `lg`/`xl` steps if
-          the client wants it higher or lower. */}
-      <div className="mx-auto w-full max-w-[96rem] px-6 pb-14 pt-32 sm:px-8 sm:pb-20 lg:px-12 lg:pb-32 xl:pb-36">
+          base line, tightening the space above the headline without touching
+          the entrance sequence. Kept as fixed spacing-scale steps rather than
+          a `vh` value. The section height, the display scale and these steps
+          were all brought down together, so the first screen reads tighter
+          without the type and the frame drifting out of proportion. Tune the
+          `lg`/`xl` steps if the client wants it higher or lower. */}
+      <div className="mx-auto w-full max-w-[96rem] px-6 pb-12 pt-28 sm:px-8 sm:pb-16 lg:px-12 lg:pb-24 xl:pb-28">
         <p
           className="hero-fade font-sans text-[0.6875rem] font-medium uppercase tracking-[0.24em] text-sand"
           style={{ ["--animate-delay" as string]: "200ms" }}
@@ -127,7 +127,7 @@ export function Hero() {
 
         <h1
           id="hero-heading"
-          className="mt-7 max-w-[16ch] font-display text-[clamp(3rem,8.5vw,8.5rem)] leading-[0.92] tracking-[-0.025em]"
+          className="mt-6 max-w-[16ch] font-display text-[clamp(2.5rem,6.8vw,6.5rem)] leading-[0.94] tracking-[-0.025em]"
         >
           <span className="hero-line block overflow-hidden">
             <span style={{ ["--animate-delay" as string]: "380ms" }}>
@@ -141,7 +141,7 @@ export function Hero() {
           </span>
         </h1>
 
-        <div className="mt-10 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <p
             className="hero-fade max-w-[46ch] font-sans text-[clamp(1rem,1.35vw,1.25rem)] leading-[1.6] text-[#cfd9d6]"
             style={{ ["--animate-delay" as string]: "820ms" }}
@@ -174,7 +174,7 @@ export function Hero() {
         {/* Metadata strip, verified facts, stated plainly at the point of
             first contact. Doubles as the first extractable passage. */}
         <dl
-          className="hero-fade mt-14 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-[rgba(240,226,203,0.18)] pt-8 sm:grid-cols-4"
+          className="hero-fade mt-11 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-[rgba(240,226,203,0.18)] pt-7 sm:grid-cols-4"
           style={{ ["--animate-delay" as string]: "1120ms" }}
         >
           {[

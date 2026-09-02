@@ -175,28 +175,34 @@ export default function CoffeePage() {
           <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="min-w-0">
               <SpecTable caption="Quality specification" rows={toRows(QUALITY_SPEC)} />
+
+              {/* CTA sits directly under the quality specification, in the same
+                  column and alongside the commercial terms, rather than spanning
+                  the section below both tables. Most of the rows above it read
+                  "Confirmed per lot", so the question it answers — how do I get
+                  the actual number — is asked here, at the table, and the answer
+                  should not be a scroll away. Stacked rather than the split row
+                  used at full width, because the column is half the width. */}
+              <div className="mt-10 flex flex-col gap-5 rounded-[1.5rem] bg-bone p-7">
+                <div>
+                  <h3 className="font-display text-[1.375rem] leading-tight text-ink">
+                    Need a figure that is not published?
+                  </h3>
+                  <p className="mt-2 max-w-[44ch] font-sans text-sm leading-relaxed text-[#5a5f56]">
+                    Ask directly. We will give you the confirmed number, or tell
+                    you when it will be confirmed.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Button href="/request-quote">Request a quote</Button>
+                  <Button href="/request-quote#sample" variant="secondary">
+                    Request a sample
+                  </Button>
+                </div>
+              </div>
             </div>
             <div className="min-w-0">
               <SpecTable caption="Commercial terms" rows={toRows(COMMERCIAL_SPEC)} />
-            </div>
-          </div>
-
-          {/* First CTA opportunity, at the point of evaluation. */}
-          <div className="mt-14 flex flex-col gap-6 rounded-[2rem] bg-bone p-8 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h3 className="font-display text-[1.5rem] leading-tight text-ink">
-                Need a figure that is not published?
-              </h3>
-              <p className="mt-2 max-w-[48ch] font-sans text-sm leading-relaxed text-[#5a5f56]">
-                Ask directly. We will give you the confirmed number, or tell you
-                when it will be confirmed.
-              </p>
-            </div>
-            <div className="flex shrink-0 flex-wrap gap-3">
-              <Button href="/request-quote">Request a quote</Button>
-              <Button href="/request-quote#sample" variant="secondary">
-                Request a sample
-              </Button>
             </div>
           </div>
         </Container>

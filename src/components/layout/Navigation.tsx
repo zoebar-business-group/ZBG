@@ -59,7 +59,10 @@ export function Navigation() {
     >
       <nav
         aria-label="Primary"
-        className="mx-auto flex w-full max-w-[96rem] items-center justify-between px-6 py-4 sm:px-8 lg:px-12"
+        /* More vertical room than the original py-4, which sat the bar tight
+           against the top edge. The extra padding both opens the bar up and
+           carries its contents further down the frame. */
+        className="mx-auto flex w-full max-w-[96rem] items-center justify-between px-6 py-7 sm:px-8 sm:py-8 lg:px-12"
       >
         <Link
           href="/"
