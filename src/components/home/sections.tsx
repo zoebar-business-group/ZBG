@@ -186,9 +186,9 @@ export function Amaro() {
               rounded="panel"
               cut
               onDark
-              src="/coffee-branch.jpg"
-              alt="A single coffee branch lined with ripe red and orange cherry in Amaro, Koore Zone, soft green foliage behind, no people in frame."
-              brief="Cherry on the branch in Amaro during harvest, shot close, natural light."
+              src="/amaro-harvest.jpg"
+              alt="A coffee tree in Amaro, Koore Zone, heavy with ripe red, orange and green cherry, with terraced rows of coffee running back across the hillside behind it in hazy light. No people in frame."
+              brief="Cherry on the tree in Amaro during harvest, with the planted hillside behind, natural light."
               /* No toLowerCase(): the window is "September - December", and
                  lowercasing it printed "september - december" on the homepage.
                  Month names are proper nouns. */
@@ -225,9 +225,9 @@ export function WashingStation() {
             <Figure
               ratio="landscape"
               rounded="panel"
-              src="/washing-station.jpg"
-              alt="The affiliated washing station at Amaro: concrete fermentation tanks in the foreground and long rows of raised drying beds behind, workers tending them, green hills beyond."
-              brief="The affiliated washing station at Amaro, wide establishing shot showing the fermentation tanks and drying beds in working use."
+              src="/wash1.jpg"
+              alt="The affiliated washing station at Amaro in use: a worker directs a hose into one of the concrete fermentation tanks, water running over the coffee settled at the bottom, with forested hillside behind."
+              brief="The affiliated washing station at Amaro, the concrete fermentation tanks in working use during processing."
               caption="An affiliated washing station at Amaro, run with Zoebar's direct operational oversight."
               sizes="(max-width: 1024px) 100vw, 55vw"
             />
@@ -589,9 +589,13 @@ export function Farmers() {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:col-span-7 ">
+            {/* Both photographs are landscape frames in portrait slots, and in
+                both the producer stands well to the left. `focus="left"` anchors
+                the crop on them; the default centre crop cuts through the face. */}
             <Figure
               ratio="portrait"
               rounded="card"
+              focus="left"
               src="/farmer-one.jpg"
               alt="A coffee producer in a worn brown jacket picking ripe red cherry by hand from a laden branch at their plot in Amaro, Koore Zone."
               brief="A producer hand-picking ripe cherry at their plot in Amaro, seen in profile among the coffee trees, natural light, unposed."
@@ -601,9 +605,10 @@ export function Farmers() {
               ratio="portrait"
               rounded="card"
               cut
+              focus="left"
               className="sm:mt-14"
-              src="/farmer-two.jpg"
-              alt="A coffee producer standing among his cherry-laden coffee trees at his plot in Amaro, Koore Zone, one hand on a branch, turning to the camera with a smile."
+              src="/zoebarfarmers1.jpeg"
+              alt="A coffee producer standing among cherry-laden coffee trees at his plot in Amaro, Koore Zone, reaching to a branch of ripening cherry, forested hillside behind."
               brief="A producer at his plot in Amaro among the coffee trees, cherry ripening on the branch, documentary, natural light."
               sizes="(max-width: 640px) 100vw, 28vw"
             />

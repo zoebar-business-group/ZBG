@@ -145,13 +145,17 @@ export default function AboutPage() {
             </div>
 
             <div className="lg:col-span-6">
+              {/* THE COMPANY slot takes a photograph of Zoebar's own premises,
+                  which has not been supplied. Until it is, this renders the
+                  composed brand panel rather than borrowing the washing station
+                  photograph, which belongs to the Ethiopia operation and was
+                  being centre-cropped out of shape in this portrait slot. Same
+                  treatment as the founder portrait below: no `src`, so the panel
+                  is decorative and never implies a photograph exists. */}
               <Figure
                 ratio="portrait"
                 rounded="panel"
-                src="/washing-station.jpg"
-                alt={`The affiliated washing station in ${OPERATIONS.washingStationLocation}, where cherry is received, processed and dried.`}
-                brief="The affiliated washing station in Amaro during working hours: the operational asset in use, photographed as a place of work rather than as a landscape."
-                caption={`An affiliated washing station in ${OPERATIONS.washingStationLocation}, run with ${OPERATIONS.ethiopiaEntity}'s direct operational oversight.`}
+                brief="Zoebar Business Group's own office in working use — the company as a place of work, not a stock interior."
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
             </div>

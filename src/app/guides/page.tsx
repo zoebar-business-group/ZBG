@@ -57,7 +57,7 @@ export default function GuidesPage() {
       <PageHeader
         eyebrow="Guides"
         title="Reference, not marketing."
-        lede="Four guides covering the questions a green coffee buyer actually has to answer before a first Ethiopian shipment: how the grade is produced, when the crop moves, which documents are required, and what an Incoterms rule does and does not include."
+        lede="Seven guides covering the questions a green coffee buyer actually has to answer before a first Ethiopian shipment: how the buying process runs, how the grade is produced, when the crop moves, which documents are required, what an Incoterms rule does and does not include, how payment is structured, and what fits in a container."
         meta={[
           { term: "Guides", detail: GUIDES.length },
           { term: "Origin covered", detail: `${ORIGIN.name}, ${ORIGIN.country}` },
@@ -66,7 +66,7 @@ export default function GuidesPage() {
         ]}
       />
 
-      {/* --- The four guides ------------------------------------------------ */}
+      {/* --- The guides ------------------------------------------------------ */}
       <Section surface="light" rhythm="base" density="spec" aria-labelledby="index">
         <Container width="wide">
           <h2 id="index" className="sr-only">

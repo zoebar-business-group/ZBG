@@ -31,6 +31,21 @@ const RATIOS = {
   tall: "aspect-[9/16]",
 } as const;
 
+/**
+ * Where `object-cover` anchors when the photograph and the slot disagree on
+ * shape. The default centre crop is wrong for a landscape frame dropped into a
+ * portrait slot: the subject of a documentary photograph is rarely centred, and
+ * a centre crop cuts straight through them. `focus` moves the anchor onto the
+ * part of the frame that actually carries the subject.
+ */
+const FOCUS = {
+  center: "object-center",
+  left: "object-left",
+  right: "object-right",
+  top: "object-top",
+  bottom: "object-bottom",
+} as const;
+
 export interface FigureProps {
   /** The photograph this slot is waiting for, in plain language. Not rendered;
    *  it is the standing shot list for Open Item #8. */
@@ -42,6 +57,10 @@ export interface FigureProps {
   /** Visible caption. Truthful captions are a brand requirement. */
   caption?: string;
   ratio?: keyof typeof RATIOS;
+  /** Crop anchor when the photograph's shape differs from the slot's. Set this
+   *  whenever a landscape photograph sits in a portrait slot, or the subject
+   *  will be cropped out of frame. */
+  focus?: keyof typeof FOCUS;
   /** Hexagon-derived corner cut, from the badge geometry. Use sparingly. */
   cut?: boolean;
   rounded?: "none" | "card" | "panel";
@@ -57,6 +76,7 @@ export function Figure({
   alt,
   caption,
   ratio = "landscape",
+  focus = "center",
   cut = false,
   rounded = "card",
   priority = false,
@@ -92,7 +112,7 @@ export function Figure({
             fill
             priority={priority}
             sizes={sizes}
-            className="object-cover"
+            className={clsx("object-cover", FOCUS[focus])}
           />
         ) : (
           /* Composed panel. Decorative by intent, so it is hidden from the
