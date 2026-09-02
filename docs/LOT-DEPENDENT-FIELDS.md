@@ -85,9 +85,10 @@ pointing back here. Line numbers drift as files change — search the comment te
 | # | Section | Marker | What it was | Why unconfirmed |
 |---|---|---|---|---|
 | 10 | §03 Lots | ~257 | "Published lots" `<Pending />` chip in the section header | No lots published yet (Open Item #6) |
+| 10a | "Specification state" section (top of page) | ~99 | The whole `<Section aria-labelledby="state">` — "Specification status" heading + "*N of 16 fields are confirmed. The remaining M are being verified…*" + the `N/16` numeral | Commented out on request (later pass). The `confirmedCount` / `pendingCount` consts are commented with it; `confirmedSpecs()` is still called inline for the Product schema |
 
-`Pending` import removed from this file. `pendingCount` (the "Specification
-status" sentence) is untouched and still counts the pending spec fields.
+`Pending` import removed from this file. Re-enable 10a by uncommenting the
+section block and the two consts above `return`.
 
 ### `/contact` — `src/app/contact/page.tsx`
 

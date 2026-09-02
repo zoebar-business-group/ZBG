@@ -59,8 +59,11 @@ function toRows(fields: typeof ALL_SPECS): SpecRow[] {
  * closes the page.
  */
 export default function CoffeePage() {
-  const confirmedCount = confirmedSpecs().length;
-  const pendingCount = ALL_SPECS.length - confirmedCount;
+  // Used only by the commented-out "Specification status" section below —
+  // restore both when re-enabling it (docs/LOT-DEPENDENT-FIELDS.md).
+  // `confirmedSpecs()` is still called inline in the Product schema.
+  // const confirmedCount = confirmedSpecs().length;
+  // const pendingCount = ALL_SPECS.length - confirmedCount;
 
   return (
     <>
@@ -96,7 +99,10 @@ export default function CoffeePage() {
         ]}
       />
 
-      {/* --- Specification state, stated up front -------------------------- */}
+      {/* --- Specification state, stated up front --------------------------
+          SECTION COMMENTED OUT on request. Re-enable by uncommenting this
+          block and the confirmedCount / pendingCount consts above.
+          Tracker: docs/LOT-DEPENDENT-FIELDS.md
       <Section surface="bone" rhythm="tight" density="spec" aria-labelledby="state">
         <Container width="wide">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
@@ -125,6 +131,7 @@ export default function CoffeePage() {
           </div>
         </Container>
       </Section>
+      */}
 
       {/* --- Identity: what is confirmed ------------------------------------ */}
       <Section surface="light" rhythm="base" density="spec" aria-labelledby="identity">
