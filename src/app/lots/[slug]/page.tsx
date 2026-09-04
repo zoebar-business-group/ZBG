@@ -38,13 +38,22 @@ export async function generateMetadata({
   const lot = await lotBySlug(slug);
   if (!lot) return {};
 
-  const description = `${lot.lotId}: ${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at an affiliated washing station with Zoebar's direct operational oversight.`;
+  const description = lot.isDemo
+    ? `Demonstration lot record for ${lot.lotId}, showing how a Zoebar lot page and its QR code work. Not a live commercial offer.`
+    : `${lot.lotId}: ${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at an affiliated washing station with Zoebar's direct operational oversight.`;
+
+  const title = lot.isDemo
+    ? `${lot.lotId}, demonstration lot record`
+    : `${lot.lotId}, ${lot.origin} ${lot.harvestYear}`;
 
   return {
-    title: `${lot.lotId}, ${lot.origin} ${lot.harvestYear}`,
+    title,
     description,
     alternates: { canonical: `/lots/${lot.slug}` },
-    openGraph: { title: `${lot.lotId}, ${lot.origin}`, description, url: `/lots/${lot.slug}` },
+    openGraph: { title, description, url: `/lots/${lot.slug}` },
+    /* A demonstration record must not turn up in search as a live offer.
+       The page still resolves, so a scanned QR code works during review. */
+    ...(lot.isDemo ? { robots: { index: false, follow: false } } : {}),
   };
 }
 
@@ -86,7 +95,17 @@ export default async function LotPage({
   const commercial: SpecRow[] = [
     { label: "Packing", value: lot.packing },
     { label: "Quantity", value: lot.quantity },
-    { label: "Availability", value: lot.available ? "Available" : "Contracted" },
+    {
+      label: "Availability",
+      /* A demonstration record has no availability to state. Saying
+         "Available" on a demo lot is exactly the impression the client asked
+         us to remove. */
+      value: lot.isDemo
+        ? "Not offered — demonstration record"
+        : lot.available
+          ? "Available"
+          : "Contracted",
+    },
   ];
 
   // Only fields with confirmed values reach structured data.
@@ -114,12 +133,16 @@ export default async function LotPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: graph(
-            productSchema({
-              name: `${lot.lotId}, ${lot.process} Ethiopian Arabica, ${lot.origin}`,
-              description: `${lot.process} Ethiopian Arabica green coffee from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at an affiliated washing station in ${ORIGIN.name} with Zoebar's direct operational oversight.`,
-              path: `/lots/${lot.slug}`,
-              properties,
-            }),
+            /* No Product node for a demonstration record. Product schema is a
+               machine-readable offer, and a demo lot is not one. */
+            lot.isDemo
+              ? undefined
+              : productSchema({
+                  name: `${lot.lotId}, ${lot.process} Ethiopian Arabica, ${lot.origin}`,
+                  description: `${lot.process} Ethiopian Arabica green coffee from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at an affiliated washing station in ${ORIGIN.name} with Zoebar's direct operational oversight.`,
+                  path: `/lots/${lot.slug}`,
+                  properties,
+                }),
             breadcrumbSchema(trail),
           ),
         }}
@@ -127,19 +150,66 @@ export default async function LotPage({
 
       <PageHeader
         surface="deep"
-        eyebrow={`${lot.origin} · ${lot.harvestYear} harvest`}
+        eyebrow={
+          lot.isDemo
+            ? "Demonstration lot · not a live offer"
+            : `${lot.origin} · ${lot.harvestYear} harvest`
+        }
         title={lot.lotId}
-        lede={`${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, processed at an affiliated washing station with Zoebar's direct operational oversight.`}
-        meta={[
-          { term: "Process", detail: lot.process },
-          { term: "Harvest", detail: String(lot.harvestYear) },
-          { term: "Altitude", detail: altitude(lot) ?? <Pending onDark /> },
-          {
-            term: "Availability",
-            detail: lot.available ? "Available" : "Contracted",
-          },
-        ]}
+        lede={
+          lot.isDemo
+            ? `A demonstration record, published so the QR code and the lot page can be reviewed end to end. The figures below are an example of the fields a real lot carries. This lot is not for sale, and nothing on this page describes coffee Zoebar is offering.`
+            : `${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, processed at an affiliated washing station with Zoebar's direct operational oversight.`
+        }
+        meta={
+          lot.isDemo
+            ? [
+                { term: "Status", detail: "Demonstration record" },
+                { term: "Offer", detail: "Not for sale" },
+                { term: "Purpose", detail: "QR and lot-page review" },
+              ]
+            : [
+                { term: "Process", detail: lot.process },
+                { term: "Harvest", detail: String(lot.harvestYear) },
+                ...(altitude(lot)
+                  ? [{ term: "Altitude", detail: altitude(lot)! }]
+                  : []),
+                {
+                  term: "Availability",
+                  detail: lot.available ? "Available" : "Contracted",
+                },
+              ]
+        }
       />
+
+      {/* --- Demonstration banner ---------------------------------------------
+          Client instruction, 4 September 2026: an example lot must be
+          unmistakably a demo. This sits above the record, in the sand accent
+          rather than in a muted pending chip, so it is read before the table
+          is. It disappears entirely the moment `isDemo` is turned off in the
+          Studio. */}
+      {lot.isDemo && (
+        <Section surface="light" rhythm="tight" density="spec" aria-labelledby="demo-notice">
+          <Container width="wide">
+            <div className="border-l-2 border-[#c9a227] bg-sand/40 px-7 py-6">
+              <p
+                id="demo-notice"
+                className="font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-ink"
+              >
+                Demonstration lot — not a live commercial offer
+              </p>
+              <p className="mt-3 max-w-[68ch] font-sans text-[0.9375rem] leading-[1.7] text-[#3d423a]">
+                {lot.lotId} is an example record used to show how a Zoebar lot
+                page and its QR code work. It does not describe coffee that is
+                available, and none of the figures on it should be read as a
+                specification, an availability or a price. Real lots publish
+                only once every figure on them is confirmed, and they carry no
+                banner.
+              </p>
+            </div>
+          </Container>
+        </Section>
+      )}
 
       {/* --- The record ----------------------------------------------------- */}
       <Section surface="light" rhythm="base" density="spec" aria-labelledby="record">
@@ -170,8 +240,9 @@ export default async function LotPage({
                 Download the QR code
               </h3>
               <p className="mt-2 max-w-[48ch] font-sans text-sm leading-relaxed text-[#5a5f56]">
-                Links to this page. Print it on the sack or sample bag for{" "}
-                {lot.lotId}.
+                {lot.isDemo
+                  ? `Links to this page. Provided so the scan can be tested end to end — do not print it on a sack, because ${lot.lotId} is a demonstration record.`
+                  : `Links to this page. Print it on the sack or sample bag for ${lot.lotId}.`}
               </p>
             </div>
             <div className="flex shrink-0 flex-wrap gap-3">
@@ -235,18 +306,34 @@ export default async function LotPage({
         </Container>
       </Section>
 
-      {/* --- CTA -------------------------------------------------------------- */}
+      {/* --- CTA --------------------------------------------------------------
+          A demonstration record must not carry "Enquire about Lot 042" — that
+          is the live-offer impression the client asked us to remove. The demo
+          variant routes to the general enquiry instead, and says why. */}
       <Section surface="deep" rhythm="base" density="story" aria-labelledby="lot-cta">
         <Container width="wide">
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <h2
-              id="lot-cta"
-              className="max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em] text-alabaster"
-            >
-              Enquire about {lot.lotId}.
-            </h2>
+            <div className="max-w-[34ch]">
+              <h2
+                id="lot-cta"
+                className="text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em] text-alabaster"
+              >
+                {lot.isDemo ? "Ask about real lots." : `Enquire about ${lot.lotId}.`}
+              </h2>
+              {lot.isDemo && (
+                <p className="mt-6 font-sans text-[1.0625rem] leading-[1.65] text-[#cfd9d6]">
+                  {lot.lotId} is not for sale. For coffee that is, tell us what
+                  you are looking for and we will send what is confirmed.
+                </p>
+              )}
+            </div>
             <div className="flex flex-wrap gap-4">
-              <Button href={`/request-quote?lot=${lot.slug}`} onDark>
+              <Button
+                href={
+                  lot.isDemo ? "/request-quote" : `/request-quote?lot=${lot.slug}`
+                }
+                onDark
+              >
                 Request a quote
               </Button>
               <Button href="/request-quote#sample" variant="secondary" onDark>

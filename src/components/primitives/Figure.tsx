@@ -24,6 +24,10 @@ import { ZoebarSymbol } from "@/components/brand/ZoebarSymbol";
 
 const RATIOS = {
   portrait: "aspect-[3/4]",
+  /** 4:5. The founder portrait is written at exactly this ratio by
+   *  `scripts/founder-portrait.cjs`, so the breathing room the client asked
+   *  for around the shoulders is not cropped straight back off by the slot. */
+  portraitSoft: "aspect-[4/5]",
   square: "aspect-square",
   landscape: "aspect-[4/3]",
   wide: "aspect-[16/9]",

@@ -102,10 +102,10 @@ export const ROUTES: Route[] = [
   { path: "/journal", label: "From Origin", density: "story", built: true, noindex: true, inNav: true, externalHref: ORG.linkedin, changeFrequency: "weekly", priority: 0.7 },
   { path: "/guides", label: "Guides", density: "spec", built: true, inNav: true, changeFrequency: "monthly", priority: 0.7 },
   { path: "/about", label: "About", navLabel: "About Us", density: "story", built: true, darkHeader: true, inNav: true, changeFrequency: "yearly", priority: 0.6 },
-  /* Same reasoning as /journal: linked from the footer and from /about, so it
-     ships, but noindex until it carries the founder's own account (Open Item
-     #7) rather than a page about the absence of one. */
-  { path: "/about/founder", label: "Founder", density: "story", built: true, noindex: true, darkHeader: true, changeFrequency: "yearly", priority: 0.5 },
+  /* Indexable since 4 September 2026: the client supplied the founder's own
+     account and portrait, so the page carries real content rather than a
+     statement about the absence of it. */
+  { path: "/about/founder", label: "Founder", density: "story", built: true, darkHeader: true, changeFrequency: "yearly", priority: 0.5 },
   { path: "/contact", label: "Contact", density: "spec", built: true, changeFrequency: "yearly", priority: 0.6 },
   { path: "/request-quote", label: "Request Quote", density: "spec", built: true, changeFrequency: "monthly", priority: 0.9 },
   { path: "/thank-you", label: "Thank you", density: "spec", noindex: true },

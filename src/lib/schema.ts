@@ -272,6 +272,32 @@ export function aboutPageSchema(a: {
 }
 
 /**
+ * The founder, as a Person node attached to the one Organization node.
+ *
+ * Only fields the client supplied are passed in; `prune()` drops anything
+ * left undefined, so no job title, affiliation or biographical detail can
+ * reach structured data without having been stated first.
+ */
+export function personSchema(p: {
+  name: string;
+  jobTitle?: string;
+  description: string;
+  path: string;
+  image?: string;
+}): Json {
+  return prune({
+    "@type": "Person",
+    "@id": `${ORG.url}${p.path}#person`,
+    name: p.name,
+    jobTitle: p.jobTitle,
+    description: p.description,
+    url: `${ORG.url}${p.path}`,
+    image: p.image ? `${ORG.url}${p.image}` : undefined,
+    worksFor: { "@id": ORG_ID },
+  });
+}
+
+/**
  * A verified, self-contained sentence about the offer. Reused verbatim so the
  * same fact appears identically everywhere (Strategy 5.1 — "corroborated").
  * Strategy 5.2 cites this construction as the citable example.

@@ -104,6 +104,22 @@ export default function FarmersPage() {
                 they choose to give them. Producers are the skilled specialists
                 behind the coffee, and the page is written that way.
               </p>
+              {/* Client update, 4 September 2026: a dedicated
+                  origin-documentation person now works through the
+                  washing-station team, collecting farm information,
+                  photographs and consent. Profiles are added as that material
+                  is verified — the page says so rather than implying a launch
+                  date it does not have. */}
+              <p className="mt-6 max-w-[58ch] font-sans text-[0.9375rem] leading-[1.65] text-[#5a5f56]">
+                The material is gathered at origin rather than assembled from a
+                distance. A dedicated origin-documentation team member works
+                through the washing-station team in Amaro, meeting producers
+                through the season to record farm and plot information,
+                production practices, photographs and each producer&rsquo;s own
+                words. Profiles are published one at a time as that material is
+                verified, and only where the producer has given documented
+                consent for their name, photograph and words to be published.
+              </p>
             </div>
           </div>
         </Container>

@@ -46,6 +46,15 @@ export interface Lot {
   producerSlugs: string[];
   /** Set false while a lot is contracted or withdrawn. */
   available: boolean;
+  /**
+   * A demonstration record, not a live commercial offer.
+   *
+   * Client instruction, 4 September 2026: the example lot used to review the
+   * QR concept must be unmistakably a demo. A lot with this set carries a
+   * banner saying so, is excluded from Product structured data and from the
+   * enquiry call to action, and is noindex. Real lots leave it off.
+   */
+  isDemo: boolean;
 }
 
 /** Cache tag for every lot query. The Sanity webhook revalidates it on publish. */
@@ -57,6 +66,12 @@ export const LOTS_TAG = "lots";
  * `producerSlugs` dereferences the `producers` array and keeps only producers
  * whose profile has `permissionGranted == true` — the dignity gate, applied
  * here as well as in `producerBySlug()`.
+ *
+ * `isDemo` coalesces to TRUE when the field is unset, so a lot document
+ * created before the field existed is treated as a demonstration record until
+ * someone says otherwise. The failure mode of a real lot briefly marked demo
+ * is a caption; the failure mode the other way round is a demonstration
+ * record published as a live commercial offer.
  */
 const LOT_PROJECTION = /* groq */ `{
   "slug": slug.current,
@@ -75,6 +90,7 @@ const LOT_PROJECTION = /* groq */ `{
   "packing": packing,
   "quantity": quantity,
   "available": available,
+  "isDemo": coalesce(isDemo, true),
   "producerSlugs": coalesce(
     producers[@->permissionGranted == true && defined(@->slug.current)]->slug.current,
     []

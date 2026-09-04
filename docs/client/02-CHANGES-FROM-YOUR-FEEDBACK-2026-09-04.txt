@@ -1,0 +1,300 @@
+ZOEBAR BUSINESS GROUP — WEBSITE
+CHANGES MADE FROM YOUR FEEDBACK OF 4 SEPTEMBER 2026
+
+Prepared: 4 September 2026
+Covers: your seven numbered points, plus the founder photograph note
+
+
+HOW TO READ THIS
+----------------
+Your feedback is quoted in short under each heading, followed by exactly what
+was changed and where you can see it. Everything listed here is done and is on
+the preview. Nothing below is pending.
+
+
+-------------------------------------------------------------------------
+1. QUALITY PAGE — KEPT, AND MADE EVIDENCE-LED
+-------------------------------------------------------------------------
+You asked: keep the page; present grade, screen size, cupping score, moisture
+and similar as lot-specific information ("Confirmed per lot") rather than as
+permanent Zoebar specifications; and hide anything genuinely not yet available
+rather than showing multiple "Being Verified" labels publicly.
+
+DONE. Three separate changes:
+
+a) The lot-specific specifications are back on the page, and they are labelled
+   for what they are. The quality specification on /quality and /coffee now
+   lists:
+
+       Grade ................ Confirmed per lot
+       Screen size .......... Confirmed per lot
+       Cupping score ........ Confirmed per lot
+       Defect count ......... Confirmed per lot
+       Moisture content ..... Confirmed per lot
+
+   These read as lot-specific measurements, not as standing claims about
+   Zoebar coffee. A buyer sees that the figures exist and that they belong to
+   the lot in front of them.
+
+b) "Being verified" no longer appears anywhere on the public site. We checked
+   every page: the count is zero. A field that is genuinely not confirmed yet
+   is now simply not shown. It reappears on its own, on every page at once,
+   the moment a real value is entered — nothing has to be un-hidden by hand.
+
+   Fields now hidden until confirmed: varieties, packing, minimum order
+   quantity, lead time, Incoterms, port of loading, inspection,
+   certifications.
+
+c) Because the whole commercial table would otherwise be blank, the commercial
+   terms block on /coffee now carries one sentence in place of a column of
+   empty rows:
+
+       "Packing, minimum order quantity, lead time, Incoterms, port of
+        loading, inspection and certifications are agreed against the contract
+        and confirmed in writing on the offer. They are published here once
+        they are fixed."
+
+   Each row reappears individually as its value is confirmed.
+
+d) The closing section of /quality was rewritten to match. It was headed "An
+   empty field is a statement", which no longer describes how the page
+   behaves. It now reads "A figure belongs to a lot", and makes the
+   commercially stronger argument: most offer sheets carry one grade and one
+   cupping score for a whole origin, and a buyer cannot check any of them
+   against the coffee they are actually being sold.
+
+IMPORTANT, AND UNCHANGED: nothing is ever filled with a plausible or
+"industry typical" number. Hiding a field and inventing one are different
+things, and only the first has been done.
+
+Where to look:  /quality  and  /coffee
+
+
+-------------------------------------------------------------------------
+2. ABOUT PAGE IMAGE — REAL AMARO PHOTOGRAPH, NOT THE LOGO
+-------------------------------------------------------------------------
+You asked: use a real Amaro image rather than the logo — a strong Amaro
+landscape, coffee farm or authentic washing-station image with a sense of
+place.
+
+DONE. The brand panel on the About page has been replaced with a photograph
+from the Amaro set: coffee trees carrying ripe cherry with the terraced farm
+and hillside running back behind them. It is captioned "Amaro (Koore Zone),
+Ethiopia. The origin the company is built around."
+
+SHORTLIST FOR YOUR SELECTION. You asked us to shortlist the strongest options
+so you can choose. These are the four we would put forward, in order:
+
+  1. amaro-harvest.jpg   — coffee farm on the hillside, late light. Portrait
+                           format, so it fits the slot with no cropping.
+                           THIS IS THE ONE CURRENTLY IN PLACE.
+  2. washing-station.jpg — the widest "sense of place" frame: drying beds,
+                           fermentation tanks, mountains behind. The strongest
+                           image in the set, but landscape, and currently
+                           carrying the Process page.
+  3. wash1.jpg           — a worker filling a fermentation tank. Authentic and
+                           operational rather than scenic.
+  4. amaro-tree.jpg      — cherry on the branch, close in. Beautiful, but it
+                           gives texture rather than place.
+
+Swapping to any of these is a one-line change and takes minutes. Tell us which
+you prefer, or send a different frame from the larger batch and we will place
+it.
+
+Where to look:  /about, first section
+
+
+-------------------------------------------------------------------------
+3. FOUNDER PAGE — WRITTEN, WITH THE PHOTOGRAPH
+-------------------------------------------------------------------------
+You supplied the draft story and the photograph.
+
+DONE. The founder page was previously a page explaining why it was empty. It
+is now a real page:
+
+  - Titled with the founder's name, Eden Mengistu.
+  - Your draft text is carried word for word. Not paraphrased, not extended,
+    nothing added to it. "Always learning. Always improving." is set as the
+    closing line, given its own weight rather than folded into a paragraph.
+  - Below the story, a short section sets out the three commitments contained
+    in your own sentence — verify before claiming, understand before selling,
+    keep improving from one season to the next — and says what each one means
+    in how the site itself is built. This restates your words; it does not add
+    new claims.
+  - The page is now visible to search engines. It was deliberately hidden from
+    them while it had no content.
+  - The About page's founder section now carries her name, her photograph and
+    the first two paragraphs of the story, and links through.
+
+You said you may refine the wording before publication. When you do, send the
+final text and it replaces the working copy in one place — the page, the About
+page and the page description all update together.
+
+THE PHOTOGRAPH. You asked for a soft cream or subtle warm neutral background
+matching the site palette rather than the cool grey, and for a little
+breathing room around the shoulders rather than a tight crop.
+
+DONE. The supplied headshot has been re-grounded on a soft warm cream drawn
+from the site's own palette, with a gentle gradient so it has depth rather
+than reading as a flat fill. The frame was enlarged around her — space added
+at the sides and above the head — so the shoulders are no longer sitting on
+the edge of the picture.
+
+She herself is untouched. No retouching, no reshaping, no colour change to the
+person: only the ground behind her was replaced and the frame enlarged.
+
+Where to look:  /about/founder  and  /about
+
+
+-------------------------------------------------------------------------
+4. FARMERS PAGE — FUNCTIONALITY KEPT, NO RUSH TO PUBLISH
+-------------------------------------------------------------------------
+You asked: keep the farmer-profile functionality, do not rush publication, and
+publish only once consent is confirmed. You told us a dedicated
+origin-documentation person is now working through the washing-station team.
+
+DONE, and the consent rule was already built in and is unchanged:
+
+  - The profile system is intact and ready. Name, location, years in coffee,
+    farm and plot information, production practices, quotes and photographs
+    are all supported fields.
+  - A profile CANNOT be published without recorded consent. This is enforced
+    in the code, not by anyone remembering to check: profiles without consent
+    are filtered out before the page is built, and the same filter is applied
+    again where lot pages list the growers of a lot. There is no way to
+    publish a profile by mistake.
+  - The page now says how the material is gathered — a dedicated
+    origin-documentation team member working through the washing-station team
+    in Amaro, meeting producers through the season — and that profiles publish
+    one at a time as material is verified and consent is recorded. It gives no
+    launch date, because there is no rush and we do not want to imply one.
+  - Producers are described throughout as skilled specialists. No charity or
+    rescue framing anywhere on the site.
+
+Send verified profiles whenever they are ready, in any order. Each one is
+added individually.
+
+Where to look:  /farmers
+
+
+-------------------------------------------------------------------------
+5. QR / LOT SYSTEM — THE EXAMPLE LOT IS NOW UNMISTAKABLY A DEMO
+-------------------------------------------------------------------------
+You asked: make it very clear that the current example lot is a demo/test lot
+and not a live commercial offer.
+
+DONE. A lot is now explicitly marked as either a demonstration record or a
+real one, and a demonstration lot behaves differently in six ways:
+
+  1. A banner sits above the record: "Demonstration lot — not a live
+     commercial offer", explaining that the figures are an example of the
+     fields a real lot carries and that none of them should be read as a
+     specification, an availability or a price.
+  2. The page heading above the lot number reads "Demonstration lot · not a
+     live offer" instead of the origin and harvest year.
+  3. Availability reads "Not offered — demonstration record" instead of
+     "Available".
+  4. The closing call to action reads "Ask about real lots" and routes to the
+     general enquiry, instead of "Enquire about Lot 042".
+  5. It is kept out of search results entirely, and out of the machine-readable
+     product data that search engines and AI assistants read. A demonstration
+     record cannot be picked up and presented as a live offer.
+  6. In the lot index it carries a "Demonstration lot" badge rather than an
+     availability status.
+
+The QR code still works and still opens the page, so you can test a scan end
+to end. The download note tells you not to print it on a sack.
+
+SAFE BY DEFAULT. Any lot is treated as a demonstration lot unless someone
+deliberately turns that off. An existing lot record — including the one you
+reviewed — is automatically a demo without anyone touching it. Publishing a
+real lot is a conscious act, and the failure mode is a caption on a real lot
+rather than a demonstration record going out as a live offer.
+
+WHEN REAL LOTS ARE READY: in the content Studio, switch "Demonstration lot"
+off on that lot. Every one of the six behaviours above reverses at once, and
+the lot index becomes visible to search. Real lots should only be switched
+over once their figures are confirmed.
+
+Where to look:  /lots  and any lot page
+
+
+-------------------------------------------------------------------------
+6. WASHING-STATION WORDING — APPLIED EVERYWHERE
+-------------------------------------------------------------------------
+You asked: until the legal transfer is complete, avoid wording such as
+"Zoebar-owned washing station", and use "our affiliated washing station in
+Amaro, Ethiopia" or "processed at an affiliated washing station in Amaro with
+direct operational oversight".
+
+DONE, and checked across the whole site rather than page by page.
+
+Most of the site already used "affiliated washing station" and "direct
+operational oversight". What remained was a second phrasing that still implied
+ownership: "held by an affiliated company within Zoebar's ownership
+structure". It appeared in eleven places — the homepage, the About page, the
+Process page, the Quality page, the Amaro page, the coffee specification, the
+site footer and four of the frequently-asked-questions answers.
+
+Every one now reads in your preferred form, for example:
+
+  "Coffee is processed at an affiliated washing station in Amaro, Ethiopia
+   with direct operational oversight."
+
+  "An affiliated washing station run with direct operational oversight, set to
+   transfer to Zoebar Ethiopia once the legal transfer is complete."
+
+We searched the whole site afterwards for "ownership structure",
+"Zoebar-owned", "our own" and "owned and operated". There are no remaining
+occurrences in anything a visitor can read.
+
+The rule is now written into the source file that holds the company facts, in
+your own words, so it cannot be reintroduced by a later edit without someone
+reading the instruction first.
+
+
+-------------------------------------------------------------------------
+7. FINAL REVIEW BEFORE THE MAIN DOMAIN
+-------------------------------------------------------------------------
+The preview is ready for your factual and content review.
+
+Please look particularly at:
+
+  - The founder story as it now sits on the page, and confirm the final
+    wording you want (or send the refinement).
+  - Which Amaro photograph you want on the About page — see the shortlist in
+    section 2.
+  - The demonstration lot page, and confirm the demo wording is strong enough
+    for you.
+
+TWO THINGS WE NEED FROM YOU BEFORE THE MAIN DOMAIN:
+
+  a) Enquiry delivery. The enquiry form only sends mail when the mail service
+     key is configured on the live deployment. While it is not set, the
+     Request a Quote page shows a short honest notice saying enquiries cannot
+     be delivered. That notice should not be there on the main domain, so
+     please confirm the mail key is configured on the production deployment
+     before launch.
+
+  b) The demonstration lot. Confirm that the lot you reviewed is the only lot
+     record in the system, and that nothing else should go live yet.
+
+
+-------------------------------------------------------------------------
+VERIFICATION RUN AFTER THESE CHANGES
+-------------------------------------------------------------------------
+Every change above was made against a full production build and checked, not
+just written:
+
+  - Full site build: clean, 29 pages generated.
+  - Type and code checks: clean.
+  - Automated site sweep: 302 checks across 20 pages — all passed, none
+    failed. Covers page structure, headings, titles, descriptions, canonical
+    links, machine-readable data, console errors, load performance, layout
+    stability, and horizontal overflow at eight screen widths from 360px to
+    1920px.
+  - Accessibility audit (WCAG 2.0 / 2.1 / 2.2, levels A and AA): zero
+    violations on all 20 pages.
+  - "Being verified" count across every public page: zero.
+  - Pages opened and looked at by eye at 1440x900: About, About/Founder,
+    Coffee, Quality.

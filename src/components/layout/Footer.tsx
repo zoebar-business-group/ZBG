@@ -57,8 +57,8 @@ export function Footer() {
             </p>
             <p className="max-w-[38ch] font-sans text-sm leading-relaxed text-[#9db3b0]">
               {OPERATIONS.ethiopiaEntity} is {sentenceMerge(OPERATIONS.ethiopiaStatus)}.
-              The washing station in {OPERATIONS.washingStationLocation} is held within
-              Zoebar&rsquo;s ownership structure with direct operational oversight.
+              Coffee is processed at an affiliated washing station in{" "}
+              {OPERATIONS.washingStationLocation} with direct operational oversight.
             </p>
           </div>
 

@@ -148,15 +148,54 @@ export interface SpecRow {
   perLot?: boolean;
 }
 
+/**
+ * WHAT A NULL ROW DOES — client decision, 4 September 2026.
+ *
+ * Two different things used to render the same way. They are now separated:
+ *
+ *   perLot   the figure exists, but it belongs to a lot rather than to the
+ *            origin. It stays on the table and reads "Confirmed per lot".
+ *   neither  the figure is simply not confirmed yet. The row is REMOVED from
+ *            the published table until it is.
+ *
+ * The client's instruction was that a field which is genuinely not yet
+ * available should stay hidden rather than publish a wall of "Being verified"
+ * labels to buyers. The trust rule is untouched — nothing is ever filled with
+ * a plausible value, and the source field stays `null` in `content/coffee.ts`
+ * so it reappears the moment a real value lands.
+ */
+export function visibleSpecRows(rows: SpecRow[]): SpecRow[] {
+  return rows.filter((row) => row.value !== null || row.perLot === true);
+}
+
 export function SpecTable({
   caption,
   rows,
+  emptyNote,
   className,
 }: {
   caption: string;
   rows: SpecRow[];
+  /** Rendered in place of the table when no row is publishable yet. */
+  emptyNote?: ReactNode;
   className?: string;
 }) {
+  const visible = visibleSpecRows(rows);
+
+  if (visible.length === 0) {
+    if (!emptyNote) return null;
+    return (
+      <div className={clsx("w-full", className)}>
+        <p className="mb-4 font-sans text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-meta">
+          {caption}
+        </p>
+        <p className="max-w-[52ch] border-t border-[#e2dbcd] pt-5 font-sans text-[0.9375rem] leading-[1.65] text-[#5a5f56]">
+          {emptyNote}
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className={clsx("w-full overflow-x-auto", className)}>
       <table className="w-full border-collapse text-left">
@@ -164,7 +203,7 @@ export function SpecTable({
           {caption}
         </caption>
         <tbody>
-          {rows.map((row) => (
+          {visible.map((row) => (
             <tr key={row.label} className="border-t border-[#e2dbcd] align-top">
               <th
                 scope="row"
