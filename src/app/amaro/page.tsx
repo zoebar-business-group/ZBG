@@ -229,7 +229,7 @@ export default function AmaroPage() {
                   {
                     label: "Washing station",
                     value: `Affiliated, ${OPERATIONS.washingStationLocation}`,
-                    note: "Held within Zoebar's ownership structure, run with direct operational oversight, transitioning to Zoebar Ethiopia.",
+                    note: "An affiliated washing station run with direct operational oversight, set to transfer to Zoebar Ethiopia once the legal transfer is complete.",
                   },
                   // PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
                   // { label: "Varieties", value: null },

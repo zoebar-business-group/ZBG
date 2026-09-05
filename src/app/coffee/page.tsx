@@ -39,16 +39,18 @@ export const metadata: Metadata = {
   },
 };
 
-/** SpecField → SpecRow. On /coffee an unconfirmed (null) field reads
- *  "Confirmed per lot" rather than "Being verified" (client instruction) —
- *  the source `perLot` flag in coffee.ts is unchanged, so /quality is not
- *  affected. */
+/** SpecField → SpecRow, one to one.
+ *
+ *  The `perLot` flag now comes from the source field rather than being forced
+ *  on every null (client instruction, 4 September 2026). A per-lot field reads
+ *  "Confirmed per lot"; a field that is simply unconfirmed is withheld from
+ *  the table by `SpecTable` until it is confirmed. */
 function toRows(fields: typeof ALL_SPECS): SpecRow[] {
   return fields.map((f) => ({
     label: f.label,
     value: f.value,
     note: f.note,
-    perLot: f.value === null ? true : f.perLot,
+    perLot: f.perLot,
   }));
 }
 
@@ -167,9 +169,11 @@ export default function CoffeePage() {
             Quality and terms.
           </h2>
           <p className="mt-6 max-w-[58ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-            These are the fields a buyer shortlists on. Zoebar publishes them
-            when they are fixed rather than offering indicative ranges that move
-            at contract stage.
+            These are the fields a buyer shortlists on. Grade, screen size,
+            cupping score, defect count and moisture are measured on each lot
+            and are confirmed per lot, not published as a standing Zoebar
+            specification. Commercial terms appear here once they are fixed,
+            rather than as indicative ranges that move at contract stage.
           </p>
 
           <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
@@ -202,7 +206,15 @@ export default function CoffeePage() {
               </div>
             </div>
             <div className="min-w-0">
-              <SpecTable caption="Commercial terms" rows={toRows(COMMERCIAL_SPEC)} />
+              {/* Every commercial field is still open, so the table renders
+                  its note rather than a column of pending markers. Each row
+                  reappears on its own the moment a value is confirmed in
+                  content/coffee.ts. */}
+              <SpecTable
+                caption="Commercial terms"
+                rows={toRows(COMMERCIAL_SPEC)}
+                emptyNote="Packing, minimum order quantity, lead time, Incoterms, port of loading, inspection and certifications are agreed against the contract and confirmed in writing on the offer. They are published here once they are fixed."
+              />
             </div>
           </div>
         </Container>

@@ -61,7 +61,7 @@ export const IDENTITY: SpecField[] = [
   {
     label: "Washing station",
     value: `Affiliated, ${OPERATIONS.washingStationLocation}`,
-    note: "Held within Zoebar's ownership structure with direct operational oversight; set to transition to Zoebar Ethiopia.",
+    note: "An affiliated washing station run with Zoebar's direct operational oversight, set to transfer to Zoebar Ethiopia once the legal transfer is complete.",
     schemaName: "washingStation",
   },
 ];
@@ -69,26 +69,31 @@ export const IDENTITY: SpecField[] = [
 /**
  * Quality specification.
  *
- * LOT-DEPENDENT FIELDS (grade, screen size, cupping score, moisture) are
- * commented out below — they do not render on the marketing pages until real
- * per-lot data exists in Sanity. Do not delete: uncomment to re-enable, and
- * pick a label/approach at that point (open decision).
- * Tracker: docs/LOT-DEPENDENT-FIELDS.md
+ * Client decision, 4 September 2026: grade, screen size, cupping score,
+ * moisture and the rest of the raw evaluation are LOT-SPECIFIC information,
+ * not standing Zoebar specifications. They stay on the table, carry
+ * `perLot: true`, and read "Confirmed per lot" — which is what they are —
+ * rather than being hidden or presented as a permanent claim.
  *
- * Defect count and varieties stay visible as "Being verified" (not part of
- * the hidden set).
+ * Varieties is not a per-lot measurement; it is an origin fact that has not
+ * been confirmed. Under the same instruction it stays `null` and the row is
+ * withheld from the published table until it is confirmed (see
+ * `visibleSpecRows` in components/primitives/data).
  */
 export const QUALITY_SPEC: SpecField[] = [
-  // LOT-DEPENDENT — hidden pending real per-lot data (docs/LOT-DEPENDENT-FIELDS.md):
-  // { label: "Grade", value: null, schemaName: "grade", perLot: true },
-  // { label: "Screen size", value: null, schemaName: "screenSize", perLot: true },
-  // { label: "Cupping score", value: null, schemaName: "cuppingScore", perLot: true },
-  { label: "Defect count", value: null, schemaName: "defectCount" },
-  // { label: "Moisture content", value: null, schemaName: "moistureContent", perLot: true },
+  { label: "Grade", value: null, schemaName: "grade", perLot: true },
+  { label: "Screen size", value: null, schemaName: "screenSize", perLot: true },
+  { label: "Cupping score", value: null, schemaName: "cuppingScore", perLot: true },
+  { label: "Defect count", value: null, schemaName: "defectCount", perLot: true },
+  { label: "Moisture content", value: null, schemaName: "moistureContent", perLot: true },
   { label: "Varieties", value: null, schemaName: "varieties" },
 ];
 
-/** Commercial terms — awaiting confirmation. */
+/**
+ * Commercial terms — none confirmed, and none of them is a per-lot
+ * measurement, so every row is withheld until it is fixed. The tables render
+ * their `emptyNote` instead of a column of pending markers.
+ */
 export const COMMERCIAL_SPEC: SpecField[] = [
   { label: "Packing", value: null, schemaName: "packing" },
   { label: "Minimum order quantity", value: null, schemaName: "minimumOrderQuantity" },

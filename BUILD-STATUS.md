@@ -67,7 +67,7 @@ grey, `#7b8079`, used 73 times.
 
 ### Routes live now
 
-`/` · `/coffee` · `/amaro` · `/process` · `/quality` · `/traceability` · `/farmers` · `/guides` · `/guides/[slug]` (4 pages) · `/journal` (noindex, 0 entries) · `/about` · `/about/founder` (noindex) · `/contact` · `/request-quote` · `/thank-you` (noindex) · `/lots/[slug]` (template, 0 pages)
+`/` · `/coffee` · `/amaro` · `/process` · `/quality` · `/traceability` · `/farmers` · `/guides` · `/guides/[slug]` (7 pages) · `/journal` (noindex, 0 entries) · `/about` · `/about/founder` · `/contact` · `/request-quote` · `/thank-you` (noindex) · `/lots` (noindex until a non-demo lot exists) · `/lots/[slug]` (from Sanity)
 
 Plus `/opengraph-image` — the 1200×630 social card, generated once at build
 time by `next/og` and served as a static PNG. The root layout had declared
@@ -97,7 +97,8 @@ Two routes are currently `built: true` **and** `noindex: true`, because they exi
 | Route | Why noindex | Flip it when |
 |---|---|---|
 | `/journal` | `ENTRIES` is empty; an index with no entries is thin content | The first real entry is published |
-| `/about/founder` | Open Item #7 — the founder's account is not written | The founder's own words land |
+| ~~`/about/founder`~~ | ~~the founder's account is not written~~ | **Flipped 4 Sep 2026** — the account and portrait landed, so it is indexable |
+| `/lots` | no non-demo lot exists; an index of demonstration records is not for search | The first lot with `isDemo` off is published |
 
 Flipping means: remove `noindex` in `site.ts` **and** the `robots` block in the page file. Both are commented at the point of change.
 
@@ -142,8 +143,8 @@ src/
     globals.css             ALL design tokens + motion system
     page.tsx                Homepage (11 chapters)
     amaro|process|quality|traceability|farmers|coffee|request-quote|thank-you/
-    about/ about/founder/   Company + founder (founder noindex until written)
-    guides/  guides/[slug]/ Four pillar reference guides
+    about/ about/founder/   Company + founder (both written and indexable)
+    guides/  guides/[slug]/ Seven pillar reference guides
     journal/ journal/[slug] Editorial index (noindex, 0 entries) + entry template
     contact/                Enquiry routes + the enquiry form
     lots/[slug]/            Lot passport template (0 pages until data exists)
@@ -234,8 +235,9 @@ Still worth doing by hand, because no script judges it: **screenshot a page at
 1440×900 and actually look at it.** Mind trap 13 in both halves.
 
 Not yet automated, and still worth asserting when the route table changes:
-`meta[name="robots"]` should match `site.ts` — `/journal` and `/about/founder`
-report `noindex, follow`, every other built route reports `index, follow`.
+`meta[name="robots"]` should match `site.ts` — `/journal` and `/lots` report
+`noindex, follow`, a demo lot page reports `noindex, nofollow`, and every
+other built route reports `index, follow`.
 
 **Current state: 272 passed / 0 failed, and 0 axe violations, on all 18 routes**
 (23 prerendered routes; `/thank-you` is covered with a query string, while
@@ -277,7 +279,7 @@ From Strategy §11 (Open Items). These are why so much renders as "Being verifie
 | 8 | Farm & washing-station photography — **hard blocker** | Every story surface. All `Figure` placeholders name the exact shot required. |
 | 9 | Farmer names, photos, documented permissions | `/farmers` (0 profiles published) |
 | 10 | ~~Addresses, telephone, email~~ | **Mostly resolved (28 Aug 2026).** Registered address `Al Rashidiya 1, Ajman, UAE`, email `Info@zoebarbusinessgroup.com`, telephone/WhatsApp `+971 58 989 9564` are in `org.ts` and render everywhere. **TRN and founding date were NOT supplied** and are still `null`. No postal code was given; `postalCode` is now optional rather than invented. |
-| 7 | Founder story | `/about/founder` (noindex until it lands). `/about` now carries a "Meet the founder" section that introduces and links to it without narrating on their behalf. |
+| 7 | ~~Founder story~~ | **Resolved (4 Sep 2026).** Client supplied the account and the portrait. `FOUNDER` in `org.ts` carries both, the story verbatim. `/about/founder` is written and indexable; `/about` carries her name, portrait and the first two paragraphs. Client may still refine the wording — that is a string swap in `org.ts`. |
 | 12 | LinkedIn archive to seed the journal | `/journal` now **308-redirects to the company LinkedIn page** as an interim measure. Reverse it when the API lands: delete `app/journal/page.tsx`, restore from git history, drop `noindex` in `lib/site.ts`. |
 | 11 | ~~CRM / email platform choice~~ | **Resolved — Resend.** Set `RESEND_API_KEY` (+ optional `ENQUIRY_TO_EMAIL`, `GOOGLE_SHEET_WEBHOOK_URL`, reCAPTCHA keys). See "Enquiry delivery" above. |
 | 6 | Traceability depth | `/traceability` status column, lot pages |
@@ -329,6 +331,86 @@ Client review of the built site. What changed:
   parentheses rather than commas, which would have produced broken prose.
 - Mobile menu trigger is an icon with an `aria-label`, not the words
   "Menu"/"Close".
+
+### Fix round — 4 September 2026 (client feedback, `docs/ed feed.txt`)
+
+Client feedback on seven points. Client-facing write-ups live in
+`docs/client/`. What changed in the code:
+
+- **A null spec row now means one of two things, and they render differently.**
+  `perLot: true` → stays on the table, reads "Confirmed per lot". Neither →
+  the row is **removed** from the published table (`visibleSpecRows()` in
+  `components/primitives/data`). Client instruction: a genuinely unavailable
+  field stays hidden rather than publishing a wall of "Being verified" to
+  buyers. **The trust rule is untouched** — the source field is still `null`
+  in `content/coffee.ts` and reappears the moment a value lands. Grade, screen
+  size, cupping score, defect count and moisture are back on `/coffee` and
+  `/quality` as `perLot`. `SpecTable` takes an `emptyNote` for a table where
+  nothing is publishable yet (the commercial terms block on `/coffee`).
+  **"Being verified" now renders on zero public routes** — verified by
+  crawling all 15.
+- **Ownership wording, swept.** "held by an affiliated company within Zoebar's
+  ownership structure" survived in 11 places and implies the ownership the
+  client asked us to avoid until the legal transfer completes. All now read
+  "processed at an affiliated washing station in Amaro with direct operational
+  oversight" / "set to transfer to Zoebar Ethiopia once the legal transfer is
+  complete". The instruction is quoted verbatim on `OPERATIONS.washingStationTenure`
+  so a later edit has to read it first. Grep guard: `ownership structure`,
+  `Zoebar-owned`, `owned and operated`, `our own` — zero hits outside that comment.
+- **Founder page is written.** Client supplied the story and portrait.
+  `FOUNDER` in `lib/org.ts` carries name, role, portrait and the story
+  **verbatim** — client may still refine it, and that is a string swap in one
+  place. `personSchema()` added to `lib/schema.ts`. `/about/founder` **is no
+  longer noindex** (`site.ts` + the page's `robots` block both cleared).
+- **The portrait is a cut-out, not a panel** (reworked 5 Sep after the client
+  rejected the first attempt). `scripts/founder-portrait.cjs` flood-fills the
+  studio grey, grows the mask 2px into the subject, feathers it, and writes a
+  **transparent WebP** — no baked ground at all, so the page surface shows
+  through and cannot mismatch. Side padding is zero (the shoulders already
+  reach both edges once nothing is added), and alpha ramps to zero with a
+  smoothstep across the bottom 25% so she dissolves into the page. Both call
+  sites use `rounded="none"` and no caption.
+
+  **The first attempt baked a warm cream gradient into a JPEG and was wrong.**
+  A mixed cream is a *different* cream from alabaster no matter how carefully
+  it is matched, so with rounded corners and a hard bottom edge it read as a
+  card floating on the page. Do not reintroduce a baked ground.
+
+  `Figure`'s `portraitSoft` is set to the **exact pixel ratio** the script
+  prints (`aspect-[1024/1463]`). A mismatch there means `object-cover` crops
+  the fade off and the hard bottom line comes back — re-run the script with a
+  new photograph and paste the class it prints.
+
+  **Trap: sharp promotes a 1-channel raw to 3 channels on `.blur()`.** Reading
+  the blurred alpha at stride 1 produced a shredded scanline composite. Read
+  `toBuffer({resolveWithObject:true})` and index at `info.channels`.
+- **Demo lots.** `Lot.isDemo` added, through the Sanity schema and the GROQ
+  projection. **`coalesce(isDemo, true)` — a lot is a demo unless someone says
+  otherwise**, so a document predating the field cannot go out as a live
+  offer. A demo lot gets a banner, "Not offered — demonstration record" for
+  availability, no Product JSON-LD, no lot-specific enquiry CTA, an index
+  badge, and `noindex, nofollow`. `/lots` stays noindex until a **non-demo**
+  lot exists.
+- **`/farmers`** states how profiles are gathered (origin-documentation team
+  member through the washing-station team) and that publication waits on
+  documented consent. The consent gate itself was already enforced in code and
+  is unchanged.
+- **`/about`** first figure is now `/amaro-harvest.jpg` rather than the brand
+  panel. Alternates from the same set are named in the comment.
+- `scripts/**` added to the eslint ignore list, same reasoning as `qa/**`.
+
+**Verification.** Build clean (29 pages) · `tsc` clean · lint clean (1
+pre-existing warning) · `qa.mjs` **302 passed / 0 failed** · `a11y.mjs` **0
+violations** on 20 routes · four pages screenshotted and read at 1440x900.
+
+**Trap 23: the build needs Sanity credentials and they are not in the repo.**
+`npm run build` dies at "Collecting page data for /lots" with *Missing
+environment variable: NEXT_PUBLIC_SANITY_DATASET*, and with a placeholder
+project it dies at the fetch instead. This is pre-existing and unrelated to
+whatever you just changed. To verify a build locally, temporarily wrap the two
+accessors in `content/lots.ts` in try/catch, build, **then revert** — do not
+commit that, a silent empty lots index on a Sanity outage is worse than a
+failed deploy.
 
 ---
 

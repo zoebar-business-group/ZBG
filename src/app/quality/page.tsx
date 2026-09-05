@@ -246,11 +246,10 @@ export default function QualityPage() {
               <p className="mt-7 max-w-[44ch] font-sans text-[1.0625rem] leading-[1.65] text-[#cfd9d6]">
                 Quality is not created at the grading table. It is created at intake,
                 at sorting and on the drying beds, and the grading table only records
-                what already happened. The washing station in{" "}
-                {OPERATIONS.washingStationLocation} is held by an affiliated company
-                within Zoebar&rsquo;s ownership structure and run with direct
-                operational oversight, which puts the stages that determine the
-                outcome under direct management rather than bought in.
+                what already happened. Coffee is processed at an affiliated washing
+                station in {OPERATIONS.washingStationLocation} with direct operational
+                oversight, which puts the stages that determine the outcome under
+                direct management rather than bought in.
               </p>
               <div className="mt-10">
                 <Button href="/process" variant="secondary" onDark>
@@ -342,20 +341,22 @@ export default function QualityPage() {
             <div className="min-w-0 lg:col-span-7">
               <SpecTable
                 caption="Quality specification"
-                /* Same rule as /coffee: an unconfirmed field reads "Confirmed
-                   per lot", which is what it is, rather than "Being verified",
-                   which describes work in progress. The two pages read from
-                   one source and must label it identically. */
+                /* Same rule as /coffee, from one source: a lot-specific field
+                   reads "Confirmed per lot", which is what it is; a field that
+                   is simply not confirmed yet is withheld rather than
+                   published as a pending label. */
                 rows={QUALITY_SPEC.map((s) => ({
                   label: s.label,
                   value: s.value,
                   note: s.note,
-                  perLot: s.value === null ? true : s.perLot,
+                  perLot: s.perLot,
                 }))}
               />
               <p className="mt-8 max-w-[58ch] font-sans text-[0.9375rem] leading-[1.65] text-[#5a5f56]">
-                These fields fill from Zoebar&rsquo;s confirmed records, not from
-                industry averages. When they are confirmed they appear here, on{" "}
+                Each of these is measured on the lot in front of you and stated
+                on that lot&rsquo;s record, rather than published as a standing
+                Zoebar figure. They fill from Zoebar&rsquo;s confirmed records,
+                not from industry averages, and they appear here, on{" "}
                 <Link
                   href="/coffee"
                   className="underline decoration-[0.5px] decoration-faint underline-offset-[3px] transition-colors hover:decoration-current"
@@ -401,26 +402,28 @@ export default function QualityPage() {
             id="position"
             className="mt-6 max-w-[20ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
           >
-            An empty field is a statement.
+            A figure belongs to a lot.
           </h2>
           <div className="mt-8 flex max-w-[64ch] flex-col gap-6 font-sans text-[1.0625rem] leading-[1.72] text-[#3d423a]">
             <p>
-              Most green coffee offer sheets are complete. Every field carries a value,
-              and a buyer has no way to tell which of those values came from a
-              certificate and which came from a colleague&rsquo;s memory of last
-              season.
+              Most green coffee offer sheets carry one grade, one screen size and one
+              cupping score for the whole origin. A buyer has no way to tell which of
+              those numbers came from a certificate for the coffee being offered and
+              which came from a colleague&rsquo;s memory of last season.
             </p>
             <p>
-              Zoebar would rather show the gap. A field that reads &ldquo;confirmed
-              per lot&rdquo; is a commitment that every other field on the page was
-              confirmed before it was published, which is the only thing that makes
-              the confirmed fields worth anything.
+              Grade, screen size, cupping score, defect count and moisture are
+              measurements taken on a defined sample of a specific lot. Zoebar states
+              them where they were measured — on the lot record — rather than as a
+              standing specification for Amaro, because a figure detached from the lot
+              it was measured on cannot be checked.
             </p>
             <p>
-              It also sets the standard for what follows. When the grade, screen size
-              and cupping band are confirmed, they will be confirmed figures, and the
-              lot record carrying them will be checkable against the sack in front of
-              you.
+              Everything published as a Zoebar figure was confirmed before it was
+              published. Anything not yet confirmed is not shown at all, rather than
+              dressed as an estimate, and it appears the moment it is fixed. When the
+              lot record reaches a buyer, it is checkable against the sack in front of
+              them.
             </p>
           </div>
 

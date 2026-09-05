@@ -110,7 +110,7 @@ export default function ProcessPage() {
       <PageHeader
         eyebrow="Process"
         title="From cherry to container."
-        lede={`The washing station in ${OPERATIONS.washingStationLocation} is held by an affiliated company within Zoebar's ownership structure and run with Zoebar's direct operational oversight. Cherry intake, processing method, drying and lot formation are managed directly, which is what makes the process record attached to a lot an operational record rather than a supplier's claim.`}
+        lede={`Coffee is processed at an affiliated washing station in ${OPERATIONS.washingStationLocation} with Zoebar's direct operational oversight. Cherry intake, processing method, drying and lot formation are managed directly, which is what makes the process record attached to a lot an operational record rather than a supplier's claim.`}
         meta={[
           { term: "Station", detail: "Affiliated, direct oversight" },
           { term: "Location", detail: OPERATIONS.washingStationLocation },

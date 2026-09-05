@@ -7,7 +7,6 @@ import { publishedLots } from "@/content/lots";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section } from "@/components/primitives/layout";
 import { Button } from "@/components/primitives/Button";
-import { Pending } from "@/components/primitives/data";
 
 const TRAIL = [
   { name: "Home", path: "/" },
@@ -27,17 +26,19 @@ const BASE_METADATA: Metadata = {
 };
 
 /**
- * NOINDEX WHILE EMPTY, matching the pattern used for /journal while it had no
- * entries: a one-line empty state is thin content in the sitemap. Flips to
- * indexable automatically once a lot is published. When there are real lots to
- * keep, also drop the `noindex` flag on /lots in `lib/site.ts` so the index
- * enters the sitemap.
+ * NOINDEX UNTIL THERE IS A REAL LOT, matching the pattern used for /journal
+ * while it had no entries: a one-line empty state is thin content in the
+ * sitemap. A demonstration lot does not lift the index either — an index of
+ * example records is not something to put in front of search (client
+ * instruction, 4 September 2026). Flips to indexable automatically once a lot
+ * with `isDemo` off is published. At that point also drop the `noindex` flag
+ * on /lots in `lib/site.ts` so the index enters the sitemap.
  */
 export async function generateMetadata(): Promise<Metadata> {
-  const empty = (await publishedLots()).length === 0;
-  return empty
-    ? { ...BASE_METADATA, robots: { index: false, follow: true } }
-    : BASE_METADATA;
+  const live = (await publishedLots()).some((l) => !l.isDemo);
+  return live
+    ? BASE_METADATA
+    : { ...BASE_METADATA, robots: { index: false, follow: true } };
 }
 
 /**
@@ -60,10 +61,13 @@ export default async function LotsPage() {
               description:
                 "Individual lot records for Zoebar's Ethiopian Arabica green coffee from Amaro (Koore Zone), Ethiopia.",
               path: "/lots",
-              items: lots.map((l) => ({
-                name: l.lotId,
-                path: `/lots/${l.slug}`,
-              })),
+              /* Demonstration records stay out of structured data. */
+              items: lots
+                .filter((l) => !l.isDemo)
+                .map((l) => ({
+                  name: l.lotId,
+                  path: `/lots/${l.slug}`,
+                })),
             }),
             breadcrumbSchema(TRAIL),
           ),
@@ -78,7 +82,10 @@ export default async function LotsPage() {
           { term: "Origin", detail: `${ORIGIN.name}, ${ORIGIN.country}` },
           { term: "Harvest", detail: harvestWindow() },
           { term: "QR destination", detail: "One page per lot" },
-          { term: "Published lots", detail: lots.length || <Pending /> },
+          /* A count of zero is a fact, not a pending field. It used to render
+             a "Being verified" chip, which the client asked us to stop showing
+             where information is simply not there yet. */
+          { term: "Published lots", detail: String(lots.length) },
         ]}
       />
 
@@ -91,7 +98,6 @@ export default async function LotsPage() {
             >
               Lot records.
             </h2>
-            {lots.length === 0 && <Pending>None published yet</Pending>}
           </div>
 
           {lots.length === 0 ? (
@@ -126,9 +132,17 @@ export default async function LotsPage() {
                     <h3 className="max-w-[20ch] font-display text-[1.25rem] leading-snug text-ink transition-colors duration-[200ms] group-hover:text-emerald-mid">
                       {lot.lotId}
                     </h3>
-                    <p className="mt-auto font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-meta">
-                      {lot.available ? "Available" : "Contracted"}
-                    </p>
+                    {/* A demonstration record is labelled here too, so it is
+                        never mistaken for an offer in the index. */}
+                    {lot.isDemo ? (
+                      <span className="mt-auto inline-flex w-fit border border-[#c9a227] bg-sand/40 px-2.5 py-1 font-sans text-[0.625rem] font-medium uppercase tracking-[0.16em] text-ink">
+                        Demonstration lot
+                      </span>
+                    ) : (
+                      <p className="mt-auto font-sans text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-meta">
+                        {lot.available ? "Available" : "Contracted"}
+                      </p>
+                    )}
                   </Link>
                 </li>
               ))}

@@ -48,7 +48,7 @@ export const PROCESS_FAQS: readonly QA[] = [
   {
     question: "How is the Amaro washing station held and run?",
     answer:
-      "The washing station in Amaro, Ethiopia is held by an affiliated company within Zoebar's ownership structure and run with Zoebar's direct operational oversight, and it is set to transition to Zoebar Ethiopia directly. That direct oversight means cherry intake, processing method, drying and lot formation are managed by Zoebar rather than bought in from a third-party processor.",
+      "Zoebar's coffee is processed at an affiliated washing station in Amaro, Ethiopia, run with Zoebar's direct operational oversight, and the station is set to transfer to Zoebar Ethiopia once the legal transfer is complete. That direct oversight means cherry intake, processing method, drying and lot formation are managed by Zoebar rather than bought in from a third-party processor.",
   },
   {
     question: "What is the difference between washed and natural processing?",
@@ -74,12 +74,12 @@ export const ABOUT_FAQS: readonly QA[] = [
   {
     question: "What is Zoebar Business Group?",
     answer:
-      "Zoebar Business Group FZE LLC is a UAE-registered international trading company connecting Ethiopia and international markets. Its flagship focus is Ethiopian Arabica green coffee from Amaro, recently named as Koore Zone, Ethiopia. Zoebar Ethiopia is being established in Addis Ababa, and the company's washing station in Amaro is held by an affiliated company within Zoebar's ownership structure with direct operational oversight, set to transition to Zoebar Ethiopia.",
+      "Zoebar Business Group FZE LLC is a UAE-registered international trading company connecting Ethiopia and international markets. Its flagship focus is Ethiopian Arabica green coffee from Amaro, recently named as Koore Zone, Ethiopia. Zoebar Ethiopia is being established in Addis Ababa, and coffee is processed at an affiliated washing station in Amaro with direct operational oversight, set to transfer to Zoebar Ethiopia once the legal transfer is complete.",
   },
   {
     question: "Where is Zoebar registered?",
     answer:
-      "Zoebar Business Group FZE LLC is registered in the United Arab Emirates and operates as an international trading company connecting Ethiopia and international markets. A second entity, Zoebar Ethiopia, is being established in Addis Ababa. The washing station in Amaro, Ethiopia is held by an affiliated company within Zoebar's ownership structure with direct operational oversight and is set to transition to Zoebar Ethiopia.",
+      "Zoebar Business Group FZE LLC is registered in the United Arab Emirates and operates as an international trading company connecting Ethiopia and international markets. A second entity, Zoebar Ethiopia, is being established in Addis Ababa. Coffee is processed at an affiliated washing station in Amaro, Ethiopia with direct operational oversight, and the station is set to transfer to Zoebar Ethiopia once the legal transfer is complete.",
   },
   {
     /* Reuses the canonical citable sentence verbatim, so the same fact appears

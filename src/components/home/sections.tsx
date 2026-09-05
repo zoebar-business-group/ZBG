@@ -63,7 +63,7 @@ export function WhyZoebar() {
                 },
                 {
                   title: "An affiliated washing station",
-                  body: `The washing station in ${OPERATIONS.washingStationLocation} is held by an affiliated company within Zoebar's ownership structure and run with Zoebar's direct operational oversight, so processing is managed rather than bought in.`,
+                  body: `Coffee is processed at an affiliated washing station in ${OPERATIONS.washingStationLocation} with Zoebar's direct operational oversight, so processing is managed rather than bought in.`,
                 },
                 {
                   title: "Traceability that resolves",
@@ -247,12 +247,11 @@ export function WashingStation() {
               {OPERATIONS.ethiopiaEntity} is{" "}
               {OPERATIONS.ethiopiaStatus.charAt(0).toLowerCase() +
                 OPERATIONS.ethiopiaStatus.slice(1)}
-              . The washing station in {OPERATIONS.washingStationLocation} is
-              held by an affiliated company within Zoebar&rsquo;s ownership
-              structure and run with Zoebar&rsquo;s direct operational
-              oversight, which is what makes the process record on a lot a fact
-              rather than a claim. It is set to transition to{" "}
-              {OPERATIONS.ethiopiaEntity} directly.
+              . Coffee is processed at an affiliated washing station in{" "}
+              {OPERATIONS.washingStationLocation} with Zoebar&rsquo;s direct
+              operational oversight, which is what makes the process record on a
+              lot a fact rather than a claim. The station is set to transfer to{" "}
+              {OPERATIONS.ethiopiaEntity} once the legal transfer is complete.
             </p>
 
             <dl className="mt-10 flex flex-col">

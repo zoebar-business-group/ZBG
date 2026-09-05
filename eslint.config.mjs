@@ -28,6 +28,10 @@ const eslintConfig = defineConfig([
     // style nits from a different idiom. The "lint must stay clean" invariant
     // is about the app, and it still holds for every file that becomes one.
     "qa/**",
+    // scripts/ is the same case: standalone CommonJS Node utilities that
+    // prepare assets before they enter public/. They are never imported or
+    // bundled, and CJS `require` is the correct idiom for them.
+    "scripts/**",
   ]),
 ]);
 

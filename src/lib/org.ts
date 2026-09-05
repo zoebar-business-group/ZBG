@@ -132,15 +132,21 @@ export const OPERATIONS = {
    *  do not upgrade this to "established" without confirmation. */
   ethiopiaStatus: "Being established in Addis Ababa",
   /**
-   * Washing-station tenure. The station is currently held by an affiliated
-   * company within Zoebar's ownership structure and run with Zoebar's direct
-   * operational oversight. It is set to transition to Zoebar Ethiopia
-   * directly and HAS NOT done so yet. Never describe it as Zoebar-owned,
-   * "our own", or "owned and operated" — use "affiliated" and "direct
-   * operational oversight".
+   * Washing-station tenure. CLIENT INSTRUCTION, 4 September 2026, and absolute
+   * until the legal transfer completes:
+   *
+   *   "Until the legal transfer to Zoebar is complete, please avoid wording
+   *    such as 'Zoebar-owned washing station'. Please use wording such as
+   *    'our affiliated washing station in Amaro, Ethiopia' or 'processed at an
+   *    affiliated washing station in Amaro with direct operational oversight'."
+   *
+   * So: never "Zoebar-owned", never "our own", never "owned and operated", and
+   * never any phrasing that places the station inside Zoebar's ownership —
+   * "within Zoebar's ownership structure" is out for the same reason. Use
+   * "affiliated" plus "direct operational oversight", and nothing stronger.
    */
   washingStationTenure:
-    "held by an affiliated company within Zoebar's ownership structure, run with Zoebar's direct operational oversight, and set to transition to Zoebar Ethiopia directly",
+    "an affiliated washing station in Amaro, Ethiopia, run with Zoebar's direct operational oversight and set to transfer to Zoebar Ethiopia once the legal transfer is complete",
   washingStationLocation: "Amaro, Ethiopia",
 
   /** PENDING — Open Item #6, traceability depth. */
@@ -148,6 +154,39 @@ export const OPERATIONS = {
   /** PENDING — Open Item #4. */
   annualVolume: null as Verified<string>,
   certifications: null as Verified<string[]>,
+} as const;
+
+/**
+ * FOUNDER — supplied by the client on 4 September 2026, together with the
+ * portrait and the working text of the founder story.
+ *
+ * Only what the client actually wrote is here. No title beyond "Founder" is
+ * asserted, no dates, no prior employers: the brief named the background as
+ * "monitoring, evaluation, research and learning" and "learning- and
+ * evidence-focused organizations", and that is as far as the record goes.
+ *
+ * The client has said they may refine the story text before publication, so
+ * `STORY` below is the working copy and is expected to be replaced verbatim
+ * when the final version arrives.
+ */
+export const FOUNDER = {
+  name: "Eden Mengistu",
+  role: "Founder",
+  /** Supplied headshot, cut out onto a transparent ground and faded at the
+   *  foot by `scripts/founder-portrait.cjs`, so the page shows through behind
+   *  her rather than a baked-in panel that never quite matches the surface.
+   *  WebP because it carries the alpha channel that blend depends on. */
+  portrait: "/founder-eden.webp",
+  portraitAlt:
+    "Eden Mengistu, founder of Zoebar Business Group, photographed against a soft cream background.",
+  /** The founder's account, as supplied. Not paraphrased. */
+  story: [
+    "Eden Mengistu brings a background in monitoring, evaluation, research and learning to the way Zoebar approaches coffee and international trade. After years working in learning- and evidence-focused organizations, she entered the coffee business with a strong belief that commercial success should be built on knowledge, relationships, transparency and continuous improvement.",
+    "Through Zoebar, Eden is building a business that stays close to origin: learning directly from producers, understanding how coffee is grown and processed, and developing transparent relationships with international buyers.",
+    "This learning mindset shapes Zoebar's approach: verify before claiming, understand before selling, and keep improving from one season to the next.",
+  ] as const,
+  /** The closing line, set apart in the layout. */
+  refrain: "Always learning. Always improving.",
 } as const;
 
 /** Priority buyers. Foundation Brief 4. */

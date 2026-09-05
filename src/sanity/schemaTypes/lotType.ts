@@ -146,12 +146,27 @@ export const lotType = defineType({
       initialValue: true,
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "isDemo",
+      title: "Demonstration lot (not a live offer)",
+      type: "boolean",
+      description:
+        "ON for an example lot used to show how the QR and lot record work. The public page then carries a demonstration banner, is kept out of search results, and does not present the lot as something a buyer can order. Turn OFF only for a real lot whose figures are all confirmed.",
+      initialValue: true,
+      validation: (Rule) => Rule.required(),
+    }),
   ],
   preview: {
-    select: { title: "lotId", year: "harvestYear", process: "process", slug: "slug.current" },
-    prepare({ title, year, process, slug }) {
+    select: {
+      title: "lotId",
+      year: "harvestYear",
+      process: "process",
+      slug: "slug.current",
+      isDemo: "isDemo",
+    },
+    prepare({ title, year, process, slug, isDemo }) {
       return {
-        title: title || slug || "Untitled lot",
+        title: `${isDemo === false ? "" : "DEMO · "}${title || slug || "Untitled lot"}`,
         subtitle: [year, process].filter(Boolean).join("  ·  "),
       };
     },

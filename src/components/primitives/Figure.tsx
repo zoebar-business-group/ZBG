@@ -24,6 +24,13 @@ import { ZoebarSymbol } from "@/components/brand/ZoebarSymbol";
 
 const RATIOS = {
   portrait: "aspect-[3/4]",
+  /** The founder portrait, at EXACTLY the pixel ratio that
+   *  `scripts/founder-portrait.cjs` writes. That file is a cut-out with a
+   *  transparent ground and an alpha fade at the foot, so any mismatch here
+   *  means `object-cover` crops the fade off and the picture ends on a hard
+   *  line again — which is the thing the client rejected. Re-run the script
+   *  with a new photograph and it prints the class to put here. */
+  portraitSoft: "aspect-[1024/1463]",
   square: "aspect-square",
   landscape: "aspect-[4/3]",
   wide: "aspect-[16/9]",

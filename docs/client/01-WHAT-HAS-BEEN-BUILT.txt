@@ -1,0 +1,293 @@
+ZOEBAR BUSINESS GROUP — WEBSITE
+WHAT HAS BEEN BUILT
+
+Prepared: 4 September 2026
+Status: complete and ready for your final content review before the main domain
+
+
+-------------------------------------------------------------------------
+IN ONE PARAGRAPH
+-------------------------------------------------------------------------
+The site is finished and working. Twenty-two visitor-facing pages are live —
+plus one more for every lot you publish — and every link on the site resolves;
+nothing 404s. It is built as a buyer's tool rather than a brochure:
+specification tables a green-coffee buyer can actually read, a lot record
+system with QR codes that resolve to the individual coffee in front of them,
+seven reference guides on the trade itself, and a company record where every
+published fact is one you confirmed. It loads fast, works without JavaScript,
+passes a full accessibility audit with zero violations, and is structured so
+search engines and AI assistants can quote it accurately.
+
+
+-------------------------------------------------------------------------
+1. THE PAGES
+-------------------------------------------------------------------------
+
+HOMEPAGE
+  A single narrative in eleven chapters, opening on deep emerald. Origin,
+  quality and trust in that order, each with the evidence behind it rather
+  than the adjective. Real Amaro photography throughout.
+
+THE COFFEE — /coffee
+  The offer, as a specification surface. Confirmed product identity (origin,
+  trade category, species, altitude, harvest window, processing methods,
+  washing station), the quality specification, and commercial terms. Written
+  for someone deciding whether to request a sample, not for someone browsing.
+
+AMARO — /amaro
+  The origin page. What Amaro is, where it sits, how it grows coffee, and the
+  Amaro/Sidama distinction stated precisely — Amaro is an administrative zone,
+  recently named Koore Zone, and is not administratively part of the Sidama
+  Region, though its coffee is commonly traded within the broader Sidama
+  category. That accuracy is a genuine ranking advantage: almost nobody else
+  states it correctly.
+
+PROCESS — /process
+  Cherry to container in seven stages: intake, sorting, washed and natural
+  processing, drying, resting and milling, grading, lot formation. What
+  happens, who does it, and what is recorded at each stage.
+
+QUALITY — /quality
+  How Ethiopian green coffee quality is actually assessed: the raw evaluation
+  and the cup evaluation, what each measures, the seven points at which
+  quality is fixed or checked between cherry and container, and who controls
+  each one. Then Zoebar's own specification, with the lot-specific figures
+  labelled as lot-specific.
+
+TRACEABILITY — /traceability
+  What a Zoebar lot record contains and how the QR code on a sack resolves to
+  it.
+
+THE PRODUCERS — /farmers
+  Producer credit as a stated purpose of the site, with the profile system
+  built and ready. Producers are presented as skilled specialists throughout.
+  No profile can be published without recorded consent — enforced in code.
+
+GUIDES — /guides, plus seven full reference guides
+  Substantial reference material on the green coffee trade, roughly 1,400 to
+  1,900 words each, answer-first:
+      Ethiopian coffee grading
+      Harvest and shipping calendar
+      Import documentation checklist
+      Incoterms for green coffee
+      Green coffee payment terms
+      Green coffee container loading
+      The green coffee buying process
+  These are what a buyer searches for before they search for a supplier. They
+  carry real authoring and revision dates — not backdated to look established,
+  not refreshed to look current.
+
+ABOUT — /about
+  The company: what it is, the promise in order, the corporate structure, who
+  Zoebar works with, the founder, and what is planned beyond green coffee.
+
+THE FOUNDER — /about/founder
+  Eden Mengistu's account, in her own words, with her photograph.
+
+FROM ORIGIN — /journal
+  The editorial section, built with its publishing standard stated. While it
+  has no entries of its own, the link goes to the company LinkedIn page in a
+  new tab.
+
+CONTACT — /contact
+  Enquiry routes, the company record, and the enquiry form.
+
+REQUEST A QUOTE — /request-quote
+  The primary conversion page. Quote request and sample request, each a
+  separate form.
+
+LOT RECORDS — /lots and /lots/[lot]
+  See section 3.
+
+
+-------------------------------------------------------------------------
+2. THE TRUST RULE — HOW IT IS ENFORCED
+-------------------------------------------------------------------------
+Your Foundation Brief says: "We would rather say 'we are verifying that
+information' than provide an unsupported claim."
+
+That is not a writing guideline on this site. It is built into the structure:
+
+  - Every company and coffee fact lives in one file. Nothing about Zoebar is
+    typed directly into a page, so one fact cannot say two different things in
+    two places.
+  - Any fact you have not confirmed is held as empty rather than filled with a
+    plausible value. There are no "typical" altitudes, no representative
+    cupping scores, no industry-average lead times anywhere on this site.
+  - The machine-readable data that search engines and AI assistants read is
+    generated by stripping out everything unconfirmed before it is written. An
+    invented value cannot reach it even by mistake.
+  - Following your feedback of 4 September, an unconfirmed field is now hidden
+    from visitors rather than labelled, and lot-specific measurements are
+    labelled "Confirmed per lot".
+
+The practical consequence: every number published on this site is a number you
+stated. That is the entire commercial proposition, and it is why the site can
+be checked against the sack.
+
+
+-------------------------------------------------------------------------
+3. THE LOT AND QR SYSTEM
+-------------------------------------------------------------------------
+Each lot of coffee gets its own permanent page carrying its identity (lot
+number, origin, harvest year, process, altitude), its quality record (grade,
+screen size, cupping score, moisture) and its commercial detail (packing,
+quantity, availability), plus the producers who grew it where they have given
+consent to be named.
+
+  - Each lot page generates its own QR code, downloadable as SVG or PNG, to
+    print on the sack or sample bag. Scanning it opens that lot's page.
+  - The printed reference and the web address are the same string, in a fixed
+    format (for example amaro-washed-2026-01), checked automatically before
+    it can be saved — because once it is printed on a sack it is permanent.
+  - Lots are created and edited by you, in a content Studio at /studio. No
+    developer is needed to publish a lot. The site updates within seconds of a
+    lot being published.
+  - Any field left blank stays blank. The system will not invent a figure to
+    complete a lot record.
+  - Following your feedback of 4 September, a lot is a demonstration record
+    unless deliberately marked otherwise. A demonstration lot carries a clear
+    banner, is kept out of search results and out of machine-readable product
+    data, and does not present itself as something a buyer can order.
+
+
+-------------------------------------------------------------------------
+4. ENQUIRIES
+-------------------------------------------------------------------------
+The quote and sample forms deliver by email through Resend, with:
+
+  - A notification to Zoebar and an automatic acknowledgement to the buyer.
+  - Spam protection: a hidden honeypot field, Google reCAPTCHA scoring, and a
+    rate limit per email address and per IP address.
+  - Server-side validation, and every submitted value escaped before it
+    reaches an email, so a form cannot be used to inject content.
+  - An optional log to a Google Sheet as a backup record.
+  - A WhatsApp route alongside the form.
+  - If the mail service is not configured, the page says so honestly rather
+    than accepting enquiries that would silently go nowhere.
+
+Not yet done: a live end-to-end test with the real production mail and
+reCAPTCHA keys. Worth doing once before the main domain goes live.
+
+
+-------------------------------------------------------------------------
+5. FINDABILITY — SEARCH ENGINES AND AI ASSISTANTS
+-------------------------------------------------------------------------
+  - Every page carries a unique title, description and canonical address.
+  - Machine-readable structured data throughout: the organisation, the
+    website, the origin as a place, products, articles, FAQs, the founder as a
+    person, and breadcrumb hierarchy on every page. All of it derives from the
+    one company record, so it cannot drift from what the page says.
+  - An XML sitemap that lists only pages that exist and are meant to be
+    indexed, with real revision dates.
+  - A robots file with its reasoning written into it, and an llms.txt for AI
+    assistants.
+  - A 1200x630 social sharing card, generated at build time.
+  - Pages that exist but have nothing verified to say are deliberately kept
+    out of search until they do. Shipping a page and indexing it are separate
+    decisions here.
+  - Content is written answer-first, in complete self-contained sentences, so
+    an AI assistant quoting the site quotes something accurate and attributed.
+
+
+-------------------------------------------------------------------------
+6. DESIGN AND BRAND
+-------------------------------------------------------------------------
+  - Two densities, deliberately. Story pages (home, Amaro, producers, founder)
+    open on deep emerald and are spacious. Specification pages (coffee,
+    process, quality, lots) are light, dense and scannable. This reconciles
+    the creative direction with the brand guideline rather than compromising
+    between them.
+  - Brand palette throughout: Alabaster, Deep Emerald, Earth Black, warm sand,
+    sage and gold.
+  - The Zoebar symbol is used exactly as supplied, in both fills. "Business
+    Group" is never dropped from the wordmark.
+  - Typography is set to Canela Deck as the display face, with a close
+    substitute rendering until the web licence is in place — the swap is one
+    line and needs no redesign.
+  - Motion is restrained: content is in the page before any script runs, and
+    everything respects a visitor's reduced-motion setting.
+  - Specifications are always real tables, never pictures of tables, so they
+    can be read by screen readers, copied, and indexed.
+
+
+-------------------------------------------------------------------------
+7. PERFORMANCE, ACCESSIBILITY AND QUALITY
+-------------------------------------------------------------------------
+Measured on a production build, not estimated:
+
+  - Almost everything is pre-rendered as finished HTML at build time and
+    served as a static file. Only four routes are generated on request: the
+    quote form, the thank-you page, the QR code download, and the internal
+    route that refreshes the site when you publish a lot.
+  - Largest content paint: 260ms at worst on a local build. Layout shift:
+    zero, on every page.
+  - Page weight was cut from 357KB to 288KB by removing font data that was
+    downloaded but never used. That figure was measured before the latest
+    photographs were placed; pages carrying a photograph are heavier by the
+    size of that image, which is normal and is the right trade.
+  - Accessibility: from 399 issues down to zero, across WCAG 2.0, 2.1 and 2.2
+    at levels A and AA. Re-confirmed after the latest changes: zero violations
+    on all twenty pages tested.
+  - No horizontal scrolling at any width from 360px to 1920px.
+  - No console errors anywhere.
+  - The site renders and reads correctly with JavaScript switched off.
+  - An automated verification harness lives in the repository and runs 302
+    checks across the site. Current state: 302 passed, 0 failed.
+
+
+-------------------------------------------------------------------------
+8. WHO OWNS AND EDITS WHAT
+-------------------------------------------------------------------------
+YOU EDIT DIRECTLY, WITHOUT A DEVELOPER:
+  - Lot records, including creating, editing, marking available or contracted,
+    and switching a lot from demonstration to live. Via the Studio at /studio.
+  - Producer profiles and their consent status, in the same place.
+
+WE UPDATE FOR YOU (each is a small, contained change):
+  - Company facts: specifications, commercial terms, legal details.
+  - Page copy and the founder story.
+  - Photographs.
+  - Journal entries and guides.
+
+Because every company fact lives in one place, a confirmed specification
+appears on the coffee page, the quality page and every lot record at the same
+moment. There is no risk of one page saying something different from another.
+
+
+-------------------------------------------------------------------------
+9. STILL OPEN, AND WHAT EACH ONE UNBLOCKS
+-------------------------------------------------------------------------
+None of these blocks launch. Each one makes the site stronger when it lands.
+
+  COFFEE SPECIFICATIONS
+    Packing, minimum order quantity, lead time, Incoterms, port of loading,
+    inspection, certifications, varieties. Currently hidden until confirmed.
+    Unblocks: the commercial terms table on /coffee, and the pending sections
+    in several guides.
+
+  FARMER PROFILES WITH CONSENT
+    Name, location, years in coffee, farm and plot detail, practices, quotes
+    and photographs. Your origin-documentation person is now collecting these.
+    Unblocks: the producer profiles on /farmers, and producer credits on lot
+    pages.
+
+  MORE PHOTOGRAPHY
+    Every image slot on the site names the exact photograph it is waiting for.
+    Adding one is a drop-in with no layout change.
+
+  COMPANY REGISTRATION NUMBER AND FOUNDING DATE
+    Not supplied, so currently not published. Your address, telephone and
+    email are in and render everywhere.
+
+  CANELA DECK WEB LICENCE
+    Proceeding on Canela; the licence follows. One line to swap when it lands.
+
+  ROBOTS POLICY SIGN-OFF
+    Written and dated, awaiting your approval of the crawler policy.
+
+  LIVE ENQUIRY TEST
+    One end-to-end submission against the production mail and reCAPTCHA keys.
+
+  FINAL CONTENT REVIEW
+    Yours, before the main domain.

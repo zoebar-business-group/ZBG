@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { ORG, ORIGIN, OPERATIONS, BUYERS, altitudeBand, harvestWindow } from "@/lib/org";
+import {
+  ORG,
+  ORIGIN,
+  OPERATIONS,
+  FOUNDER,
+  BUYERS,
+  altitudeBand,
+  harvestWindow,
+} from "@/lib/org";
 import {
   graph,
   aboutPageSchema,
@@ -46,7 +54,7 @@ const COMMITMENTS = [
     n: "01",
     name: "Origin",
     detail:
-      "Coffee bought at the point it is grown and processed, not several hands downstream. The washing station in Amaro is held by an affiliated company within Zoebar's ownership structure and run with direct operational oversight, which is what makes an origin claim checkable rather than repeated.",
+      "Coffee bought at the point it is grown and processed, not several hands downstream. Coffee is processed at an affiliated washing station in Amaro with direct operational oversight, which is what makes an origin claim checkable rather than repeated.",
     href: "/amaro",
     hrefLabel: "The origin",
   },
@@ -145,17 +153,20 @@ export default function AboutPage() {
             </div>
 
             <div className="lg:col-span-6">
-              {/* THE COMPANY slot takes a photograph of Zoebar's own premises,
-                  which has not been supplied. Until it is, this renders the
-                  composed brand panel rather than borrowing the washing station
-                  photograph, which belongs to the Ethiopia operation and was
-                  being centre-cropped out of shape in this portrait slot. Same
-                  treatment as the founder portrait below: no `src`, so the panel
-                  is decorative and never implies a photograph exists. */}
+              {/* Client instruction, 4 September 2026: a real Amaro photograph
+                  here rather than the composed brand panel, chosen for a sense
+                  of place. This is the strongest portrait-format frame in the
+                  supplied Amaro set — coffee on the hillside, the farm running
+                  back behind it. `washing-station.jpg`, `wash1.jpg` and
+                  `amaro-tree.jpg` are the alternates from the same set and are
+                  a one-line swap if the client prefers one of those. */}
               <Figure
+                src="/amaro-harvest.jpg"
+                alt="Coffee trees carrying ripe red and yellow cherry on a smallholder plot in Amaro, Koore Zone, with the terraced farm and hillside running back behind them in the late afternoon."
                 ratio="portrait"
                 rounded="panel"
-                brief="Zoebar Business Group's own office in working use — the company as a place of work, not a stock interior."
+                brief="A strong Amaro landscape — coffee farm and hillside — that gives the company page a sense of place."
+                caption="Amaro (Koore Zone), Ethiopia. The origin the company is built around."
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
             </div>
@@ -237,7 +248,7 @@ export default function AboutPage() {
                   {
                     label: "Washing station",
                     value: `Affiliated, ${OPERATIONS.washingStationLocation}`,
-                    note: "Held within Zoebar's ownership structure with direct operational oversight; set to transition to Zoebar Ethiopia.",
+                    note: "An affiliated washing station run with direct operational oversight, set to transfer to Zoebar Ethiopia once the legal transfer is complete.",
                   },
                   {
                     label: "Origin",
@@ -312,18 +323,20 @@ export default function AboutPage() {
       </Section>
 
       {/* --- Meet the founder ---------------------------------------------------
-          The founder's own account is Open Item #7 and is being written with
-          them. This section introduces and routes to it; it does not narrate a
-          story on their behalf, and the portrait stays a composed panel until a
-          real photograph is supplied. */}
+          Portrait and story supplied by the client on 4 September 2026. This
+          section introduces the founder and routes to her page; the account
+          itself lives at /about/founder and is carried verbatim from
+          FOUNDER.story rather than restated here. */}
       <Section surface="light" rhythm="base" density="story" aria-labelledby="founder">
         <Container>
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
               <Figure
-                ratio="portrait"
-                rounded="panel"
-                brief="Portrait of the founder of Zoebar Business Group, in working context rather than a formal studio setting."
+                src={FOUNDER.portrait}
+                alt={FOUNDER.portraitAlt}
+                ratio="portraitSoft"
+                rounded="none"
+                brief="Portrait of the founder of Zoebar Business Group."
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
             </div>
@@ -336,22 +349,19 @@ export default function AboutPage() {
                 id="founder"
                 className="mt-7 max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
               >
-                Meet the founder.
+                {FOUNDER.name}.
               </h2>
 
               <p className="mt-8 max-w-[58ch] font-sans text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.65] text-[#3d423a]">
-                {ORG.name} was built on a single conviction: that the distance
-                between an Ethiopian coffee farm and the buyer who ends up with
-                the sack is longer than it needs to be, and that most of what
-                gets lost across it is information.
+                {FOUNDER.story[0]}
               </p>
 
               <p className="mt-6 max-w-[58ch] font-sans text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.65] text-[#3d423a]">
-                The founder&rsquo;s own account of why the company exists is
-                being written with them, and will be published here once it is
-                confirmed. It is not being drafted on their behalf in the
-                meantime, for the same reason nothing else on this site is
-                estimated: a story written for someone is not their story.
+                {FOUNDER.story[1]}
+              </p>
+
+              <p className="mt-8 max-w-[24ch] font-display text-[1.375rem] leading-snug text-ink">
+                {FOUNDER.refrain}
               </p>
 
               <div className="mt-12 flex flex-wrap gap-4">

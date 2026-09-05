@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 
-import { ORG, OPERATIONS } from "@/lib/org";
-import { graph, aboutPageSchema, breadcrumbSchema } from "@/lib/schema";
+import { ORG, FOUNDER, OPERATIONS } from "@/lib/org";
+import {
+  graph,
+  aboutPageSchema,
+  personSchema,
+  breadcrumbSchema,
+} from "@/lib/schema";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
+import { Figure } from "@/components/primitives/Figure";
 import { Button } from "@/components/primitives/Button";
 
 const TRAIL = [
@@ -12,55 +18,54 @@ const TRAIL = [
   { name: "Founder", path: "/about/founder" },
 ];
 
+const SUMMARY = `${FOUNDER.name} founded ${ORG.name} after years in monitoring, evaluation, research and learning, and built it on the belief that commercial success should rest on knowledge, relationships, transparency and continuous improvement.`;
+
 export const metadata: Metadata = {
-  title: "The Founder",
-  description:
-    "The founder's account of why Zoebar Business Group was built, in their own words. Being prepared with the founder and published once confirmed.",
+  title: `${FOUNDER.name}, Founder`,
+  description: SUMMARY,
   alternates: { canonical: "/about/founder" },
-  openGraph: { title: "The Founder", url: "/about/founder", type: "profile" },
-  /**
-   * NOINDEX WHILE UNWRITTEN. The route ships because it is linked from the
-   * footer and from /about, and a 404 there is a visible defect. It stays out
-   * of the index until it carries the founder's actual account — Strategy Open
-   * Item #7. Remove this, and the noindex/built flags in `lib/site.ts`, when
-   * the material lands.
-   */
-  robots: { index: false, follow: true },
+  openGraph: {
+    title: `${FOUNDER.name}, Founder of ${ORG.name}`,
+    description: SUMMARY,
+    url: "/about/founder",
+    type: "profile",
+  },
 };
 
 /**
- * /about/founder — pending, and honest about it.
+ * /about/founder — the founder's account, in her own framing.
  *
- * A founder page is a first-person account. Writing one from inference would
- * put words in a real, named person's mouth and publish them under their own
- * name: the most serious form of invented fact this site could commit, and
- * squarely against the trust rule.
+ * The page stood empty until the client supplied both the portrait and the
+ * text on 4 September 2026. The story now on the page is the client's own
+ * working draft, carried verbatim from `FOUNDER.story` in `lib/org.ts` — it is
+ * not paraphrased here, and nothing is added to it. The client has said they
+ * may refine the wording before publication; replacing the strings in
+ * `lib/org.ts` is the whole of that change.
  *
- * So this page carries what is true today — that the account is being written
- * with the founder — and states what it will contain, which is a real answer
- * to "who is behind this company?" even before the story is told.
+ * The three principles below are the client's own closing sentence, split into
+ * its three clauses. They restate her text; they do not extend it.
  */
 
-/** What the founder's account will cover. A commitment, not a summary. */
-const SCOPE = [
+/** "Verify before claiming, understand before selling, and keep improving
+ *  from one season to the next." — the founder's sentence, set out. */
+const PRINCIPLES = [
   {
-    term: "Why coffee, and why Amaro",
+    n: "01",
+    term: "Verify before claiming",
     detail:
-      "The decision to build around a single origin and a single affiliated washing station rather than a broad trading book.",
+      "A specification is published once it is confirmed. Figures that belong to a lot are confirmed on that lot, and nothing on this site is filled with an estimate to make a page look complete.",
   },
   {
-    term: "Why an affiliated station, not an arm's-length supplier",
+    n: "02",
+    term: "Understand before selling",
     detail:
-      "Keeping an affiliated washing station in Amaro under Zoebar's direct operational oversight, rather than sourcing coffee from an independent processor, is expensive and slow. The account will set out the reasoning behind choosing it anyway, and how the arrangement is set to transition to Zoebar Ethiopia.",
+      "Knowing how the coffee was grown, picked, processed and dried before it is offered. That is why processing sits at an affiliated washing station under direct operational oversight rather than at arm's length.",
   },
   {
-    term: "What the company is for",
-    detail: `The founder's own framing of the positioning this site is built on: ${ORG.positioning.toLowerCase()}`,
-  },
-  {
-    term: "What has not gone to plan",
+    n: "03",
+    term: "Keep improving, season to season",
     detail:
-      "An account that only contains successes is a brochure. The one published here will include what proved harder than expected.",
+      "A harvest is a year of evidence. What it shows about picking, fermentation, drying and sorting is carried into the next one rather than repeated.",
   },
 ];
 
@@ -72,10 +77,16 @@ export default function FounderPage() {
         dangerouslySetInnerHTML={{
           __html: graph(
             aboutPageSchema({
-              name: `The founder of ${ORG.name}`,
-              description:
-                "The founder's account of why Zoebar Business Group was built. Being prepared with the founder.",
+              name: `${FOUNDER.name}, founder of ${ORG.name}`,
+              description: SUMMARY,
               path: "/about/founder",
+            }),
+            personSchema({
+              name: FOUNDER.name,
+              jobTitle: FOUNDER.role,
+              description: SUMMARY,
+              path: "/about/founder",
+              image: FOUNDER.portrait,
             }),
             breadcrumbSchema(TRAIL),
           ),
@@ -85,66 +96,99 @@ export default function FounderPage() {
       <PageHeader
         surface="deep"
         eyebrow="Founder"
-        title="In their own words."
-        lede="The founder's account of why this company exists is being written with the founder, and will be published here when it is confirmed. It is not being drafted on their behalf in the meantime."
+        title={FOUNDER.name}
+        lede="A background in monitoring, evaluation, research and learning, brought to coffee and international trade."
         meta={[
+          { term: "Role", detail: FOUNDER.role },
           { term: "Company", detail: ORG.name },
           { term: "Ethiopia", detail: OPERATIONS.ethiopiaStatus },
           { term: "Station", detail: OPERATIONS.washingStationLocation },
         ]}
       />
 
-      {/* --- Why the page is empty ------------------------------------------- */}
-      <Section surface="light" rhythm="base" density="story" aria-labelledby="why-empty">
-        <Container width="text">
-          <Eyebrow className="text-meta">The position</Eyebrow>
-          <h2
-            id="why-empty"
-            className="mt-6 max-w-[22ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
-          >
-            A founder&rsquo;s story cannot be written for them.
-          </h2>
+      {/* --- The account ------------------------------------------------------ */}
+      <Section surface="light" rhythm="base" density="story" aria-labelledby="story">
+        <Container width="wide">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-5">
+              {/* A cut-out, not a panel. `rounded="none"` and no caption:
+                  every frame device was what made this read as a card
+                  floating on the page. The alpha fade at the foot of the file
+                  does the finishing, and the ratio matches the file exactly so
+                  the fade is not cropped off. */}
+              <Figure
+                src={FOUNDER.portrait}
+                alt={FOUNDER.portraitAlt}
+                ratio="portraitSoft"
+                rounded="none"
+                priority
+                brief="Portrait of the founder of Zoebar Business Group."
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            </div>
 
-          <div className="mt-8 flex max-w-[64ch] flex-col gap-6 font-sans text-[1.0625rem] leading-[1.72] text-[#3d423a]">
-            <p>
-              Most of this site withholds a number until it is confirmed. This page
-              withholds something harder to fake and easier to get wrong: a person&rsquo;s
-              own account of their own decisions.
-            </p>
-            <p>
-              A founder page assembled from what is publicly known would be a
-              first-person narrative written by someone who was not there, published
-              under a real person&rsquo;s name. That is a more serious invention than a
-              cupping score, not a lesser one, and the same rule applies to it.
-            </p>
-            <p>
-              So the page waits. What follows is what the account will cover, published
-              in advance so it can be held against the version that eventually appears.
-            </p>
+            <div className="lg:col-span-7">
+              <Eyebrow className="text-meta">In her own words</Eyebrow>
+              <h2
+                id="story"
+                className="mt-6 max-w-[18ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
+              >
+                Why this company exists.
+              </h2>
+
+              <div className="mt-8 flex max-w-[62ch] flex-col gap-6 font-sans text-[1.0625rem] leading-[1.72] text-[#3d423a]">
+                {FOUNDER.story.map((paragraph) => (
+                  <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                ))}
+              </div>
+
+              {/* The closing line, given the weight it carries in the client's
+                  own text rather than folded into the last paragraph. */}
+              <p className="mt-10 max-w-[24ch] border-t border-[#d9d0bf] pt-8 font-display text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.15] tracking-[-0.015em] text-ink">
+                {FOUNDER.refrain}
+              </p>
+            </div>
           </div>
         </Container>
       </Section>
 
-      {/* --- What it will cover ------------------------------------------------ */}
-      <Section surface="bone" rhythm="base" density="spec" aria-labelledby="scope">
+      {/* --- The three principles --------------------------------------------- */}
+      <Section surface="bone" rhythm="base" density="spec" aria-labelledby="principles">
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <Eyebrow className="text-meta">What it will cover</Eyebrow>
+              <Eyebrow className="text-meta">The approach</Eyebrow>
               <h2
-                id="scope"
+                id="principles"
                 className="mt-6 max-w-[16ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
               >
-                Four things, on the record.
+                What the learning mindset means in practice.
               </h2>
+              <p className="mt-7 max-w-[44ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
+                Three commitments, and each one is visible in how this site is
+                built rather than only in how it is described.
+              </p>
             </div>
 
             <div className="min-w-0 lg:col-span-7">
               <dl className="flex flex-col">
-                {SCOPE.map((item) => (
-                  <div key={item.term} className="border-t border-[#d9d0bf] py-7">
-                    <dt className="max-w-[46ch] font-display text-[1.25rem] leading-snug text-ink">
-                      {item.term}
+                {PRINCIPLES.map((item, i) => (
+                  <div
+                    key={item.term}
+                    data-animate
+                    style={{ ["--animate-delay" as string]: `${i * 60}ms` }}
+                    className="border-t border-[#d9d0bf] py-7"
+                  >
+                    <dt className="flex items-baseline gap-4">
+                      <span
+                        data-numeric
+                        className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.2em] text-faint"
+                      >
+                        {item.n}
+                      </span>
+                      <span className="max-w-[46ch] font-display text-[1.25rem] leading-snug text-ink">
+                        {item.term}
+                      </span>
                     </dt>
                     <dd className="mt-3 max-w-[62ch] font-sans text-[0.9375rem] leading-[1.65] text-[#5a5f56]">
                       {item.detail}
