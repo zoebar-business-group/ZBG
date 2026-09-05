@@ -111,16 +111,18 @@ export default function FounderPage() {
         <Container width="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              {/* 4:5, matching the file the portrait script writes, so the
-                  photograph is never cropped back into a tight headshot. */}
+              {/* A cut-out, not a panel. `rounded="none"` and no caption:
+                  every frame device was what made this read as a card
+                  floating on the page. The alpha fade at the foot of the file
+                  does the finishing, and the ratio matches the file exactly so
+                  the fade is not cropped off. */}
               <Figure
                 src={FOUNDER.portrait}
                 alt={FOUNDER.portraitAlt}
                 ratio="portraitSoft"
-                rounded="panel"
+                rounded="none"
                 priority
                 brief="Portrait of the founder of Zoebar Business Group."
-                caption={`${FOUNDER.name}, ${FOUNDER.role.toLowerCase()}, ${ORG.name}.`}
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
             </div>

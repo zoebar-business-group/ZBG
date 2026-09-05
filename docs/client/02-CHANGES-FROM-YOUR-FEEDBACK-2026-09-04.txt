@@ -131,17 +131,25 @@ final text and it replaces the working copy in one place — the page, the About
 page and the page description all update together.
 
 THE PHOTOGRAPH. You asked for a soft cream or subtle warm neutral background
-matching the site palette rather than the cool grey, and for a little
-breathing room around the shoulders rather than a tight crop.
+matching the site palette rather than the cool grey, and for it not to be
+cropped too tightly.
 
-DONE. The supplied headshot has been re-grounded on a soft warm cream drawn
-from the site's own palette, with a gentle gradient so it has depth rather
-than reading as a flat fill. The frame was enlarged around her — space added
-at the sides and above the head — so the shoulders are no longer sitting on
-the edge of the picture.
+DONE, and done in the way that holds up best: rather than mixing a cream and
+painting it in behind her, the cool studio grey has been removed altogether
+and the page itself now shows through. The background behind her IS the site's
+own warm neutral, so it matches exactly and cannot drift from it.
+
+That also means:
+
+  - There is no visible panel, box or edge around the photograph. She sits on
+    the page rather than in a frame on it.
+  - She runs edge to edge across the column, with no inset at the left or
+    right.
+  - The foot of the picture dissolves gradually into the page instead of
+    ending on a cut line, so she reads as emerging from the page.
 
 She herself is untouched. No retouching, no reshaping, no colour change to the
-person: only the ground behind her was replaced and the frame enlarged.
+person: only the grey behind her was removed.
 
 Where to look:  /about/founder  and  /about
 
@@ -262,6 +270,9 @@ Please look particularly at:
 
   - The founder story as it now sits on the page, and confirm the final
     wording you want (or send the refinement).
+  - The founder photograph on both /about and /about/founder, which was
+    reworked on 5 September after a first version read as a framed card
+    sitting on the page rather than part of it.
   - Which Amaro photograph you want on the About page — see the shortlist in
     section 2.
   - The demonstration lot page, and confirm the demo wording is strong enough

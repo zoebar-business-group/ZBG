@@ -172,9 +172,11 @@ export const OPERATIONS = {
 export const FOUNDER = {
   name: "Eden Mengistu",
   role: "Founder",
-  /** Supplied headshot, re-grounded on the site's warm neutral and given
-   *  breathing room by `scripts/founder-portrait.cjs`. */
-  portrait: "/founder-eden.jpg",
+  /** Supplied headshot, cut out onto a transparent ground and faded at the
+   *  foot by `scripts/founder-portrait.cjs`, so the page shows through behind
+   *  her rather than a baked-in panel that never quite matches the surface.
+   *  WebP because it carries the alpha channel that blend depends on. */
+  portrait: "/founder-eden.webp",
   portraitAlt:
     "Eden Mengistu, founder of Zoebar Business Group, photographed against a soft cream background.",
   /** The founder's account, as supplied. Not paraphrased. */

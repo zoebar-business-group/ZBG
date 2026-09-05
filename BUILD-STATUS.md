@@ -362,16 +362,28 @@ Client feedback on seven points. Client-facing write-ups live in
   **verbatim** — client may still refine it, and that is a string swap in one
   place. `personSchema()` added to `lib/schema.ts`. `/about/founder` **is no
   longer noindex** (`site.ts` + the page's `robots` block both cleared).
-- **The portrait was re-grounded, not retouched.** Supplied headshot sits on
-  cool studio grey, cropped tight. `scripts/founder-portrait.cjs` flood-fills
-  the ground, feathers the mask and composites the subject onto a warm cream
-  gradient from the site palette on an enlarged canvas (sides + top; **never**
-  the foot, or the torso floats above the frame). Output is exactly 4:5, which
-  is why `Figure` gained `ratio="portraitSoft"` — a 3:4 slot would crop the
-  breathing room straight back off. **Trap: sharp promotes a 1-channel raw to
-  3 channels on `.blur()`.** Reading the blurred alpha at stride 1 produced a
-  shredded scanline composite. Read `toBuffer({resolveWithObject:true})` and
-  index at `info.channels`.
+- **The portrait is a cut-out, not a panel** (reworked 5 Sep after the client
+  rejected the first attempt). `scripts/founder-portrait.cjs` flood-fills the
+  studio grey, grows the mask 2px into the subject, feathers it, and writes a
+  **transparent WebP** — no baked ground at all, so the page surface shows
+  through and cannot mismatch. Side padding is zero (the shoulders already
+  reach both edges once nothing is added), and alpha ramps to zero with a
+  smoothstep across the bottom 25% so she dissolves into the page. Both call
+  sites use `rounded="none"` and no caption.
+
+  **The first attempt baked a warm cream gradient into a JPEG and was wrong.**
+  A mixed cream is a *different* cream from alabaster no matter how carefully
+  it is matched, so with rounded corners and a hard bottom edge it read as a
+  card floating on the page. Do not reintroduce a baked ground.
+
+  `Figure`'s `portraitSoft` is set to the **exact pixel ratio** the script
+  prints (`aspect-[1024/1463]`). A mismatch there means `object-cover` crops
+  the fade off and the hard bottom line comes back — re-run the script with a
+  new photograph and paste the class it prints.
+
+  **Trap: sharp promotes a 1-channel raw to 3 channels on `.blur()`.** Reading
+  the blurred alpha at stride 1 produced a shredded scanline composite. Read
+  `toBuffer({resolveWithObject:true})` and index at `info.channels`.
 - **Demo lots.** `Lot.isDemo` added, through the Sanity schema and the GROQ
   projection. **`coalesce(isDemo, true)` — a lot is a demo unless someone says
   otherwise**, so a document predating the field cannot go out as a live

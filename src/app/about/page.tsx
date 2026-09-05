@@ -335,7 +335,7 @@ export default function AboutPage() {
                 src={FOUNDER.portrait}
                 alt={FOUNDER.portraitAlt}
                 ratio="portraitSoft"
-                rounded="panel"
+                rounded="none"
                 brief="Portrait of the founder of Zoebar Business Group."
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
