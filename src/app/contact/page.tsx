@@ -204,9 +204,9 @@ export default function ContactPage() {
                 Ask a question.
               </h2>
               <p className="mt-7 max-w-[42ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
-                For anything about the company, the coffee from {ORIGIN.name}, the
-                affiliated washing station, or how Zoebar works. Give us enough to
-                answer properly and we will reply by email.
+                For anything about the company, the coffee from {ORIGIN.name},
+                Zoebar&rsquo;s own washing station, or how Zoebar works. Give us
+                enough to answer properly and we will reply by email.
               </p>
 
               <p className="mt-8 max-w-[42ch] font-sans text-[0.9375rem] leading-[1.65] text-meta">

@@ -26,7 +26,7 @@ const TRAIL = [
 export const metadata: Metadata = {
   title: "Amaro, Ethiopia, Koore Zone Coffee Origin",
   description:
-    "Amaro (Koore Zone), Ethiopia: Ethiopian Arabica grown at 1,700–1,800 masl, harvested September to December, processed at an affiliated washing station with Zoebar's direct operational oversight. How Amaro relates to the Sidama category.",
+    "Amaro (Koore Zone), Ethiopia: Ethiopian Arabica grown at 1,700–1,800 masl, harvested September to December, processed at Zoebar's own washing station. How Amaro relates to the Sidama category.",
   alternates: { canonical: "/amaro" },
   openGraph: {
     title: "Amaro, Ethiopia, Koore Zone Coffee Origin",
@@ -142,7 +142,7 @@ export default function AmaroPage() {
                 onDark
                 className="mt-7"
                 question="How high is coffee grown in Amaro?"
-                answer={`Coffee in Amaro, Koore Zone, Ethiopia is grown at approximately ${altitudeBand()} metres above sea level. The harvest runs approximately ${ORIGIN.harvestStart} to ${ORIGIN.harvestEnd}, and lots are processed as washed or natural at an affiliated washing station in Amaro run with Zoebar's direct operational oversight.`}
+                answer={`Coffee in Amaro, Koore Zone, Ethiopia is grown at approximately ${altitudeBand()} metres above sea level. The harvest runs approximately ${ORIGIN.harvestStart} to ${ORIGIN.harvestEnd}, and lots are processed as washed or natural at Zoebar's own washing station in Amaro.`}
               />
 
               <div className="mt-14 grid grid-cols-2 gap-8">
@@ -228,8 +228,8 @@ export default function AmaroPage() {
                   { label: "Processing", value: ORIGIN.processing.join(" / ") },
                   {
                     label: "Washing station",
-                    value: `Affiliated, ${OPERATIONS.washingStationLocation}`,
-                    note: "An affiliated washing station run with direct operational oversight, set to transfer to Zoebar Ethiopia once the legal transfer is complete.",
+                    value: `Zoebar-owned, ${OPERATIONS.washingStationLocation}`,
+                    note: `Owned directly by ${OPERATIONS.washingStationOwner}.`,
                   },
                   // PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):
                   // { label: "Varieties", value: null },

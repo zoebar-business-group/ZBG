@@ -60,8 +60,8 @@ export const IDENTITY: SpecField[] = [
   },
   {
     label: "Washing station",
-    value: `Affiliated, ${OPERATIONS.washingStationLocation}`,
-    note: "An affiliated washing station run with Zoebar's direct operational oversight, set to transfer to Zoebar Ethiopia once the legal transfer is complete.",
+    value: `Zoebar-owned, ${OPERATIONS.washingStationLocation}`,
+    note: `Owned directly by ${OPERATIONS.washingStationOwner}.`,
     schemaName: "washingStation",
   },
 ];

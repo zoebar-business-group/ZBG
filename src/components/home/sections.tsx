@@ -62,8 +62,8 @@ export function WhyZoebar() {
                   body: `Our current coffee program is centered on ${ORIGIN.name}, allowing us to build deeper knowledge of the farms, processing practices, season and people behind each lot.`,
                 },
                 {
-                  title: "An affiliated washing station",
-                  body: `Coffee is processed at an affiliated washing station in ${OPERATIONS.washingStationLocation} with Zoebar's direct operational oversight, so processing is managed rather than bought in.`,
+                  title: "A station we own",
+                  body: `${OPERATIONS.washingStationOwner} owns the washing station in ${OPERATIONS.washingStationLocation}, so processing is controlled rather than bought in.`,
                 },
                 {
                   title: "Traceability that resolves",
@@ -226,9 +226,9 @@ export function WashingStation() {
               ratio="landscape"
               rounded="panel"
               src="/wash1.jpg"
-              alt="The affiliated washing station at Amaro in use: a worker directs a hose into one of the concrete fermentation tanks, water running over the coffee settled at the bottom, with forested hillside behind."
-              brief="The affiliated washing station at Amaro, the concrete fermentation tanks in working use during processing."
-              caption="An affiliated washing station at Amaro, run with Zoebar's direct operational oversight."
+              alt="Zoebar's own washing station at Amaro in use: a worker directs a hose into one of the concrete fermentation tanks, water running over the coffee settled at the bottom, with forested hillside behind."
+              brief="Zoebar's own washing station at Amaro, the concrete fermentation tanks in working use during processing."
+              caption="Zoebar Business Group owns and operates the washing station at Amaro."
               sizes="(max-width: 1024px) 100vw, 55vw"
             />
           </div>
@@ -247,16 +247,14 @@ export function WashingStation() {
               {OPERATIONS.ethiopiaEntity} is{" "}
               {OPERATIONS.ethiopiaStatus.charAt(0).toLowerCase() +
                 OPERATIONS.ethiopiaStatus.slice(1)}
-              . Coffee is processed at an affiliated washing station in{" "}
-              {OPERATIONS.washingStationLocation} with Zoebar&rsquo;s direct
-              operational oversight, which is what makes the process record on a
-              lot a fact rather than a claim. The station is set to transfer to{" "}
-              {OPERATIONS.ethiopiaEntity} once the legal transfer is complete.
+              . {OPERATIONS.washingStationOwner} owns the washing station in{" "}
+              {OPERATIONS.washingStationLocation} directly, which is what makes
+              the process record on a lot a fact rather than a claim.
             </p>
 
             <dl className="mt-10 flex flex-col">
               {[
-                { term: "Tenure", detail: "Affiliated, direct oversight" },
+                { term: "Ownership", detail: "Zoebar-owned and operated" },
                 { term: "Location", detail: OPERATIONS.washingStationLocation },
                 { term: "Methods", detail: ORIGIN.processing.join(" and ") },
                 // PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):

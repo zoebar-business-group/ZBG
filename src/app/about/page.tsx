@@ -43,9 +43,9 @@ export const metadata: Metadata = {
  * The company page carries the Organization entity, so every fact here is read
  * from `org.ts` rather than written into the markup. Legal address and TRN are
  * Open Item #10 and render as pending; the structure of the company — a UAE
- * entity, an Ethiopian entity being established, and an affiliated washing
- * station run with direct operational oversight (set to transition to Zoebar
- * Ethiopia) — is verified and is the substance of the page.
+ * entity, an established Ethiopian entity, and a washing station owned
+ * directly by Zoebar Business Group — is verified and is the substance of the
+ * page.
  */
 
 /** The three commitments, from the Foundation Brief. */
@@ -54,7 +54,7 @@ const COMMITMENTS = [
     n: "01",
     name: "Origin",
     detail:
-      "Coffee bought at the point it is grown and processed, not several hands downstream. Coffee is processed at an affiliated washing station in Amaro with direct operational oversight, which is what makes an origin claim checkable rather than repeated.",
+      "Coffee bought at the point it is grown and processed, not several hands downstream. Zoebar Business Group owns the washing station in Amaro, Ethiopia, which is what makes an origin claim checkable rather than repeated.",
     href: "/amaro",
     hrefLabel: "The origin",
   },
@@ -247,8 +247,8 @@ export default function AboutPage() {
                   { label: "Ethiopian status", value: OPERATIONS.ethiopiaStatus },
                   {
                     label: "Washing station",
-                    value: `Affiliated, ${OPERATIONS.washingStationLocation}`,
-                    note: "An affiliated washing station run with direct operational oversight, set to transfer to Zoebar Ethiopia once the legal transfer is complete.",
+                    value: `Owned, ${OPERATIONS.washingStationLocation}`,
+                    note: `Owned directly by ${OPERATIONS.washingStationOwner}.`,
                   },
                   {
                     label: "Origin",

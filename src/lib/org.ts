@@ -128,25 +128,30 @@ export const OPERATIONS = {
   uaeEntity: "Zoebar Business Group FZE LLC",
   uaeStatus: "Operating",
   ethiopiaEntity: "Zoebar Ethiopia",
-  /** Verified: "is being established in Addis Ababa". Present tense matters —
-   *  do not upgrade this to "established" without confirmation. */
-  ethiopiaStatus: "Being established in Addis Ababa",
+  /** Verified: "is established in Ethiopia". Corrected twice by the client on
+   *  13 September 2026: (1) Zoebar Ethiopia is registered in a different
+   *  region, not Addis Ababa — do not name a specific city without new
+   *  confirmation; (2) the entity is already established, not still in
+   *  progress — do not revert to "being established". */
+  ethiopiaStatus: "Established in Ethiopia",
   /**
-   * Washing-station tenure. CLIENT INSTRUCTION, 4 September 2026, and absolute
-   * until the legal transfer completes:
+   * Washing-station ownership. CLIENT INSTRUCTION, 4 September 2026, held
+   * "until the legal transfer to Zoebar is complete":
    *
    *   "Until the legal transfer to Zoebar is complete, please avoid wording
    *    such as 'Zoebar-owned washing station'. Please use wording such as
    *    'our affiliated washing station in Amaro, Ethiopia' or 'processed at an
    *    affiliated washing station in Amaro with direct operational oversight'."
    *
-   * So: never "Zoebar-owned", never "our own", never "owned and operated", and
-   * never any phrasing that places the station inside Zoebar's ownership —
-   * "within Zoebar's ownership structure" is out for the same reason. Use
-   * "affiliated" plus "direct operational oversight", and nothing stronger.
+   * SUPERSEDED 13 September 2026: the client confirmed the legal transfer has
+   * now completed. Zoebar Business Group owns the washing station in Amaro
+   * directly. Do not reintroduce "affiliated" or "direct operational
+   * oversight" as a substitute for ownership without a new client
+   * confirmation that the station has reverted to affiliated status.
    */
-  washingStationTenure:
-    "an affiliated washing station in Amaro, Ethiopia, run with Zoebar's direct operational oversight and set to transfer to Zoebar Ethiopia once the legal transfer is complete",
+  ownsWashingStation: true,
+  /** The entity that owns the station. Client-confirmed 13 September 2026. */
+  washingStationOwner: "Zoebar Business Group",
   washingStationLocation: "Amaro, Ethiopia",
 
   /** PENDING — Open Item #6, traceability depth. */

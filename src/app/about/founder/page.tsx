@@ -59,7 +59,7 @@ const PRINCIPLES = [
     n: "02",
     term: "Understand before selling",
     detail:
-      "Knowing how the coffee was grown, picked, processed and dried before it is offered. That is why processing sits at an affiliated washing station under direct operational oversight rather than at arm's length.",
+      "Knowing how the coffee was grown, picked, processed and dried before it is offered. That is why processing sits at a washing station Zoebar owns directly rather than at arm's length.",
   },
   {
     n: "03",

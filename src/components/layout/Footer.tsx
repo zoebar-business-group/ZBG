@@ -26,7 +26,7 @@ function label(path: string): string {
 /**
  * Lower-cases only the leading character, so a sentence-cased fact can be
  * dropped mid-sentence without flattening the proper nouns inside it.
- * `"Being established in Addis Ababa".toLowerCase()` produced "addis ababa".
+ * `"Established in Ethiopia".toLowerCase()` produced "ethiopia".
  */
 function sentenceMerge(text: string): string {
   return text.charAt(0).toLowerCase() + text.slice(1);
@@ -56,9 +56,9 @@ export function Footer() {
               {ORG.promise}
             </p>
             <p className="max-w-[38ch] font-sans text-sm leading-relaxed text-[#9db3b0]">
-              {OPERATIONS.ethiopiaEntity} is {sentenceMerge(OPERATIONS.ethiopiaStatus)}.
-              Coffee is processed at an affiliated washing station in{" "}
-              {OPERATIONS.washingStationLocation} with direct operational oversight.
+              {OPERATIONS.ethiopiaEntity} is {sentenceMerge(OPERATIONS.ethiopiaStatus)}.{" "}
+              {OPERATIONS.washingStationOwner} owns the washing station in{" "}
+              {OPERATIONS.washingStationLocation}.
             </p>
           </div>
 

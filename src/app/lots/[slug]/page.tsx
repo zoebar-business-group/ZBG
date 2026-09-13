@@ -40,7 +40,7 @@ export async function generateMetadata({
 
   const description = lot.isDemo
     ? `Demonstration lot record for ${lot.lotId}, showing how a Zoebar lot page and its QR code work. Not a live commercial offer.`
-    : `${lot.lotId}: ${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at an affiliated washing station with Zoebar's direct operational oversight.`;
+    : `${lot.lotId}: ${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at Zoebar's own washing station.`;
 
   const title = lot.isDemo
     ? `${lot.lotId}, demonstration lot record`
@@ -139,7 +139,7 @@ export default async function LotPage({
               ? undefined
               : productSchema({
                   name: `${lot.lotId}, ${lot.process} Ethiopian Arabica, ${lot.origin}`,
-                  description: `${lot.process} Ethiopian Arabica green coffee from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at an affiliated washing station in ${ORIGIN.name} with Zoebar's direct operational oversight.`,
+                  description: `${lot.process} Ethiopian Arabica green coffee from ${lot.origin} (${lot.zone}), ${lot.country}, ${lot.harvestYear} harvest, processed at Zoebar's own washing station in ${ORIGIN.name}.`,
                   path: `/lots/${lot.slug}`,
                   properties,
                 }),
@@ -159,7 +159,7 @@ export default async function LotPage({
         lede={
           lot.isDemo
             ? `A demonstration record, published so the QR code and the lot page can be reviewed end to end. The figures below are an example of the fields a real lot carries. This lot is not for sale, and nothing on this page describes coffee Zoebar is offering.`
-            : `${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, processed at an affiliated washing station with Zoebar's direct operational oversight.`
+            : `${lot.process} Ethiopian Arabica from ${lot.origin} (${lot.zone}), ${lot.country}, processed at Zoebar's own washing station.`
         }
         meta={
           lot.isDemo
