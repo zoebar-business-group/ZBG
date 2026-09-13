@@ -62,8 +62,8 @@ export function WhyZoebar() {
                   body: `Our current coffee program is centered on ${ORIGIN.name}, allowing us to build deeper knowledge of the farms, processing practices, season and people behind each lot.`,
                 },
                 {
-                  title: "An affiliated washing station",
-                  body: `The washing station in ${OPERATIONS.washingStationLocation} is held by an affiliated company within Zoebar's ownership structure and run with Zoebar's direct operational oversight, so processing is managed rather than bought in.`,
+                  title: "A station we own",
+                  body: `${OPERATIONS.washingStationOwner} owns the washing station in ${OPERATIONS.washingStationLocation}, so processing is controlled rather than bought in.`,
                 },
                 {
                   title: "Traceability that resolves",
@@ -226,9 +226,9 @@ export function WashingStation() {
               ratio="landscape"
               rounded="panel"
               src="/washing-station.jpg"
-              alt="The affiliated washing station at Amaro: concrete fermentation tanks in the foreground and long rows of raised drying beds behind, workers tending them, green hills beyond."
-              brief="The affiliated washing station at Amaro, wide establishing shot showing the fermentation tanks and drying beds in working use."
-              caption="An affiliated washing station at Amaro, run with Zoebar's direct operational oversight."
+              alt="Zoebar's own washing station at Amaro: concrete fermentation tanks in the foreground and long rows of raised drying beds behind, workers tending them, green hills beyond."
+              brief="Zoebar's own washing station at Amaro, wide establishing shot showing the fermentation tanks and drying beds in working use."
+              caption="Zoebar Business Group owns and operates the washing station at Amaro."
               sizes="(max-width: 1024px) 100vw, 55vw"
             />
           </div>
@@ -241,23 +241,21 @@ export function WashingStation() {
               id="station-heading"
               className="mt-6 max-w-[14ch] text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.04] tracking-[-0.015em]"
             >
-              Processing with direct oversight.
+              Our own washing station.
             </h2>
             <p className="mt-7 max-w-[44ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
+              {OPERATIONS.washingStationOwner} owns the washing station in{" "}
+              {OPERATIONS.washingStationLocation} directly, and{" "}
               {OPERATIONS.ethiopiaEntity} is{" "}
               {OPERATIONS.ethiopiaStatus.charAt(0).toLowerCase() +
                 OPERATIONS.ethiopiaStatus.slice(1)}
-              . The washing station in {OPERATIONS.washingStationLocation} is
-              held by an affiliated company within Zoebar&rsquo;s ownership
-              structure and run with Zoebar&rsquo;s direct operational
-              oversight, which is what makes the process record on a lot a fact
-              rather than a claim. It is set to transition to{" "}
-              {OPERATIONS.ethiopiaEntity} directly.
+              . Owning the station is what makes the process record on a lot a
+              fact rather than a claim.
             </p>
 
             <dl className="mt-10 flex flex-col">
               {[
-                { term: "Tenure", detail: "Affiliated, direct oversight" },
+                { term: "Ownership", detail: "Zoebar-owned and operated" },
                 { term: "Location", detail: OPERATIONS.washingStationLocation },
                 { term: "Methods", detail: ORIGIN.processing.join(" and ") },
                 // PENDING FIELD hidden pending confirmed data (docs/LOT-DEPENDENT-FIELDS.md):

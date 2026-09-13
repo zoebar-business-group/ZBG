@@ -52,8 +52,8 @@ export default async function ThankYouPage({
           </h2>
           <p className="mt-5 max-w-[54ch] font-sans text-[1.0625rem] leading-[1.65] text-[#5a5f56]">
             {ORIGIN.name} is where all of this starts, the zone, the altitude
-            band, the harvest window and the affiliated washing station Zoebar
-            runs with direct operational oversight.
+            band, the harvest window and the washing station Zoebar owns and
+            runs.
           </p>
           <div className="mt-9">
             <Button href="/amaro">Read about {ORIGIN.name}</Button>

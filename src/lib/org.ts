@@ -128,19 +128,25 @@ export const OPERATIONS = {
   uaeEntity: "Zoebar Business Group FZE LLC",
   uaeStatus: "Operating",
   ethiopiaEntity: "Zoebar Ethiopia",
-  /** Verified: "is being established in Addis Ababa". Present tense matters —
-   *  do not upgrade this to "established" without confirmation. */
-  ethiopiaStatus: "Being established in Addis Ababa",
+  /** Verified: "is established in Ethiopia". The client corrected the
+   *  earlier "Addis Ababa" specificity on 13 September 2026 (Zoebar Ethiopia
+   *  is registered in a different region), and confirmed on the same day
+   *  that the entity is already established — not still in the process —
+   *  so this no longer reads in the present-progressive. Do not revert to
+   *  "being established" and do not reintroduce "Addis Ababa" without a new
+   *  client confirmation. */
+  ethiopiaStatus: "Established in Ethiopia",
   /**
-   * Washing-station tenure. The station is currently held by an affiliated
-   * company within Zoebar's ownership structure and run with Zoebar's direct
-   * operational oversight. It is set to transition to Zoebar Ethiopia
-   * directly and HAS NOT done so yet. Never describe it as Zoebar-owned,
-   * "our own", or "owned and operated" — use "affiliated" and "direct
-   * operational oversight".
+   * Washing-station ownership. The legal transfer COMPLETED and was confirmed
+   * by the client on 13 September 2026: Zoebar Business Group owns the washing
+   * station in Amaro directly. It is no longer held through an affiliated
+   * company, and the "set to transition to Zoebar Ethiopia" framing is
+   * superseded. Do not reintroduce "affiliated", and do not fall back on
+   * "direct operational oversight" as a substitute for ownership.
    */
-  washingStationTenure:
-    "held by an affiliated company within Zoebar's ownership structure, run with Zoebar's direct operational oversight, and set to transition to Zoebar Ethiopia directly",
+  ownsWashingStation: true,
+  /** The entity that owns the station. Client-confirmed 13 September 2026. */
+  washingStationOwner: "Zoebar Business Group",
   washingStationLocation: "Amaro, Ethiopia",
 
   /** PENDING — Open Item #6, traceability depth. */
