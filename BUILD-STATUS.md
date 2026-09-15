@@ -412,6 +412,48 @@ accessors in `content/lots.ts` in try/catch, build, **then revert** — do not
 commit that, a silent empty lots index on a Sanity outage is worse than a
 failed deploy.
 
+### Update round — 15 September 2026 (branch `worktree-coffee-guides-fab-sep15`)
+
+Held on its own branch to merge after the other developer's work lands.
+
+- **`/coffee` and `/guides` headers open deep.** `surface="deep"` on their
+  `PageHeader`, and `darkHeader: true` on both routes in `lib/site.ts` so the
+  nav inverts over them (trap #7). The page bodies keep spec density. Every
+  primary-nav landing page now opens on the same emerald as `/amaro` and
+  `/about`.
+- **Contact FAB, `components/layout/ContactFab.tsx`.** Bottom right on every
+  route except `/studio`, mounted in the root layout inside `ChromeGate`. It
+  opens a panel with two routes: WhatsApp, carrying the page-aware message
+  from `whatsappMessageFor()`, and `/contact`. **Chosen over a Contact pill in
+  the header:** the header already carries Request a Quote, a second pill
+  beside it splits the one conversion, and on phones the header collapses
+  behind the menu, which is where WhatsApp is used most. The number is passed
+  in as a prop from the layout, because `WHATSAPP_NUMBER` is server-side. With
+  no number, the WhatsApp row is withheld. Escape closes the panel and returns
+  focus to the trigger, and a press outside closes it. The panel's rise
+  animation is collapsed by the reduced-motion block.
+- **Farmer photographs.** `scripts/farmer-photos.cjs` writes
+  `public/farmer-one-hd.jpg` (1005x614 → 2010x1228) and
+  `public/farmers-plot-hd.jpg` (1600x1066 → 2400x1599). It uses a Lanczos-3
+  upscale, a light unsharp mask, and one shared grade (saturation eased off the
+  neon greens, a slight warm balance). **This is interpolation, not AI
+  super-resolution**, so it cannot add detail the camera did not record. The
+  originals stay in `public/`. No person is retouched.
+- **`Figure` gains `blend` and `label`.** `blend` dissolves the foot of the
+  photograph into the page with a CSS mask (`.figure-blend`, so it matches
+  alabaster, bone or emerald alike), adds a soft vignette, and adds a slow
+  hover drift. `label` is a small place chip on the photograph and must be a
+  verified fact, like a caption. Both farmer pairs (homepage chapter 08 and
+  `/farmers`) use them, with a sage-and-sand glow behind the pair. The glow is
+  held inside the page gutter below `lg`, so it adds no horizontal overflow.
+
+**Trap 24: a `--no-save` Playwright install can outrun the browser cache.**
+`npm i --no-save playwright` pulls the latest version, which expects a newer
+Chromium revision than the one already in `ms-playwright` (1243 against a
+cached 1234), and the QA scripts then fail to launch. Run
+`npx playwright install chromium` after the install, or pass `executablePath`
+to the cached binary for a one-off script.
+
 ---
 
 ## What Phase 6 shipped

@@ -92,6 +92,7 @@ export default function CoffeePage() {
       />
 
       <PageHeader
+        surface="deep"
         eyebrow="The offer"
         title="Ethiopian Arabica green coffee."
         lede={citableSummary()}

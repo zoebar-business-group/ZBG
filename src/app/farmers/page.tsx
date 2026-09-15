@@ -153,21 +153,33 @@ export default function FarmersPage() {
                   words, and lot pages link back to the people who grew the lot.
                 </p>
               </div>
-              <div className="grid gap-6 sm:grid-cols-2 lg:col-span-6">
+              <div className="relative isolate grid gap-6 sm:grid-cols-2 lg:col-span-6">
+                {/* Soft sage-and-sand glow behind the pair, so the photographs
+                    sit in the surface rather than on it. Decorative. Held
+                    inside the page gutter on small screens so it cannot add
+                    overflow. */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-x-4 -inset-y-10 -z-10 lg:-inset-10 bg-[radial-gradient(60%_55%_at_35%_40%,rgba(135,164,161,0.28)_0%,rgba(135,164,161,0)_70%),radial-gradient(45%_45%_at_75%_70%,rgba(240,226,203,0.55)_0%,rgba(240,226,203,0)_70%)] blur-2xl"
+                />
                 {/* Both are landscape frames in portrait slots and both
                     producers stand to the left, so the crop is anchored left;
-                    the default centre crop cuts through the face. */}
+                    the default centre crop cuts through the face.
+                    `-hd` files come from scripts/farmer-photos.cjs. */}
                 <Figure
-                  src="/farmer-one.jpg"
+                  src="/farmer-one-hd.jpg"
                   alt="A coffee producer in a worn brown jacket picking ripe red cherry by hand from a laden branch at their plot in Amaro, Koore Zone."
                   ratio="portrait"
                   rounded="card"
                   focus="left"
+                  blend
+                  label="Amaro, Koore Zone"
                   brief="A producer hand-picking ripe cherry at their plot in Amaro, seen in profile among the coffee trees, natural light, unposed."
                   sizes="(max-width: 640px) 100vw, 24vw"
                 />
                 <Figure
-                  src="/zoebarfarmers1.jpeg"
+                  blend
+                  src="/farmers-plot-hd.jpg"
                   alt="A coffee producer standing among cherry-laden coffee trees at his plot in Amaro, Koore Zone, reaching to a branch of ripening cherry, forested hillside behind."
                   ratio="portrait"
                   rounded="card"

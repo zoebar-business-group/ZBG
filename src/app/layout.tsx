@@ -3,12 +3,13 @@ import { Poppins, Fraunces } from "next/font/google";
 import "./globals.css";
 
 import { ORG } from "@/lib/org";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, WHATSAPP_NUMBER } from "@/lib/site";
 import { graph, organizationSchema, websiteSchema } from "@/lib/schema";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { ChromeGate } from "@/components/layout/ChromeGate";
+import { ContactFab } from "@/components/layout/ContactFab";
 
 /**
  * TYPEFACES
@@ -124,6 +125,8 @@ export default function RootLayout({
 
         <ChromeGate>
           <Footer />
+          {/* The number is server-side; the client component receives it. */}
+          <ContactFab whatsappNumber={WHATSAPP_NUMBER} />
           <ScrollReveal />
         </ChromeGate>
       </body>

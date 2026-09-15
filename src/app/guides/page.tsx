@@ -55,6 +55,7 @@ export default function GuidesPage() {
       />
 
       <PageHeader
+        surface="deep"
         eyebrow="Guides"
         title="Reference, not marketing."
         lede="Seven guides covering the questions a green coffee buyer actually has to answer before a first Ethiopian shipment: how the buying process runs, how the grade is produced, when the crop moves, which documents are required, what an Incoterms rule does and does not include, how payment is structured, and what fits in a container."

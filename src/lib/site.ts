@@ -74,7 +74,7 @@ export interface Route {
 
 export const ROUTES: Route[] = [
   { path: "/", label: "Home", density: "story", built: true, darkHeader: true, changeFrequency: "weekly", priority: 1 },
-  { path: "/coffee", label: "Coffee", density: "spec", built: true, inNav: true, changeFrequency: "weekly", priority: 0.9 },
+  { path: "/coffee", label: "Coffee", density: "spec", built: true, darkHeader: true, inNav: true, changeFrequency: "weekly", priority: 0.9 },
   { path: "/amaro", label: "Amaro", density: "story", built: true, darkHeader: true, inNav: true, changeFrequency: "monthly", priority: 0.9 },
   { path: "/process", label: "Process", density: "spec", built: true, changeFrequency: "monthly", priority: 0.8 },
   { path: "/quality", label: "Quality", density: "spec", built: true, changeFrequency: "monthly", priority: 0.8 },
@@ -100,7 +100,10 @@ export const ROUTES: Route[] = [
      there for direct hits and crawlers. Drop `externalHref` when the journal
      carries its own entries. */
   { path: "/journal", label: "From Origin", density: "story", built: true, noindex: true, inNav: true, externalHref: ORG.linkedin, changeFrequency: "weekly", priority: 0.7 },
-  { path: "/guides", label: "Guides", density: "spec", built: true, inNav: true, changeFrequency: "monthly", priority: 0.7 },
+  /* /coffee and /guides keep spec density for their body, but their headers
+     open deep (client, 15 September 2026) so every primary-nav landing page
+     starts on the same emerald surface as /amaro and /about. */
+  { path: "/guides", label: "Guides", density: "spec", built: true, darkHeader: true, inNav: true, changeFrequency: "monthly", priority: 0.7 },
   { path: "/about", label: "About", navLabel: "About Us", density: "story", built: true, darkHeader: true, inNav: true, changeFrequency: "yearly", priority: 0.6 },
   /* Indexable since 4 September 2026: the client supplied the founder's own
      account and portrait, so the page carries real content rather than a

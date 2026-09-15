@@ -306,6 +306,17 @@
     }
   }
 
+  @keyframes fab-rise {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
   .hero-line > span {
     display: block;
     animation: hero-rise var(--duration-cinematic) var(--ease-entrance) both;
@@ -330,6 +341,20 @@
       100% 100%,
       0 100%
     );
+  }
+
+  /* Photograph dissolving into the page at its foot. A mask rather than a
+     gradient in the surface colour, so it blends into alabaster, bone or
+     emerald alike and can never be a slightly different cream. */
+  .figure-blend {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 68%, rgba(0, 0, 0, 0.55) 86%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 68%, rgba(0, 0, 0, 0.55) 86%, transparent 100%);
+  }
+
+  /* Contact FAB panel: rises from the trigger when it opens. The reduced
+     motion block below collapses the duration, so the final state is instant. */
+  .fab-panel:not([hidden]) {
+    animation: fab-rise 280ms var(--ease-editorial) both;
   }
 
   /* --- Surface-adaptive chrome -------------------------------------------
