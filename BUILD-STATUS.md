@@ -444,6 +444,19 @@ Held on its own branch to merge after the other developer's work lands.
   treatment was tried and rejected by the client, so the photographs stay as
   plain framed images.
 
+**Verification.** Build clean (29 pages) · `tsc` clean · lint clean (1
+pre-existing warning) · `qa.mjs` **302 passed / 0 failed** · `a11y.mjs` **0
+violations** on 20 routes. Run the QA scripts **one after another**, not in
+parallel: run concurrently against a cold server, `/farmers` timed out on
+`networkidle` while the image optimiser encoded the new `-hd` sources, and
+the timeout did not recur when run in sequence.
+
+**Merge note.** This branch fast-forwards `main` (`ef5aeb0`) with no
+conflicts. `Feature/eden-review-and-ownership-wording` (`ad353a6`) is the
+earlier draft of the washing-station wording that landed on `main` as
+`ef5aeb0`, and is based on an older `main`. Do not merge it: it conflicts in
+7 files, and `main` already carries the same facts in their newer form.
+
 **Trap 24: a `--no-save` Playwright install can outrun the browser cache.**
 `npm i --no-save playwright` pulls the latest version, which expects a newer
 Chromium revision than the one already in `ms-playwright` (1243 against a
