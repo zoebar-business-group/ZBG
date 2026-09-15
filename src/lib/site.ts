@@ -152,6 +152,13 @@ export const PRIMARY_CTA = { label: "Request a Quote", href: "/request-quote#quo
 export const SECONDARY_CTA = { label: "Request a Sample", href: "/request-quote#sample" } as const;
 
 /**
+ * Every "Contact us" affordance site-wide (footer, the contact FAB, and
+ * inline CTAs) must land a visitor on the enquiry form itself, not just the
+ * top of /contact. The form section on that page is `id="enquiry"`.
+ */
+export const CONTACT_HREF = "/contact#enquiry";
+
+/**
  * WhatsApp — a first-class commercial channel (Strategy 6.1), with
  * page-aware prefilled messages.
  *

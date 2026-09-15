@@ -17,6 +17,7 @@ import {
   breadcrumbSchema,
 } from "@/lib/schema";
 import { ABOUT_FAQS } from "@/content/faqs";
+import { CONTACT_HREF } from "@/lib/site";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Answer, FaqList } from "@/components/primitives/Answer";
@@ -411,7 +412,7 @@ export default function AboutPage() {
               </p>
 
               <div className="mt-12 flex flex-wrap items-center gap-6">
-                <Button href="/contact" variant="secondary">
+                <Button href={CONTACT_HREF} variant="secondary">
                   Register interest
                 </Button>
               </div>

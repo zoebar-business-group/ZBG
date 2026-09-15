@@ -8,7 +8,7 @@ import {
   harvestWindow,
 } from "@/lib/org";
 import { citableSummary } from "@/lib/schema";
-import { externalHrefFor } from "@/lib/site";
+import { CONTACT_HREF, externalHrefFor } from "@/lib/site";
 import { Container, Section, Eyebrow } from "@/components/primitives/layout";
 import { Button } from "@/components/primitives/Button";
 import { Stat, Pending, SpecTable } from "@/components/primitives/data";
@@ -791,7 +791,7 @@ export function RequestSection() {
             <p className="mt-2 text-center font-sans text-sm leading-relaxed text-[#9db3b0]">
               Prefer to talk it through?{" "}
               <Link
-                href="/contact"
+                href={CONTACT_HREF}
                 className="text-sand underline underline-offset-4"
               >
                 Contact the team

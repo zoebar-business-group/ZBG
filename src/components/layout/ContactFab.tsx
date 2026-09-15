@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
-import { whatsappMessageFor } from "@/lib/site";
+import { CONTACT_HREF, whatsappMessageFor } from "@/lib/site";
 import { clsx } from "@/lib/clsx";
 
 /**
@@ -109,7 +109,7 @@ export function ContactFab({ whatsappNumber }: { whatsappNumber: string | null }
           )}
           <li>
             <Link
-              href="/contact"
+              href={CONTACT_HREF}
               onClick={() => setOpen(false)}
               aria-current={pathname === "/contact" ? "page" : undefined}
               className="group flex min-h-[64px] items-center gap-4 rounded-[0.875rem] px-3 py-3 transition-colors duration-[200ms] hover:bg-bone focus-visible:bg-bone"
@@ -134,7 +134,7 @@ export function ContactFab({ whatsappNumber }: { whatsappNumber: string | null }
                 </svg>
               </span>
               <span className="flex min-w-0 flex-col">
-                <span className="font-sans text-[0.9375rem] font-medium">Contact page</span>
+                <span className="font-sans text-[0.9375rem] font-medium">Contact us</span>
                 <span className="font-sans text-[0.8125rem] text-[#5a5f56]">
                   Send the team a question
                 </span>

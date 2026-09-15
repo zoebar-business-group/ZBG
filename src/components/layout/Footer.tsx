@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { ORG, OPERATIONS } from "@/lib/org";
-import { ROUTES, PRIMARY_CTA, externalHrefFor } from "@/lib/site";
+import { ROUTES, PRIMARY_CTA, CONTACT_HREF, externalHrefFor } from "@/lib/site";
 import { Logo } from "./Logo";
 
 /**
@@ -74,6 +74,9 @@ export function Footer() {
                 <ul className="flex flex-col gap-3">
                   {col.paths.map((p) => {
                     const external = externalHrefFor(p);
+                    // /contact must land visitors on the form itself, not
+                    // just the top of the page.
+                    const href = p === "/contact" ? CONTACT_HREF : p;
                     const linkClass =
                       "font-sans text-sm text-[#cfd9d6] transition-colors duration-[200ms] hover:text-sand";
                     return (
@@ -88,7 +91,7 @@ export function Footer() {
                             {label(p)}
                           </a>
                         ) : (
-                          <Link href={p} className={linkClass}>
+                          <Link href={href} className={linkClass}>
                             {label(p)}
                           </Link>
                         )}
