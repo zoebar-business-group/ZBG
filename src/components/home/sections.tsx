@@ -580,14 +580,7 @@ export function Farmers() {
             </div>
           </div>
 
-          <div className="relative isolate grid gap-6 sm:grid-cols-2 lg:col-span-7">
-            {/* Soft sage-and-sand glow behind the pair, so the photographs
-                sit in the surface rather than on it. Decorative. Held inside
-                the page gutter on small screens so it cannot add overflow. */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -inset-x-4 -inset-y-10 -z-10 lg:-inset-10 bg-[radial-gradient(60%_55%_at_35%_40%,rgba(135,164,161,0.24)_0%,rgba(135,164,161,0)_70%),radial-gradient(45%_45%_at_75%_70%,rgba(240,226,203,0.6)_0%,rgba(240,226,203,0)_70%)] blur-2xl"
-            />
+          <div className="grid gap-6 sm:grid-cols-2 lg:col-span-7">
             {/* Both photographs are landscape frames in portrait slots, and in
                 both the producer stands well to the left. `focus="left"` anchors
                 the crop on them; the default centre crop cuts through the face.
@@ -596,8 +589,6 @@ export function Farmers() {
               ratio="portrait"
               rounded="card"
               focus="left"
-              blend
-              label="Amaro, Koore Zone"
               src="/farmer-one-hd.jpg"
               alt="A coffee producer in a worn brown jacket picking ripe red cherry by hand from a laden branch at their plot in Amaro, Koore Zone."
               brief="A producer hand-picking ripe cherry at their plot in Amaro, seen in profile among the coffee trees, natural light, unposed."
@@ -608,7 +599,6 @@ export function Farmers() {
               rounded="card"
               cut
               focus="left"
-              blend
               className="sm:mt-14"
               src="/farmers-plot-hd.jpg"
               alt="A coffee producer standing among cherry-laden coffee trees at his plot in Amaro, Koore Zone, reaching to a branch of ripening cherry, forested hillside behind."

@@ -81,14 +81,6 @@ export interface FigureProps {
   priority?: boolean;
   sizes?: string;
   onDark?: boolean;
-  /** Let the photograph settle into the page: the foot dissolves into
-   *  whatever surface it sits on (a mask, so it cannot mismatch the ground,
-   *  the same principle as the founder cut-out), a soft vignette gives the
-   *  frame depth, and the image drifts slightly on hover. */
-  blend?: boolean;
-  /** Short place label set on the photograph, top left. Must be a verified
-   *  fact about the frame, like the caption. */
-  label?: string;
   className?: string;
 }
 
@@ -105,8 +97,6 @@ export function Figure({
   priority = false,
   sizes = "(max-width: 768px) 100vw, 50vw",
   onDark = false,
-  blend = false,
-  label,
   className,
 }: FigureProps) {
   const radius =
@@ -117,9 +107,7 @@ export function Figure({
         : "rounded-none";
 
   return (
-    <figure
-      className={clsx("flex flex-col gap-3", fill && "lg:h-full", blend && "group", className)}
-    >
+    <figure className={clsx("flex flex-col gap-3", fill && "lg:h-full", className)}>
       <div
         className={clsx(
           "relative w-full overflow-hidden",
@@ -127,7 +115,6 @@ export function Figure({
           fill && "lg:aspect-auto lg:min-h-0 lg:flex-1",
           radius,
           cut && "cut-hex",
-          blend && src && "figure-blend",
           !src &&
             (onDark
               ? "bg-[#04231F] ring-1 ring-[rgba(240,226,203,0.14)]"
@@ -135,35 +122,14 @@ export function Figure({
         )}
       >
         {src ? (
-          <>
-            <Image
-              src={src}
-              alt={alt ?? brief}
-              fill
-              priority={priority}
-              sizes={sizes}
-              quality={blend ? 85 : undefined}
-              className={clsx(
-                "object-cover",
-                FOCUS[focus],
-                blend &&
-                  "scale-[1.02] transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] motion-reduce:transition-none",
-              )}
-            />
-            {blend && (
-              /* Depth: edges drawn down toward emerald, a warm lift from the
-                 upper left where the light falls. Decorative only. */
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(130%_95%_at_28%_18%,rgba(240,226,203,0.10)_0%,rgba(240,226,203,0)_45%,rgba(1,31,27,0.30)_100%)]"
-              />
-            )}
-            {label && (
-              <span className="absolute left-4 top-4 rounded-full bg-[rgba(255,250,244,0.9)] px-3 py-1.5 font-sans text-[0.625rem] font-medium uppercase tracking-[0.18em] text-ink backdrop-blur-[4px]">
-                {label}
-              </span>
-            )}
-          </>
+          <Image
+            src={src}
+            alt={alt ?? brief}
+            fill
+            priority={priority}
+            sizes={sizes}
+            className={clsx("object-cover", FOCUS[focus])}
+          />
         ) : (
           /* Composed panel. Decorative by intent, so it is hidden from the
              accessibility tree - a screen reader announcing a description of a

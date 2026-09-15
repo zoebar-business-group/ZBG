@@ -435,17 +435,14 @@ Held on its own branch to merge after the other developer's work lands.
 - **Farmer photographs.** `scripts/farmer-photos.cjs` writes
   `public/farmer-one-hd.jpg` (1005x614 → 2010x1228) and
   `public/farmers-plot-hd.jpg` (1600x1066 → 2400x1599). It uses a Lanczos-3
-  upscale, a light unsharp mask, and one shared grade (saturation eased off the
-  neon greens, a slight warm balance). **This is interpolation, not AI
-  super-resolution**, so it cannot add detail the camera did not record. The
-  originals stay in `public/`. No person is retouched.
-- **`Figure` gains `blend` and `label`.** `blend` dissolves the foot of the
-  photograph into the page with a CSS mask (`.figure-blend`, so it matches
-  alabaster, bone or emerald alike), adds a soft vignette, and adds a slow
-  hover drift. `label` is a small place chip on the photograph and must be a
-  verified fact, like a caption. Both farmer pairs (homepage chapter 08 and
-  `/farmers`) use them, with a sage-and-sand glow behind the pair. The glow is
-  held inside the page gutter below `lg`, so it adds no horizontal overflow.
+  upscale, a light unsharp mask, and one shared warm grade (reds lifted,
+  blues pulled down, saturation eased off the neon greens). **This is
+  interpolation, not AI super-resolution**, so it cannot add detail the camera
+  did not record. The originals stay in `public/`. No person is retouched.
+  Both farmer pairs (homepage chapter 08 and `/farmers`) use the `-hd` files
+  in the same layout, size and crop as before. A fade-into-background
+  treatment was tried and rejected by the client, so the photographs stay as
+  plain framed images.
 
 **Trap 24: a `--no-save` Playwright install can outrun the browser cache.**
 `npm i --no-save playwright` pulls the latest version, which expects a newer

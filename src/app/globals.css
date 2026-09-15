@@ -343,14 +343,6 @@
     );
   }
 
-  /* Photograph dissolving into the page at its foot. A mask rather than a
-     gradient in the surface colour, so it blends into alabaster, bone or
-     emerald alike and can never be a slightly different cream. */
-  .figure-blend {
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 68%, rgba(0, 0, 0, 0.55) 86%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 0%, #000 68%, rgba(0, 0, 0, 0.55) 86%, transparent 100%);
-  }
-
   /* Contact FAB panel: rises from the trigger when it opens. The reduced
      motion block below collapses the duration, so the final state is instant. */
   .fab-panel:not([hidden]) {

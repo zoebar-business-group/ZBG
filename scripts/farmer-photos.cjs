@@ -40,13 +40,14 @@ const JOBS = [
     const info = await sharp(job.src)
       .rotate()
       .resize({ width, kernel: sharp.kernel.lanczos3 })
-      // Warm balance: a touch more red, a touch less blue.
+      // Warm grade: reds lifted with a little green bleed (golden rather
+      // than pink), blues pulled down, a slight brightness lift.
       .recomb([
-        [1.03, 0, 0],
-        [0, 1.0, 0],
-        [0, 0, 0.95],
+        [1.07, 0.03, 0],
+        [0.01, 1.01, 0],
+        [0, 0, 0.88],
       ])
-      .modulate({ saturation: job.saturation, brightness: 1.01 })
+      .modulate({ saturation: job.saturation, brightness: 1.03 })
       .sharpen({ sigma: 0.9, m1: 0.5, m2: 1.6 })
       .jpeg({ quality: 88, mozjpeg: true, chromaSubsampling: "4:4:4", progressive: true })
       .toFile(job.out);
