@@ -10,6 +10,7 @@ import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { ChromeGate } from "@/components/layout/ChromeGate";
 import { ContactFab } from "@/components/layout/ContactFab";
+import { SiteAnalytics } from "@/components/layout/SiteAnalytics";
 
 /**
  * TYPEFACES
@@ -129,6 +130,8 @@ export default function RootLayout({
           <ContactFab whatsappNumber={WHATSAPP_NUMBER} />
           <ScrollReveal />
         </ChromeGate>
+
+        <SiteAnalytics />
       </body>
     </html>
   );
